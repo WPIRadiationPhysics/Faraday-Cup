@@ -24,7 +24,7 @@ RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
   // Create tally and transport files
-  G4String data_dir = "/home/shaun/Documents/Geant4/FaradayCup/data/";
+  G4String data_dir = "data/";
   G4String tallyFileName = data_dir + "tallies.txt";
   std::ofstream dataFile;
 
@@ -38,7 +38,7 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   G4cout << "Categorizing data movement..." << "\n";
 
   // Vars, data and file structures
-  G4String data_dir = "/home/shaun/Documents/Geant4/FaradayCup/data/";
+  G4String data_dir = "data/";
   G4String tallyFileName = data_dir + "tallies.txt";
   G4String transFileName = data_dir + "transports.txt";
   G4String gnuplotFileName = data_dir + "histo.gnuplot";

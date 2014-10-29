@@ -67,7 +67,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   //}
 
   // Add to dataset csv
-  G4String data_dir = "/home/shaun/Documents/Geant4/FaradayCup/data/";
+  G4String data_dir = "data/";
   G4String tallyFileName = data_dir + "tallies.txt";
   std::ofstream tallyFile;
   tallyFile.open (tallyFileName, std::ios::app);
