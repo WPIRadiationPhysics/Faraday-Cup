@@ -1,3 +1,6 @@
+/// \file DetectorConstruction.cc
+/// \brief Implementation of the DetectorConstruction class
+
 #include "DetectorConstruction.hh"
 
 #include "G4Material.hh"

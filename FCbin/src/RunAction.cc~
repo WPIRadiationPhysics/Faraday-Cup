@@ -131,19 +131,19 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
     }
     */
   }
-  /*
+  
   // Summarize particle transportation (FOR SETUP 1)
   dataFile.open(transFileName, std::ios::app);
   for ( int k=0; k<num_bins; k++ ) {
     dataFile << k << " " << bin_charge[k] << "e" << "\n";
   }
   dataFile.close();
-  */
+
   //// Summarize particle transportation (FOR SETUP 2)
   //dataFile.open(transFileName, std::ios::app);
   //dataFile << "The net charge of the irradiated copper is e" << "\n";
   //dataFile.close();
-
+  */
   // Create gnuplot file for analysis
   dataFile.open(gnuplotFileName);
   dataFile << "set term png" << "\n"

@@ -6,7 +6,7 @@
                             ----------------------
 
 Table of Contents:
-1- GEOMETRY DEFINITION
+1- Geometry Definition
 2- PHYSICS LIST 
 3- ACTION INITALIZATION
 4- PRIMARY GENERATOR 	
@@ -144,11 +144,11 @@ B- USER INTERFACES
    % cd build
    % cmake -DGeant4_DIR=$G4COMP ..
    % make
-   % cd FCbin
-   
+   The executable, 'runFaradayCup', is found in build/FCbin/
+
    This example handles the program arguments in a new way.
    It can be run with the following optional arguments:
-   % ./runFaradayCup [-m macro ] [-u UIsession] [-t nThreads]
+   % runFaradayCup [-m macro ] [-u UIsession] [-t nThreads]
    
    The -t option is available only in multi-threading mode
    and it allows the user to override the Geant4 default number of 
@@ -156,7 +156,7 @@ B- USER INTERFACES
    environment variable which has the top priority.
  
    - Execute runFaradayCup in the 'interactive mode' with visualization
-        % ./runFaradayCup
+        % runFaradayCup
      and type in the commands from run1.mac line by line:  
         Idle> /tracking/verbose 1 
         Idle> /run/beamOn 1
@@ -169,12 +169,12 @@ B- USER INTERFACES
 
    - Execute runFaradayCup in the 'batch' mode from macro files
      (without visualization)
-        % ./runFaradayCup -m run2.mac
-        % ./runFaradayCup -m runFaradayCup.in > runFaradayCup.out
+        % runFaradayCup -m run2.mac
+        % runFaradayCup -m runFaradayCup.in > runFaradayCup.out
  		
    - Execute runFaradayCup in the 'interactive mode' with a selected UI session,
      e.g. tcsh
-        % ./runFaradayCup -u tcsh 
+        % runFaradayCup -u tcsh 
 
  A- VISUALIZATION
  

@@ -1,3 +1,8 @@
+// $Id: runFaradayCup.cc 75215 2013-10-29 16:07:06Z gcosmo $
+//
+/// \file runFaradayCup.cc
+/// \brief Main program of the Faraday Cup
+
 #include "DetectorConstruction.hh"
 #include "ActionInitialization.hh"
 

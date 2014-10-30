@@ -1,6 +1,3 @@
-# $Id: GNUmakefile 68058 2013-03-13 14:47:43Z gcosmo $
-# -----------------------------------------------------------------
-
 SUBDIR = FCbin
 
 .PHONY: bin clean clean_bin debug
