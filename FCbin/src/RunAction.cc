@@ -23,7 +23,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
   G4String data_dir = "data/"; G4String dirCommand = "mkdir -p " + data_dir;
   system(dirCommand);
   G4String tallyFileName = data_dir + "tallies.txt";
-  G4String transFileName = data_dir + "transports.txt";
+  G4String chargeFileName = data_dir + "charge.txt";
   std::ofstream dataFile;
 
   // Initialize tally file
@@ -31,14 +31,14 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
   dataFile << "# Variables aquired from steps of tracks" << "\n" << "charge state volume r z" << "\n";
   dataFile.close();
   // Initialize net charge file
-  dataFile.open(transFileName); dataFile.close();
+  dataFile.open(chargeFileName); dataFile.close();
 }
 
 void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   // Vars, data and file structures
   G4String data_dir = "data/";
   G4String tallyFileName = data_dir + "tallies.txt";
-  G4String transFileName = data_dir + "transports.txt";
+  G4String chargeFileName = data_dir + "charge.txt";
   G4String gnuplotFileName = data_dir + "histo.gnuplot";
   std::ifstream tallyFile(tallyFileName);
   std::ofstream dataFile;
@@ -94,7 +94,7 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   }
 
   // Summarize particle transportation
-  dataFile.open(transFileName, std::ios::app);
+  dataFile.open(chargeFileName, std::ios::app);
   dataFile << "The net charge of the irradiated copper is " << netCharge << " e" << "\n";
   dataFile.close();
 
