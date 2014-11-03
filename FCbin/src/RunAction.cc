@@ -28,7 +28,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
 
   // Initialize tally file
   dataFile.open(tallyFileName);
-  dataFile << "# Variables aquired from steps of tracks" << "\n" << "charge state volume r z" << "\n";
+  dataFile << "# Variables aquired from steps of tracks" << "\n" << "# charge state volume r z" << "\n";
   dataFile.close();
   // Initialize net charge file
   dataFile.open(chargeFileName); dataFile.close();
@@ -53,7 +53,7 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
     getline(tallyFile, fileVarGet, delim); G4String stepState = fileVarGet;
     getline(tallyFile, fileVarGet, delim); G4String volumeName = fileVarGet;
     getline(tallyFile, fileVarGet, delim); G4double stepR = atof(fileVarGet);
-    getline(tallyFile, fileVarGet, delim); G4double stepZ = atof(fileVarGet);
+    getline(tallyFile, fileVarGet); G4double stepZ = atof(fileVarGet);
 
     /* Add/Remove charges which transport into/out-of the Cu
       Charges which are transported into/out-of a distance
@@ -65,16 +65,18 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
     // Initial state
     if ( stepState == "FROM" ) {
       // particle exits cylinder, -q_i
-      if ( volumeName = "Cu_cyl" ) {
+      if ( volumeName == "Cu_cyl" ) {
         netCharge -= stepCharge;
       }
-      // particle exits Kapton, -q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
+      // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
       if ( volumeName == "Kapton_cyl1" ) {
-		// Something similar, account for all relevant cases!
-        G4double percentR = (stepR - 500)/(550 - 500); // manually from DetectorConstruction.cc
-        G4double percentZ = ((-stepZ) - 150)/(160 - 150); // cylinders are upside-down
-	    G4double proportionalityCharge = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
-        netCharge -= stepCharge*proportionalityCharge;
+		G4double percentR = 0, percentZ = 0;
+		if ( stepR >= 50 )
+		  percentR = (stepR - 50)/(55 - 50); // manually from DetectorConstruction.cc
+		else
+          percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
+	    G4double chargeProp = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+        netCharge -= stepCharge*(1-chargeProp);
       }
     }
     // Final state
@@ -85,16 +87,19 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
       }
       // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
       if ( volumeName == "Kapton_cyl1" ) {
-        G4double percentR = (stepR - 500)/(550 - 500); // manually from DetectorConstruction.cc
-        G4double percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
-	    G4double proportionalityCharge = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
-        netCharge += stepCharge*proportionalityCharge;
+        G4double percentR = 0, percentZ = 0;
+		if ( stepR >= 50 )
+		  percentR = (stepR - 50)/(55 - 50); // manually from DetectorConstruction.cc
+		else
+          percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
+	    G4double chargeProp = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+        netCharge += stepCharge*(1-chargeProp);
       }
     }
   }
 
   // Summarize particle transportation
-  dataFile.open(chargeFileName, std::ios::app);
+  dataFile.open(chargeFileName);
   dataFile << "The net charge of the irradiated copper is " << netCharge << " e" << "\n";
   dataFile.close();
 

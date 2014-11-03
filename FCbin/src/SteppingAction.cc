@@ -35,12 +35,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   // Get step position r,z-position
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
   G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
-  G4double stepZ = stepXYZ[2];
+  G4double stepZ = stepXYZ[2]; 
 
   // Get particle energy
   G4double kinEnergy = step->GetTrack()->GetKineticEnergy();
 
-  // Insert particle trajectory info
+  // Insert particle trajectory into tally file
   G4String stepInfo = "";
   std::ostringstream sstream;
   // Initial state
