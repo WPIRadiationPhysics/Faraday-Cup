@@ -28,7 +28,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
 
   // Initialize tally file
   dataFile.open(tallyFileName);
-  dataFile << "# Variables aquired from steps of tracks" << "\n" << "# track particle charge step volume z energy" << "\n";
+  dataFile << "# Variables aquired from steps of tracks" << "\n" << "charge state volume r z" << "\n";
   dataFile.close();
   // Initialize net charge file
   dataFile.open(transFileName); dataFile.close();
@@ -43,108 +43,62 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   std::ifstream tallyFile(tallyFileName);
   std::ofstream dataFile;
   G4String fileVarGet, tallyFileHeader;
-  G4String volumeInit[1000];
-  G4double zInit[1000];
   char delim = ' ';
-  const G4int num_bins = 150;
-  G4double bin_charge[num_bins] = {0};
-  G4int bin_initial, bin_final;
+  G4double netCharge = 0;
 
-  //G4double netCharge = 0;
-  
   // Skip headers, gather run variables from data file
   getline(tallyFile, tallyFileHeader); getline(tallyFile, tallyFileHeader);
   while(tallyFile.good()) {
-    getline(tallyFile, fileVarGet, delim); G4int trackID = atoi(fileVarGet);
-    getline(tallyFile, fileVarGet, delim); G4String stepParticle = fileVarGet;
     getline(tallyFile, fileVarGet, delim); G4double stepCharge = atof(fileVarGet);
-    getline(tallyFile, fileVarGet, delim); G4int stepNum = atoi(fileVarGet);
+    getline(tallyFile, fileVarGet, delim); G4String stepState = fileVarGet;
     getline(tallyFile, fileVarGet, delim); G4String volumeName = fileVarGet;
+    getline(tallyFile, fileVarGet, delim); G4double stepR = atof(fileVarGet);
     getline(tallyFile, fileVarGet, delim); G4double stepZ = atof(fileVarGet);
-    getline(tallyFile, fileVarGet, delim); G4double kinEnergy = atof(fileVarGet);
 
-    //// THIS SETUP CREATES BRAGG PEAK DATA HISTO DATA
-    //// 1 mm spacing
-    // Initial state
-    /*
-    if ( stepNum == 1 ) {
-      volumeInit[trackID] = volumeName;
-      zInit[trackID] = stepZ;
-    }
-    // Final state
-    if ( kinEnergy == 0 ) { //100 eV
-      // particle enters cylinder, add charge at location
-      if ( volumeName == "Cu_cyl" && volumeInit[trackID] != "Cu_cyl" ) {
-        for ( int k=0; k<num_bins; k++) {
-          if ( stepZ > k - 150 )
-            bin_final = k;
-        }
-        bin_charge[bin_final] += stepCharge;
-      }
-      // particle exits cylinder, subtract charge
-      if ( volumeName != "Cu_cyl" && volumeInit[trackID] == "Cu_cyl" ) {
-        for ( int k=0; k<num_bins; k++) {
-          if ( zInit[trackID] > k - 150 )
-            bin_initial = k;
-        }
-        bin_charge[bin_initial] -= stepCharge;
-      }
-      // particle moves from one bin to another within copper
-      if ( volumeName == "Cu_cyl" && volumeInit[trackID] == "Cu_cyl" ) {
-        for ( int k=0; k<num_bins; k++) {
-          if ( zInit[trackID] > k - 150 )
-            bin_initial = k;
-          if ( stepZ > k - 150 )
-            bin_final = k;
-        }
-        if ( bin_initial != bin_final ) {
-          bin_charge[bin_initial] -= stepCharge;
-          bin_charge[bin_final] += stepCharge;
-        }
-      }
-    }
+    /* Add/Remove charges which transport into/out-of the Cu
+      Charges which are transported into/out-of a distance
+      (del_r, del_z) into Kapton from cylinder have charge equivalence
+      * 
+            q*[1 - max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
     */
-
-    /*
-    //// THIS SETUP CREATES GENERAL TRANSPORT FILE
+      
     // Initial state
-    if ( stepNum == 1 )
-      volumeInit[trackID] = volumeName;
-    // Final state
-    if ( kinEnergy == 0 ) {
-      // particle enters cylinder, add charge
-      if ( volumeName == "Cu_cyl" && volumeInit[trackID] != "Cu_cyl" ) {
-        netCharge += stepCharge;
-        dataFile.open(transFileName, std::ios::app);
-        dataFile << stepParticle << " (" << stepCharge << ") enters copper."  
-                 << " Net charge: " << netCharge << "\n";
-        dataFile.close();
-      }
-      // particle exits cylinder, subtract charge
-      if ( volumeName != "Cu_cyl" && volumeInit[trackID] == "Cu_cyl" ) {
+    if ( stepState == "FROM" ) {
+      // particle exits cylinder, -q_i
+      if ( volumeName = "Cu_cyl" ) {
         netCharge -= stepCharge;
-        dataFile.open(transFileName, std::ios::app);
-        dataFile << stepParticle << "(" << stepCharge << ") exits copper." 
-                 << " Net charge: " << netCharge << "\n";
-        dataFile.close();
+      }
+      // particle exits Kapton, -q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
+      if ( volumeName == "Kapton_cyl1" ) {
+		// Something similar, account for all relevant cases!
+        G4double percentR = (stepR - 500)/(550 - 500); // manually from DetectorConstruction.cc
+        G4double percentZ = ((-stepZ) - 150)/(160 - 150); // cylinders are upside-down
+	    G4double proportionalityCharge = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+        netCharge -= stepCharge*proportionalityCharge;
       }
     }
-    */
+    // Final state
+    if ( stepState == "TO" ) {
+      // particle enters cylinder, +q_i
+      if ( volumeName == "Cu_cyl" ) {
+        netCharge += stepCharge;
+      }
+      // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
+      if ( volumeName == "Kapton_cyl1" ) {
+        G4double percentR = (stepR - 500)/(550 - 500); // manually from DetectorConstruction.cc
+        G4double percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
+	    G4double proportionalityCharge = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+        netCharge += stepCharge*proportionalityCharge;
+      }
+    }
   }
-  /*
-  // Summarize particle transportation (FOR SETUP 1)
-  dataFile.open(transFileName, std::ios::app);
-  for ( int k=0; k<num_bins; k++ ) {
-    dataFile << k << " " << bin_charge[k] << "e" << "\n";
-  }
-  dataFile.close();
-  */
-  //// Summarize particle transportation (FOR SETUP 2)
-  //dataFile.open(transFileName, std::ios::app);
-  //dataFile << "The net charge of the irradiated copper is e" << "\n";
-  //dataFile.close();
 
-  // Create gnuplot file for analysis
+  // Summarize particle transportation
+  dataFile.open(transFileName, std::ios::app);
+  dataFile << "The net charge of the irradiated copper is " << netCharge << " e" << "\n";
+  dataFile.close();
+
+  /*// Create gnuplot file for analysis
   dataFile.open(gnuplotFileName);
   dataFile << "set term png" << "\n"
            << "set output \"histo.png\"" << "\n\n"
@@ -160,5 +114,5 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
            << "set ylabel \"# x e (Coulombs)\"" << "\n\n"
 
            << "plot \"transports.txt\" u 1:2 w boxes notitle";
-  dataFile.close();
+  dataFile.close(); */
 }

@@ -32,8 +32,7 @@ DetectorConstruction::DetectorConstruction()
 
 DetectorConstruction::~DetectorConstruction() { }
 
-G4VPhysicalVolume* DetectorConstruction::Construct()
-{
+G4VPhysicalVolume* DetectorConstruction::Construct() {
   // Define materials 
   DefineMaterials();
   
@@ -41,8 +40,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   return DefineVolumes();
 }
 
-void DetectorConstruction::DefineMaterials()
-{ 
+void DetectorConstruction::DefineMaterials() { 
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
@@ -65,8 +63,7 @@ void DetectorConstruction::DefineMaterials()
 }
 
 //// Geometry parameters
-G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
-{
+G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*cm;
   G4double Cu_cyl_outerRadius = 5*cm;
@@ -271,8 +268,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes()
 }
 
 // Create global magnetic field messenger.
-void DetectorConstruction::ConstructSDandField()
-{ 
+void DetectorConstruction::ConstructSDandField() { 
   // Uniform magnetic field is then created automatically if
   // the field value is not zero.
   G4ThreeVector fieldValue = G4ThreeVector();

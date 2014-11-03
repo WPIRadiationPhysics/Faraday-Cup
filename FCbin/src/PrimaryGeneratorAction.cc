@@ -29,8 +29,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction() { delete fParticleGun; }
 
-void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
-{
+void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
   // This function is called at the begining of event
 
   // In order to avoid dependence of PrimaryGeneratorAction
@@ -41,9 +40,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
   G4Tubs* worldTubs = 0;
   if ( worlLV) worldTubs = dynamic_cast< G4Tubs*>(worlLV->GetSolid()); 
-  if ( worldTubs ) {
-    worldZHalfLength = worldTubs->GetZHalfLength();  
-  }
+  if ( worldTubs ) { worldZHalfLength = worldTubs->GetZHalfLength(); }
   else  {
     G4ExceptionDescription msg;
     msg << "World volume of box not found." << G4endl;
