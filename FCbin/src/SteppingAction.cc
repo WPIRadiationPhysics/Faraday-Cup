@@ -51,15 +51,14 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
      Charges which are transported into/out-of a distance
      (del_r, del_z) into Kapton from cylinder have charge equivalence
 
-        q*[1 - max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
+        q*[1 - max(del_r/(r_r - KA_Cu), del_z/(h_KA - h_Cu))]
   */
 
   // Initial state
   if ( stepNum == 1 ) {
     // particle exits cylinder, -q_i
-    if ( volumeName == "Cu_cyl" ) {
-      netCharge -= stepCharge;
-    }
+    if ( volumeName == "Cu_cyl" ) { netCharge -= stepCharge; }
+
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
@@ -69,16 +68,15 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
       // Z edge of Kapton
       else
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
-      G4double chargeProp = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+      G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge -= stepCharge*(1-chargeProp);
     }
   }
   // Final state
   if ( kinEnergy == 0 ) {
     // particle enters cylinder, +q_i
-    if ( volumeName == "Cu_cyl" ) {
-      netCharge += stepCharge;
-    }
+    if ( volumeName == "Cu_cyl" ) { netCharge += stepCharge; }
+
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
@@ -88,7 +86,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
       // Z edge of Kapton
       else
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
-      G4double chargeProp = ((percentR<percentZ)?percentZ:percentR); // concise maximum function
+      G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge += stepCharge*(1-chargeProp);
     }
   }

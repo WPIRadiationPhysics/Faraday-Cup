@@ -38,7 +38,7 @@ target_link_libraries(runFaradayCup ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
-# build B4a. This is so that we can run the executable directly because it
+# build runFaradayCup. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
 set(runFaradayCup_SCRIPTS
@@ -50,7 +50,6 @@ set(runFaradayCup_SCRIPTS
   init.mac
   init_vis.mac
   run1.mac
-  run2.mac
   vis.mac
   )
 

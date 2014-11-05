@@ -46,7 +46,7 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   // Sum net charge from each transport (IN/OUT)
   while(tallyFile.good()) {
     getline(tallyFile, fileVarGet, ' '); G4double q_i = atof(fileVarGet);
-    getline(tallyFile, fileVarGet); // particle name
+    getline(tallyFile, fileVarGet, ' '); // particle name
     getline(tallyFile, fileVarGet); // particle volume
     netCharge += q_i;
   }

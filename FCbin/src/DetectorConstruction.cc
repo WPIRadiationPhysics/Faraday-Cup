@@ -102,9 +102,10 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Get materials
   G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
-  G4Material* silverMaterial = G4Material::GetMaterial("G4_AIR"); //G4_Ag
-  G4Material* KaptonMaterial = G4Material::GetMaterial("G4_AIR"); //Kapton
+  G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
+  G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
 
+  // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! silverMaterial ) {
     G4ExceptionDescription msg;
     msg << "Cannot retrieve materials already defined."; 
@@ -246,16 +247,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  fCheckOverlaps);     // checking overlaps
 
 
-  // Print parameters
-  //  G4cout << "\n------------------------------------------------------------"
-  //         << "\n---> The copper cylinder is: [ "
-  //         << Cu_cyl_height/mm << "mm of " << copperMaterial->GetName() 
-  //         << "\n------------------------------------------------------------\n";
-  
-
   // Visualization attributes
   worldLV->SetVisAttributes (G4VisAttributes::Invisible);
-
   G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
   simpleBoxVisAtt->SetVisibility(true);
   Cu_cylLV->SetVisAttributes(simpleBoxVisAtt);
@@ -267,7 +260,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   return worldPV;
 }
 
-// Create global magnetic field messenger.
 void DetectorConstruction::ConstructSDandField() { 
   // Uniform magnetic field is then created automatically if
   // the field value is not zero.

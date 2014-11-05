@@ -31,7 +31,6 @@ PrimaryGeneratorAction::~PrimaryGeneratorAction() { delete fParticleGun; }
 
 void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
   // This function is called at the begining of event
-
   // In order to avoid dependence of PrimaryGeneratorAction
   // on DetectorConstruction class we get world volume
   // from G4LogicalVolumeStore

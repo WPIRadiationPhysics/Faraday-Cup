@@ -5,10 +5,13 @@
                     FaradayCup History file
                     -----------------------
 
-4 November 2014:
+5 November 2014: Shaun Marshall
+- Change silly delimeter mistake, readability cleanup
+
+4 November 2014: Shaun Marshall
 - Move tally file populating to SteppingAction (dynamic collection)
 
-2 November 2014:
+2 November 2014: Shaun Marshall
 - Cu/KA netCharge bins (KA linearly proportional)
 
 30 Oct 2014: Shaun Marshall
