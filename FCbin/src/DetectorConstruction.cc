@@ -46,6 +46,13 @@ void DetectorConstruction::DefineMaterials() {
   nistManager->FindOrBuildMaterial("G4_Cu");
   nistManager->FindOrBuildMaterial("G4_Ag");
   nistManager->FindOrBuildMaterial("G4_AIR");
+  
+  // Geant4 conventional definition of a vacuum
+  G4double density     = universe_mean_density;  //from PhysicalConstants.h
+  G4double pressure    = 1.e-19*pascal;
+  G4double temperature = 0.1*kelvin;
+  new G4Material("Vacuum", 1., 1.01*g/mole, density,
+                   kStateGas,temperature,pressure);
 
   // Manually constructing Kapton, did not seem to find from DB correctly...
   G4Material* Kapton = new G4Material("Kapton",1.42*g/cm3, 4);
@@ -66,28 +73,28 @@ void DetectorConstruction::DefineMaterials() {
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*cm;
-  G4double Cu_cyl_outerRadius = 5*cm;
+  G4double Cu_cyl_outerRadius = 6*cm;
   G4double Cu_cyl_height = 15*cm;
   G4double Cu_cyl_startAngle = 0*deg;
   G4double Cu_cyl_spanningAngle = 360*deg;
 
   // Kapton cylinder parameters (layers 1)
   G4double Kapton_cyl1_innerRadius = 0*cm; //Cu_cyl_outerRadius;
-  G4double Kapton_cyl1_outerRadius = 5.5*cm;
+  G4double Kapton_cyl1_outerRadius = 6.5*cm;
   G4double Kapton_cyl1_height = 16*cm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
   // Silver cylinder and cap parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm; //Kapton_cyl1_outerRadius;
-  G4double Ag_cyl_outerRadius = 5.7*cm;
+  G4double Ag_cyl_outerRadius = 6.7*cm;
   G4double Ag_cyl_height = 16.4*cm;
   G4double Ag_cyl_startAngle = 0*deg;
   G4double Ag_cyl_spanningAngle = 360*deg;
 
   // Kapton cylinder parameters (layers 3)
   G4double Kapton_cyl2_innerRadius = 0*cm; //Ag_cyl_outerRadius;
-  G4double Kapton_cyl2_outerRadius = 6.32*cm;
+  G4double Kapton_cyl2_outerRadius = 7.32*cm;
   G4double Kapton_cyl2_height = 17.64*cm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
@@ -100,10 +107,10 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
+  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
-  G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
-  G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
+  G4Material* silverMaterial = G4Material::GetMaterial("Vacuum"); //G4_Ag
+  G4Material* KaptonMaterial = G4Material::GetMaterial("Vacuum"); //Kapton
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! silverMaterial ) {

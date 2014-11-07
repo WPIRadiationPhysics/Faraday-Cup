@@ -2,8 +2,11 @@
      Geant4 - an Object-Oriented Toolkit for Simulation in HEP
      =========================================================
 
-                    FaradayCup History file
-                    -----------------------
+                    FaradayCup Changelog
+                    --------------------
+
+7 November 2014: Shaun Marshall
+- Appended experimental energies, copper dimension(s)
 
 5 November 2014: Shaun Marshall
 - Change silly delimeter mistake, readability cleanup
