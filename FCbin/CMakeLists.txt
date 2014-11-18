@@ -49,7 +49,7 @@ set(runFaradayCup_SCRIPTS
   run.png
   init.mac
   init_vis.mac
-  run1.mac
+  run.mac
   vis.mac
   )
 

@@ -9,6 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 #include <sys/types.h>
 
 RunAction::RunAction() : G4UserRunAction() { 
@@ -19,42 +20,81 @@ RunAction::RunAction() : G4UserRunAction() {
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
-  // Create tally and transport files
+  // Energies directly from run.mac
+  G4int numRuns = 6; G4int i;
+  
+  // Create tally sheet in order for each energy
   G4String data_dir = "data/"; G4String dirCommand = "mkdir -p " + data_dir;
   system(dirCommand);
-  G4String tallyFileName = data_dir + "tallies.txt";
-  G4String chargeFileName = data_dir + "charge.txt";
   std::ofstream dataFile;
 
-  // Initialize tally file
-  dataFile.open(tallyFileName); dataFile.close();
-  // Initialize net charge file
-  dataFile.open(chargeFileName); dataFile.close();
+  /*
+   *  Problem is somewhere around here, will create tallies[0-5].txt and
+   *  populate the charge file respectively.
+  */
+  for ( i=0; i<numRuns; i++) {
+	// Construct filenames
+	using namespace std;
+	stringstream ss << data_dir << "tallies" << i << ".txt";
+	G4String tallyFileName = ss.str();
+    
+    // Check if tally file made (in previous run)
+    ifstream infile(tallyFileName);
+    if ( infile.good() ) { continue; }
+    else {      
+      // Initialize tally file
+      dataFile.open(tallyFileName); dataFile.close();
+    }
+  }
 }
 
 void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   // Vars, data and file structures
   G4String data_dir = "data/";
-  G4String tallyFileName = data_dir + "tallies.txt";
-  G4String chargeFileName = data_dir + "charge.txt";
   G4String gnuplotFileName = data_dir + "histo.gnuplot";
-  std::ifstream tallyFile(tallyFileName);
   std::ofstream dataFile;
   G4String fileVarGet, tallyFileHeader;
   G4double netCharge = 0;
+  G4int i, numRuns = 6;
+  G4double run_energies[numRuns] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06];
 
-  // Sum net charge from each transport (IN/OUT)
-  while(tallyFile.good()) {
-    getline(tallyFile, fileVarGet, ' '); G4double q_i = atof(fileVarGet);
-    getline(tallyFile, fileVarGet, ' '); // particle name
-    getline(tallyFile, fileVarGet); // particle volume
-    netCharge += q_i;
+  // Skip to current analysis
+  for ( i=0; i<numRuns; i++) {
+	// Construct filenames
+	using nsamespace std;
+	stringstream ss << data_dir << "charge" << i << ".txt";
+	GString chargeFileName = ss.str();
+    
+    // Check if charge file made (in previous analysis)
+    ifstream infile(chargeFileName);
+    if ( infile.good() ) { continue; }
+    else {
+	  // Probe tallies of run
+	  ss << data_dir << "tallies" << i << ".txt";
+      G4String tallyFileName = ss.str();
+      std::ifstream tallyFile(tallyFileName);
+      
+      // Sum net charge from each transport (IN/OUT)
+      while(tallyFile.good()) {
+        getline(tallyFile, fileVarGet, ' '); G4double q_i = atof(fileVarGet);
+        getline(tallyFile, fileVarGet, ' '); // particle name
+        getline(tallyFile, fileVarGet); // particle volume
+        netCharge += q_i;
+      }
+
+      // Summarize particle transportation
+      dataFile.open(chargeFileName);
+      dataFile << run_energies[i] << " " << netCharge << "e" << "\n";
+      dataFile.close();
+    }
+    
+    // Make gnuplot macro after final run
+    //if ( i == 6 ) {
+	//
+    //}
   }
 
-  // Summarize particle transportation
-  dataFile.open(chargeFileName);
-  dataFile << "The net charge of the irradiated copper is " << netCharge << " e" << "\n";
-  dataFile.close();
+
 
   /*// Create gnuplot file for analysis
   dataFile.open(gnuplotFileName);

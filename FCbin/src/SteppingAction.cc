@@ -94,7 +94,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   if ( netCharge != 0 ) {
     // Add to dataset csv
     G4String data_dir = "data/";
-    G4String tallyFileName = data_dir + "tallies.txt";
+    G4String tallyFileName = data_dir + "tallies	.txt";
     std::ofstream tallyFile;
     tallyFile.open (tallyFileName, std::ios::app);
     tallyFile << netCharge << " " << stepParticle << " " << volumeName << "\n";
