@@ -1,7 +1,6 @@
 # Macro file for the visualization setting for the initialization phase 
-# of the B4 example when running in interactive mode
 #
-
+#
 # Use these open statements to open selected visualization
 #
 # Use this open statement to create an OpenGL view:

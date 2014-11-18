@@ -5,8 +5,11 @@
                     FaradayCup Changelog
                     --------------------
 
+18 November 2014: Shaun Marshall
+- (Fixed) Loop through beam energies, append charge file
+
 7 November 2014: Shaun Marshall
-- Appended experimental energies, copper dimension(s)
+- (Broken) Appended experimental energies, copper dimension(s)
 
 5 November 2014: Shaun Marshall
 - Change silly delimeter mistake, readability cleanup

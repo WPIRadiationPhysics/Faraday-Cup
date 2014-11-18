@@ -42,14 +42,13 @@ target_link_libraries(runFaradayCup ${Geant4_LIBRARIES})
 # relies on these scripts being in the current working directory.
 #
 set(runFaradayCup_SCRIPTS
-  runFaradayCup.out
-  runFaradayCup.in
+  run.out
   icons.mac
   gui.mac
   run.png
   init.mac
   init_vis.mac
-  run.mac
+  run.in
   vis.mac
   )
 

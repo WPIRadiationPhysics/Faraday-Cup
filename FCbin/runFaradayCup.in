@@ -1,20 +1,25 @@
-
-# e+ 300MeV 
-/gun/particle e+
-/gun/energy 300 MeV
-/run/beamOn 1
+# Command file for FaradayCup
 #
-# list the existing physics processes
-/process/list
+# Run proton beam ...
+/gun/particle proton
+# ... with energies from Heidleburg experiment
 #
-# switch off MultipleScattering
-/process/inactivate msc
-/run/beamOn 1
+/gun/energy 70.03 MeV
+/run/beamOn 10000
 #
-# switch on MultipleScattering
-/process/activate msc 
+/gun/energy 100.46 MeV
+/run/beamOn 10000
 #
-# change detector parameter
-/gun/particle gamma
-/gun/energy 500 MeV
-/run/beamOn 1
+/gun/energy 130.52 MeV
+/run/beamOn 10000
+#
+/gun/energy 160.09 MeV
+/run/beamOn 10000
+#
+/gun/energy 190.48 MeV
+/run/beamOn 10000
+#
+/gun/energy 221.06 MeV
+/run/beamOn 10000
+#
+/tracking/verbose 0
