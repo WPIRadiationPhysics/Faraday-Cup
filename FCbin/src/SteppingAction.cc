@@ -71,8 +71,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge -= stepCharge*(1-chargeProp);
-    */
     }
+    */
   }
   // Final state
   if ( kinEnergy == 0 ) {
@@ -92,8 +92,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge += stepCharge*(1-chargeProp);
-    */
     }
+    */
   }
 
   if ( netCharge != 0 ) {

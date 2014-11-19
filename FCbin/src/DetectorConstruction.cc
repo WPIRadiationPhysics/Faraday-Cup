@@ -86,24 +86,26 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
+  /*
   // Silver cylinder and cap parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm; //Kapton_cyl1_outerRadius;
   G4double Ag_cyl_outerRadius = 6.7*cm;
   G4double Ag_cyl_height = 16.4*cm;
   G4double Ag_cyl_startAngle = 0*deg;
   G4double Ag_cyl_spanningAngle = 360*deg;
-
+  
   // Kapton cylinder parameters (layers 3)
   G4double Kapton_cyl2_innerRadius = 0*cm; //Ag_cyl_outerRadius;
   G4double Kapton_cyl2_outerRadius = 7.32*cm;
   G4double Kapton_cyl2_height = 17.64*cm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
+  */
 
   // World cylinder parameters
   G4double world_innerRadius = 0*cm;
-  G4double world_outerRadius = Kapton_cyl2_outerRadius;
-  G4double world_height = Kapton_cyl2_height;
+  G4double world_outerRadius = Kapton_cyl1_outerRadius;
+  G4double world_height = Kapton_cyl1_height;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
@@ -147,7 +149,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
                           
-
+  /*
   // Kapton Hollow Cylinder 2 (layer 3) 
   G4VSolid* Kapton_cyl2S 
     = new G4Tubs("Kapton_cyl2",            // its name
@@ -199,7 +201,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
-
+  */
 
   // Kapton Hollow Cylinder 1 (layer 1) 
   G4VSolid* Kapton_cyl1S 
@@ -222,7 +224,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  G4ThreeVector(),     // its position
                  Kapton_cyl1LV,       // its logical volume                         
                  "Kapton_cyl1",       // its name
-                 Ag_cylLV,            // its mother  volume
+                 worldLV,            // its mother  volume
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
@@ -261,8 +263,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   simpleBoxVisAtt->SetVisibility(true);
   Cu_cylLV->SetVisAttributes(simpleBoxVisAtt);
   Kapton_cyl1LV->SetVisAttributes(simpleBoxVisAtt);
-  Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
-  Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
+  //Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
+  //Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
 
   // Always return the physical World
   return worldPV;
