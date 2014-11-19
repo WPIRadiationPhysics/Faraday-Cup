@@ -59,6 +59,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
     // particle exits cylinder, -q_i
     if ( volumeName == "Cu_cyl" ) { netCharge -= stepCharge; }
 
+    /* Sheath calculation
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
@@ -70,13 +71,16 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge -= stepCharge*(1-chargeProp);
+    */
     }
   }
   // Final state
   if ( kinEnergy == 0 ) {
     // particle enters cylinder, +q_i
     if ( volumeName == "Cu_cyl" ) { netCharge += stepCharge; }
-
+    
+    /* Sheath Calculation
+     * 
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
@@ -88,6 +92,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
         percentZ = (stepZ - (-150))/((-160) - (-150)); // cylinders are upside-down
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netCharge += stepCharge*(1-chargeProp);
+    */
     }
   }
 

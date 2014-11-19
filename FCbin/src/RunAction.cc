@@ -38,8 +38,11 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   G4String fileVarGet; char c;
   G4double netCharge = 0;
   G4int analysisNum;
-  G4double run_energies[] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06};
   std::ofstream dataFile;
+  
+  // Beam info (directly from macro file)
+  G4double run_energies[] = {5, 7, 9, 11, 13, 15, 17, 17.5, 18};
+  G4double beamCharge = 100000.0;
 
   // Construct filenames
   G4String data_dir = "data/";
@@ -69,12 +72,15 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
     getline(tallyFile, fileVarGet); // particle volume
     netCharge += q_i;
   }
+  
+  // Perform gain calculation
+  G4double faradayCupGain = netCharge/beamCharge;
 
   // Summarize particle transportation
   // Explicitly ignoring run#6+, not sure where they're coming from
   dataFile.open(chargeFileName, std::ios::app);
   if ( analysisNum < sizeof(run_energies)/sizeof(double) )
-  { dataFile << run_energies[analysisNum] << " " << netCharge << "e" << "\n"; }
+  { dataFile << run_energies[analysisNum] << " " << faradayCupGain << "\n"; }
   dataFile.close();
 
   /*// Create gnuplot file for analysis after final run
