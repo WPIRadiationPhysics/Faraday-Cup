@@ -41,8 +41,8 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   std::ofstream dataFile;
   
   // Beam info (directly from macro file)
-  G4double run_energies[] = {5, 7, 9, 11, 13, 15, 17, 17.5, 18};
-  G4double beamCharge = 100000.0;
+  G4double run_energies[9] = {5, 7, 9, 11, 13, 15, 17, 17.5, 18};
+  G4double beamCharge = 1000000.0;
 
   // Construct filenames
   G4String data_dir = "data/";

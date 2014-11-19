@@ -1,12 +1,9 @@
-     =========================================================
-     Geant4 - an Object-Oriented Toolkit for Simulation in HEP
-     =========================================================
-
                     FaradayCup Changelog
                     --------------------
 
 18 November 2014: Shaun Marshall
 - (Fixed) Loop through beam energies, append charge file
+- Gold standard (hehehe); Specs listed under docs
 
 7 November 2014: Shaun Marshall
 - (Broken) Appended experimental energies, copper dimension(s)

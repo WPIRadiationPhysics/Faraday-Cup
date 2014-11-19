@@ -74,8 +74,8 @@ void DetectorConstruction::DefineMaterials() {
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*cm;
-  G4double Cu_cyl_outerRadius = 6*cm;
-  G4double Cu_cyl_height = 15*cm;
+  G4double Cu_cyl_outerRadius = 1*cm;
+  G4double Cu_cyl_height = 0.46*cm;
   G4double Cu_cyl_startAngle = 0*deg;
   G4double Cu_cyl_spanningAngle = 360*deg;
 
