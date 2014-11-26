@@ -1,6 +1,10 @@
                     FaradayCup Changelog
                     --------------------
 
+26 Nov 2014: Shaun Marshall
+- Separating Borovsky/Heidelberg branches
+- Specs adjustment
+
 18 November 2014: Shaun Marshall
 - (Fixed) Loop through beam energies, append charge file
 - Gold standard (hehehe); Specs listed under docs
