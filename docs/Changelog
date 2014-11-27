@@ -4,6 +4,7 @@
 26 Nov 2014: Shaun Marshall
 - Separating Borovsky/Heidelberg branches
 - Specs adjustment
+- Removed second run invokation in BuildForMaster
 
 18 November 2014: Shaun Marshall
 - (Fixed) Loop through beam energies, append charge file

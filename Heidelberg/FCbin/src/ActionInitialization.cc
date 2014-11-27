@@ -13,12 +13,9 @@ ActionInitialization::ActionInitialization
 
 ActionInitialization::~ActionInitialization() {}
 
-void ActionInitialization::BuildForMaster() const {
-  SetUserAction(new RunAction);
-}
+void ActionInitialization::BuildForMaster() const {}
 
-void ActionInitialization::Build() const
-{
+void ActionInitialization::Build() const {
   SetUserAction(new PrimaryGeneratorAction);
   SetUserAction(new RunAction);
   EventAction* eventAction = new EventAction;

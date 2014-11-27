@@ -15,11 +15,4 @@ EventAction::~EventAction() {}
 
 void EventAction::BeginOfEventAction(const G4Event* /*event*/) {}
 
-void EventAction::EndOfEventAction(const G4Event* /*event*/) {
-  /*// Print progress per event (modulo n)
-  G4int eventID = event->GetEventID();
-  G4int printModulo = G4RunManager::GetRunManager()->GetPrintProgress();
-  if ( ( printModulo > 0 ) && ( eventID % printModulo == 0 ) ) {
-    G4cout << printModulo << G4endl;
-  }*/
-}
+void EventAction::EndOfEventAction(const G4Event* /*event*/) {}

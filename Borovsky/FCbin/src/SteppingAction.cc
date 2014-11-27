@@ -21,8 +21,7 @@ SteppingAction::SteppingAction(
 SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
-void SteppingAction::UserSteppingAction(const G4Step* step)
-{
+void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
