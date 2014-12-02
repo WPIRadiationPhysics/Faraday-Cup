@@ -836,6 +836,9 @@ G4WT1 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
   Process: hadElastic
         Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
         Model:           hElasticGlauber: 1 GeV ---> 100 TeV
+G4WT0 > 
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
 G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
@@ -845,6 +848,12 @@ G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
 G4WT1 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
                          G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
 G4WT1 >                            below 91 GeV, Glauber-Gribov above 
+G4WT0 > 
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
 G4WT1 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
   Process: hBertiniCaptureAtRest
@@ -854,29 +863,16 @@ G4WT1 >
 
   Process: hadElastic
         Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: protonInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-================================================================
-G4WT0 > 
-====================================================================
-                  HADRONIC PROCESSES SUMMARY (verbose level 1)
-G4WT0 > 
----------------------------------------------------
-                           Hadronic Processes for neutron
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
 G4WT0 >      Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
 
   Process: neutronInelastic
+        Model:                      FTFP: 4 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 5 GeV
+G4WT1 >      Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
         Model:                      FTFP: 4 GeV ---> 100 TeV
         Model:            BertiniCascade: 0 eV  ---> 5 GeV
 G4WT0 >      Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
@@ -885,6 +881,10 @@ G4WT0 >      Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
 
   Process: nCapture
         Model:               nRadCapture: 0 eV  ---> 100 TeV
+G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+================================================================
 G4WT0 >      Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
      Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
 
@@ -1093,17 +1093,17 @@ Some /vis commands (optionally) take a string to specify colour.
 Available colours:
   black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
 
-G4WT1 > Run #0 produces gain of 0.968968
-G4WT0 > Run #0 produces gain of 0.968968
-G4WT1 > Run #1 produces gain of 0.985725
-G4WT0 > Run #1 produces gain of 0.985725
-G4WT0 > Run #2 produces gain of 0.998394
-G4WT1 > Run #2 produces gain of 0.998394
-G4WT1 > Run #3 produces gain of 1.01445
-G4WT0 > Run #3 produces gain of 1.01445
-G4WT1 > Run #4 produces gain of 1.02657
-G4WT0 > Run #4 produces gain of 1.02657
-G4WT0 > Run #5 produces gain of 1.04668
-G4WT1 > Run #5 produces gain of 1.04668
+G4WT0 > Run #0 produces gain of 0.968895
+G4WT1 > Run #0 produces gain of 0.968895
+G4WT1 > Run #1 produces gain of 0.985043
+G4WT0 > Run #1 produces gain of 0.985043
+G4WT1 > Run #2 produces gain of 0.998826
+G4WT0 > Run #2 produces gain of 0.998826
+G4WT1 > Run #3 produces gain of 1.01329
+G4WT0 > Run #3 produces gain of 1.01329
+G4WT1 > Run #4 produces gain of 1.02764
+G4WT0 > Run #4 produces gain of 1.02764
+G4WT1 > Run #5 produces gain of 1.04141
+G4WT0 > Run #5 produces gain of 1.04141
 Graphics systems deleted.
 Visualization Manager deleting...
