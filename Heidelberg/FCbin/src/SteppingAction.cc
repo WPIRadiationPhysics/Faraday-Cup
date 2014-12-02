@@ -58,9 +58,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // S59 Beam stop
   //G4double r_KA = 30.059; G4double h_KA = 100.118;
   // S100 Beam stop
-  G4double r_KA = 30.100; G4double h_KA = 100.200;
+  //G4double r_KA = 30.100; G4double h_KA = 100.200;
   // S200 Beam stop
-  //G4double r_KA = 30.200; G4double h_KA = 100.400;
+  G4double r_KA = 30.200; G4double h_KA = 100.400;
 
   // Initial state
   if ( stepNum == 1 ) {

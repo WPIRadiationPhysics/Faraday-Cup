@@ -84,11 +84,11 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   //G4double Kapton_cyl1_outerRadius = 3.0059*cm;
   //G4double Kapton_cyl1_height = 10.0118*cm;
   // S100 Film thickness
-  G4double Kapton_cyl1_outerRadius = 3.0100*cm;
-  G4double Kapton_cyl1_height = 10.0200*cm;
+  //G4double Kapton_cyl1_outerRadius = 3.0100*cm;
+  //G4double Kapton_cyl1_height = 10.0200*cm;
   // S200 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3.0200*cm;
-  //G4double Kapton_cyl1_height = 10.0400*cm;
+  G4double Kapton_cyl1_outerRadius = 3.0200*cm;
+  G4double Kapton_cyl1_height = 10.0400*cm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
