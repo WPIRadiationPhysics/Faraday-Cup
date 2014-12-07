@@ -28,25 +28,22 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Get particle name
   G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
 
-  // Get step iteration
+  // Get step iteration of track number
   G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
+  G4int trackNum = step->GetTrack()->GetTrackID();
 
   // Get name of volume at step location
   G4VPhysicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
   G4String volumeName = volume->GetName();
 
-  // Get particle energy
-  G4double kinEnergy = step->GetTrack()->GetKineticEnergy();
-
   // Insert particle trajectory into tally file
   G4double netCharge = 0;
   std::ostringstream sstream;
 
-  
   // particle exits cylinder, -q_i
   if ( volumeName == "Au_cyl" && stepNum == 1 ) { netCharge -= stepCharge; }
   // particle enters cylinder, +q_i
-  if ( volumeName == "Au_cyl" && kinEnergy == 0 ) { netCharge += stepCharge; }
+  if ( volumeName == "Au_cyl" && step->GetTrack()->GetTrackStatus() != fAlive ) { netCharge += stepCharge; }
 
   if ( netCharge != 0 ) { // Zeros already counted
 	// Get current run
@@ -60,6 +57,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     std::ofstream tallyFile;
     tallyFile.open (tallyFileName, std::ios::app);
     tallyFile << netCharge << " " << stepParticle << " " << volumeName << "\n";
-    tallyFile.close();
+    tallyFile.close(); 
   }
 }

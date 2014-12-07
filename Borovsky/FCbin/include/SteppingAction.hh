@@ -8,8 +8,7 @@ class EventAction;
 
 /// Stepping action class
 
-class SteppingAction : public G4UserSteppingAction
-{
+class SteppingAction : public G4UserSteppingAction {
 public:
   SteppingAction(const DetectorConstruction* detectorConstruction,
                     EventAction* eventAction);

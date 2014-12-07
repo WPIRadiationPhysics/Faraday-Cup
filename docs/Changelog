@@ -3,6 +3,7 @@
 
 6 Dec 2014: Shaun Marshall
 - Visualizer, macro and input cleanup
+- Fixed geometry (thin-disk target), added EM fields
 
 26 Nov 2014: Shaun Marshall
 - Separating Borovsky/Heidelberg branches

@@ -22,6 +22,11 @@
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
 
+#include "G4UniformMagField.hh"
+#include "G4UniformElectricField.hh"
+#include "G4FieldManager.hh"
+#include "G4TransportationManager.hh"
+
 G4ThreadLocal 
 G4GlobalMagFieldMessenger* DetectorConstruction::fMagFieldMessenger = 0; 
 
@@ -44,7 +49,6 @@ void DetectorConstruction::DefineMaterials() {
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Au");
-  nistManager->FindOrBuildMaterial("G4_AIR");
   
   // Geant4 conventional definition of a vacuum
   G4double density     = universe_mean_density;  //from PhysicalConstants.h
@@ -59,17 +63,17 @@ void DetectorConstruction::DefineMaterials() {
 
 //// Geometry parameters
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
-  // Copper cylinder parameters (layer 0)
+  // Copper cylinder parameters
   G4double Au_cyl_innerRadius = 0*cm;
-  G4double Au_cyl_outerRadius = 1*cm;
-  G4double Au_cyl_height = 0.46279*cm;
+  G4double Au_cyl_outerRadius = 0.5*cm;
+  G4double Au_cyl_height = 0.079*cm;
   G4double Au_cyl_startAngle = 0*deg;
   G4double Au_cyl_spanningAngle = 360*deg;
 
   // World cylinder parameters
   G4double world_innerRadius = 0*cm;
-  G4double world_outerRadius = Au_cyl_outerRadius;
-  G4double world_height = Au_cyl_height;
+  G4double world_outerRadius = 5*Au_cyl_outerRadius;
+  G4double world_height = Au_cyl_height + 19*cm;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
@@ -111,7 +115,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
                           
-  // Gold Cylinder (layer 0)
+  // Gold Cylinder
   G4VSolid* Au_cylS 
     = new G4Tubs("Au_cyl",            // its name
                  Au_cyl_innerRadius,
@@ -148,13 +152,17 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   return worldPV;
 }
 
-void DetectorConstruction::ConstructSDandField() { 
-  // Uniform magnetic field is then created automatically if
-  // the field value is not zero.
-  G4ThreeVector fieldValue = G4ThreeVector();
-  fMagFieldMessenger = new G4GlobalMagFieldMessenger(fieldValue);
-  fMagFieldMessenger->SetVerboseLevel(1);
+void DetectorConstruction::ConstructSDandField() {
+  // Uniform electric and magnetic fields
+  G4ThreeVector magFieldValue = G4ThreeVector(0.0, 0.2*gauss, 0.0);
+  G4ThreeVector EMFieldValue = G4ThreeVector(0.0, 0.0, (300*volt)/(19*cm));
   
-  // Register the field messenger for deleting
+  G4MagneticField* magField= new G4UniformMagField(magFieldValue);
+  G4FieldManager* globalFieldMgr = G4TransportationManager::GetTransportationManager()->GetFieldManager();
+  globalFieldMgr->SetDetectorField(magField);
+  G4ElectricField* fEMfield = new G4UniformElectricField(EMFieldValue);
+  globalFieldMgr->SetDetectorField(fEMfield);
+  fMagFieldMessenger = new G4GlobalMagFieldMessenger(magFieldValue);
+  fMagFieldMessenger->SetVerboseLevel(1);
   G4AutoDelete::Register(fMagFieldMessenger);
 }

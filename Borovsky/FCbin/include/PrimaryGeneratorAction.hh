@@ -14,8 +14,7 @@ class G4Event;
 /// can be changed via the G4 build-in commands of G4ParticleGun class 
 /// (see the macros provided with this example).
 
-class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
-{
+class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction {
 public:
   PrimaryGeneratorAction();    
   virtual ~PrimaryGeneratorAction();
@@ -28,8 +27,6 @@ public:
 private:
   G4ParticleGun*  fParticleGun; // G4 particle gun
 };
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
 

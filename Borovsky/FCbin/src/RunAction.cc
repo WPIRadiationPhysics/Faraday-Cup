@@ -12,19 +12,16 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-RunAction::RunAction() : G4UserRunAction() { 
-  /*
-  // set printing event number per each event
-  G4RunManager::GetRunManager()->SetPrintProgress(1);
-  */
-}
+RunAction::RunAction() : G4UserRunAction() {}
 
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
-void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
+void RunAction::BeginOfRunAction(const G4Run* run) {
   // Create data directory if none existing // feature: delete existing data directory
   G4String data_dir = "data/"; G4String dirCommand = "mkdir -p " + data_dir;
   system(dirCommand);
+  
+  G4int runID = run->GetRunID();
 }
 
 void RunAction::EndOfRunAction(const G4Run* run) {
@@ -42,7 +39,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   std::ostringstream rawTallyFileName;
   rawTallyFileName << data_dir << "tallies" << runID << ".txt";
   G4String tallyFileName = rawTallyFileName.str();
-  G4String chargeFileName = data_dir + "charge.txt";
+  G4String yieldFileName = data_dir + "yield.txt";
   G4String gnuplotFileName = data_dir + "histo.gnuplot";
     
   // Probe tallies of run
@@ -61,9 +58,9 @@ void RunAction::EndOfRunAction(const G4Run* run) {
 
   // Summarize particle transportation
   // Explicitly ignoring run#6+, not sure where they're coming from
-  dataFile.open(chargeFileName, std::ios::app);
-  dataFile << runID << " " << faradayCupGain << "\n";
-  G4cout << "Run #" << runID << " produces gain of " << faradayCupGain << G4endl;
+  dataFile.open(yieldFileName, std::ios::app);
+  dataFile << runID << " " << (faradayCupGain-1) << "\n";
+  G4cout << "Run #" << runID << " produces SEY of " << (faradayCupGain-1) << G4endl;
   dataFile.close();
   
   /*// Create gnuplot file for analysis after final run
