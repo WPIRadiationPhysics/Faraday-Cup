@@ -1,3 +1,5 @@
+# Main experimental input file
+#
 # Run proton beam ...
 /gun/particle proton
 #

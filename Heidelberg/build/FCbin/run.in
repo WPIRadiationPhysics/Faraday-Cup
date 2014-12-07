@@ -2,21 +2,21 @@
 /gun/particle proton
 #
 /gun/energy 70.03 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /gun/energy 100.46 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /gun/energy 130.52 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /gun/energy 160.09 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /gun/energy 190.48 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /gun/energy 221.06 MeV
-/run/beamOn 10000000
+/run/beamOn 50
 #
 /tracking/verbose 0
