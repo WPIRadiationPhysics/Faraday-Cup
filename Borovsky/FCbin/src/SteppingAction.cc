@@ -30,7 +30,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
   // Get step iteration of track number
   G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
-  G4int trackNum = step->GetTrack()->GetTrackID();
 
   // Get name of volume at step location
   G4VPhysicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();

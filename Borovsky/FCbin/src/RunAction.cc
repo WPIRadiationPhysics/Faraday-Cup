@@ -16,12 +16,10 @@ RunAction::RunAction() : G4UserRunAction() {}
 
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
-void RunAction::BeginOfRunAction(const G4Run* run) {
+void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
   // Create data directory if none existing // feature: delete existing data directory
   G4String data_dir = "data/"; G4String dirCommand = "mkdir -p " + data_dir;
   system(dirCommand);
-  
-  G4int runID = run->GetRunID();
 }
 
 void RunAction::EndOfRunAction(const G4Run* run) {
@@ -59,8 +57,8 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   // Summarize particle transportation
   // Explicitly ignoring run#6+, not sure where they're coming from
   dataFile.open(yieldFileName, std::ios::app);
-  dataFile << runID << " " << (faradayCupGain-1) << "\n";
-  G4cout << "Run #" << runID << " produces SEY of " << (faradayCupGain-1) << G4endl;
+  dataFile << runID << " " << (1-faradayCupGain) << "\n";
+  G4cout << "Run #" << runID << " produces SEY of " << (1-faradayCupGain) << G4endl;
   dataFile.close();
   
   /*// Create gnuplot file for analysis after final run

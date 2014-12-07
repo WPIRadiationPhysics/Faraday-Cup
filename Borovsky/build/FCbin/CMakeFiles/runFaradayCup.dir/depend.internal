@@ -721,11 +721,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationZ.icc
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.icc
+ /usr/local/geant4/install/include/Geant4/G4AffineTransform.hh
+ /usr/local/geant4/install/include/Geant4/G4AffineTransform.icc
  /usr/local/geant4/install/include/Geant4/G4Allocator.hh
  /usr/local/geant4/install/include/Geant4/G4AllocatorPool.hh
  /usr/local/geant4/install/include/Geant4/G4ApplicationState.hh
  /usr/local/geant4/install/include/Geant4/G4AutoDelete.hh
  /usr/local/geant4/install/include/Geant4/G4AutoLock.hh
+ /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.hh
+ /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.icc
+ /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
+ /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
  /usr/local/geant4/install/include/Geant4/G4Box.hh
  /usr/local/geant4/install/include/Geant4/G4Box.icc
  /usr/local/geant4/install/include/Geant4/G4CSGSolid.hh
@@ -735,11 +741,21 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Colour.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.icc
+ /usr/local/geant4/install/include/Geant4/G4ElectricField.hh
+ /usr/local/geant4/install/include/Geant4/G4ElectroMagneticField.hh
  /usr/local/geant4/install/include/Geant4/G4Element.hh
  /usr/local/geant4/install/include/Geant4/G4ElementTable.hh
  /usr/local/geant4/install/include/Geant4/G4ElementVector.hh
+ /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
  /usr/local/geant4/install/include/Geant4/G4Exp.hh
+ /usr/local/geant4/install/include/Geant4/G4Field.hh
+ /usr/local/geant4/install/include/Geant4/G4FieldManager.hh
+ /usr/local/geant4/install/include/Geant4/G4FieldManager.icc
+ /usr/local/geant4/install/include/Geant4/G4GRSSolid.hh
+ /usr/local/geant4/install/include/Geant4/G4GRSSolid.icc
+ /usr/local/geant4/install/include/Geant4/G4GRSVolume.hh
+ /usr/local/geant4/install/include/Geant4/G4GRSVolume.icc
  /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4GeometryManager.hh
  /usr/local/geant4/install/include/Geant4/G4GlobalMagFieldMessenger.hh
@@ -751,18 +767,32 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/G4LogicalVolume.hh
  /usr/local/geant4/install/include/Geant4/G4LogicalVolume.icc
  /usr/local/geant4/install/include/Geant4/G4LogicalVolumeStore.hh
+ /usr/local/geant4/install/include/Geant4/G4MagneticField.hh
  /usr/local/geant4/install/include/Geant4/G4Material.hh
  /usr/local/geant4/install/include/Geant4/G4MaterialPropertiesTable.hh
  /usr/local/geant4/install/include/Geant4/G4MaterialPropertiesTable.icc
  /usr/local/geant4/install/include/Geant4/G4MaterialPropertyVector.hh
  /usr/local/geant4/install/include/Geant4/G4MaterialTable.hh
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
+ /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
+ /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationLogger.hh
+ /usr/local/geant4/install/include/Geant4/G4Navigator.hh
+ /usr/local/geant4/install/include/Geant4/G4Navigator.icc
  /usr/local/geant4/install/include/Geant4/G4NistElementBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4NistManager.hh
  /usr/local/geant4/install/include/Geant4/G4NistMaterialBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4Normal3D.hh
+ /usr/local/geant4/install/include/Geant4/G4NormalNavigation.hh
+ /usr/local/geant4/install/include/Geant4/G4NormalNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4OrderedTable.hh
  /usr/local/geant4/install/include/Geant4/G4PVPlacement.hh
  /usr/local/geant4/install/include/Geant4/G4PVReplica.hh
+ /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.hh
+ /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4PhysicalConstants.hh
  /usr/local/geant4/install/include/Geant4/G4PhysicalVolumeStore.hh
  /usr/local/geant4/install/include/Geant4/G4PhysicsOrderedFreeVector.hh
@@ -773,10 +803,21 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Point3D.hh
  /usr/local/geant4/install/include/Geant4/G4Polyhedron.hh
  /usr/local/geant4/install/include/Geant4/G4Pow.hh
+ /usr/local/geant4/install/include/Geant4/G4ReferenceCountedHandle.hh
  /usr/local/geant4/install/include/Geant4/G4Region.hh
  /usr/local/geant4/install/include/Geant4/G4Region.icc
+ /usr/local/geant4/install/include/Geant4/G4RegularNavigation.hh
+ /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.hh
+ /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4RotationMatrix.hh
+ /usr/local/geant4/install/include/Geant4/G4SafetyHelper.hh
  /usr/local/geant4/install/include/Geant4/G4SandiaTable.hh
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.hh
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.icc
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelNode.hh
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelNode.icc
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.hh
+ /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.icc
  /usr/local/geant4/install/include/Geant4/G4SmartVoxelStat.hh
  /usr/local/geant4/install/include/Geant4/G4SolidStore.hh
  /usr/local/geant4/install/include/Geant4/G4String.hh
@@ -785,7 +826,13 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/G4ThreadLocalSingleton.hh
  /usr/local/geant4/install/include/Geant4/G4Threading.hh
  /usr/local/geant4/install/include/Geant4/G4ThreeVector.hh
+ /usr/local/geant4/install/include/Geant4/G4TouchableHandle.hh
+ /usr/local/geant4/install/include/Geant4/G4TouchableHistory.hh
+ /usr/local/geant4/install/include/Geant4/G4TouchableHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4TouchableHistoryHandle.hh
  /usr/local/geant4/install/include/Geant4/G4Transform3D.hh
+ /usr/local/geant4/install/include/Geant4/G4TransportationManager.hh
+ /usr/local/geant4/install/include/Geant4/G4TransportationManager.icc
  /usr/local/geant4/install/include/Geant4/G4Tubs.hh
  /usr/local/geant4/install/include/Geant4/G4Tubs.icc
  /usr/local/geant4/install/include/Geant4/G4Types.hh
@@ -797,17 +844,25 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/G4UItokenNum.hh
  /usr/local/geant4/install/include/Geant4/G4USolid.hh
  /usr/local/geant4/install/include/Geant4/G4UTubs.hh
+ /usr/local/geant4/install/include/Geant4/G4UniformElectricField.hh
+ /usr/local/geant4/install/include/Geant4/G4UniformMagField.hh
  /usr/local/geant4/install/include/Geant4/G4VNotifier.hh
+ /usr/local/geant4/install/include/Geant4/G4VPVParameterisation.hh
  /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.hh
  /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.icc
  /usr/local/geant4/install/include/Geant4/G4VSolid.hh
  /usr/local/geant4/install/include/Geant4/G4VSolid.icc
  /usr/local/geant4/install/include/Geant4/G4VStoreNotifier.hh
+ /usr/local/geant4/install/include/Geant4/G4VTouchable.hh
+ /usr/local/geant4/install/include/Geant4/G4VTouchable.icc
  /usr/local/geant4/install/include/Geant4/G4VUserDetectorConstruction.hh
+ /usr/local/geant4/install/include/Geant4/G4VVolumeMaterialScanner.hh
  /usr/local/geant4/install/include/Geant4/G4VisAttributes.hh
  /usr/local/geant4/install/include/Geant4/G4VisAttributes.icc
  /usr/local/geant4/install/include/Geant4/G4Visible.hh
  /usr/local/geant4/install/include/Geant4/G4Visible.icc
+ /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.hh
+ /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4ios.hh
  /usr/local/geant4/install/include/Geant4/HepPolyhedron.h
  /usr/local/geant4/install/include/Geant4/UBox.hh

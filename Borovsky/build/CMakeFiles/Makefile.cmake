@@ -14,6 +14,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "../FCbin/init.mac"
   "../FCbin/init_vis.mac"
   "../FCbin/run.in"
+  "../FCbin/run.mac"
   "../FCbin/run.png"
   "../FCbin/vis.mac"
   "CMakeFiles/CMakeCCompiler.cmake"

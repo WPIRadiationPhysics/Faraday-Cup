@@ -49,10 +49,11 @@ void DetectorConstruction::DefineMaterials() {
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Au");
+  //nistManager->FindOrBuildMaterial("G4_AIR");
   
   // Geant4 conventional definition of a vacuum
   G4double density     = universe_mean_density;  //from PhysicalConstants.h
-  G4double pressure    = 1.e-19*pascal;
+  G4double pressure    = 2.7e-8*bar;
   G4double temperature = 0.1*kelvin;
   new G4Material("Vacuum", 1., 1.01*g/mole, density,
                    kStateGas,temperature,pressure);
@@ -63,7 +64,7 @@ void DetectorConstruction::DefineMaterials() {
 
 //// Geometry parameters
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
-  // Copper cylinder parameters
+  // Gold target parameters (thin cylinder)
   G4double Au_cyl_innerRadius = 0*cm;
   G4double Au_cyl_outerRadius = 0.5*cm;
   G4double Au_cyl_height = 0.079*cm;
@@ -79,6 +80,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Get materials
   G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
+  //G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* goldMaterial = G4Material::GetMaterial("G4_Au");
 
   // Throw exception to ensure material usability

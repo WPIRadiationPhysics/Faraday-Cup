@@ -115,6 +115,14 @@ G4PhysicalConstants.hh
 /home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4PhysicalConstants.hh
 G4SystemOfUnits.hh
 /home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4SystemOfUnits.hh
+G4UniformMagField.hh
+/home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4UniformMagField.hh
+G4UniformElectricField.hh
+/home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4UniformElectricField.hh
+G4FieldManager.hh
+/home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4FieldManager.hh
+G4TransportationManager.hh
+/home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/G4TransportationManager.hh
 
 /home/sigma/Git/Faraday-Cup/Borovsky/FCbin/src/EventAction.cc
 EventAction.hh
@@ -1846,6 +1854,16 @@ G4FTFParameters.hh
 G4ThreeVector.hh
 /usr/local/geant4/install/include/Geant4/G4ThreeVector.hh
 
+/usr/local/geant4/install/include/Geant4/G4ElectricField.hh
+G4Types.hh
+/usr/local/geant4/install/include/Geant4/G4Types.hh
+G4ElectroMagneticField.hh
+/usr/local/geant4/install/include/Geant4/G4ElectroMagneticField.hh
+
+/usr/local/geant4/install/include/Geant4/G4ElectroMagneticField.hh
+G4Field.hh
+/usr/local/geant4/install/include/Geant4/G4Field.hh
+
 /usr/local/geant4/install/include/Geant4/G4ElectroVDNuclearModel.hh
 G4HadronicInteraction.hh
 /usr/local/geant4/install/include/Geant4/G4HadronicInteraction.hh
@@ -3179,6 +3197,12 @@ G4MagIntegratorStepper.icc
 /usr/local/geant4/install/include/Geant4/G4MagIntegratorStepper.icc
 
 /usr/local/geant4/install/include/Geant4/G4MagIntegratorStepper.icc
+
+/usr/local/geant4/install/include/Geant4/G4MagneticField.hh
+G4Types.hh
+/usr/local/geant4/install/include/Geant4/G4Types.hh
+G4ElectroMagneticField.hh
+/usr/local/geant4/install/include/Geant4/G4ElectroMagneticField.hh
 
 /usr/local/geant4/install/include/Geant4/G4Material.hh
 vector
@@ -5419,6 +5443,22 @@ UTubs.hh
 /usr/local/geant4/install/include/Geant4/UTubs.hh
 G4Polyhedron.hh
 /usr/local/geant4/install/include/Geant4/G4Polyhedron.hh
+
+/usr/local/geant4/install/include/Geant4/G4UniformElectricField.hh
+G4Types.hh
+/usr/local/geant4/install/include/Geant4/G4Types.hh
+G4ThreeVector.hh
+/usr/local/geant4/install/include/Geant4/G4ThreeVector.hh
+G4ElectricField.hh
+/usr/local/geant4/install/include/Geant4/G4ElectricField.hh
+
+/usr/local/geant4/install/include/Geant4/G4UniformMagField.hh
+G4Types.hh
+/usr/local/geant4/install/include/Geant4/G4Types.hh
+G4ThreeVector.hh
+/usr/local/geant4/install/include/Geant4/G4ThreeVector.hh
+G4MagneticField.hh
+/usr/local/geant4/install/include/Geant4/G4MagneticField.hh
 
 /usr/local/geant4/install/include/Geant4/G4UnitsTable.hh
 globals.hh
