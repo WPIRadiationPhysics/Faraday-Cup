@@ -68,8 +68,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4double percentRVertex = 0, percentZVertex = 0;
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
-      // Z edge of Kapton
-      else { percentZVertex = (stepZVertex - (-h_Cu))/((-h_KA) - (-h_Cu)); } // cylinders are upside-down
+      // Z edges of Kapton (cylinders are upside-down)
+      if ( stepZVertex <= -h_Cu ) { percentZVertex = (stepZVertex - (-h_Cu))/((-h_KA) - (-h_Cu)); }
+      if ( stepZVertex >= 0 ) { percentZVertex = stepZVertex/(h_KA - h_Cu); }
       
       G4double chargeProp = ((percentRVertex<percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
       netSignal -= stepCharge*(1-chargeProp);
@@ -84,8 +85,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4double percentR = 0, percentZ = 0;
       // Radial edge of Kapton
       if ( stepR >= r_Cu ) { percentR = (stepR - r_Cu)/(r_KA - r_Cu); }
-      // Z edge of Kapton
-      else { percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); } // cylinders are upside-down
+      // Z edges of Kapton (cylinders are upside-down)
+      if ( stepZ <= -h_Cu ) { percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); }
+      if ( stepZ >= 0 ) { percentZ = stepZ/(h_KA - h_Cu); }
       
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netSignal += stepCharge*(1-chargeProp);
