@@ -81,14 +81,14 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Kapton cylinder parameters (layers 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
   // S59 Film thickness
-  G4double Kapton_cyl1_outerRadius = 3.0059*cm;
-  G4double Kapton_cyl1_height = 10.0118*cm;
+  G4double Kapton_cyl1_outerRadius = 3*cm + 0.059*mm;
+  G4double Kapton_cyl1_height = 10*cm + 2*0.059*mm;
   // S100 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3.0100*cm;
-  //G4double Kapton_cyl1_height = 10.0200*cm;
+  //G4double Kapton_cyl1_outerRadius = 3*cm + 0.1*mm;
+  //G4double Kapton_cyl1_height = 10*cm + 2*0.1*mm;
   // S200 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3.0200*cm;
-  //G4double Kapton_cyl1_height = 10.0400*cm;
+  //G4double Kapton_cyl1_outerRadius = 3*cm + 0.2*mm;
+  //G4double Kapton_cyl1_height = 10*cm + 2*0.2*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
@@ -277,6 +277,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 }
 
 void DetectorConstruction::ConstructSDandField() { 
+  /* 
   // Uniform magnetic field is then created automatically if
   // the field value is not zero.
   G4ThreeVector fieldValue = G4ThreeVector();
@@ -285,4 +286,5 @@ void DetectorConstruction::ConstructSDandField() {
   
   // Register the field messenger for deleting
   G4AutoDelete::Register(fMagFieldMessenger);
+  */
 }
