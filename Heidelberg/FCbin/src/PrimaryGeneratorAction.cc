@@ -23,7 +23,7 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   G4ParticleDefinition* particleDefinition 
     = G4ParticleTable::GetParticleTable()->FindParticle("proton");
   fParticleGun->SetParticleDefinition(particleDefinition);
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
+  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,1.0));
   fParticleGun->SetParticleEnergy(50.*MeV);
 }
 
@@ -50,8 +50,6 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
   } 
   
   // Set gun position
-  fParticleGun
-    ->SetParticlePosition(G4ThreeVector(0., 0., -2*worldZHalfLength));
-
+  fParticleGun->SetParticlePosition(G4ThreeVector(0.0, 0.0, -2*worldZHalfLength));
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }

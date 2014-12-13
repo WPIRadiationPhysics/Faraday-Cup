@@ -7,7 +7,6 @@ class DetectorConstruction;
 class EventAction;
 
 /// Stepping action class
-
 class SteppingAction : public G4UserSteppingAction {
 public:
   SteppingAction(const DetectorConstruction* detectorConstruction,
@@ -20,6 +19,5 @@ private:
   const DetectorConstruction* fDetConstruction;
   EventAction*  fEventAction;  
 };
-
 
 #endif

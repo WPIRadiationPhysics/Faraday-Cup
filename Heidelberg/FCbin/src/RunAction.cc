@@ -12,12 +12,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-RunAction::RunAction() : G4UserRunAction() { 
-  /*
-  // set printing event number per each event
-  G4RunManager::GetRunManager()->SetPrintProgress(1);
-  */
-}
+RunAction::RunAction() : G4UserRunAction() {}
 
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
@@ -30,41 +25,45 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
 void RunAction::EndOfRunAction(const G4Run* run) {
   // Vars, data and file structures
   G4String fileVarGet;
-  G4double netCharge = 0;
+  G4double runGain = 0; // Sum of event gains...
+  G4double runGainAverage = 0; // ... averaged
+  G4double runGainError = 0; // SD of events gains
+  G4int beamCharge = run->GetNumberOfEventToBeProcessed();
   G4int runID = run->GetRunID();
   std::ofstream dataFile;
-  
-  // Beam info
-  G4int beamCharge = run->GetNumberOfEventToBeProcessed();
 
-  // Construct filenames
+  // Identify run file
   G4String data_dir = "data/";
-  std::ostringstream rawTallyFileName;
-  rawTallyFileName << data_dir << "tallies" << runID << ".txt";
-  G4String tallyFileName = rawTallyFileName.str();
-  G4String chargeFileName = data_dir + "charge.txt";
-  G4String gnuplotFileName = data_dir + "histo.gnuplot";
+  std::ostringstream rawRunFileName;
+  rawRunFileName << data_dir << "run" << runID << "signals.txt";
+  G4String runFileName = rawRunFileName.str();
+  //G4String gnuplotFileName = data_dir + "histo.gnuplot";
     
-  // Probe tallies of run
-  std::ifstream tallyFile(tallyFileName);
-      
-  // Sum net charge from each transport (IN/OUT)
-  while(tallyFile.good()) {
-    getline(tallyFile, fileVarGet, ' '); G4double q_i = atof(fileVarGet);
-    getline(tallyFile, fileVarGet, ' '); // particle name
-    getline(tallyFile, fileVarGet); // particle volume
-    netCharge += q_i;
+  // Acquire net gain for run (already normalized)
+  std::ifstream runFile(runFileName);
+  while(runFile.good()) {
+    getline(runFile, fileVarGet);
+    runGain += atof(fileVarGet);
   }
-  
-  // Perform gain calculation
-  G4double faradayCupGain = netCharge/beamCharge;
+  runGainAverage = runGain/beamCharge;
+  // Acquire standard deviation N events (reread run output)
+  std::ifstream rerunFile(runFileName);
+  while(rerunFile.good()) {
+    getline(rerunFile, fileVarGet);
+    runGainError += pow(atof(fileVarGet) - runGainAverage, 2);
+  }
+  runGainError = pow(runGainError/beamCharge, 0.5);
 
-  // Summarize particle transportation
-  // Explicitly ignoring run#6+, not sure where they're coming from
-  dataFile.open(chargeFileName, std::ios::app);
-  dataFile << runID << " " << faradayCupGain << "\n";
-  G4cout << "Run #" << runID << " produces gain of " << faradayCupGain << G4endl;
-  dataFile.close();
+  // Run summary
+  std::ostringstream rawGainFileName;
+  rawGainFileName << data_dir << "gain.txt";
+  G4String gainFileName = rawGainFileName.str();
+  std::ofstream gainFile;
+  gainFile.open (gainFileName, std::ios::app);
+  gainFile << runID << " " << runGainAverage << " " << runGainError << "\n";
+  gainFile.close();
+
+  G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;
    
   /*// Create gnuplot file for analysis after final run
   dataFile.open(gnuplotFileName);

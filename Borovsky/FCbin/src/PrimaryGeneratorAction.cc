@@ -21,9 +21,9 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
 
   // default particle kinematic
   G4ParticleDefinition* particleDefinition 
-    = G4ParticleTable::GetParticleTable()->FindParticle("e-");
+    = G4ParticleTable::GetParticleTable()->FindParticle("proton");
   fParticleGun->SetParticleDefinition(particleDefinition);
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
+  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,1.0));
   fParticleGun->SetParticleEnergy(50.*MeV);
 }
 

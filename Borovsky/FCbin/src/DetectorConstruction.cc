@@ -35,7 +35,7 @@ DetectorConstruction::DetectorConstruction()
    fAbsorberPV(0),
    fCheckOverlaps(true) {}
 
-DetectorConstruction::~DetectorConstruction() { }
+DetectorConstruction::~DetectorConstruction() {}
 
 G4VPhysicalVolume* DetectorConstruction::Construct() {
   // Define materials 

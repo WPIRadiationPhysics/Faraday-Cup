@@ -28,7 +28,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Get particle name
   G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
 
-  // Get step iteration of track number
+  // Get step iteration
   G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
 
   // Get name of volume at step location

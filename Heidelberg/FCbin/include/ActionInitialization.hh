@@ -6,8 +6,7 @@
 class DetectorConstruction;
 
 /// Action initialization class
-class ActionInitialization : public G4VUserActionInitialization
-{
+class ActionInitialization : public G4VUserActionInitialization {
   public:
     ActionInitialization(DetectorConstruction*);
     virtual ~ActionInitialization();
@@ -20,5 +19,3 @@ class ActionInitialization : public G4VUserActionInitialization
 };
 
 #endif
-
-    

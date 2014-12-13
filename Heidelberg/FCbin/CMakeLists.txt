@@ -48,6 +48,7 @@ set(runFaradayCup_SCRIPTS
   init.mac
   init_vis.mac
   run.in
+  run.mac
   vis.mac
   )
 

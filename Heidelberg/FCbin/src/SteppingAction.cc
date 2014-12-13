@@ -4,10 +4,14 @@
 
 #include "G4Step.hh"
 #include "G4Run.hh"
+#include "G4Event.hh"
 #include "G4RunManager.hh"
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <stdio.h>
+#include <sys/types.h>
 #include <math.h>
 #include <stdio.h>
 
@@ -22,95 +26,83 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
+	// Feature: remove step references in var names
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
   // Get particle name
   G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
 
-  // Get step iteration
-  G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
-
   // Get name of volume at step location
-  G4VPhysicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
-  G4String volumeName = volume->GetName();
+  G4String volumeName = step->GetTrack()->GetVolume()->GetName();
 
   // Get step position r,z-position
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
   G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
-  G4double stepZ = stepXYZ[2]; 
+  G4double stepZ = stepXYZ[2];
 
-  // Get particle energy
-  G4double kinEnergy = step->GetTrack()->GetKineticEnergy();
-
-  // Insert particle trajectory into tally file //
-  G4double netCharge = 0;
-  std::ostringstream sstream;
-
-  /* Add/Remove charges which transport into/out-of the Cu
-     Charges which are transported into/out-of a distance
-     (del_r, del_z) into Kapton from cylinder have charge equivalence
-
-        q*[1 - max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
-  */
-  
   G4double r_Cu = 30; G4double h_Cu = 100;
   // S59 Beam stop
-  //G4double r_KA = 30.059; G4double h_KA = 100.118;
+  G4double r_KA = 30.059; G4double h_KA = 100.118;
   // S100 Beam stop
   //G4double r_KA = 30.100; G4double h_KA = 100.200;
   // S200 Beam stop
-  G4double r_KA = 30.200; G4double h_KA = 100.400;
+  //G4double r_KA = 30.200; G4double h_KA = 100.400;
 
-  // Initial state
-  if ( stepNum == 1 ) {
+  // Track net signal calculation; wait for final state and compare to track origin
+  G4double netSignal = 0;
+  if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
+	
+	// Get name of volume at track origin (vertex) w/ position
+    G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
+    G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
+    G4double stepRVertex = pow(pow(stepXYZVertex[0],2) + pow(stepXYZVertex[1],2), 0.5);
+    G4double stepZVertex = stepXYZVertex[2];
+    
+    // ORIGIN
     // particle exits cylinder, -q_i
-    if ( volumeName == "Cu_cyl" ) { netCharge -= stepCharge; }
+    if ( volumeNameVertex == "Cu_cyl" ) { netSignal -= stepCharge; }
   
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
-    if ( volumeName == "Kapton_cyl1" ) {
-      G4double percentR = 0, percentZ = 0;
+    if ( volumeNameVertex == "Kapton_cyl1" ) {
+      G4double percentRVertex = 0, percentZVertex = 0;
       // Radial edge of Kapton
-      if ( stepR >= r_Cu )
-        percentR = (stepR - r_Cu)/(r_KA - r_Cu);
+      if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
       // Z edge of Kapton
-      else
-        percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); // cylinders are upside-down
-      G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
-      netCharge -= stepCharge*(1-chargeProp);
+      else { percentZVertex = (stepZVertex - (-h_Cu))/((-h_KA) - (-h_Cu)); } // cylinders are upside-down
+      
+      G4double chargeProp = ((percentRVertex<percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
+      netSignal -= stepCharge*(1-chargeProp);
     }
-  }
-  // Final state
-  if ( kinEnergy == 0 ) {
-    // particle enters cylinder, +q_i
-    if ( volumeName == "Cu_cyl" ) { netCharge += stepCharge; }
     
+    // DESTINATION
+    // particle enters cylinder, +q_i
+    if ( volumeName == "Cu_cyl" ) { netSignal += stepCharge; }
+        
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
       // Radial edge of Kapton
-      if ( stepR >= r_Cu )
-        percentR = (stepR - r_Cu)/(r_KA - r_Cu);
+      if ( stepR >= r_Cu ) { percentR = (stepR - r_Cu)/(r_KA - r_Cu); }
       // Z edge of Kapton
-      else
-        percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); // cylinders are upside-down
+      else { percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); } // cylinders are upside-down
+      
       G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
-      netCharge += stepCharge*(1-chargeProp);
+      netSignal += stepCharge*(1-chargeProp);
     }
   }
 
-  if ( netCharge != 0 ) { // Zeros already counted
-	// Get current run
-	G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
-	
-    // Add to runID's dataset
+  if ( netSignal != 0 ) { // Zeros already counted
+    G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+    
+    // Add to eventID's dataset
     G4String data_dir = "data/";
-    std::ostringstream rawTallyFileName;
-    rawTallyFileName << data_dir << "tallies" << runID << ".txt";
-    G4String tallyFileName = rawTallyFileName.str();
-    std::ofstream tallyFile;
-    tallyFile.open (tallyFileName, std::ios::app);
-    tallyFile << netCharge << " " << stepParticle << " " << volumeName << "\n";
-    tallyFile.close();
+    std::ostringstream rawEventFileName;
+    rawEventFileName << data_dir << "event" << eventID << "signals.txt";
+    G4String eventFileName = rawEventFileName.str();
+    std::ofstream eventFile;
+    eventFile.open (eventFileName, std::ios::app);
+    eventFile << netSignal << "\n";
+    eventFile.close();
   }
 }

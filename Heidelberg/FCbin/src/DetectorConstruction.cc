@@ -30,7 +30,7 @@ DetectorConstruction::DetectorConstruction()
    fAbsorberPV(0),
    fCheckOverlaps(true) {}
 
-DetectorConstruction::~DetectorConstruction() { }
+DetectorConstruction::~DetectorConstruction() {}
 
 G4VPhysicalVolume* DetectorConstruction::Construct() {
   // Define materials 
@@ -81,18 +81,18 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Kapton cylinder parameters (layers 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
   // S59 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3.0059*cm;
-  //G4double Kapton_cyl1_height = 10.0118*cm;
+  G4double Kapton_cyl1_outerRadius = 3.0059*cm;
+  G4double Kapton_cyl1_height = 10.0118*cm;
   // S100 Film thickness
   //G4double Kapton_cyl1_outerRadius = 3.0100*cm;
   //G4double Kapton_cyl1_height = 10.0200*cm;
   // S200 Film thickness
-  G4double Kapton_cyl1_outerRadius = 3.0200*cm;
-  G4double Kapton_cyl1_height = 10.0400*cm;
+  //G4double Kapton_cyl1_outerRadius = 3.0200*cm;
+  //G4double Kapton_cyl1_height = 10.0400*cm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
-  /* Not sure where these currently fit in, no specs given
+  /*
   // Silver cylinder and cap parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm;
   G4double Ag_cyl_outerRadius = 4*cm;
@@ -117,9 +117,9 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Get materials
   G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
-  G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu"); //G4_Cu
-  G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton"); //Kapton
-  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag"); //G4_Ag
+  G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
+  G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
+  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! KaptonMaterial ) {
@@ -155,7 +155,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
                           
-  /* Not sure where these fit in, no specs given
+  /*
   // Kapton Hollow Cylinder 2 (layer 3) 
   G4VSolid* Kapton_cyl2S 
     = new G4Tubs("Kapton_cyl2",            // its name
