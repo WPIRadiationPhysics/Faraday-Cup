@@ -27,16 +27,14 @@ G4GlobalMagFieldMessenger* DetectorConstruction::fMagFieldMessenger = 0;
 
 DetectorConstruction::DetectorConstruction()
  : G4VUserDetectorConstruction(),
-   fAbsorberPV(0),
+   Cu_cylPV(0),
    fCheckOverlaps(true) {}
 
 DetectorConstruction::~DetectorConstruction() {}
 
 G4VPhysicalVolume* DetectorConstruction::Construct() {
-  // Define materials 
-  DefineMaterials();
-  
-  // Define volumes
+  // Define materials and volumes
+  DefineMaterials();  
   return DefineVolumes();
 }
 
@@ -171,7 +169,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  KaptonMaterial,      // its material
                  "Kapton_cyl2");           // its name
                                    
-  fAbsorberPV
+  G4VPhysicalVolume* Kapton_cyl2PV
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -197,7 +195,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  silverMaterial,      // its material
                  "Ag_cyl");           // its name
                                    
-  fAbsorberPV
+  G4VPhysicalVolume* Ag_cylPV
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -224,7 +222,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  KaptonMaterial,      // its material
                  "Kapton_cyl1");           // its name
                                    
-  fAbsorberPV
+  G4VPhysicalVolume* Kapton_cyl1PV
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -251,7 +249,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  copperMaterial,      // its material
                  "Cu_cyl");           // its name
                                    
-  fAbsorberPV
+  Cu_cylPV
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -276,15 +274,4 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   return worldPV;
 }
 
-void DetectorConstruction::ConstructSDandField() { 
-  /* 
-  // Uniform magnetic field is then created automatically if
-  // the field value is not zero.
-  G4ThreeVector fieldValue = G4ThreeVector();
-  fMagFieldMessenger = new G4GlobalMagFieldMessenger(fieldValue);
-  fMagFieldMessenger->SetVerboseLevel(1);
-  
-  // Register the field messenger for deleting
-  G4AutoDelete::Register(fMagFieldMessenger);
-  */
-}
+//void DetectorConstruction::KaptonThicknessIteration() {}

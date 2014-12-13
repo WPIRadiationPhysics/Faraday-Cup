@@ -38,6 +38,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
   G4LogicalVolume* worlLV
     = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
   G4Tubs* worldTubs = 0;
+  
   if ( worlLV) worldTubs = dynamic_cast< G4Tubs*>(worlLV->GetSolid()); 
   if ( worldTubs ) { worldZHalfLength = worldTubs->GetZHalfLength(); }
   else  {

@@ -26,7 +26,7 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
-	// Feature: remove step references in var names
+	// Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
@@ -43,9 +43,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
   G4double r_Cu = 30; G4double h_Cu = 100;
   // S59 Beam stop
-  G4double r_KA = 30.059; G4double h_KA = 100.118;
+  //G4double r_KA = 30.059; G4double h_KA = 100.118;
   // S100 Beam stop
-  //G4double r_KA = 30.100; G4double h_KA = 100.200;
+  G4double r_KA = 30.100; G4double h_KA = 100.200;
   // S200 Beam stop
   //G4double r_KA = 30.200; G4double h_KA = 100.400;
 

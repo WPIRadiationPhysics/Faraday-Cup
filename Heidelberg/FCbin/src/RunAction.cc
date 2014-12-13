@@ -27,6 +27,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String fileVarGet;
   G4double runGain = 0; // Sum of event gains...
   G4double runGainAverage = 0; // ... averaged
+  G4double runGainVar = 0; // variance of events gains
   G4double runGainError = 0; // SD of events gains
   G4int beamCharge = run->GetNumberOfEventToBeProcessed();
   G4int runID = run->GetRunID();
@@ -50,9 +51,9 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   std::ifstream rerunFile(runFileName);
   while(rerunFile.good()) {
     getline(rerunFile, fileVarGet);
-    runGainError += pow(atof(fileVarGet) - runGainAverage, 2);
+    runGainVar += pow(atof(fileVarGet) - runGainAverage, 2)/beamCharge;
   }
-  runGainError = pow(runGainError/beamCharge, 0.5);
+  runGainError = pow(runGainVar, 0.5);
 
   // Run summary
   std::ostringstream rawGainFileName;
@@ -60,7 +61,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << runID << " " << runGainAverage << " " << runGainError << "\n";
+  gainFile << runID << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
   G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;

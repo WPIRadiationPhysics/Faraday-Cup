@@ -6,10 +6,8 @@
 #include "DetectorConstruction.hh"
 
 // Construct 'action' (whole routine) object
-ActionInitialization::ActionInitialization
-                            (DetectorConstruction* detConstruction)
- : G4VUserActionInitialization(),
-   fDetConstruction(detConstruction) {}
+ActionInitialization::ActionInitialization(DetectorConstruction* detConstruction)
+ : G4VUserActionInitialization(), fDetConstruction(detConstruction) {}
 
 ActionInitialization::~ActionInitialization() {}
 

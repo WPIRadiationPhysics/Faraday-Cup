@@ -18,11 +18,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 
   public:
     virtual G4VPhysicalVolume* Construct();
-    virtual void ConstructSDandField();
-
-    // get methods
-    const G4VPhysicalVolume* GetAbsorberPV() const;
-    const G4VPhysicalVolume* GetGapPV() const;
+    //virtual void KaptonThicknessIteration();
      
   private:
     // methods
@@ -32,8 +28,8 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
     // magnetic field messenger
     static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger; 
     
-    G4VPhysicalVolume*   fAbsorberPV; // the absorber physical volume
-    G4VPhysicalVolume*   fGapPV;      // the gap physical volume
+    G4VPhysicalVolume*   Cu_cylPV;
+    
     G4bool  fCheckOverlaps; // option to activate checking of volumes overlaps
 };
 
