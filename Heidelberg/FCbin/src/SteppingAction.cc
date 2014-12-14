@@ -41,13 +41,26 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
   G4double stepZ = stepXYZ[2];
 
-  G4double r_Cu = 30; G4double h_Cu = 100;
+  // Determine film thickness for calculations
+  G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
+  G4String data_dir = "data/";
+  
+  // Find film flag
+  std::ostringstream raw_film_flag;
+  raw_film_flag << data_dir << ".film";
+  G4String film_flag = raw_film_flag.str();
+  std::ifstream flag_stream(film_flag);
+    
+  // Acquire thickness index
+  G4String fileVarGet;
+  while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
+        
   // S59 Beam stop
-  //G4double r_KA = 30.059; G4double h_KA = 100.118;
+  if ( atof(fileVarGet) == 0 ) r_KA = 30.059; h_KA = 100.118;
   // S100 Beam stop
-  G4double r_KA = 30.100; G4double h_KA = 100.200;
+  if ( atof(fileVarGet) == 1 ) r_KA = 30.100; h_KA = 100.200;
   // S200 Beam stop
-  //G4double r_KA = 30.200; G4double h_KA = 100.400;
+  if ( atof(fileVarGet) == 2 ) r_KA = 30.200; h_KA = 100.400;
 
   // Track net signal calculation; wait for final state and compare to track origin
   G4double netSignal = 0;
@@ -98,7 +111,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
     
     // Add to eventID's dataset
-    G4String data_dir = "data/";
     std::ostringstream rawEventFileName;
     rawEventFileName << data_dir << "event" << eventID << "signals.txt";
     G4String eventFileName = rawEventFileName.str();

@@ -13,14 +13,8 @@
 #include <sys/types.h>
 
 RunAction::RunAction() : G4UserRunAction() {}
-
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
-
-void RunAction::BeginOfRunAction(const G4Run* /*run*/) {
-  // Create data directory if none existing // feature: delete existing data directory
-  G4String data_dir = "data/"; G4String dirCommand = "mkdir -p " + data_dir;
-  system(dirCommand);
-}
+void RunAction::BeginOfRunAction(const G4Run* /*run*/) {}
 
 void RunAction::EndOfRunAction(const G4Run* run) {
   // Vars, data and file structures

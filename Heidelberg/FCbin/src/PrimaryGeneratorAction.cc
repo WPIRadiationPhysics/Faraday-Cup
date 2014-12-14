@@ -35,11 +35,11 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent) {
   // on DetectorConstruction class we get world volume
   // from G4LogicalVolumeStore
   G4double worldZHalfLength = 0;
-  G4LogicalVolume* worlLV
+  G4LogicalVolume* worldLV
     = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
   G4Tubs* worldTubs = 0;
   
-  if ( worlLV) worldTubs = dynamic_cast< G4Tubs*>(worlLV->GetSolid()); 
+  if ( worldLV) worldTubs = dynamic_cast< G4Tubs*>(worldLV->GetSolid()); 
   if ( worldTubs ) { worldZHalfLength = worldTubs->GetZHalfLength(); }
   else  {
     G4ExceptionDescription msg;

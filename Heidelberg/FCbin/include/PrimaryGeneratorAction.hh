@@ -19,7 +19,7 @@ public:
   void SetRandomFlag(G4bool value);
 
 private:
-  G4ParticleGun*  fParticleGun; // G4 particle gun
+  G4ParticleGun* fParticleGun; // G4 particle gun
 };
 
 #endif

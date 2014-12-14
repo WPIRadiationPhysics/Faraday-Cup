@@ -25,7 +25,7 @@ B- USER INTERFACES
 
 DetectorConstruction.cc defines geometry and logical volumes
 
-(i) Gold cyldinder (r=1cm, h=0.46279cm) in a vaccuum
+(i) Gold slab (r=0.5cm, h=0.079cm) in a vaccuum with uniform EM-fields of E=300V/19cm and B=0.2G.
 
 (ii) Copper cylinder (r=3cm, h=10cm) residing within a Kapton insulation of thicknesses 59, 100, and 200 um (r={3.0059,3.01,3.02}cm, h={10.0118,10.02,10.04}cm) in air.
 
@@ -33,7 +33,7 @@ The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d*
 from the center of the circular face.  The world which contains the beam and cup is
 composed of air  material.
 
-  (i) Vaccuum / (ii) Air
+  (i) Vaccuum + EM / (ii) Air
 
 
                       [(ii) Kapton]
@@ -76,7 +76,7 @@ which is invoked only in multi-threading mode.
 
 4- PRIMARY GENERATOR
  
-The primary beam consists of 250 MeV protons. The type of the particle and its energy are set in the PrimaryGeneratorAction.cc class, and can be changed via the G4 built-in commands of the G4ParticleGun class.
+The primary beam consists of high energy protons (> 50 MeV).  Specific runs are listed in the predefined macro file run.in. The type of the particle and its energy are set in the PrimaryGeneratorAction.cc class, and can be changed via the G4 built-in commands of the G4ParticleGun class.
  	
 
 5- RUNS and EVENTS
@@ -113,7 +113,7 @@ Generate a Makefile, then compile the project into an executable
   % cd FCbin
    
 The program can be run with the following optional arguments:
-  % ./runFaradayCup [-m macro ] [-u UIsession] [-t nThreads]
+  % ./runFaradayCup [-m run.in ] [-u UIsession] [-t nThreads]
    
 The -t option is available only in multi-threading mode and it allows the user to override the Geant4 default number of threads. The number of threads can be also set via G4FORCENUMBEROFTHREADS environment variable which has the top priority.
  

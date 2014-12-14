@@ -30,8 +30,7 @@ namespace {
   }
 }
 
-int main(int argc,char** argv)
-{
+int main(int argc,char** argv) {
   // Evaluate arguments
   if ( argc > 7 ) {
     PrintUsage();
@@ -94,12 +93,37 @@ int main(int argc,char** argv)
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
+  // batch mode  
   if ( macro.size() ) {
-    // batch mode
-    G4String command = "/control/execute ";
-    UImanager->ApplyCommand(command+macro);
+	// Kapton Optimization problem- 3D data
+	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
+	  // Assign thickness
+	  detConstruction->KaptonThicknessIteration(thickness_i);
+	  runManager->GeometryHasBeenModified();
+	  
+	  // Create data directory and leave thickness flag for SteppingAction
+	  G4String data_dir = "data/"; std::ostringstream raw_dirCommand;
+	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".film";
+	  G4String dirCommand = raw_dirCommand.str();
+      system(dirCommand);
+	  
+	  // Run experimental beam energies
+	  G4String command = "/control/execute ";
+      UImanager->ApplyCommand(command+macro);
+
+      // Remove run logs (to be placed in RunAction when confirmed single
+      // worker thread to be in control of file I/O)
+      G4String runRm = "rm " + data_dir + "run*";
+      system(runRm);
+      
+      // Save completed dataset as film iteration
+	  std::ostringstream raw_film_file; raw_film_file << "film" << thickness_i << "gain.txt";
+	  G4String film_file = raw_film_file.str();
+	  G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
+	  system(filmcmd);
+    }
   }
-  else  {  
+  else {
     // interactive mode : define UI session
 #ifdef G4UI_USE
     G4UIExecutive* ui = new G4UIExecutive(argc, argv, session);

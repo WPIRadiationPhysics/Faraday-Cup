@@ -2,7 +2,6 @@
 
 #include "G4Material.hh"
 #include "G4NistManager.hh"
-
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4LogicalVolume.hh"
@@ -10,15 +9,12 @@
 #include "G4PVReplica.hh"
 #include "G4GlobalMagFieldMessenger.hh"
 #include "G4AutoDelete.hh"
-
 #include "G4GeometryManager.hh"
 #include "G4PhysicalVolumeStore.hh"
 #include "G4LogicalVolumeStore.hh"
 #include "G4SolidStore.hh"
-
 #include "G4VisAttributes.hh"
 #include "G4Colour.hh"
-
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
 
@@ -27,7 +23,7 @@ G4GlobalMagFieldMessenger* DetectorConstruction::fMagFieldMessenger = 0;
 
 DetectorConstruction::DetectorConstruction()
  : G4VUserDetectorConstruction(),
-   Cu_cylPV(0),
+   fDetector(0),
    fCheckOverlaps(true) {}
 
 DetectorConstruction::~DetectorConstruction() {}
@@ -81,12 +77,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // S59 Film thickness
   G4double Kapton_cyl1_outerRadius = 3*cm + 0.059*mm;
   G4double Kapton_cyl1_height = 10*cm + 2*0.059*mm;
-  // S100 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3*cm + 0.1*mm;
-  //G4double Kapton_cyl1_height = 10*cm + 2*0.1*mm;
-  // S200 Film thickness
-  //G4double Kapton_cyl1_outerRadius = 3*cm + 0.2*mm;
-  //G4double Kapton_cyl1_height = 10*cm + 2*0.2*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
@@ -117,7 +107,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
-  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
+  //G4Material* silverMaterial = G4Material->GetMaterial("G4_Ag");
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! KaptonMaterial ) {
@@ -222,7 +212,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  KaptonMaterial,      // its material
                  "Kapton_cyl1");           // its name
                                    
-  G4VPhysicalVolume* Kapton_cyl1PV
+  fDetector
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -249,7 +239,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  copperMaterial,      // its material
                  "Cu_cyl");           // its name
                                    
-  Cu_cylPV
+  fDetector
     = new G4PVPlacement(
                  0,                   // no rotation
                  G4ThreeVector(),     // its position
@@ -274,4 +264,35 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   return worldPV;
 }
 
-//void DetectorConstruction::KaptonThicknessIteration() {}
+void DetectorConstruction::KaptonThicknessIteration(G4int thickness_i) {
+  // Kapton thickness variable
+  G4double Kapton_Thickness[3] = {0.059*mm, 0.1*mm, 0.2*mm};
+  G4cout << "Measuring gain for thickness #" << thickness_i << G4endl;
+  
+  // Acquire Kapton logical and physical volumes
+  G4LogicalVolume* Kapton_cyl1LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl1");
+  G4VPhysicalVolume* Kapton_cyl1PV = Kapton_cyl1LV->GetDaughter(0);
+
+  // Adjust Film thickness
+  G4double Kapton_cyl1_innerRadius = 0*cm;
+  G4double Kapton_cyl1_outerRadius = 3*cm + Kapton_Thickness[thickness_i];
+  G4double Kapton_cyl1_height = 10*cm + 2*Kapton_Thickness[thickness_i];
+  G4double Kapton_cyl1_startAngle = 0*deg;
+  G4double Kapton_cyl1_spanningAngle = 360*deg;
+  
+  // Unlock geometry
+  G4GeometryManager* geomManager = G4GeometryManager::GetInstance();
+  geomManager->OpenGeometry(Kapton_cyl1PV);
+
+  // Redefine Kapton dimensions
+  Kapton_cyl1LV->SetSolid(new G4Tubs("Kapton_cyl1",
+                 Kapton_cyl1_innerRadius,
+                 Kapton_cyl1_outerRadius,
+                 Kapton_cyl1_height,
+                 Kapton_cyl1_startAngle,
+                 Kapton_cyl1_spanningAngle)
+                 );
+
+  // Lock geometry
+  geomManager->CloseGeometry(Kapton_cyl1PV);
+}
