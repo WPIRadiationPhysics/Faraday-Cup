@@ -59,22 +59,4 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   gainFile.close();
 
   G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;
-   
-  /*// Create gnuplot file for analysis after final run
-  dataFile.open(gnuplotFileName);
-  dataFile << "set term png" << "\n"
-           << "set output \"histo.png\"" << "\n\n"
-
-           << "#set style data histogram" << "\n"
-           << "#set style histogram cluster gap 1" << "\n"
-           << "set boxwidth 0.75 absolute" << "\n"
-           << "set style fill solid border -1" << "\n\n"
-
-           << "set xrange [0:80]" << "\n"
-           << "set xlabel \"Depth (mm)\"" << "\n"
-           << "set yrange [-100:]" << "\n"
-           << "set ylabel \"# x e (Coulombs)\"" << "\n\n"
-
-           << "plot \"transports.txt\" u 1:2 w boxes notitle";
-  dataFile.close(); */
 }
