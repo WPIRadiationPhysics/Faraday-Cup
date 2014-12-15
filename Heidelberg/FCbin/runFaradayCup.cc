@@ -93,6 +93,10 @@ int main(int argc,char** argv) {
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
+  // micrometer particle track cuts
+  G4String cutCommand = "/run/setCut  0.01 mm";
+  UImanager->ApplyCommand(cutCommand);
+
   // batch mode  
   if ( macro.size() ) {
 	// Kapton Optimization problem- 3D data
