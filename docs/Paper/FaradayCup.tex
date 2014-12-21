@@ -1,68 +1,144 @@
-\documentclass[11pt]{article}
+\documentclass{mc2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}         % Use T1 encoding instead of OT1
+\usepackage[utf8]{inputenc}      % Use UTF8 input encoding
+\usepackage{microtype}           % Improve typography
+\usepackage{booktabs}            % Publication quality tables
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage[exponent-product=\cdot]{siunitx}
+\usepackage[colorlinks,breaklinks]{hyperref}
+\hypersetup{linkcolor=black, citecolor=black, urlcolor=black}
+
 \usepackage{lipsum}
-\title{\textbf{Copper Beam Stop Dosimetry:\\A Faraday Cup Benchmark}}
-\author{Shaun Marshall$^\dag$, Blake Currier$^\dag$, Andrew Hodgdon$^{\dag\dag}$\\
-        $^\dag$Worcester Polytechnic Institute, Worcester, MA\\
-        $^{\dag\dag}$RadSim, LLC.}
-\date{\today}
+
+\def\equationautorefname{Eq.}
+\def\figureautorefname{Fig.}
+
+%%%%%%%%%% MC JOURNAL NOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% References can be typeset properly using the provided \textsc{Bib}\TeX style file. See examples of a journal~\cite{journal}, conference proceedings~\cite{proceedings}, book~\cite{book}, and miscellaneous~\cite{misc}.
+%
+%References to websites are discouraged, but acceptable if absolutely necessary.  It is the author?s responsibility to check links in the pdf file.
+%Final PDF file size should be no more than 4 MB.  Recommended paper length is 10-12 pages.
+%
+% Subsection Title: First Character of Each Non-trivial Word is Uppercase
+%Equations (Equation \ref{eqn:sample}) should be centered and sequentially numbered to the flush right of the formula.
+% Sub-subsection level and lower: only first character uppercase
+%
+%\begin{equation}
+%  1+1=2 \label{eqn:sample}
+%\end{equation}
+% The continuation of a paragraph after an equation is not indented
+%
+%Figures and tables should appear as closely as possible to where they are first cited, e.g. Fig. \ref{fig:sample}, in the text.  Figures are numbered in Arabic numerals, with the caption centered below the figure, in boldface. 
+%
+%\begin{figure}[H]
+%  \centering
+%  \includegraphics[width=3in]{figure.png}
+%  \caption{Sample Figure. Color is permitted, but must be readable if printed.}
+%  \label{fig:sample}
+%\end{figure}
+%
+% When importing figures or any graphical image please verify two things:% 1. Any number, text or symbol is no smaller than 10-point after reduction to the actual window in your paper;% 2. That it can be translated into PDF.
+%
+% Tables, like Table \ref{tab:sample}, are numbered in Roman numerals, with the caption centered above the table, in \textbf{boldface}.  
+% Double-space before and after the table.
+%
+%\begin{table}
+%  \centering
+%  \caption{Sample table: accuracy of nodal and characteristic methods}
+%  \begin{tabular}{lcccc}
+%    \toprule
+%    Mesh & 8 x 8 & 16 x 16 & 32 x 32 & 64 x 64 \\
+%    \midrule
+%    Nodal & \num{1.000e-1} & \num{2.500e-2} & \num{6.250e-3} & \num%{1.563e-3} \\
+%    Characteristic & \num{1.000e-1} & \num{2.500e-2} & \num{6.250e-3} & \num{1.563e-3} \\
+%    \bottomrule
+%  \end{tabular}
+%  \label{tab:sample}
+%\end{table}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Insert authors' names and short version of title in lines below
+
+\authorHead{Shaun Marshall, Blake Currier, Andrew Hodgdon}
+\shortTitle{Copper Beam Stop Dosimetry Simulation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
+
+\title{Copper Beam Stop Dosimetry: A Faraday Cup Benchmark}
+
+\author{Shaun Marshall}
+\author{Blake Currier}
+\affil{Department of Physics \\Worcester Polytechnic Institute}
+
+\author{Andrew Hodgdon}
+\affil{Radsim, LLC}
+
 \maketitle
 
 \begin{abstract}
-% insert here
-\emph{\lipsum[1]}
+\lipsum[1]
+
+\emph{Key Words}: Monte Carlo, Geant, MCNP, Faraday Cup
 \end{abstract}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-% insert here (Blake)
+
 \lipsum[2-4]
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
-% insert here
-\lipsum[3]
 
-
-\subsection{Ion-Beam Measurement}
-% insert here
-\lipsum[4]
-
-
-\subsection{MCNP5}
-% insert here (ADH)
 \lipsum[5]
 
+\subsection{Proton-Beam Measurement}
+
+\lipsum[6]
+
+\subsection{MCNP5}
+
+\lipsum[7]
 
 \subsection{Geant4}
-Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter.  Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands.  Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information which is organized in the following hierarchy:
 
+Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information which is organized in the following hierarchy:
 
 \begin{enumerate}
-\item \textbf{G4RunManager} 
+\item \textbf{G4RunManager}
 \end{enumerate}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
-% insert here
-\lipsum[6-7]
-\lipsum[8]
-\lipsum[9]
 
+\lipsum[7-10]
 
-\section{Conclusion}
-% insert here
-\lipsum[10-13]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusions}
 
+\lipsum[11-15]
 
-\section{Acknowledgements}
-% insert here
-\lipsum[14]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Acknowledgments}
 
+We would like to express our sincerest gratitude to Paul Romano and Tom Sutton, who provided the template for this paper.
 
-\section{References}
-\begin{enumerate}
-\item
-\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength{\baselineskip}{12pt}
+
+\bibliographystyle{mc2015}
+\bibliography{references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\section{}
+
+Code bits?
 
 \end{document}
