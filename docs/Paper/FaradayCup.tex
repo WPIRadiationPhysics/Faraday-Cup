@@ -65,25 +65,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Insert authors' names and short version of title in lines below
 
-\authorHead{Shaun Marshall, Blake Currier, Andrew Hodgdon}
-\shortTitle{Copper Beam Stop Dosimetry Simulation}
+\authorHead{Shaun Marshall, Blake Currier, Andrew D Hodgdon}
+\shortTitle{Faraday Cup Proton Gain Simulation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Copper Beam Stop Dosimetry: A Faraday Cup Benchmark}
+\title{Proton Induced Gain in a Portable Faraday Cup}
 
 \author{Shaun Marshall}
 \author{Blake Currier}
-\affil{Department of Physics \\Worcester Polytechnic Institute}
+\affil{
+Department of Physics \\
+Worcester Polytechnic Institute \\
+100 Institute Rd, Worcester, MA 01609
+}
 
-\author{Andrew Hodgdon}
-\affil{Radsim, LLC}
+\author{Andrew D Hodgdon, CHP}
+\affil{
+Radsim, LLC \\
+584 Grove St, Newton, MA 02462 \\
+adhodgdon@radsim.org
+}
 
 \maketitle
 
 \begin{abstract}
-\lipsum[1]
+A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerators, i.e., 50 to 250 MeV. The FC must be accurate to 1\% as well as portable, hence vacuum-less and low mass. The FC is a copper cylinder coated with kapton insulation and silver ground. The Monte Carlo method (MCNP6 and Geant4) was used to simulate the radiation cascade and predict gain versus height (H), diameter (D) and insulator thickness (K). H and D were mostly functions of proton range. Increasing either increases mass, reducing either increases proton leakage, hence decreases accuracy. Kapton functions to capture backscattered electrons, the function of the fields in a standard FC. Greater K increases capture but increases secondary electron in-leakage. Determining optimal K was made difficult by the lack of low energy proton, electron cross-sections. A secondary electron model was programmed with the SDEF command for the MCNP model based on recently published cross-section approximations. This secondary electron source method was benchmarked against a series of experimental measurements (by others) of protons on copper and on water. Three FCs were built, each with different values of K. They are currently being tested. 
 
 \emph{Key Words}: Monte Carlo, Geant, MCNP, Faraday Cup
 \end{abstract}
@@ -102,22 +110,66 @@
 
 \lipsum[6]
 
-\subsection{MCNP5}
+\subsection{MCNP6}
 
 \lipsum[7]
 
 \subsection{Geant4}
 
-Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information which is organized in the following hierarchy:
+Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information which is organized in the following chronology:
 
 \begin{enumerate}
-\item \textbf{G4RunManager}
+\item The \textbf{DetectorConstruction} class is called to verify, store and lock the predefined geometry.
+\item The \textbf{G4UIManager} initializes upon successful compilation and execution of the \emph{main()} routine.  If a visualizer is selected, \textbf{G4VisManager} is also invoked.
+\item The user issues the command to execute a macro file of \emph{runs}; each run is characterized by the defined beam particle type, the beam energy, and the number of \emph{events}, or number of such isolated simulations.  If multithreading is available, \textbf{G4RunManager} allocates the events to the available worker threads on a rolling basis.
+\item For each event, the simulation of the \emph{primary} (beam) particle proceeds, constructing a new \emph{track}, or well-defined trajectory for every particle not at rest.
+\item The behavior of every track is determined dynamically, with each \emph{step}, or stochastically occuring physical process (collisions, absorbtions, etc) of the particle in some medium.
 \end{enumerate}
+
+\noindent A useful feature of Geant4 is the ability to create user-defined actions (methods) throughout each module, which allows for a very fine-tuned analysis throughout the entire simulation.
+
+\subsubsection{DetectorConstruction.cc}
+\subsubsection{RunAction.cc}
+\subsubsection{EventAction.cc}
+\subsubsection{SteppingAction.cc}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
-\lipsum[7-10]
+\lipsum[7]
+\begin{table}
+  \centering
+  \caption{Measured and Predicted Gain from 250 MeV Protons}
+  \begin{tabular}{lcccc}
+    \toprule
+    Model & Energy (MeV) & HIT & MCNP6 & Geant4 \\
+    \midrule
+    S59 & 70.03  & \num{0.9750} & \num{0} & \num{0.953588} \\
+        & 100.46 & \num{0.9850} & \num{0} & \num{0.967417} \\
+        & 130.52 & \num{0.9925} & \num{0} & \num{0.975593} \\
+        & 160.09 & \num{1.0000} & \num{0} & \num{0.981094} \\
+        & 190.48 & \num{1.0075} & \num{0} & \num{0.985111} \\
+        & 221.06 & \num{1.0125} & \num{0} & \num{0.988151} \\
+    \midrule
+    S100 & 70.03 & \num{0.9385} & \num{0} & \num{0.953827} \\
+        & 100.46 & \num{0.9500} & \num{0} & \num{0.966795} \\
+        & 130.52 & \num{0.9580} & \num{0} & \num{0.975725} \\
+        & 160.09 & \num{0.9635} & \num{0} & \num{0.981055} \\
+        & 190.48 & \num{0.9715} & \num{0} & \num{0.985189} \\
+        & 221.06 & \num{0.9800} & \num{0} & \num{0.988149} \\
+    \midrule
+    S200 & 70.03 & \num{0.9350} & \num{0} & \num{0.954372} \\
+        & 100.46 & \num{0.9475} & \num{0} & \num{0.966915} \\
+        & 130.52 & \num{0.9525} & \num{0} & \num{0.975377} \\
+        & 160.09 & \num{0.9590} & \num{0} & \num{0.980998} \\
+        & 190.48 & \num{0.9650} & \num{0} & \num{0.985217} \\
+        & 221.06 & \num{0.9770} & \num{0} & \num{0.988312} \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:sample}
+\end{table}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusions}
