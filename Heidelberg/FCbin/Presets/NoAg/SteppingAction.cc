@@ -41,11 +41,27 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
   G4double stepZ = stepXYZ[2];
 
-  // Beam Stop dimensions (mm)
-  // Cu cyl is positioned downward from z=0 plane
-  G4double r_Cu = 50, h_Cu = 150;
-  G4double r_KA = r_Cu + 5, h_KA = h_Cu + 5; // half under z=0
+  // Determine film thickness for calculations
+  G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
   G4String data_dir = "data/";
+  
+  // Find film flag
+  std::ostringstream raw_film_flag;
+  raw_film_flag << data_dir << ".film";
+  G4String film_flag = raw_film_flag.str();
+  std::ifstream flag_stream(film_flag);
+    
+  // Acquire thickness index
+  G4String fileVarGet;
+  while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
+  
+  // Cu cyl is positioned downward from z=0 plane
+  // S59 Beam stop
+  if ( atof(fileVarGet) == 0 ) r_KA = 30.059; h_KA = 100.059;
+  // S100 Beam stop
+  if ( atof(fileVarGet) == 1 ) r_KA = 30.100; h_KA = 100.100;
+  // S200 Beam stop
+  if ( atof(fileVarGet) == 2 ) r_KA = 30.200; h_KA = 100.200;
 
   // Track net signal calculation; wait for final state and compare to track origin
   G4double netSignal = 0;
@@ -64,16 +80,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
       G4double percentRVertex = 0, percentZVertex = 0;
-      
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
-      
       // Z edges of Kapton (cylinders are upside-down)
       if ( stepZVertex <= -h_Cu ) { percentZVertex = (stepZVertex - (-h_Cu))/((-h_KA) - (-h_Cu)); }
       if ( stepZVertex >= 0 ) { percentZVertex = stepZVertex/(h_KA - h_Cu); }
       
-      // concise maximum function
-      G4double chargeProp = ((percentRVertex<percentZVertex)?percentRVertex:percentZVertex);
+      G4double chargeProp = ((percentRVertex<percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
       netSignal -= stepCharge*(1-chargeProp);
     }
     
@@ -84,16 +97,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
       G4double percentR = 0, percentZ = 0;
-      
       // Radial edge of Kapton
       if ( stepR >= r_Cu ) { percentR = (stepR - r_Cu)/(r_KA - r_Cu); }
-      
       // Z edges of Kapton (cylinders are upside-down)
       if ( stepZ <= -h_Cu ) { percentZ = (stepZ - (-h_Cu))/((-h_KA) - (-h_Cu)); }
       if ( stepZ >= 0 ) { percentZ = stepZ/(h_KA - h_Cu); }
       
-      // concise maximum function
-      G4double chargeProp = ((percentR<percentZ)?percentR:percentZ);
+      G4double chargeProp = ((percentR<percentZ)?percentR:percentZ); // concise maximum function
       netSignal += stepCharge*(1-chargeProp);
     }
   }
