@@ -18,7 +18,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 
   public:
     virtual G4VPhysicalVolume* Construct();
-    virtual void KaptonThicknessIteration(G4int thickness_i);
+     virtual void KaptonThicknessIteration(G4int thickness_i);
      
   private:
     // methods

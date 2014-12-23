@@ -48,8 +48,12 @@ set(runFaradayCup_SCRIPTS
   init.mac
   init_vis.mac
   run.in
+  run-Borovsky.in
+  KA_um.dat
+  debugrun.mac
   run.mac
   vis.mac
+  dataPlot.gnu
   )
 
 foreach(_script ${runFaradayCup_SCRIPTS})

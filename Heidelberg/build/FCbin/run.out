@@ -91,6 +91,8 @@
 
 
 
+Checking overlaps for volume Kapton_cyl2 ... OK! 
+Checking overlaps for volume Ag_cyl ... OK! 
 Checking overlaps for volume Kapton_cyl1 ... OK! 
 Checking overlaps for volume Cu_cyl ... OK! 
 ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
@@ -626,94 +628,7 @@ G4WT0 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT0 >  Local thread RunManagerKernel version Name: geant4-10-00-patch-03 [MT]
 G4WT0 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT0 > 
-G4WT1 > 
-G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT1 >  Local thread RunManagerKernel version Name: geant4-10-00-patch-03 [MT]
-G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT1 > 
-G4WT2 > 
-G4WT2 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT2 >  Local thread RunManagerKernel version Name: geant4-10-00-patch-03 [MT]
-G4WT2 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT2 > 
-G4WT3 > 
-G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT3 >  Local thread RunManagerKernel version Name: geant4-10-00-patch-03 [MT]
-G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT3 > 
 G4WT0 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT1 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT2 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT3 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT1 > 
-G4WT1 > phot:   for  gamma    SubType= 12
-G4WT1 >       LambdaPrime table from 200 keV to 10 TeV in 54 bins 
-G4WT1 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT1 >        PhotoElectric :  Emin=        0 eV    Emax=       10 TeV   AngularGenSauterGavrila  FluoActive
-G4WT1 > 
-G4WT1 > compt:   for  gamma    SubType= 13
-G4WT1 >       Lambda table from 100 eV  to 1 MeV in 28 bins, spline: 1
-G4WT1 >       LambdaPrime table from 1 MeV to 10 TeV in 49 bins 
-G4WT1 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT1 >        Klein-Nishina :  Emin=        0 eV    Emax=       10 TeV
-G4WT1 > 
-G4WT1 > conv:   for  gamma    SubType= 14
-G4WT1 >       Lambda table from 1.022 MeV to 10 TeV in 140 bins, spline: 1
-G4WT1 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT1 >         BetheHeitler :  Emin=        0 eV    Emax=       80 GeV
-G4WT1 >      BetheHeitlerLPM :  Emin=       80 GeV   Emax=       10 TeV
-G4WT1 > 
-G4WT1 > msc:   for e-    SubType= 10
-G4WT1 >       RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
-G4WT1 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT1 >             UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
-G4WT1 >         WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
-G4WT2 > 
-G4WT2 > phot:   for  gamma    SubType= 12
-G4WT2 >       LambdaPrime table from 200 keV to 10 TeV in 54 bins 
-G4WT2 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT2 >        PhotoElectric :  Emin=        0 eV    Emax=       10 TeV   AngularGenSauterGavrila  FluoActive
-G4WT2 > 
-G4WT2 > compt:   for  gamma    SubType= 13
-G4WT2 >       Lambda table from 100 eV  to 1 MeV in 28 bins, spline: 1
-G4WT2 >       LambdaPrime table from 1 MeV to 10 TeV in 49 bins 
-G4WT2 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT2 >        Klein-Nishina :  Emin=        0 eV    Emax=       10 TeV
-G4WT2 > 
-G4WT2 > conv:   for  gamma    SubType= 14
-G4WT2 >       Lambda table from 1.022 MeV to 10 TeV in 140 bins, spline: 1
-G4WT2 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT2 >         BetheHeitler :  Emin=        0 eV    Emax=       80 GeV
-G4WT2 >      BetheHeitlerLPM :  Emin=       80 GeV   Emax=       10 TeV
-G4WT2 > 
-G4WT2 > msc:   for e-    SubType= 10
-G4WT2 >       RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
-G4WT2 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT2 >             UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
-G4WT2 >         WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
-G4WT3 > 
-G4WT3 > phot:   for  gamma    SubType= 12
-G4WT3 >       LambdaPrime table from 200 keV to 10 TeV in 54 bins 
-G4WT3 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT3 >        PhotoElectric :  Emin=        0 eV    Emax=       10 TeV   AngularGenSauterGavrila  FluoActive
-G4WT3 > 
-G4WT3 > compt:   for  gamma    SubType= 13
-G4WT3 >       Lambda table from 100 eV  to 1 MeV in 28 bins, spline: 1
-G4WT3 >       LambdaPrime table from 1 MeV to 10 TeV in 49 bins 
-G4WT3 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT3 >        Klein-Nishina :  Emin=        0 eV    Emax=       10 TeV
-G4WT3 > 
-G4WT3 > conv:   for  gamma    SubType= 14
-G4WT3 >       Lambda table from 1.022 MeV to 10 TeV in 140 bins, spline: 1
-G4WT3 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT3 >         BetheHeitler :  Emin=        0 eV    Emax=       80 GeV
-G4WT3 >      BetheHeitlerLPM :  Emin=       80 GeV   Emax=       10 TeV
-G4WT3 > 
-G4WT3 > msc:   for e-    SubType= 10
-G4WT3 >       RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
-G4WT3 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
-G4WT3 >             UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
-G4WT3 >         WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
 G4WT0 > 
 G4WT0 > phot:   for  gamma    SubType= 12
 G4WT0 >       LambdaPrime table from 200 keV to 10 TeV in 54 bins 
@@ -737,561 +652,6 @@ G4WT0 >       RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
 G4WT0 >       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
 G4WT0 >             UrbanMsc :  Emin=        0 eV    Emax=      100 MeV  Table with 42 bins Emin=    100 eV    Emax=    100 MeV
 G4WT0 >         WentzelVIUni :  Emin=      100 MeV   Emax=       10 TeV  Table with 35 bins Emin=    100 MeV   Emax=     10 TeV
-G4WT1 > 
-====================================================================
-                  HADRONIC PROCESSES SUMMARY (verbose level 1)
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for neutron
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: neutronInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: nCapture
-        Model:               nRadCapture: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
-
-  Process: nKiller
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for GenericIon
-
-  Process: ionInelastic
-        Model:  Binary Light Ion Cascade: 0 eV  ---> 4 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT1 >      Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_neutron
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_neutronInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_proton
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
-        Model:              AntiAElastic: 100 MeV ---> 100 TeV
-G4WT1 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_protonInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hFritiofCaptureAtRest
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for e+
-
-  Process: positronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT1 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for e-
-
-  Process: electronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT1 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for gamma
-
-  Process: photonNuclear
-        Model:            BertiniCascade: 0 eV  ---> 3.5 GeV
-        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
-G4WT1 >      Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for lambda
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: lambdaInelastic
-        Model:            BertiniCascade: 0 eV  ---> 6 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT1 >      Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for mu-
-
-  Process: muMinusCaptureAtRest
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for pi+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT1 >                            below 91 GeV, Glauber-Gribov above 
-G4WT1 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for pi-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT1 >                            below 91 GeV, Glauber-Gribov above 
-G4WT1 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT1 > 
----------------------------------------------------
-                           Hadronic Processes for proton
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT1 >      Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: protonInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT1 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-================================================================
-G4WT2 > 
-====================================================================
-                  HADRONIC PROCESSES SUMMARY (verbose level 1)
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for neutron
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: neutronInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: nCapture
-        Model:               nRadCapture: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
-
-  Process: nKiller
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for GenericIon
-
-  Process: ionInelastic
-        Model:  Binary Light Ion Cascade: 0 eV  ---> 4 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT2 >      Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_neutron
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_neutronInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_proton
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
-        Model:              AntiAElastic: 100 MeV ---> 100 TeV
-G4WT2 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_protonInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hFritiofCaptureAtRest
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for e+
-
-  Process: positronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT2 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for e-
-
-  Process: electronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT2 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for gamma
-
-  Process: photonNuclear
-        Model:            BertiniCascade: 0 eV  ---> 3.5 GeV
-        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
-G4WT2 >      Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for lambda
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: lambdaInelastic
-        Model:            BertiniCascade: 0 eV  ---> 6 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT2 >      Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for mu-
-
-  Process: muMinusCaptureAtRest
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for pi+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT2 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT2 >                            below 91 GeV, Glauber-Gribov above 
-G4WT2 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for pi-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT2 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT2 >                            below 91 GeV, Glauber-Gribov above 
-G4WT2 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT2 > 
----------------------------------------------------
-                           Hadronic Processes for proton
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT2 >      Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: protonInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT2 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-================================================================
-G4WT3 > 
-====================================================================
-                  HADRONIC PROCESSES SUMMARY (verbose level 1)
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for neutron
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:     ChipsNeutronElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: neutronInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: nCapture
-        Model:               nRadCapture: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
-
-  Process: nKiller
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for GenericIon
-
-  Process: ionInelastic
-        Model:  Binary Light Ion Cascade: 0 eV  ---> 4 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT3 >      Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_neutron
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_neutronInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for anti_proton
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
-        Model:              AntiAElastic: 100 MeV ---> 100 TeV
-G4WT3 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: anti_protonInelastic
-        Model:                      FTFP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hFritiofCaptureAtRest
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for e+
-
-  Process: positronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT3 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for e-
-
-  Process: electronNuclear
-        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
-G4WT3 >      Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for gamma
-
-  Process: photonNuclear
-        Model:            BertiniCascade: 0 eV  ---> 3.5 GeV
-        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
-G4WT3 >      Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for kaon-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: kaon-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for lambda
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: lambdaInelastic
-        Model:            BertiniCascade: 0 eV  ---> 6 GeV
-        Model:                      FTFP: 2 GeV ---> 100 TeV
-G4WT3 >      Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for mu-
-
-  Process: muMinusCaptureAtRest
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for pi+
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT3 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi+Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT3 >                            below 91 GeV, Glauber-Gribov above 
-G4WT3 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
----------------------------------------------------
-                           Hadronic Processes for pi-
-
-  Process: hadElastic
-        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
-        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
-G4WT3 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: pi-Inelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
-                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
-G4WT3 >                            below 91 GeV, Glauber-Gribov above 
-G4WT3 >      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-  Process: hBertiniCaptureAtRest
-G4WT3 > 
----------------------------------------------------
-                           Hadronic Processes for proton
-
-  Process: hadElastic
-        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
-G4WT3 >      Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
-     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
-
-  Process: protonInelastic
-        Model:                      FTFP: 4 GeV ---> 100 TeV
-        Model:            BertiniCascade: 0 eV  ---> 5 GeV
-G4WT3 >      Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
-     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
-
-================================================================
 G4WT0 > 
 ====================================================================
                   HADRONIC PROCESSES SUMMARY (verbose level 1)
@@ -1864,91 +1224,1240 @@ hPairProd:   for  pi-    SubType= 4
       Sampling table 16x1001; from 1.11656 GeV to 10 TeV 
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
            hPairProd :  Emin=        0 eV    Emax=       10 TeV
-G4WT0 > Run #0 produces differential Gain (I/B) of 0.953471 +/- 0.219345
-G4WT1 > Run #0 produces differential Gain (I/B) of 0.953518 +/- 0.219345
-G4WT3 > Run #0 produces differential Gain (I/B) of 0.953588 +/- 0.219345
-G4WT2 > Run #0 produces differential Gain (I/B) of 0.953588 +/- 0.219345
-G4WT2 > Run #1 produces differential Gain (I/B) of 0.966959 +/- 0.186489
-G4WT1 > Run #1 produces differential Gain (I/B) of 0.967053 +/- 0.186494
-G4WT3 > Run #1 produces differential Gain (I/B) of 0.967286 +/- 0.18651
-G4WT0 > Run #1 produces differential Gain (I/B) of 0.967417 +/- 0.186513
-G4WT0 > Run #2 produces differential Gain (I/B) of 0.975473 +/- 0.165401
-G4WT3 > Run #2 produces differential Gain (I/B) of 0.975502 +/- 0.165401
-G4WT2 > Run #2 produces differential Gain (I/B) of 0.97551 +/- 0.165401
-G4WT1 > Run #2 produces differential Gain (I/B) of 0.975593 +/- 0.165401
-G4WT0 > Run #3 produces differential Gain (I/B) of 0.98021 +/- 0.153365
-G4WT2 > Run #3 produces differential Gain (I/B) of 0.980848 +/- 0.153423
-G4WT1 > Run #3 produces differential Gain (I/B) of 0.981006 +/- 0.153433
-G4WT3 > Run #3 produces differential Gain (I/B) of 0.981094 +/- 0.153436
-G4WT2 > Run #4 produces differential Gain (I/B) of 0.984443 +/- 0.145947
-G4WT0 > Run #4 produces differential Gain (I/B) of 0.984539 +/- 0.14595
-G4WT1 > Run #4 produces differential Gain (I/B) of 0.985111 +/- 0.145972
-G4WT3 > Run #4 produces differential Gain (I/B) of 0.985111 +/- 0.145972
-G4WT2 > Run #5 produces differential Gain (I/B) of 0.987349 +/- 0.141229
-G4WT0 > Run #5 produces differential Gain (I/B) of 0.987887 +/- 0.141262
-G4WT3 > Run #5 produces differential Gain (I/B) of 0.988148 +/- 0.141275
-G4WT1 > Run #5 produces differential Gain (I/B) of 0.988151 +/- 0.141275
-G4WT0 > Run #6 produces differential Gain (I/B) of 0.989126 +/- 0.141385
-G4WT2 > Run #6 produces differential Gain (I/B) of 0.990187 +/- 0.141436
-G4WT1 > Run #6 produces differential Gain (I/B) of 0.990267 +/- 0.141436
-G4WT3 > Run #6 produces differential Gain (I/B) of 0.990298 +/- 0.141436
+G4WT0 > proton (0,0,-193.481) World 49.994
+G4WT0 > proton (-0.114029,0.147796,-96.1136) Cu_cyl 0
+G4WT0 > e- (0.157015,0.00712274,-98.4306) Cu_cyl 0
+G4WT0 > e- (0.157015,0.00712274,-98.4306) Cu_cyl 0
+G4WT0 > e- (0.157451,0.00329875,-98.5755) Cu_cyl 0
+G4WT0 > e- (0.157451,0.00329875,-98.5755) Cu_cyl 0
+G4WT0 > e- (0.15745,0.0019921,-98.7976) Cu_cyl 0
+G4WT0 > e- (0.15745,0.0019921,-98.7976) Cu_cyl 0
+G4WT0 > e- (0.156668,0.000725952,-98.8124) Cu_cyl 0
+G4WT0 > e- (0.156668,0.000725952,-98.8124) Cu_cyl 0
+G4WT0 > e- (0.158223,0.00158294,-98.8236) Cu_cyl 0
+G4WT0 > e- (0.158223,0.00158294,-98.8236) Cu_cyl 0
+G4WT0 > e- (0.137642,0.00808196,-99.6717) Cu_cyl 0
+G4WT0 > e- (0.137642,0.00808196,-99.6717) Cu_cyl 0
+G4WT0 > e- (0.13965,0.00738753,-99.6973) Cu_cyl 0
+G4WT0 > e- (0.13965,0.00738753,-99.6973) Cu_cyl 0
+G4WT0 > e- (0.134101,-0.00451386,-100.047) Kapton_cyl1 0
+G4WT0 > e- (0.134101,-0.00451386,-100.047) Kapton_cyl1 0
+G4WT0 > e- (0.138329,0.000546807,-100.227) Kapton_cyl2 0
+G4WT0 > e- (0.138329,0.000546807,-100.227) Kapton_cyl2 0
+G4WT0 > e- (0.145313,0.0377224,-103.347) World 0.000888809
+G4WT0 > e- (0.161467,0.0462699,-103.341) World 0
+G4WT0 > e- (0.153252,-0.00350844,-106.391) World 0.00111917
+G4WT0 > e- (0.157163,-0.0217087,-106.373) World 0.000347807
+G4WT0 > e- (-0.0193736,0.0694959,-133) World 0.00477718
+G4WT0 > e- (-0.260172,0.296767,-132.874) World 0
+G4WT0 > e- (0.0698939,-0.0714789,-149.75) World 0.00283779
+G4WT0 > e- (0.113232,-0.181859,-149.713) World 0
+G4WT0 > e- (0.0808285,-0.0237721,-152.784) World 0.00163058
+G4WT0 > e- (0.0808285,-0.0237721,-152.784) World 0.00163058
+G4WT0 > e- (0.00886968,0.0289333,-160.468) World 0.000584461
+G4WT0 > e- (0.00617452,0.0348983,-160.46) World 0
+G4WT0 > e- (0.0473703,0.00169333,-182.244) World 0.00101843
+G4WT0 > e- (0.0669471,-0.0113577,-182.241) World 0
+G4WT0 > e- (-0.00931792,0.0561117,-188.613) World 0.00130756
+G4WT0 > e- (-0.00597687,0.087042,-188.597) World 0
+G4WT0 > proton (0,0,-181.932) World 49.9816
+G4WT0 > proton (-0.147763,-0.0200246,-98.1037) Cu_cyl 0
+G4WT0 > Cu61 (-0.147757,-0.0200415,-98.1037) Cu_cyl 0
+G4WT0 > Cu61 (-0.147757,-0.0200415,-98.1037) Cu_cyl 0
+G4WT0 > proton (-0.235002,-0.0152076,-98.0629) Cu_cyl 0
+G4WT0 > proton (-0.235002,-0.0152076,-98.0629) Cu_cyl 0
+G4WT0 > neutron (-2.88839,14.2443,-100) Cu_cyl 1.24219
+G4WT0 > neutron (-39.4609,6.54528,-67.3171) World 1.02902
+G4WT0 > neutron (25.7891,-15.3272,-91.0225) Cu_cyl 2.62431
+G4WT0 > neutron (34.4011,-20.4098,-88.6712) World 2.62431
+G4WT0 > e- (-0.0901146,0.023757,-98.5815) Cu_cyl 0
+G4WT0 > e- (-0.0901146,0.023757,-98.5815) Cu_cyl 0
+G4WT0 > e- (-0.08166,0.0266347,-98.6454) Cu_cyl 0
+G4WT0 > e- (-0.08166,0.0266347,-98.6454) Cu_cyl 0
+G4WT0 > e- (-0.0261248,0.0337614,-99.4329) Cu_cyl 0
+G4WT0 > e- (-0.0261248,0.0337614,-99.4329) Cu_cyl 0
+G4WT0 > e- (-0.0172863,0.0349426,-99.6313) Cu_cyl 0
+G4WT0 > e- (-0.0172863,0.0349426,-99.6313) Cu_cyl 0
+G4WT0 > e- (-0.0177874,0.0352652,-99.8086) Cu_cyl 0
+G4WT0 > e- (-0.0177874,0.0352652,-99.8086) Cu_cyl 0
+G4WT0 > e- (-0.0151447,0.0334038,-99.8511) Cu_cyl 0
+G4WT0 > e- (-0.0151447,0.0334038,-99.8511) Cu_cyl 0
+G4WT0 > e- (-0.0174127,0.0319494,-99.896) Cu_cyl 0
+G4WT0 > e- (-0.0174127,0.0319494,-99.896) Cu_cyl 0
+G4WT0 > e- (-0.0180152,0.0305134,-99.9894) Cu_cyl 0.0649841
+G4WT0 > e- (-0.0199467,0.0270935,-99.9889) Cu_cyl 0
+G4WT0 > e- (0.0256062,0.0455524,-105.873) World 0.00134893
+G4WT0 > e- (0.0256062,0.0455524,-105.873) World 0.00134893
+G4WT0 > e- (0.0332538,0.0392289,-105.844) World 6.09056e-06
+G4WT0 > e- (0.0327461,0.0379446,-105.843) World 0
+G4WT0 > e- (-0.00258552,-0.0458623,-113.184) World 0.00229101
+G4WT0 > e- (-0.00258552,-0.0458623,-113.184) World 0.00229101
+G4WT0 > e- (-0.022532,0.0202794,-118.904) World 0.000544819
+G4WT0 > e- (-0.022532,0.0202794,-118.904) World 0.000544819
+G4WT0 > e- (0.0191626,-0.00252146,-122.799) World 0.00116541
+G4WT0 > e- (0.0378848,-0.0039823,-122.778) World 0
+G4WT0 > e- (-0.00477416,-0.0159085,-128.268) World 0.000766041
+G4WT0 > e- (-0.00477416,-0.0159085,-128.268) World 0.000766041
+G4WT0 > e- (-0.0152713,0.0271005,-132.988) World 0.000404732
+G4WT0 > e- (-0.0197191,0.0229466,-132.987) World 0
+G4WT0 > e- (0.0494837,0.0650252,-134.561) World 0.0024634
+G4WT0 > e- (0.170122,0.0852843,-134.472) World 0.00120305
+G4WT0 > e- (-0.0219072,0.022456,-146.408) World 0.000969294
+G4WT0 > e- (-0.0219072,0.022456,-146.408) World 0.000969294
+G4WT0 > e- (-0.00269716,-0.0133539,-150.797) World 0.00107704
+G4WT0 > e- (-0.00269716,-0.0133539,-150.797) World 0.00107704
+G4WT0 > e- (-0.0233241,0.000350948,-181.929) World 0.000646675
+G4WT0 > e- (-0.0307688,0.00501621,-181.921) World 0
+G4WT0 > gamma (4.84795,-2.06556,-89.3685) Cu_cyl 0
+G4WT0 > gamma (4.84795,-2.06556,-89.3685) Cu_cyl 0
+G4WT0 > e- (4.84727,-2.07449,-89.3688) Cu_cyl 0
+G4WT0 > e- (4.84727,-2.07449,-89.3688) Cu_cyl 0
+G4WT0 > gamma (19.5149,-9.9399,-83.5025) Cu_cyl 0.20431
+G4WT0 > gamma (34.8206,-19.6856,-98.7377) World 0.142225
+G4WT0 > e- (20.4523,-8.6466,-83.3254) Cu_cyl 0
+G4WT0 > e- (20.4523,-8.6466,-83.3254) Cu_cyl 0
+G4WT0 > e- (19.5162,-9.94348,-83.5007) Cu_cyl 0
+G4WT0 > e- (19.5162,-9.94348,-83.5007) Cu_cyl 0
+G4WT0 > gamma (-4.66195,29.6356,-84.5932) Cu_cyl 3.563
+G4WT0 > gamma (-6.16684,39.5218,-80.0892) World 3.563
+G4WT0 > C12 (-3.05511,15.1137,-100.116) Kapton_cyl1 0
+G4WT0 > C12 (-3.05511,15.1137,-100.116) Kapton_cyl1 0
+G4WT0 > proton (0,0,-195.522) World 49.9906
+G4WT0 > proton (-0.52185,0.1436,-96.219) Cu_cyl 0
+G4WT0 > Cu65 (-0.0370579,-0.0552557,-97.5107) Cu_cyl 0
+G4WT0 > Cu65 (-0.0370579,-0.0552557,-97.5107) Cu_cyl 0
+G4WT0 > e- (-0.0132888,-0.0536069,-98.0579) Cu_cyl 0
+G4WT0 > e- (-0.0132888,-0.0536069,-98.0579) Cu_cyl 0
+G4WT0 > e- (-0.00720889,-0.0599053,-98.8599) Cu_cyl 0
+G4WT0 > e- (-0.00720889,-0.0599053,-98.8599) Cu_cyl 0
+G4WT0 > e- (-0.0067993,-0.0608422,-98.8838) Cu_cyl 0
+G4WT0 > e- (-0.0067993,-0.0608422,-98.8838) Cu_cyl 0
+G4WT0 > e- (-0.00792795,-0.0592658,-98.9083) Cu_cyl 0
+G4WT0 > e- (-0.00792795,-0.0592658,-98.9083) Cu_cyl 0
+G4WT0 > e- (-0.0213251,-0.0618948,-99.1598) Cu_cyl 0
+G4WT0 > e- (-0.0213251,-0.0618948,-99.1598) Cu_cyl 0
+G4WT0 > e- (-0.0226885,-0.0627817,-99.2083) Cu_cyl 0
+G4WT0 > e- (-0.0226885,-0.0627817,-99.2083) Cu_cyl 0
+G4WT0 > e- (-0.0281678,-0.0623892,-99.3854) Cu_cyl 0
+G4WT0 > e- (-0.0281678,-0.0623892,-99.3854) Cu_cyl 0
+G4WT0 > e- (-0.028685,-0.0622743,-99.4167) Cu_cyl 0
+G4WT0 > e- (-0.028685,-0.0622743,-99.4167) Cu_cyl 0
+G4WT0 > e- (-0.0422005,-0.06048,-100.005) Kapton_cyl1 0.0191717
+G4WT0 > e- (-0.0435651,-0.0628971,-100.003) Kapton_cyl1 0
+G4WT0 > e- (-0.0604344,-0.0689038,-124.27) World 0.00134236
+G4WT0 > e- (-0.0866867,-0.0919198,-124.268) World 0.000819112
+G4WT0 > e- (-0.00606516,-0.0271271,-133.043) World 0.000362808
+G4WT0 > e- (-0.0018286,-0.023948,-133.042) World 0
+G4WT0 > e- (-0.0543703,0.0102313,-186.511) World 0.00178433
+G4WT0 > e- (-0.0543703,0.0102313,-186.511) World 0.00178433
+G4WT0 > e- (0.097414,0.0733927,-195.492) World 0.00550845
+G4WT0 > e- (0.230645,0.225713,-195.455) World 0.00306957
+G4WT0 > e- (0.230645,0.225713,-195.455) World 0.00113283
+G4WT0 > e- (0.230645,0.225713,-195.455) World 0.00113283
+G4WT0 > proton (0,0,-200.018) World 49.995
+G4WT0 > proton (0.243773,0.15683,-96.1494) Cu_cyl 0
+G4WT0 > e- (0.127444,0.057863,-98.7386) Cu_cyl 0
+G4WT0 > e- (0.127444,0.057863,-98.7386) Cu_cyl 0
+G4WT0 > e- (0.113127,0.0517607,-98.872) Cu_cyl 0
+G4WT0 > e- (0.113127,0.0517607,-98.872) Cu_cyl 0
+G4WT0 > e- (0.103167,0.0473033,-98.9875) Cu_cyl 0
+G4WT0 > e- (0.103167,0.0473033,-98.9875) Cu_cyl 0
+G4WT0 > e- (0.092365,0.0426771,-99.1404) Cu_cyl 0
+G4WT0 > e- (0.092365,0.0426771,-99.1404) Cu_cyl 0
+G4WT0 > e- (0.0872577,0.0427521,-99.2582) Cu_cyl 0
+G4WT0 > e- (0.0872577,0.0427521,-99.2582) Cu_cyl 0
+G4WT0 > e- (0.0777157,0.0415704,-99.467) Cu_cyl 0
+G4WT0 > e- (0.0777157,0.0415704,-99.467) Cu_cyl 0
+G4WT0 > e- (0.0727905,0.0415782,-99.5362) Cu_cyl 0
+G4WT0 > e- (0.0727905,0.0415782,-99.5362) Cu_cyl 0
+G4WT0 > e- (0.0728889,0.0429539,-99.5612) Cu_cyl 0
+G4WT0 > e- (0.0728889,0.0429539,-99.5612) Cu_cyl 0
+G4WT0 > e- (0.0705531,0.0405624,-99.6622) Cu_cyl 0
+G4WT0 > e- (0.0705531,0.0405624,-99.6622) Cu_cyl 0
+G4WT0 > e- (0.0596142,0.0377037,-100.027) Kapton_cyl1 0
+G4WT0 > e- (0.0596142,0.0377037,-100.027) Kapton_cyl1 0
+G4WT0 > e- (-0.0347899,0.0334135,-142.407) World 0.000283021
+G4WT0 > e- (-0.0347899,0.0334135,-142.407) World 0.000283021
+G4WT0 > e- (-0.000243966,0.0328703,-147.406) World 0
+G4WT0 > e- (-0.000243966,0.0328703,-147.406) World 0
+G4WT0 > e- (-0.0284518,-0.076344,-164.649) World 0.00376039
+G4WT0 > e- (-0.0284518,-0.076344,-164.649) World 0.00376039
+G4WT0 > e- (0.0124059,0.226587,-176.808) World 0.00994245
+G4WT0 > e- (-0.46888,0.90204,-176.121) World 0
+G4WT0 > e- (-0.173489,0.846696,-176.229) World 0.00128272
+G4WT0 > e- (-0.173489,0.846696,-176.229) World 0.00128272
+G4WT0 > e- (-0.0288976,0.00711133,-183.532) World 0.000500093
+G4WT0 > e- (-0.0322325,0.00643102,-183.524) World 0
+G4WT0 > e- (0.0172791,0.026918,-196.628) World 0.00108547
+G4WT0 > e- (0.0272766,0.0498501,-196.623) World 0.000324499
+G4WT0 > e- (0.0712572,-0.0213177,-197.172) World 0.00299549
+G4WT0 > e- (0.20157,-0.134052,-197.137) World 0
+G4WT0 > e- (-0.0377475,0.0872178,-199.998) World 0.00395711
+G4WT0 > e- (-0.0377475,0.0872178,-199.998) World 0.00395711
+G4WT0 > proton (0,0,-197.818) World 49.9917
+G4WT0 > proton (0.0313931,0.166243,-96.2024) Cu_cyl 0
+G4WT0 > e- (0.126246,-0.00799427,-98.0573) Cu_cyl 0
+G4WT0 > e- (0.126246,-0.00799427,-98.0573) Cu_cyl 0
+G4WT0 > e- (0.159516,-0.0279767,-98.6446) Cu_cyl 0
+G4WT0 > e- (0.159516,-0.0279767,-98.6446) Cu_cyl 0
+G4WT0 > e- (0.181567,-0.0426062,-99.1297) Cu_cyl 0
+G4WT0 > e- (0.181567,-0.0426062,-99.1297) Cu_cyl 0
+G4WT0 > e- (0.186529,-0.04299,-99.1984) Cu_cyl 0
+G4WT0 > e- (0.186529,-0.04299,-99.1984) Cu_cyl 0
+G4WT0 > e- (0.209319,-0.0597549,-99.6285) Cu_cyl 0
+G4WT0 > e- (0.209319,-0.0597549,-99.6285) Cu_cyl 0
+G4WT0 > e- (0.210156,-0.0604652,-99.6654) Cu_cyl 0
+G4WT0 > e- (0.210156,-0.0604652,-99.6654) Cu_cyl 0
+G4WT0 > e- (0.210191,-0.0596152,-99.6755) Cu_cyl 0
+G4WT0 > e- (0.210191,-0.0596152,-99.6755) Cu_cyl 0
+G4WT0 > e- (0.396183,0.0524391,-106.657) World 0.0109724
+G4WT0 > e- (1.03417,0.63431,-105.506) World 0.00350225
+G4WT0 > e- (1.16972,0.611318,-105.634) World 0.00079077
+G4WT0 > e- (1.17596,0.6054,-105.62) World 0
+G4WT0 > e- (0.0085747,-0.157264,-117.525) World 0.00921001
+G4WT0 > e- (-0.546887,-0.329276,-117.401) World 0.00676423
+G4WT0 > e- (0.11123,-0.0333254,-127.482) World 0.000513004
+G4WT0 > e- (0.106881,-0.0261998,-127.48) World 0
+G4WT0 > e- (0.208236,-0.0309731,-131.074) World 0.00325388
+G4WT0 > e- (0.271599,0.017167,-131.059) World 0.00299567
+G4WT0 > e- (0.0655645,-0.0475323,-140.502) World 0.00105859
+G4WT0 > e- (0.0748205,-0.0408952,-140.48) World 5.59794e-05
+G4WT0 > e- (0.0605286,0.020186,-159.229) World 0.000850348
+G4WT0 > e- (0.0605286,0.020186,-159.229) World 0.000850348
+G4WT0 > e- (-0.0912697,-0.138491,-164.417) World 0.00886749
+G4WT0 > e- (-0.124198,-0.841104,-164.293) World 0.00603578
+G4WT0 > e- (0.0122377,-0.0502759,-168.803) World 0.000948492
+G4WT0 > e- (0.0127777,-0.0699351,-168.795) World 0
+G4WT0 > e- (-0.0454617,-0.0169551,-169.978) World 0.00191429
+G4WT0 > e- (-0.0454617,-0.0169551,-169.978) World 0.00191429
+G4WT0 > e- (-0.0172538,0.000352239,-173.153) World 0.00117607
+G4WT0 > e- (-0.0172538,0.000352239,-173.153) World 0.00117607
+G4WT0 > e- (0.0679108,0.0376724,-175.256) World 0.00293696
+G4WT0 > e- (0.0679108,0.0376724,-175.256) World 0.00293696
+G4WT0 > e- (-0.0178234,0.0218776,-189.001) World 0.00093108
+G4WT0 > e- (-0.020996,0.0111347,-188.983) World 0
+G4WT0 > e- (-0.0857426,0.0299788,-197.075) World 0.00359678
+G4WT0 > e- (-0.0857426,0.0299788,-197.075) World 0.00359678
+G4WT0 > e- (0.097782,0.0646015,-197.79) World 0.00493213
+G4WT0 > e- (0.097782,0.0646015,-197.79) World 0.00493213
+G4WT0 > proton (0,0,-192.609) World 49.9948
+G4WT0 > proton (-0.023537,0.0741676,-96.1914) Cu_cyl 0
+G4WT0 > Cu63 (-0.0320048,0.0896418,-96.1918) Cu_cyl 0
+G4WT0 > Cu63 (-0.0320048,0.0896418,-96.1918) Cu_cyl 0
+G4WT0 > e- (-0.00404131,0.0888776,-98.357) Cu_cyl 0.00356373
+G4WT0 > e- (-0.00403996,0.0888685,-98.357) Cu_cyl 0
+G4WT0 > e- (0.0282404,0.0724846,-99.021) Cu_cyl 0
+G4WT0 > e- (0.0282404,0.0724846,-99.021) Cu_cyl 0
+G4WT0 > e- (0.0273851,0.0715161,-99.0203) Cu_cyl 0
+G4WT0 > e- (0.0273851,0.0715161,-99.0203) Cu_cyl 0
+G4WT0 > e- (0.0283912,0.0717648,-99.0238) Cu_cyl 0
+G4WT0 > e- (0.0283912,0.0717648,-99.0238) Cu_cyl 0
+G4WT0 > e- (0.0373494,0.0634846,-99.2512) Cu_cyl 0
+G4WT0 > e- (0.0373494,0.0634846,-99.2512) Cu_cyl 0
+G4WT0 > e- (0.0498436,0.061291,-99.5604) Cu_cyl 0
+G4WT0 > e- (0.0498436,0.061291,-99.5604) Cu_cyl 0
+G4WT0 > e- (0.0656282,0.0714995,-99.9977) Cu_cyl 0.0856097
+G4WT0 > e- (0.0667406,0.0688915,-99.9965) Cu_cyl 0
+G4WT0 > e- (0.0669874,0.0735076,-100.144) Ag_cyl 0
+G4WT0 > e- (0.0669874,0.0735076,-100.144) Ag_cyl 0
+G4WT0 > e- (0.0710706,0.0842054,-100.225) Kapton_cyl2 0
+G4WT0 > e- (0.0710706,0.0842054,-100.225) Kapton_cyl2 0
+G4WT0 > e- (0.146615,0.159489,-108.794) World 0.00512854
+G4WT0 > e- (0.230493,0.247708,-108.792) World 0.00459945
+G4WT0 > e- (0.0614993,0.109362,-117.147) World 0.00179552
+G4WT0 > e- (0.0452622,0.117239,-117.083) World 0
+G4WT0 > e- (0.0195247,-0.011239,-145.236) World 0.00159269
+G4WT0 > e- (0.0538684,-0.0409712,-145.214) World 0
+G4WT0 > e- (0.0432402,0.0154317,-145.884) World 0.000927736
+G4WT0 > e- (0.0595105,0.0257558,-145.874) World 0
+G4WT0 > e- (0.0668487,0.107975,-146.174) World 0.00325659
+G4WT0 > e- (0.114453,0.175093,-146.166) World 0.00199747
+G4WT0 > e- (-0.0337506,0.0429038,-156.985) World 0.00200593
+G4WT0 > e- (-0.0798065,0.0684256,-156.975) World 0.00106067
+G4WT0 > e- (0.0474789,0.0268978,-163.361) World 0.00101792
+G4WT0 > e- (0.0634305,0.0226593,-163.347) World 0
+G4WT0 > e- (-0.0370031,-0.0163911,-191.588) World 0.00106575
+G4WT0 > e- (-0.0370031,-0.0163911,-191.588) World 0.00106575
+G4WT0 > e- (-0.021604,-0.00773638,-192.607) World 0.000718579
+G4WT0 > e- (-0.0250312,0.002492,-192.598) World 0
+G4WT0 > gamma (-0.00443778,0.0868359,-98.3558) Cu_cyl 0
+G4WT0 > gamma (-0.00443778,0.0868359,-98.3558) Cu_cyl 0
+G4WT0 > e- (-0.0044403,0.086835,-98.3558) Cu_cyl 0
+G4WT0 > e- (-0.0044403,0.086835,-98.3558) Cu_cyl 0
+G4WT0 > proton (0,0,-180.956) World 49.981
+G4WT0 > proton (-0.104599,0.160816,-96.1418) Cu_cyl 0
+G4WT0 > e- (0.0283148,0.111791,-97.8668) Cu_cyl 0
+G4WT0 > e- (0.0283148,0.111791,-97.8668) Cu_cyl 0
+G4WT0 > e- (0.0263211,0.111979,-98.2898) Cu_cyl 0
+G4WT0 > e- (0.0263211,0.111979,-98.2898) Cu_cyl 0
+G4WT0 > e- (0.0255593,0.111702,-98.7618) Cu_cyl 0
+G4WT0 > e- (0.0255593,0.111702,-98.7618) Cu_cyl 0
+G4WT0 > e- (0.026141,0.110789,-98.9393) Cu_cyl 0
+G4WT0 > e- (0.026141,0.110789,-98.9393) Cu_cyl 0
+G4WT0 > e- (0.0342292,0.112744,-99.4548) Cu_cyl 0
+G4WT0 > e- (0.0342292,0.112744,-99.4548) Cu_cyl 0
+G4WT0 > e- (0.0416114,0.116085,-100.203) Kapton_cyl2 0
+G4WT0 > e- (0.0416114,0.116085,-100.203) Kapton_cyl2 0
+G4WT0 > e- (0.0362292,0.112752,-100.268) Kapton_cyl2 0.0119361
+G4WT0 > e- (0.035014,0.113234,-100.267) Kapton_cyl2 0
+G4WT0 > e- (0.0381901,0.114343,-111.172) World 0.000744042
+G4WT0 > e- (0.0381901,0.114343,-111.172) World 0.000744042
+G4WT0 > e- (-0.000287212,0.0572497,-135.498) World 0.00105213
+G4WT0 > e- (-0.000287212,0.0572497,-135.498) World 0.00105213
+G4WT0 > e- (0.0448613,0.0269047,-135.69) World 0.00108277
+G4WT0 > e- (0.0448613,0.0269047,-135.69) World 0.00108277
+G4WT0 > e- (0.103352,0.0197352,-137.464) World 0.00335716
+G4WT0 > e- (0.103352,0.0197352,-137.464) World 0.00335716
+G4WT0 > e- (0.0408649,0.113011,-138.534) World 0.00216455
+G4WT0 > e- (-0.0339951,0.172059,-138.509) World 0.000623716
+G4WT0 > e- (0.0733265,0.0456951,-145.864) World 0.00167187
+G4WT0 > e- (0.115863,0.0583784,-145.863) World 0.000111841
+G4WT0 > e- (0.0479103,0.0227047,-171.673) World 0.00153972
+G4WT0 > e- (0.0842787,0.0105241,-171.671) World 0.00101132
+G4WT0 > e- (-0.0174234,-0.0272984,-180.952) World 0.0011033
+G4WT0 > e- (-0.0174234,-0.0272984,-180.952) World 0.0011033
+G4WT0 > proton (0,0,-198.374) World 49.9958
+G4WT0 > proton (0.385688,-0.115358,-96.1994) Cu_cyl 0
+G4WT0 > e- (0.105217,-0.0734056,-98.1148) Cu_cyl 0
+G4WT0 > e- (0.105217,-0.0734056,-98.1148) Cu_cyl 0
+G4WT0 > e- (0.0969565,-0.0648324,-98.2147) Cu_cyl 0
+G4WT0 > e- (0.0969565,-0.0648324,-98.2147) Cu_cyl 0
+G4WT0 > e- (0.0865381,-0.0554659,-98.3255) Cu_cyl 0
+G4WT0 > e- (0.0865381,-0.0554659,-98.3255) Cu_cyl 0
+G4WT0 > e- (0.0697272,-0.0391894,-98.5121) Cu_cyl 0
+G4WT0 > e- (0.0697272,-0.0391894,-98.5121) Cu_cyl 0
+G4WT0 > e- (0.0683668,-0.0345947,-98.5547) Cu_cyl 0
+G4WT0 > e- (0.0683668,-0.0345947,-98.5547) Cu_cyl 0
+G4WT0 > e- (0.0366956,-0.000619911,-99.0088) Cu_cyl 0
+G4WT0 > e- (0.0366956,-0.000619911,-99.0088) Cu_cyl 0
+G4WT0 > e- (0.0365357,-0.000373862,-99.0224) Cu_cyl 0
+G4WT0 > e- (0.0365357,-0.000373862,-99.0224) Cu_cyl 0
+G4WT0 > e- (0.0148804,0.0215736,-99.5352) Cu_cyl 0
+G4WT0 > e- (0.0148804,0.0215736,-99.5352) Cu_cyl 0
+G4WT0 > e- (0.0150154,0.0240963,-99.574) Cu_cyl 0
+G4WT0 > e- (0.0150154,0.0240963,-99.574) Cu_cyl 0
+G4WT0 > e- (0.0106607,0.0281056,-99.9142) Cu_cyl 0
+G4WT0 > e- (0.0106607,0.0281056,-99.9142) Cu_cyl 0
+G4WT0 > e- (0.0114696,0.0275244,-100.026) Kapton_cyl1 0.104211
+G4WT0 > e- (0.0219072,0.0291997,-99.9928) Cu_cyl 0
+G4WT0 > e- (-0.0293604,0.0426226,-102.651) World 0.000368681
+G4WT0 > e- (-0.0313101,0.0449897,-102.647) World 0
+G4WT0 > e- (-0.205632,3.38014,-100.282) World 0.0390436
+G4WT0 > e- (-0.218144,3.38457,-100.274) Kapton_cyl2 0
+G4WT0 > e- (0.0113783,-0.0206125,-112.322) World 0.00151936
+G4WT0 > e- (-0.0295212,-0.0697433,-112.316) World 0
+G4WT0 > e- (-0.0989105,0.0383726,-121.966) World 0.00459774
+G4WT0 > e- (-0.353393,-0.00894409,-121.654) World 0.00324752
+G4WT0 > e- (0.0575252,0.0657852,-163.682) World 0.00283685
+G4WT0 > e- (0.0575252,0.0657852,-163.682) World 0.00283685
+G4WT0 > e- (-0.0231411,-0.0105785,-198.371) World 0.000698003
+G4WT0 > e- (-0.0142026,-0.00758091,-198.361) World 0
+G4WT0 > proton (0,0,-196.499) World 49.9954
+G4WT0 > proton (-0.0556332,-0.207053,-96.2062) Cu_cyl 0
+G4WT0 > e- (-0.0496165,-0.0807457,-98.7134) Cu_cyl 0
+G4WT0 > e- (-0.0496165,-0.0807457,-98.7134) Cu_cyl 0
+G4WT0 > e- (-0.0513766,-0.0823804,-98.9031) Cu_cyl 0
+G4WT0 > e- (-0.0513766,-0.0823804,-98.9031) Cu_cyl 0
+G4WT0 > e- (-0.0518327,-0.0793829,-98.9502) Cu_cyl 0
+G4WT0 > e- (-0.0518327,-0.0793829,-98.9502) Cu_cyl 0
+G4WT0 > e- (-0.0495463,-0.0777931,-99.4611) Cu_cyl 0
+G4WT0 > e- (-0.0495463,-0.0777931,-99.4611) Cu_cyl 0
+G4WT0 > e- (-0.0544738,-0.0742456,-99.8241) Cu_cyl 0
+G4WT0 > e- (-0.0544738,-0.0742456,-99.8241) Cu_cyl 0
+G4WT0 > e- (-0.054811,-0.0750091,-100.142) Ag_cyl 0.0975746
+G4WT0 > e- (-0.0521545,-0.0726574,-100.147) Ag_cyl 0
+G4WT0 > e- (-0.0329183,-0.0342601,-113.258) World 0.00037647
+G4WT0 > e- (-0.0300386,-0.0305007,-113.255) World 0
+G4WT0 > e- (-0.0159234,-0.0615617,-122.206) World 0.00108632
+G4WT0 > e- (0.00757306,-0.0693196,-122.205) World 0.000975758
+G4WT0 > e- (-0.188576,0.00660789,-140.392) World 0.00730365
+G4WT0 > e- (-0.947603,-0.642833,-139.754) World 0.00126153
+G4WT0 > e- (-0.0458864,0.0455078,-141.126) World 0.00363531
+G4WT0 > e- (-0.0458864,0.0455078,-141.126) World 0.00363531
+G4WT0 > e- (2.2244,4.40975,-159.558) World 0.0304046
+G4WT0 > e- (0.0980881,3.95055,-150.944) World 0
+G4WT0 > e- (-2.22595,3.88553,-153.018) World 0.00328377
+G4WT0 > e- (-2.22595,3.88553,-153.018) World 0.00328377
+G4WT0 > e- (-2.22603,3.85454,-152.958) World 0.00260937
+G4WT0 > e- (-2.20186,3.8133,-152.862) World 0.00106689
+G4WT0 > e- (0.355984,4.5027,-156.509) World 0.00212844
+G4WT0 > e- (0.31056,4.58633,-156.473) World 0
+G4WT0 > e- (-0.163289,0.173238,-164.989) World 0.0123789
+G4WT0 > e- (-0.422948,0.874375,-164.81) World 0.0114187
+G4WT0 > e- (-0.0327487,-0.119646,-172.626) World 0.00430023
+G4WT0 > e- (-0.0327487,-0.119646,-172.626) World 0.00430023
+G4WT0 > e- (-0.00543809,0.0110787,-173.403) World 0.000900166
+G4WT0 > e- (-0.0134258,0.00202622,-173.388) World 0.000266436
+G4WT0 > e- (-0.121893,0.107397,-180.011) World 0.00793947
+G4WT0 > e- (-0.370428,0.28137,-179.611) World 0.00713942
+G4WT0 > e- (0.0154436,-0.0718402,-188.22) World 0.00271883
+G4WT0 > e- (0.0804524,-0.0754282,-188.197) World 0.00227679
+G4WT0 > e- (-0.0615154,-0.00524962,-192) World 0.00182936
+G4WT0 > e- (-0.132348,-0.048523,-191.962) World 0
+G4WT0 > e- (0.029838,-0.00554565,-196.495) World 0.000739666
+G4WT0 > e- (0.0337503,-0.00600383,-196.481) World 0
+G4WT0 > proton (0,0,-200.172) World 49.9974
+G4WT0 > proton (0.014991,0.0879991,-96.1094) Cu_cyl 0
+G4WT0 > e- (-0.093473,-0.0497548,-97.8327) Cu_cyl 0
+G4WT0 > e- (-0.093473,-0.0497548,-97.8327) Cu_cyl 0
+G4WT0 > e- (-0.0929164,-0.0547586,-97.9327) Cu_cyl 0
+G4WT0 > e- (-0.0929164,-0.0547586,-97.9327) Cu_cyl 0
+G4WT0 > e- (-0.0951518,-0.0607589,-98.0909) Cu_cyl 0.0397992
+G4WT0 > e- (-0.0956588,-0.0608405,-98.0916) Cu_cyl 0
+G4WT0 > e- (-0.0947249,-0.0948556,-98.6797) Cu_cyl 0
+G4WT0 > e- (-0.0947249,-0.0948556,-98.6797) Cu_cyl 0
+G4WT0 > e- (-0.0649502,-0.114354,-99.3401) Cu_cyl 0
+G4WT0 > e- (-0.0649502,-0.114354,-99.3401) Cu_cyl 0
+G4WT0 > e- (0.212927,0.0602054,-140.602) World 0.0125696
+G4WT0 > e- (1.62239,0.609219,-139.607) World 0.00287256
+G4WT0 > e- (1.74724,0.461073,-139.585) World 0.00145531
+G4WT0 > e- (1.73122,0.462164,-139.539) World 0
+G4WT0 > e- (0.824697,0.23705,-140.285) World 0.000743801
+G4WT0 > e- (0.824697,0.23705,-140.285) World 0.000743801
+G4WT0 > e- (0.633725,1.13773,-148.195) World 0.0201893
+G4WT0 > e- (0.454271,2.4217,-147.891) World 0.0180296
+G4WT0 > e- (0.0113114,-0.103145,-154.9) World 0.00266343
+G4WT0 > e- (0.0113114,-0.103145,-154.9) World 0.00266343
+G4WT0 > e- (0.0216268,-0.00943152,-157.727) World 0.000541894
+G4WT0 > e- (0.0169697,-0.00877128,-157.719) World 0
+G4WT0 > e- (0.0211653,-0.0522697,-171.074) World 0.00160685
+G4WT0 > e- (0.0211653,-0.0522697,-171.074) World 0.00160685
+G4WT0 > e- (-0.0376533,-0.0819103,-173.396) World 0.00294296
+G4WT0 > e- (-0.104962,-0.0104549,-173.279) World 1.5086e-05
+G4WT0 > e- (-0.0503817,0.0260543,-178.303) World 0.00186814
+G4WT0 > e- (-0.0807741,0.0634017,-178.28) World 0
+G4WT0 > e- (-0.00889601,-0.0936329,-185.533) World 0.00361866
+G4WT0 > e- (-0.0826817,-0.265504,-185.487) World 0
+G4WT0 > e- (-0.0619181,-0.232366,-185.515) World 0.0011489
+G4WT0 > e- (-0.0619181,-0.232366,-185.515) World 0.0011489
+G4WT0 > e- (0.00527273,0.0637754,-193.04) World 0.00210842
+G4WT0 > e- (0.00626829,0.107782,-193.003) World 0.00139803
+G4WT0 > e- (-0.0182982,0.0115721,-199.501) World 0.000439628
+G4WT0 > e- (-0.0182982,0.0115721,-199.501) World 0.000439628
+G4WT0 > e- (0.0528207,-0.0155419,-200.164) World 0.00142441
+G4WT0 > e- (0.0663871,-0.0129794,-200.113) World 0
+G4WT0 > gamma (-0.116701,-0.0939085,-98.101) Cu_cyl 0
+G4WT0 > gamma (-0.116701,-0.0939085,-98.101) Cu_cyl 0
+G4WT0 > e- (-0.116628,-0.0939546,-98.1011) Cu_cyl 0
+G4WT0 > e- (-0.116628,-0.0939546,-98.1011) Cu_cyl 0
+G4WT0 > Run #0 produces differential Gain (I/B) of 1 +/- 0.316228
 Measuring gain for thickness #1
-G4WT1 > Run #7 produces differential Gain (I/B) of 0.953494 +/- 0.218468
-G4WT3 > Run #7 produces differential Gain (I/B) of 0.953504 +/- 0.218468
-G4WT2 > Run #7 produces differential Gain (I/B) of 0.95367 +/- 0.218489
-G4WT0 > Run #7 produces differential Gain (I/B) of 0.953827 +/- 0.218496
-G4WT2 > Run #8 produces differential Gain (I/B) of 0.965894 +/- 0.187878
-G4WT3 > Run #8 produces differential Gain (I/B) of 0.966423 +/- 0.18791
-G4WT1 > Run #8 produces differential Gain (I/B) of 0.966795 +/- 0.18792
-G4WT0 > Run #8 produces differential Gain (I/B) of 0.966795 +/- 0.18792
-G4WT1 > Run #9 produces differential Gain (I/B) of 0.974704 +/- 0.166253
-G4WT2 > Run #9 produces differential Gain (I/B) of 0.975725 +/- 0.166335
-G4WT3 > Run #9 produces differential Gain (I/B) of 0.975725 +/- 0.166335
-G4WT0 > Run #9 produces differential Gain (I/B) of 0.975725 +/- 0.166335
-G4WT2 > Run #10 produces differential Gain (I/B) of 0.980265 +/- 0.153127
-G4WT3 > Run #10 produces differential Gain (I/B) of 0.980308 +/- 0.153133
-G4WT0 > Run #10 produces differential Gain (I/B) of 0.980952 +/- 0.153185
-G4WT1 > Run #10 produces differential Gain (I/B) of 0.981055 +/- 0.153185
-G4WT2 > Run #11 produces differential Gain (I/B) of 0.984501 +/- 0.145097
-G4WT0 > Run #11 produces differential Gain (I/B) of 0.984879 +/- 0.145136
-G4WT3 > Run #11 produces differential Gain (I/B) of 0.985183 +/- 0.145153
-G4WT1 > Run #11 produces differential Gain (I/B) of 0.985189 +/- 0.145153
-G4WT3 > Run #12 produces differential Gain (I/B) of 0.987602 +/- 0.141268
-G4WT0 > Run #12 produces differential Gain (I/B) of 0.987956 +/- 0.141288
-G4WT1 > Run #12 produces differential Gain (I/B) of 0.988042 +/- 0.141292
-G4WT2 > Run #12 produces differential Gain (I/B) of 0.988149 +/- 0.141299
-G4WT1 > Run #13 produces differential Gain (I/B) of 0.989834 +/- 0.142293
-G4WT0 > Run #13 produces differential Gain (I/B) of 0.989908 +/- 0.142299
-G4WT3 > Run #13 produces differential Gain (I/B) of 0.990047 +/- 0.142306
-G4WT2 > Run #13 produces differential Gain (I/B) of 0.990324 +/- 0.142313
+G4WT0 > proton (0,0,-191.647) World 49.9933
+G4WT0 > proton (0.0861605,0.241858,-96.1119) Cu_cyl 0
+G4WT0 > e- (-0.170744,0.120824,-98.6519) Cu_cyl 0
+G4WT0 > e- (-0.170744,0.120824,-98.6519) Cu_cyl 0
+G4WT0 > e- (-0.167916,0.124178,-99.1551) Cu_cyl 0
+G4WT0 > e- (-0.167916,0.124178,-99.1551) Cu_cyl 0
+G4WT0 > e- (-0.167263,0.120012,-99.2611) Cu_cyl 0
+G4WT0 > e- (-0.167263,0.120012,-99.2611) Cu_cyl 0
+G4WT0 > e- (-0.177696,0.113994,-99.6158) Cu_cyl 0
+G4WT0 > e- (-0.177696,0.113994,-99.6158) Cu_cyl 0
+G4WT0 > e- (-0.180237,0.110927,-99.8338) Cu_cyl 0
+G4WT0 > e- (-0.180237,0.110927,-99.8338) Cu_cyl 0
+G4WT0 > e- (-0.184316,0.102798,-100.187) Kapton_cyl2 0
+G4WT0 > e- (-0.184316,0.102798,-100.187) Kapton_cyl2 0
+G4WT0 > e- (-0.175338,0.108432,-100.197) Kapton_cyl2 0
+G4WT0 > e- (-0.175338,0.108432,-100.197) Kapton_cyl2 0
+G4WT0 > e- (-0.164636,0.105145,-100.197) Kapton_cyl2 0
+G4WT0 > e- (-0.164636,0.105145,-100.197) Kapton_cyl2 0
+G4WT0 > e- (-0.178247,0.099055,-100.221) Kapton_cyl2 0
+G4WT0 > e- (-0.178247,0.099055,-100.221) Kapton_cyl2 0
+G4WT0 > e- (-0.0997892,0.0737668,-106.033) World 0.00257899
+G4WT0 > e- (-0.0997892,0.0737668,-106.033) World 0.00257899
+G4WT0 > e- (-0.0816844,0.0344573,-128.277) World 0.000783047
+G4WT0 > e- (-0.0785078,0.0498245,-128.275) World 0
+G4WT0 > e- (-0.0882201,0.00734083,-137.431) World 0.000599837
+G4WT0 > e- (-0.0790407,0.0123294,-137.429) World 0
+G4WT0 > e- (-0.0394482,0.0622606,-150.809) World 0.00171415
+G4WT0 > e- (-0.0766325,0.112477,-150.798) World 0
+G4WT0 > e- (-0.0321352,-0.00441049,-169.254) World 0.0004519
+G4WT0 > e- (-0.0321352,-0.00441049,-169.254) World 0.0004519
+G4WT0 > e- (-0.0197865,-0.0108076,-190.189) World 0
+G4WT0 > e- (-0.0197865,-0.0108076,-190.189) World 0
+G4WT0 > proton (0,0,-200.096) World 49.9988
+G4WT0 > proton (-0.411235,0.489355,-96.1941) Cu_cyl 0
+G4WT0 > e- (-0.0350792,0.215149,-98.8768) Cu_cyl 0
+G4WT0 > e- (-0.0350792,0.215149,-98.8768) Cu_cyl 0
+G4WT0 > e- (-0.0218964,0.201007,-99.3246) Cu_cyl 0
+G4WT0 > e- (-0.0218964,0.201007,-99.3246) Cu_cyl 0
+G4WT0 > e- (-0.00987936,0.196771,-99.5664) Cu_cyl 0
+G4WT0 > e- (-0.00987936,0.196771,-99.5664) Cu_cyl 0
+G4WT0 > e- (-0.00541493,0.195398,-99.7271) Cu_cyl 0
+G4WT0 > e- (-0.00541493,0.195398,-99.7271) Cu_cyl 0
+G4WT0 > e- (-0.00185063,0.198003,-99.8478) Cu_cyl 0
+G4WT0 > e- (-0.00185063,0.198003,-99.8478) Cu_cyl 0
+G4WT0 > e- (0.00275423,0.197797,-100.124) Ag_cyl 0.0635262
+G4WT0 > e- (0.00581483,0.198917,-100.125) Ag_cyl 0
+G4WT0 > e- (0.00204841,0.197052,-100.154) Ag_cyl 0.0681096
+G4WT0 > e- (0.000342537,0.200098,-100.154) Ag_cyl 0
+G4WT0 > e- (0.00180127,0.197105,-100.158) Kapton_cyl2 0.058108
+G4WT0 > e- (-0.00112961,0.200763,-100.161) Kapton_cyl2 0
+G4WT0 > e- (-0.060054,0.184956,-107.381) World 0.00223517
+G4WT0 > e- (-0.139961,0.155028,-107.32) World 0
+G4WT0 > e- (-0.0523768,0.109193,-115.822) World 0.00192838
+G4WT0 > e- (-0.0523768,0.109193,-115.822) World 0.00192838
+G4WT0 > e- (0.00440977,0.163581,-119.515) World 0.000803355
+G4WT0 > e- (0.00468034,0.16676,-119.498) World 0
+G4WT0 > e- (0.0155353,0.123682,-125.063) World 0.000826077
+G4WT0 > e- (0.0038729,0.114853,-125.054) World 0.000533421
+G4WT0 > e- (-0.0401862,0.0464918,-152.964) World 0.000229032
+G4WT0 > e- (-0.0423578,0.0451385,-152.962) World 0
+G4WT0 > e- (0.0271414,0.00431294,-155.217) World 0.00243779
+G4WT0 > e- (0.0746335,0.0547279,-155.089) World 0
+G4WT0 > e- (-0.0200463,-0.0430119,-169.095) World 0.00259076
+G4WT0 > e- (-0.0200463,-0.0430119,-169.095) World 0.00259076
+G4WT0 > e- (-0.0330405,0.00375488,-177.084) World 0.000957101
+G4WT0 > e- (-0.0330405,0.00375488,-177.084) World 0.000957101
+G4WT0 > e- (0.0589961,0.0195055,-190.56) World 0.00206299
+G4WT0 > e- (0.0589961,0.0195055,-190.56) World 0.00206299
+G4WT0 > e- (0.0224544,-0.0234984,-197.188) World 0.00105663
+G4WT0 > e- (0.0238682,-0.0181557,-197.163) World 0
+G4WT0 > e- (-0.0225048,-0.0086161,-200.094) World 0.000508774
+G4WT0 > e- (-0.0225048,-0.0086161,-200.094) World 0.000508774
+G4WT0 > proton (0,0,-188.452) World 49.9879
+G4WT0 > proton (0.267611,0.191358,-96.2522) Cu_cyl 0
+G4WT0 > e- (0.334185,0.0643431,-97.9824) Cu_cyl 0
+G4WT0 > e- (0.334185,0.0643431,-97.9824) Cu_cyl 0
+G4WT0 > e- (0.335906,0.0595586,-98.2279) Cu_cyl 0
+G4WT0 > e- (0.335906,0.0595586,-98.2279) Cu_cyl 0
+G4WT0 > e- (0.334901,0.0590735,-98.297) Cu_cyl 0
+G4WT0 > e- (0.334901,0.0590735,-98.297) Cu_cyl 0
+G4WT0 > e- (0.334948,0.0591995,-98.3603) Cu_cyl 0
+G4WT0 > e- (0.334948,0.0591995,-98.3603) Cu_cyl 0
+G4WT0 > e- (0.332226,0.0598964,-98.4839) Cu_cyl 0
+G4WT0 > e- (0.332226,0.0598964,-98.4839) Cu_cyl 0
+G4WT0 > e- (0.328792,0.0603133,-98.5862) Cu_cyl 0
+G4WT0 > e- (0.328792,0.0603133,-98.5862) Cu_cyl 0
+G4WT0 > e- (0.27689,0.0595412,-99.4356) Cu_cyl 0
+G4WT0 > e- (0.27689,0.0595412,-99.4356) Cu_cyl 0
+G4WT0 > e- (0.265859,0.065696,-99.8995) Cu_cyl 0
+G4WT0 > e- (0.265859,0.065696,-99.8995) Cu_cyl 0
+G4WT0 > e- (0.265616,0.0726453,-100.192) Kapton_cyl2 0
+G4WT0 > e- (0.265616,0.0726453,-100.192) Kapton_cyl2 0
+G4WT0 > e- (0.265327,0.070849,-100.219) Kapton_cyl2 0.0953456
+G4WT0 > e- (0.250622,0.0310851,-100.16) Kapton_cyl2 0
+G4WT0 > e- (0.267913,0.0578116,-100.237) Kapton_cyl2 0
+G4WT0 > e- (0.267913,0.0578116,-100.237) Kapton_cyl2 0
+G4WT0 > e- (0.143699,-0.0154666,-111.648) World 0.00360751
+G4WT0 > e- (0.143699,-0.0154666,-111.648) World 0.00360751
+G4WT0 > e- (0.138754,0.0856382,-128.26) World 0.00110489
+G4WT0 > e- (0.127338,0.094467,-128.238) World 0
+G4WT0 > e- (0.0450958,0.0551438,-150.825) World 0.00123492
+G4WT0 > e- (0.0715817,0.0385936,-150.823) World 0.000548398
+G4WT0 > e- (0.060128,0.0504205,-156.729) World 0.00117956
+G4WT0 > e- (0.060128,0.0504205,-156.729) World 0.00117956
+G4WT0 > e- (0.0568743,0.0261489,-166.68) World 0.000838233
+G4WT0 > e- (0.073915,0.0272515,-166.675) World 0
+G4WT0 > e- (0.0633723,-0.010476,-168.105) World 0.0017968
+G4WT0 > e- (0.12966,0.0264685,-168.082) World 0
+G4WT0 > e- (0.0308443,-0.0124649,-168.117) World 0.000751125
+G4WT0 > e- (0.0308443,-0.0124649,-168.117) World 0.000751125
+G4WT0 > e- (-0.0294169,0.0154247,-174.802) World 0.000877379
+G4WT0 > e- (-0.0340038,-0.000465167,-174.793) World 0
+G4WT0 > e- (0.0568766,0.0530494,-178.139) World 0.00272082
+G4WT0 > e- (0.187078,-0.0173821,-178.073) World 0
+G4WT0 > e- (0.000142891,-0.0222431,-180.824) World 0.000759538
+G4WT0 > e- (0.00768755,-0.0265359,-180.812) World 0
+G4WT0 > e- (-0.0409464,0.0305645,-188.445) World 0.00166148
+G4WT0 > e- (-0.0126121,0.0451433,-188.389) World 0
+G4WT0 > proton (0,0,-172.02) World 49.9739
+G4WT0 > proton (0.142991,0.0878947,-96.1192) Cu_cyl 0
+G4WT0 > e- (0.0106137,0.218152,-97.9651) Cu_cyl 0
+G4WT0 > e- (0.0106137,0.218152,-97.9651) Cu_cyl 0
+G4WT0 > e- (0.0110356,0.202243,-98.2644) Cu_cyl 0
+G4WT0 > e- (0.0110356,0.202243,-98.2644) Cu_cyl 0
+G4WT0 > e- (0.0123635,0.197375,-98.3482) Cu_cyl 0
+G4WT0 > e- (0.0123635,0.197375,-98.3482) Cu_cyl 0
+G4WT0 > e- (0.0188757,0.174274,-98.7486) Cu_cyl 0
+G4WT0 > e- (0.0188757,0.174274,-98.7486) Cu_cyl 0
+G4WT0 > e- (0.0194254,0.169451,-98.8371) Cu_cyl 0
+G4WT0 > e- (0.0194254,0.169451,-98.8371) Cu_cyl 0
+G4WT0 > e- (0.0299441,0.152956,-99.1626) Cu_cyl 0
+G4WT0 > e- (0.0299441,0.152956,-99.1626) Cu_cyl 0
+G4WT0 > e- (0.0456952,0.125286,-100.169) Kapton_cyl2 0.0778811
+G4WT0 > e- (0.0328039,0.149599,-100.174) Kapton_cyl2 0
+G4WT0 > e- (0.0491866,0.12325,-100.214) Kapton_cyl2 0
+G4WT0 > e- (0.0491866,0.12325,-100.214) Kapton_cyl2 0
+G4WT0 > e- (0.253895,0.165053,-115.295) World 0.0120828
+G4WT0 > e- (0.925472,1.07179,-115.067) World 0.00923717
+G4WT0 > e- (0.815246,0.626225,-115.159) World 0.000618622
+G4WT0 > e- (0.824914,0.627825,-115.154) World 0
+G4WT0 > e- (0.0132802,0.0678046,-116.104) World 0.000644304
+G4WT0 > e- (0.0132802,0.0678046,-116.104) World 0.000644304
+G4WT0 > e- (0.0544592,0.145595,-117.082) World 0.00202234
+G4WT0 > e- (0.0815458,0.0589743,-117.048) World 0.00015457
+G4WT0 > e- (0.00059509,0.0741159,-132.299) World 0.000428805
+G4WT0 > e- (0.00059509,0.0741159,-132.299) World 0.000428805
+G4WT0 > e- (-0.00172989,0.073903,-147.949) World 0.00122537
+G4WT0 > e- (-0.0138245,0.0864563,-147.922) World 0
+G4WT0 > e- (0.0332296,0.0134152,-172.015) World 0.000735486
+G4WT0 > e- (0.0339258,0.0276835,-172.013) World 0
+G4WT0 > proton (0,0,-193.269) World 49.9945
+G4WT0 > proton (-0.0197321,0.338323,-96.1602) Cu_cyl 0
+G4WT0 > e- (-0.0582449,0.316834,-97.7136) Cu_cyl 0
+G4WT0 > e- (-0.0582449,0.316834,-97.7136) Cu_cyl 0
+G4WT0 > e- (-0.0955744,0.280375,-99.1125) Cu_cyl 0
+G4WT0 > e- (-0.0955744,0.280375,-99.1125) Cu_cyl 0
+G4WT0 > e- (-0.0932269,0.274036,-99.8027) Cu_cyl 0
+G4WT0 > e- (-0.0932269,0.274036,-99.8027) Cu_cyl 0
+G4WT0 > e- (-0.0917297,0.273503,-100.247) Kapton_cyl2 0.043234
+G4WT0 > e- (-0.0791772,0.279878,-100.252) Kapton_cyl2 0
+G4WT0 > e- (-0.00542464,0.39541,-103.484) World 0.0078311
+G4WT0 > e- (0.168984,0.604736,-103.304) World 0.00719697
+G4WT0 > e- (-0.0892835,0.224198,-104.381) World 0.000726783
+G4WT0 > e- (-0.0892835,0.224198,-104.381) World 0.000726783
+G4WT0 > e- (-0.0720819,0.247841,-111.884) World 0.00138991
+G4WT0 > e- (-0.0984345,0.267757,-111.883) World 0.000780219
+G4WT0 > e- (0.245154,0.0921503,-119.071) World 0.0137603
+G4WT0 > e- (2.16067,1.15544,-117.936) World 0.0065346
+G4WT0 > e- (0.529749,0.264956,-118.716) World 0.000550266
+G4WT0 > e- (0.529749,0.264956,-118.716) World 0.000550266
+G4WT0 > e- (0.101466,0.0401198,-124.21) World 0.00820525
+G4WT0 > e- (0.61002,-0.595492,-123.94) World 0.00583806
+G4WT0 > e- (-0.0576825,-0.00599166,-169.2) World 0.00206581
+G4WT0 > e- (-0.0778266,-0.00358911,-169.15) World 0.0017915
+G4WT0 > e- (-0.0608474,-0.016662,-171.357) World 0.00188501
+G4WT0 > e- (-0.0608474,-0.016662,-171.357) World 0.00188501
+G4WT0 > e- (-0.0227678,-0.00509996,-193.267) World 0.000802835
+G4WT0 > e- (-0.0227678,-0.00509996,-193.267) World 0.000802835
+G4WT0 > proton (0,0,-194.781) World 49.993
+G4WT0 > proton (-0.0787924,0.516965,-96.1708) Cu_cyl 0
+G4WT0 > e- (-0.0909605,0.114001,-98.405) Cu_cyl 0
+G4WT0 > e- (-0.0909605,0.114001,-98.405) Cu_cyl 0
+G4WT0 > e- (-0.0559819,0.0671261,-98.9062) Cu_cyl 0
+G4WT0 > e- (-0.0559819,0.0671261,-98.9062) Cu_cyl 0
+G4WT0 > e- (-0.0455921,0.0548293,-99.1835) Cu_cyl 0
+G4WT0 > e- (-0.0455921,0.0548293,-99.1835) Cu_cyl 0
+G4WT0 > e- (-0.0349076,0.0434356,-99.5268) Cu_cyl 0
+G4WT0 > e- (-0.0349076,0.0434356,-99.5268) Cu_cyl 0
+G4WT0 > e- (-0.0315507,0.0408077,-99.6213) Cu_cyl 0
+G4WT0 > e- (-0.0315507,0.0408077,-99.6213) Cu_cyl 0
+G4WT0 > e- (-0.0291265,0.0413632,-99.971) Cu_cyl 0
+G4WT0 > e- (-0.0291265,0.0413632,-99.971) Cu_cyl 0
+G4WT0 > e- (-0.0219918,0.0336533,-100.076) Kapton_cyl1 0
+G4WT0 > e- (-0.0219918,0.0336533,-100.076) Kapton_cyl1 0
+G4WT0 > e- (-0.0316755,0.0450249,-100.175) Kapton_cyl2 0
+G4WT0 > e- (-0.0316755,0.0450249,-100.175) Kapton_cyl2 0
+G4WT0 > e- (-0.0223421,0.0382947,-137.991) World 0.00170624
+G4WT0 > e- (-0.0826548,0.0651753,-137.954) World 0
+G4WT0 > e- (0.0358358,-0.0168825,-158.85) World 0.00127252
+G4WT0 > e- (0.0358358,-0.0168825,-158.85) World 0.00127252
+G4WT0 > e- (-0.0301494,0.00257566,-158.915) World 0.0010357
+G4WT0 > e- (-0.0479903,-0.0012318,-158.899) World 0.000448773
+G4WT0 > e- (0.0410216,0.000834502,-169.545) World 0.000965569
+G4WT0 > e- (0.0410216,0.000834502,-169.545) World 0.000965569
+G4WT0 > e- (0.021577,0.045175,-174.349) World 0.00156162
+G4WT0 > e- (0.0124079,0.0914613,-174.313) World 0
+G4WT0 > e- (-0.0182182,-0.00573627,-174.518) World 0.000676265
+G4WT0 > e- (-0.0182182,-0.00573627,-174.518) World 0.000676265
+G4WT0 > e- (0.0304853,0.0107746,-176.758) World 0
+G4WT0 > e- (0.0304853,0.0107746,-176.758) World 0
+G4WT0 > e- (0.00759969,0.021901,-194.6) World 0.000348296
+G4WT0 > e- (0.0039097,0.0210575,-194.597) World 0
+G4WT0 > e- (0.0385927,-0.0378174,-194.773) World 0.00164648
+G4WT0 > e- (0.00797774,-0.0246207,-194.707) World 0.000311883
+G4WT0 > proton (0,0,-198.751) World 49.9919
+G4WT0 > proton (0.0350288,0.442967,-96.1296) Cu_cyl 0
+G4WT0 > e- (0.0557199,0.10239,-98.6754) Cu_cyl 0
+G4WT0 > e- (0.0557199,0.10239,-98.6754) Cu_cyl 0
+G4WT0 > e- (0.0503617,0.0917997,-98.8309) Cu_cyl 0
+G4WT0 > e- (0.0503617,0.0917997,-98.8309) Cu_cyl 0
+G4WT0 > e- (0.0307076,0.0659637,-99.2394) Cu_cyl 0
+G4WT0 > e- (0.0307076,0.0659637,-99.2394) Cu_cyl 0
+G4WT0 > e- (0.0223789,0.0555591,-99.3657) Cu_cyl 0
+G4WT0 > e- (0.0223789,0.0555591,-99.3657) Cu_cyl 0
+G4WT0 > e- (0.0210821,0.0541115,-99.4257) Cu_cyl 0
+G4WT0 > e- (0.0210821,0.0541115,-99.4257) Cu_cyl 0
+G4WT0 > e- (0.0144705,0.0473992,-99.5982) Cu_cyl 0
+G4WT0 > e- (0.0144705,0.0473992,-99.5982) Cu_cyl 0
+G4WT0 > e- (0.011038,0.0440328,-99.804) Cu_cyl 0
+G4WT0 > e- (0.011038,0.0440328,-99.804) Cu_cyl 0
+G4WT0 > e- (0.0133124,0.0550862,-100.028) Kapton_cyl1 0
+G4WT0 > e- (0.0133124,0.0550862,-100.028) Kapton_cyl1 0
+G4WT0 > e- (-0.00541553,0.00682472,-108.89) World 0
+G4WT0 > e- (-0.00541553,0.00682472,-108.89) World 0
+G4WT0 > e- (0.0280379,0.0266201,-114.966) World 0.000604586
+G4WT0 > e- (0.0360024,0.0276086,-114.959) World 0
+G4WT0 > e- (-0.0754089,0.0308548,-115.471) World 0.00252895
+G4WT0 > e- (-0.118444,-0.0199248,-115.363) World 0
+G4WT0 > e- (0.0271828,-0.0324645,-131.386) World 0.0010589
+G4WT0 > e- (0.0271828,-0.0324645,-131.386) World 0.0010589
+G4WT0 > e- (-0.0464254,-0.0179359,-165.32) World 0.00103216
+G4WT0 > e- (-0.0679022,-0.0131016,-165.31) World 0
+G4WT0 > e- (-0.523677,2.72589,-164.586) World 0.0248708
+G4WT0 > e- (-0.523677,2.72589,-164.586) World 0.0248708
+G4WT0 > e- (0.0279701,0.00160931,-193.06) World 6.92041e-05
+G4WT0 > e- (0.0273784,0.00148629,-193.06) World 0
+G4WT0 > e- (-0.0260099,0.0249618,-196.545) World 0.000371799
+G4WT0 > e- (-0.0260099,0.0249618,-196.545) World 0.000371799
+G4WT0 > e- (-0.0232994,0.00784454,-197.783) World 0.000660317
+G4WT0 > e- (-0.0204509,0.00681575,-197.771) World 0
+G4WT0 > e- (0.137314,0.0323129,-198.713) World 0.00543828
+G4WT0 > e- (0.414969,-0.253495,-198.643) World 0.00197478
+G4WT0 > e- (0.379386,-0.250801,-198.634) World 0.00055087
+G4WT0 > e- (0.379386,-0.250801,-198.634) World 0.00055087
+G4WT0 > proton (0,0,-197.405) World 49.95
+G4WT0 > proton (-0.191004,0.136476,-96.1077) Cu_cyl 0
+G4WT0 > e- (-0.00174881,-0.0840853,-98.4806) Cu_cyl 0
+G4WT0 > e- (-0.00174881,-0.0840853,-98.4806) Cu_cyl 0
+G4WT0 > e- (0.0167347,-0.127738,-99.9395) Cu_cyl 0
+G4WT0 > e- (0.0167347,-0.127738,-99.9395) Cu_cyl 0
+G4WT0 > e- (0.0143779,-0.12827,-99.9634) Cu_cyl 0
+G4WT0 > e- (0.0143779,-0.12827,-99.9634) Cu_cyl 0
+G4WT0 > e- (0.0234314,-0.159274,-100.047) Kapton_cyl1 0.0249051
+G4WT0 > e- (0.0266058,-0.161176,-100.043) Kapton_cyl1 0
+G4WT0 > e- (0.217785,-0.033719,-110.253) World 0.0105699
+G4WT0 > e- (1.36185,-0.635174,-109.816) World 0.00504473
+G4WT0 > e- (0.318225,0.0300588,-110.215) World 0.000823744
+G4WT0 > e- (0.332618,0.0213488,-110.212) World 0
+G4WT0 > e- (0.0124549,-0.0067472,-147.242) World 0.00126064
+G4WT0 > e- (-0.00587004,-0.026761,-147.213) World 0
+G4WT0 > e- (0.0369192,-0.0572745,-148.031) World 0.00162506
+G4WT0 > e- (0.0369192,-0.0572745,-148.031) World 0.00162506
+G4WT0 > e- (-0.0263725,-0.00330488,-150.145) World 0.000740795
+G4WT0 > e- (-0.0244498,0.011194,-150.145) World 0
+G4WT0 > e- (-0.10215,-0.067654,-151.647) World 0.00354657
+G4WT0 > e- (-0.10215,-0.067654,-151.647) World 0.00354657
+G4WT0 > e- (-0.0544325,-0.065603,-159.584) World 0.00256275
+G4WT0 > e- (-0.0250566,-0.176678,-159.506) World 0
+G4WT0 > e- (0.0257631,-0.01251,-167.186) World 0.000707773
+G4WT0 > e- (0.0378276,-0.015621,-167.18) World 0
+G4WT0 > e- (-0.0440495,-0.115051,-190.428) World 0.0051394
+G4WT0 > e- (-0.184601,-0.466168,-190.254) World 0.00310318
+G4WT0 > e- (-0.0322183,-0.0454611,-190.641) World 0.0014636
+G4WT0 > e- (-0.0322183,-0.0454611,-190.641) World 0.0014636
+G4WT0 > e- (0.10879,0.00348963,-195.241) World 0.00478025
+G4WT0 > e- (0.211209,0.00086655,-195.199) World 0.0043766
+G4WT0 > e- (-6.57507,0.711206,-191.472) World 0.0391725
+G4WT0 > e- (-17.8187,10.6047,-185.207) World 0.0168041
+G4WT0 > e- (-15.4527,8.86312,-185.459) World 0.00320935
+G4WT0 > e- (-15.227,8.84144,-185.22) World 0
+G4WT0 > e- (-8.76544,5.03962,-191.201) World 0.000765586
+G4WT0 > e- (-8.76544,5.03962,-191.201) World 0.000765586
+G4WT0 > e- (-6.62821,0.684516,-191.469) World 0.00211932
+G4WT0 > e- (-6.62821,0.684516,-191.469) World 0.00211932
+G4WT0 > gamma (0.0253362,-0.165758,-100.045) Kapton_cyl1 0
+G4WT0 > gamma (0.0253362,-0.165758,-100.045) Kapton_cyl1 0
+G4WT0 > e- (0.0253515,-0.165763,-100.045) Kapton_cyl1 0
+G4WT0 > e- (0.0253515,-0.165763,-100.045) Kapton_cyl1 0
+G4WT0 > proton (0,0,-179.185) World 49.9781
+G4WT0 > proton (0.260219,-0.254245,-96.1143) Cu_cyl 0
+G4WT0 > e- (0.05131,-0.239339,-97.8165) Cu_cyl 0
+G4WT0 > e- (0.05131,-0.239339,-97.8165) Cu_cyl 0
+G4WT0 > e- (0.00780972,-0.195094,-98.8401) Cu_cyl 0
+G4WT0 > e- (0.00780972,-0.195094,-98.8401) Cu_cyl 0
+G4WT0 > e- (0.00514547,-0.193759,-99.0459) Cu_cyl 0
+G4WT0 > e- (0.00514547,-0.193759,-99.0459) Cu_cyl 0
+G4WT0 > e- (-0.000993661,-0.194706,-99.1305) Cu_cyl 0
+G4WT0 > e- (-0.000993661,-0.194706,-99.1305) Cu_cyl 0
+G4WT0 > e- (-0.00672297,-0.195534,-99.2378) Cu_cyl 0
+G4WT0 > e- (-0.00672297,-0.195534,-99.2378) Cu_cyl 0
+G4WT0 > e- (-0.0174747,-0.203227,-99.7025) Cu_cyl 0
+G4WT0 > e- (-0.0174747,-0.203227,-99.7025) Cu_cyl 0
+G4WT0 > e- (-0.019241,-0.202284,-99.7805) Cu_cyl 0
+G4WT0 > e- (-0.019241,-0.202284,-99.7805) Cu_cyl 0
+G4WT0 > e- (-0.0196539,-0.202878,-99.8009) Cu_cyl 0
+G4WT0 > e- (-0.0196539,-0.202878,-99.8009) Cu_cyl 0
+G4WT0 > e- (-0.0308251,-0.203681,-100.244) Kapton_cyl2 0
+G4WT0 > e- (-0.0308251,-0.203681,-100.244) Kapton_cyl2 0
+G4WT0 > e- (-0.0516543,-0.260621,-108.735) World 0.00432762
+G4WT0 > e- (-0.0516543,-0.260621,-108.735) World 0.00432762
+G4WT0 > e- (-0.744069,0.0223448,-117.002) World 0.0165974
+G4WT0 > e- (-1.31436,0.132654,-116.883) World 0.0151425
+G4WT0 > e- (0.0356634,-0.159055,-126.01) World 0.00218948
+G4WT0 > e- (0.0847688,-0.206833,-125.962) World 0
+G4WT0 > e- (-0.00428114,0.00150176,-146.883) World 0.000992061
+G4WT0 > e- (-0.00428114,0.00150176,-146.883) World 0.000992061
+G4WT0 > e- (0.0373789,0.0170005,-167.612) World 0.000927455
+G4WT0 > e- (0.0502477,0.00541509,-167.601) World 0
+G4WT0 > e- (-0.118912,0.155242,-176.067) World 0.00983347
+G4WT0 > e- (-0.240818,0.313814,-176.015) World 0.00967381
+G4WT0 > e- (-0.0650442,-0.021815,-179.173) World 0.00129286
+G4WT0 > e- (-0.0898924,-0.0151261,-179.15) World 0
+G4WT0 > proton (0,0,-186.184) World 49.9855
+G4WT0 > proton (0.0547328,0.0299976,-96.138) Cu_cyl 0
+G4WT0 > e- (0.192619,-0.0522414,-98.6111) Cu_cyl 0
+G4WT0 > e- (0.192619,-0.0522414,-98.6111) Cu_cyl 0
+G4WT0 > e- (0.186471,-0.0409969,-98.9858) Cu_cyl 0
+G4WT0 > e- (0.186471,-0.0409969,-98.9858) Cu_cyl 0
+G4WT0 > e- (0.184435,-0.0344649,-99.1779) Cu_cyl 0
+G4WT0 > e- (0.184435,-0.0344649,-99.1779) Cu_cyl 0
+G4WT0 > e- (0.183555,-0.0298383,-99.3952) Cu_cyl 0
+G4WT0 > e- (0.183555,-0.0298383,-99.3952) Cu_cyl 0
+G4WT0 > e- (0.181599,-0.0295971,-99.4584) Cu_cyl 0
+G4WT0 > e- (0.181599,-0.0295971,-99.4584) Cu_cyl 0
+G4WT0 > e- (0.180746,-0.0296621,-99.5389) Cu_cyl 0
+G4WT0 > e- (0.180746,-0.0296621,-99.5389) Cu_cyl 0
+G4WT0 > e- (0.108438,0.0101553,-110.547) World 0.00087974
+G4WT0 > e- (0.11045,0.0281646,-110.542) World 0
+G4WT0 > e- (0.0636832,-0.00307945,-115.554) World 0.00224659
+G4WT0 > e- (0.0105746,-0.019495,-115.549) World 0.00163488
+G4WT0 > e- (0.0125734,-0.0942938,-142.751) World 0.00416874
+G4WT0 > e- (0.0125734,-0.0942938,-142.751) World 0.00416874
+G4WT0 > e- (-0.00595545,0.0780128,-151.972) World 0.00295824
+G4WT0 > e- (-0.00595545,0.0780128,-151.972) World 0.00295824
+G4WT0 > e- (0.00170504,-0.0191625,-152.458) World 0.00160417
+G4WT0 > e- (-0.0497474,-0.0446368,-152.434) World 0.000809762
+G4WT0 > e- (-0.0200261,0.0112295,-161.872) World 0.00144557
+G4WT0 > e- (-0.0526414,0.00344461,-161.857) World 0.00123205
+G4WT0 > e- (0.0409693,-0.00826092,-163.613) World 0.000591849
+G4WT0 > e- (0.0484354,-0.0117723,-163.606) World 0
+G4WT0 > e- (0.0195883,0.0385546,-165.031) World 0.00117582
+G4WT0 > e- (0.0329651,0.0484669,-165.008) World 0
+G4WT0 > e- (-0.000914448,0.0364879,-166.698) World 0.000965021
+G4WT0 > e- (-0.0135715,0.0487709,-166.685) World 0
+G4WT0 > e- (0.122089,0.451298,-174.276) World 0.013378
+G4WT0 > e- (0.122089,0.451298,-174.276) World 0.013378
+G4WT0 > e- (-0.00699728,0.0269418,-176.714) World 0.00108262
+G4WT0 > e- (-0.00699728,0.0269418,-176.714) World 0.00108262
+G4WT0 > e- (0.0600264,0.00776429,-186.174) World 0.00223977
+G4WT0 > e- (0.100403,0.0366906,-186.146) World 0.00173823
+G4WT0 > Run #1 produces differential Gain (I/B) of 1 +/- 0.316228
 Measuring gain for thickness #2
-G4WT0 > Run #14 produces differential Gain (I/B) of 0.953568 +/- 0.217181
-G4WT2 > Run #14 produces differential Gain (I/B) of 0.954166 +/- 0.217222
-G4WT1 > Run #14 produces differential Gain (I/B) of 0.954309 +/- 0.217233
-G4WT3 > Run #14 produces differential Gain (I/B) of 0.954372 +/- 0.217233
-G4WT3 > Run #15 produces differential Gain (I/B) of 0.966147 +/- 0.187711
-G4WT0 > Run #15 produces differential Gain (I/B) of 0.966148 +/- 0.187711
-G4WT1 > Run #15 produces differential Gain (I/B) of 0.966874 +/- 0.187767
-G4WT2 > Run #15 produces differential Gain (I/B) of 0.966915 +/- 0.187767
-G4WT2 > Run #16 produces differential Gain (I/B) of 0.975062 +/- 0.166883
-G4WT3 > Run #16 produces differential Gain (I/B) of 0.97523 +/- 0.166891
-G4WT1 > Run #16 produces differential Gain (I/B) of 0.975265 +/- 0.166891
-G4WT0 > Run #16 produces differential Gain (I/B) of 0.975377 +/- 0.166894
-G4WT1 > Run #17 produces differential Gain (I/B) of 0.980524 +/- 0.154204
-G4WT0 > Run #17 produces differential Gain (I/B) of 0.980944 +/- 0.154232
-G4WT2 > Run #17 produces differential Gain (I/B) of 0.980985 +/- 0.154232
-G4WT3 > Run #17 produces differential Gain (I/B) of 0.980998 +/- 0.154232
-G4WT2 > Run #18 produces differential Gain (I/B) of 0.984246 +/- 0.145276
-G4WT0 > Run #18 produces differential Gain (I/B) of 0.985033 +/- 0.145338
-G4WT1 > Run #18 produces differential Gain (I/B) of 0.985107 +/- 0.145344
-G4WT3 > Run #18 produces differential Gain (I/B) of 0.985217 +/- 0.145348
-G4WT3 > Run #19 produces differential Gain (I/B) of 0.987744 +/- 0.140832
-G4WT0 > Run #19 produces differential Gain (I/B) of 0.987863 +/- 0.140842
-G4WT2 > Run #19 produces differential Gain (I/B) of 0.988307 +/- 0.140873
-G4WT1 > Run #19 produces differential Gain (I/B) of 0.988312 +/- 0.140873
-G4WT0 > Run #20 produces differential Gain (I/B) of 0.989749 +/- 0.141567
-G4WT3 > Run #20 produces differential Gain (I/B) of 0.990158 +/- 0.141584
-G4WT1 > Run #20 produces differential Gain (I/B) of 0.990173 +/- 0.141588
-G4WT2 > Run #20 produces differential Gain (I/B) of 0.990213 +/- 0.141591
+G4WT0 > proton (0,0,-197.695) World 49.9953
+G4WT0 > proton (0.0348224,0.0213369,-96.1451) Cu_cyl 0
+G4WT0 > e- (0.0255554,-0.13179,-97.9568) Cu_cyl 0
+G4WT0 > e- (0.0255554,-0.13179,-97.9568) Cu_cyl 0
+G4WT0 > e- (0.023129,-0.159381,-98.2912) Cu_cyl 0
+G4WT0 > e- (0.023129,-0.159381,-98.2912) Cu_cyl 0
+G4WT0 > e- (0.023057,-0.164311,-98.3692) Cu_cyl 0
+G4WT0 > e- (0.023057,-0.164311,-98.3692) Cu_cyl 0
+G4WT0 > e- (0.0431691,-0.190559,-99.0061) Cu_cyl 0
+G4WT0 > e- (0.0431691,-0.190559,-99.0061) Cu_cyl 0
+G4WT0 > e- (0.0497349,-0.194275,-99.3338) Cu_cyl 0
+G4WT0 > e- (0.0497349,-0.194275,-99.3338) Cu_cyl 0
+G4WT0 > e- (0.0519646,-0.197022,-99.7048) Cu_cyl 0
+G4WT0 > e- (0.0519646,-0.197022,-99.7048) Cu_cyl 0
+G4WT0 > e- (0.0511682,-0.194157,-100.009) Kapton_cyl1 0
+G4WT0 > e- (0.0511682,-0.194157,-100.009) Kapton_cyl1 0
+G4WT0 > e- (0.0546065,-0.196128,-100.102) Kapton_cyl1 0.0254328
+G4WT0 > e- (0.0582736,-0.192792,-100.105) Kapton_cyl1 0
+G4WT0 > e- (0.106071,0.196931,-130.322) World 0.013354
+G4WT0 > e- (-0.070012,1.32572,-129.948) World 0.0117032
+G4WT0 > e- (0.0510976,-0.0342991,-135.068) World 0.00113558
+G4WT0 > e- (0.0510976,-0.0342991,-135.068) World 0.00113558
+G4WT0 > e- (0.0384548,-0.0382362,-139.092) World 0.000555918
+G4WT0 > e- (0.0312283,-0.0445452,-139.091) World 0
+G4WT0 > e- (0.0622375,0.00133228,-139.476) World 0.00262998
+G4WT0 > e- (0.0622375,0.00133228,-139.476) World 0.00262998
+G4WT0 > e- (0.124766,-0.0177007,-147.63) World 0.00363006
+G4WT0 > e- (0.124766,-0.0177007,-147.63) World 0.00363006
+G4WT0 > e- (0.0201864,-0.0333611,-152.281) World 0.00069604
+G4WT0 > e- (0.00853797,-0.0299021,-152.275) World 0
+G4WT0 > e- (-0.00253299,-0.079986,-167.891) World 0.00213695
+G4WT0 > e- (-0.00253299,-0.079986,-167.891) World 0.00213695
+G4WT0 > e- (0.00437278,0.0822833,-179.269) World 0.00352381
+G4WT0 > e- (0.0978777,0.349286,-179.22) World 0
+G4WT0 > e- (-0.0427657,0.0175342,-182.484) World 0.00115089
+G4WT0 > e- (-0.0656759,0.0301272,-182.472) World 0
+G4WT0 > e- (-0.0348915,-0.0480711,-186.406) World 0.00192669
+G4WT0 > e- (-0.00957106,-0.0895389,-186.372) World 0
+G4WT0 > e- (0.0387831,-0.0488492,-187.667) World 0.00215403
+G4WT0 > e- (0.0387831,-0.0488492,-187.667) World 0.00215403
+G4WT0 > e- (0.0781086,0.0599366,-191.664) World 0.00410084
+G4WT0 > e- (0.0688915,0.156937,-191.643) World 0.00377361
+G4WT0 > e- (-0.076091,-0.0332136,-197.679) World 0.00340677
+G4WT0 > e- (-0.219788,-0.0728934,-197.627) World 0.00260012
+G4WT0 > proton (0,0,-196.078) World 49.9939
+G4WT0 > proton (-0.131104,0.0516483,-96.1261) Cu_cyl 0
+G4WT0 > e- (-0.0266428,-0.0133095,-97.947) Cu_cyl 0
+G4WT0 > e- (-0.0266428,-0.0133095,-97.947) Cu_cyl 0
+G4WT0 > e- (-0.0219642,-0.0154396,-98.068) Cu_cyl 0
+G4WT0 > e- (-0.0219642,-0.0154396,-98.068) Cu_cyl 0
+G4WT0 > e- (-0.0125748,-0.0210616,-98.2086) Cu_cyl 0.024161
+G4WT0 > e- (-0.0125623,-0.0209217,-98.209) Cu_cyl 0
+G4WT0 > e- (-0.0133536,-0.0152995,-98.3194) Cu_cyl 0
+G4WT0 > e- (-0.0133536,-0.0152995,-98.3194) Cu_cyl 0
+G4WT0 > e- (0.000393167,-0.0154302,-98.7113) Cu_cyl 0
+G4WT0 > e- (0.000393167,-0.0154302,-98.7113) Cu_cyl 0
+G4WT0 > e- (0.000621746,-0.0149492,-98.7383) Cu_cyl 0
+G4WT0 > e- (0.000621746,-0.0149492,-98.7383) Cu_cyl 0
+G4WT0 > e- (0.00524424,-0.0152796,-98.9173) Cu_cyl 0
+G4WT0 > e- (0.00524424,-0.0152796,-98.9173) Cu_cyl 0
+G4WT0 > e- (0.00740736,-0.0149474,-98.94) Cu_cyl 0
+G4WT0 > e- (0.00740736,-0.0149474,-98.94) Cu_cyl 0
+G4WT0 > e- (0.0091717,-0.0149318,-99.0171) Cu_cyl 0
+G4WT0 > e- (0.0091717,-0.0149318,-99.0171) Cu_cyl 0
+G4WT0 > e- (0.0128637,-0.0156333,-99.1499) Cu_cyl 0
+G4WT0 > e- (0.0128637,-0.0156333,-99.1499) Cu_cyl 0
+G4WT0 > e- (0.0146036,-0.0165705,-99.1985) Cu_cyl 0
+G4WT0 > e- (0.0146036,-0.0165705,-99.1985) Cu_cyl 0
+G4WT0 > e- (0.0172634,-0.0161349,-99.2769) Cu_cyl 0
+G4WT0 > e- (0.0172634,-0.0161349,-99.2769) Cu_cyl 0
+G4WT0 > e- (0.0272079,-0.0214088,-100.28) Kapton_cyl2 0.0254794
+G4WT0 > e- (0.0271824,-0.0201931,-100.272) Kapton_cyl2 0
+G4WT0 > e- (0.150004,0.000333263,-103.088) World 0.00507982
+G4WT0 > e- (0.366892,0.251501,-102.849) World 0.00325807
+G4WT0 > e- (-0.00611063,-0.0291328,-116.311) World 0.000462475
+G4WT0 > e- (-0.00611063,-0.0291328,-116.311) World 0.000462475
+G4WT0 > e- (0.00214453,-0.0540927,-121.636) World 0.00156882
+G4WT0 > e- (-0.0366266,-0.062023,-121.627) World 0.00067245
+G4WT0 > e- (-0.0233047,0.0612194,-149.505) World 0.00292218
+G4WT0 > e- (-0.0233047,0.0612194,-149.505) World 0.00292218
+G4WT0 > e- (0.0022252,-0.0208818,-155.036) World 0.000122015
+G4WT0 > e- (0.00286708,-0.0220714,-155.035) World 0
+G4WT0 > e- (-0.041324,-0.00809377,-165.695) World 0.00206076
+G4WT0 > e- (-0.041324,-0.00809377,-165.695) World 0.00206076
+G4WT0 > e- (0.0874274,0.00675624,-169.566) World 0.00312709
+G4WT0 > e- (0.0874274,0.00675624,-169.566) World 0.00312709
+G4WT0 > e- (-0.026223,0.0201743,-182.936) World 0.00116464
+G4WT0 > e- (-0.0159236,0.0540819,-182.916) World 0
+G4WT0 > e- (-0.0936856,-0.00885229,-185.038) World 0.00375856
+G4WT0 > e- (-0.233994,-0.0946437,-185.019) World 0.00151008
+G4WT0 > e- (-0.0230656,0.191205,-190.734) World 0.00991945
+G4WT0 > e- (-0.497051,1.01785,-190.481) World 0.00828619
+G4WT0 > e- (-0.0249884,0.0199811,-196.074) World 0.00103964
+G4WT0 > e- (-0.0154901,0.0420211,-196.072) World 0
+G4WT0 > gamma (0.0190839,-0.0230763,-98.2322) Cu_cyl 0
+G4WT0 > gamma (0.0190839,-0.0230763,-98.2322) Cu_cyl 0
+G4WT0 > e- (0.0191442,-0.0231422,-98.2323) Cu_cyl 0
+G4WT0 > e- (0.0191442,-0.0231422,-98.2323) Cu_cyl 0
+G4WT0 > proton (0,0,-189.784) World 49.9888
+G4WT0 > proton (0.0125705,-0.00317654,-96.1888) Cu_cyl 0
+G4WT0 > e- (0.0255377,0.118634,-98.3814) Cu_cyl 0
+G4WT0 > e- (0.0255377,0.118634,-98.3814) Cu_cyl 0
+G4WT0 > e- (0.0265617,0.120281,-98.4019) Cu_cyl 0
+G4WT0 > e- (0.0265617,0.120281,-98.4019) Cu_cyl 0
+G4WT0 > e- (0.0339015,0.12241,-98.5902) Cu_cyl 0
+G4WT0 > e- (0.0339015,0.12241,-98.5902) Cu_cyl 0
+G4WT0 > e- (0.0487426,0.124826,-98.8975) Cu_cyl 0
+G4WT0 > e- (0.0487426,0.124826,-98.8975) Cu_cyl 0
+G4WT0 > e- (0.0479028,0.125784,-98.9769) Cu_cyl 0
+G4WT0 > e- (0.0479028,0.125784,-98.9769) Cu_cyl 0
+G4WT0 > e- (0.0568251,0.12733,-99.2683) Cu_cyl 0
+G4WT0 > e- (0.0568251,0.12733,-99.2683) Cu_cyl 0
+G4WT0 > e- (0.0612364,0.149536,-100.04) Kapton_cyl1 0
+G4WT0 > e- (0.0612364,0.149536,-100.04) Kapton_cyl1 0
+G4WT0 > e- (0.139939,0.0696926,-102.334) World 0.00460402
+G4WT0 > e- (-0.0258955,-0.0861743,-102.056) World 0.00181347
+G4WT0 > e- (0.0855664,0.129726,-105.92) World 3.0624e-05
+G4WT0 > e- (0.0854722,0.12975,-105.92) World 0
+G4WT0 > e- (-0.000476276,0.132351,-108.101) World 0.00161486
+G4WT0 > e- (-0.0642866,0.132936,-108.082) World 0
+G4WT0 > e- (0.0802876,0.161847,-114.096) World 0.00196203
+G4WT0 > e- (0.0802876,0.161847,-114.096) World 0.00196203
+G4WT0 > e- (0.0445362,0.112801,-126.599) World 0.000630174
+G4WT0 > e- (0.0445362,0.112801,-126.599) World 0.000630174
+G4WT0 > e- (0.0603815,0.10024,-128.218) World 0.000867315
+G4WT0 > e- (0.0603815,0.10024,-128.218) World 0.000867315
+G4WT0 > e- (0.0615153,0.0661238,-129.147) World 4.73094e-05
+G4WT0 > e- (0.0615153,0.0661238,-129.147) World 4.73094e-05
+G4WT0 > e- (0.00398705,0.0848828,-140.834) World 0.000930319
+G4WT0 > e- (0.00398705,0.0848828,-140.834) World 0.000930319
+G4WT0 > e- (0.0681497,-0.0317863,-144.09) World 0.00385436
+G4WT0 > e- (0.0681497,-0.0317863,-144.09) World 0.00385436
+G4WT0 > e- (0.0249228,-0.00278541,-164.2) World 0.000989338
+G4WT0 > e- (0.0249228,-0.00278541,-164.2) World 0.000989338
+G4WT0 > proton (0,0,-177.735) World 49.9634
+G4WT0 > proton (0.372551,-0.33983,-96.201) Cu_cyl 0
+G4WT0 > e- (0.245087,-0.0900121,-98.2523) Cu_cyl 0
+G4WT0 > e- (0.245087,-0.0900121,-98.2523) Cu_cyl 0
+G4WT0 > e- (0.231184,-0.0410737,-98.9761) Cu_cyl 0
+G4WT0 > e- (0.231184,-0.0410737,-98.9761) Cu_cyl 0
+G4WT0 > e- (0.229987,-0.0349477,-99.0927) Cu_cyl 0
+G4WT0 > e- (0.229987,-0.0349477,-99.0927) Cu_cyl 0
+G4WT0 > e- (0.23191,-0.0321684,-99.1851) Cu_cyl 0
+G4WT0 > e- (0.23191,-0.0321684,-99.1851) Cu_cyl 0
+G4WT0 > e- (0.228324,-0.0239255,-99.355) Cu_cyl 0
+G4WT0 > e- (0.228324,-0.0239255,-99.355) Cu_cyl 0
+G4WT0 > e- (0.316913,-0.0325412,-101.706) World 0.00359902
+G4WT0 > e- (0.453457,0.0624017,-101.585) World 0.000935225
+G4WT0 > e- (0.278349,-0.0463888,-110.806) World 0.00357288
+G4WT0 > e- (0.393696,-0.252243,-110.663) World 0.000809959
+G4WT0 > e- (0.153299,0.0176244,-116.646) World 0
+G4WT0 > e- (0.153299,0.0176244,-116.646) World 0
+G4WT0 > e- (0.179928,0.0368526,-117.981) World 0.00113984
+G4WT0 > e- (0.179928,0.0368526,-117.981) World 0.00113984
+G4WT0 > e- (0.132082,0.0029396,-122.225) World 0.000529568
+G4WT0 > e- (0.132082,0.0029396,-122.225) World 0.000529568
+G4WT0 > e- (0.0788371,-0.0283085,-134.241) World 0.00104784
+G4WT0 > e- (0.0636076,-0.0437941,-134.229) World 0
+G4WT0 > e- (0.0851461,-0.0102401,-145.447) World 5.41702e-05
+G4WT0 > e- (0.0854726,-0.0104165,-145.446) World 0
+G4WT0 > e- (0.082944,0.103315,-146.533) World 0.00388909
+G4WT0 > e- (-0.0429205,0.346865,-146.329) World 0
+G4WT0 > e- (0.0558833,-0.0339114,-147.76) World 0.00107008
+G4WT0 > e- (0.0410773,-0.0360006,-147.74) World 0
+G4WT0 > e- (0.0534919,0.0219046,-162.279) World 0.000764673
+G4WT0 > e- (0.0534919,0.0219046,-162.279) World 0.000764673
+G4WT0 > e- (-0.0192058,-0.0227623,-174.521) World 0.00136896
+G4WT0 > e- (0.00168022,-0.0197726,-174.492) World 0
+G4WT0 > e- (-0.0151152,0.0401784,-174.802) World 0.00172501
+G4WT0 > e- (0.0188147,0.0829856,-174.76) World 0
+G4WT0 > e- (-0.0205465,-0.0263755,-176.344) World 0.00119211
+G4WT0 > e- (-0.017586,-0.0285275,-176.315) World 0.000485486
+G4WT0 > e- (-0.465679,0.224265,-177.506) World 0.0158259
+G4WT0 > e- (-0.839377,0.510906,-177.246) World 0.0155279
+G4WT0 > proton (0,0,-194.783) World 49.992
+G4WT0 > proton (0.152715,-0.0637651,-96.1762) Cu_cyl 0
+G4WT0 > e- (0.0923098,0.0290251,-97.8657) Cu_cyl 0
+G4WT0 > e- (0.0923098,0.0290251,-97.8657) Cu_cyl 0
+G4WT0 > e- (0.0998151,0.0372682,-98.0309) Cu_cyl 0
+G4WT0 > e- (0.0998151,0.0372682,-98.0309) Cu_cyl 0
+G4WT0 > e- (0.104324,0.0469815,-98.2186) Cu_cyl 0
+G4WT0 > e- (0.104324,0.0469815,-98.2186) Cu_cyl 0
+G4WT0 > e- (0.10572,0.0536544,-98.3765) Cu_cyl 0
+G4WT0 > e- (0.10572,0.0536544,-98.3765) Cu_cyl 0
+G4WT0 > e- (0.107067,0.0546681,-98.3983) Cu_cyl 0
+G4WT0 > e- (0.107067,0.0546681,-98.3983) Cu_cyl 0
+G4WT0 > e- (0.102626,0.0679851,-98.7413) Cu_cyl 0
+G4WT0 > e- (0.102626,0.0679851,-98.7413) Cu_cyl 0
+G4WT0 > e- (0.10395,0.0682686,-98.7993) Cu_cyl 0
+G4WT0 > e- (0.10395,0.0682686,-98.7993) Cu_cyl 0
+G4WT0 > e- (0.100914,0.0612181,-99.4826) Cu_cyl 0
+G4WT0 > e- (0.100914,0.0612181,-99.4826) Cu_cyl 0
+G4WT0 > e- (0.108047,0.0590935,-99.7945) Cu_cyl 0
+G4WT0 > e- (0.108047,0.0590935,-99.7945) Cu_cyl 0
+G4WT0 > e- (0.108838,0.0562223,-99.8133) Cu_cyl 0
+G4WT0 > e- (0.108838,0.0562223,-99.8133) Cu_cyl 0
+G4WT0 > e- (0.112264,0.0573551,-100.001) Kapton_cyl1 0.0327538
+G4WT0 > e- (0.119,0.0551906,-100.007) Kapton_cyl1 0
+G4WT0 > e- (0.113075,0.0577746,-100.004) Kapton_cyl1 0.0386676
+G4WT0 > e- (0.128106,0.0575666,-100.002) Kapton_cyl1 0
+G4WT0 > e- (0.111729,0.0520215,-100.098) Kapton_cyl1 0
+G4WT0 > e- (0.111729,0.0520215,-100.098) Kapton_cyl1 0
+G4WT0 > e- (0.11059,0.0584043,-100.106) Kapton_cyl1 0.0250564
+G4WT0 > e- (0.111791,0.0636875,-100.103) Kapton_cyl1 0
+G4WT0 > e- (0.115726,0.0553723,-100.165) Kapton_cyl2 0
+G4WT0 > e- (0.115726,0.0553723,-100.165) Kapton_cyl2 0
+G4WT0 > e- (0.109496,0.0613745,-100.198) Kapton_cyl2 0
+G4WT0 > e- (0.109496,0.0613745,-100.198) Kapton_cyl2 0
+G4WT0 > e- (0.203786,-0.00417995,-101.313) World 0.00482106
+G4WT0 > e- (0.294975,-0.172456,-100.922) World 0
+G4WT0 > e- (0.0522692,0.0604248,-127.841) World 0.00129292
+G4WT0 > e- (0.0234424,0.0691439,-127.83) World 0.000436116
+G4WT0 > e- (0.0442751,-0.0745129,-130.009) World 0.00421068
+G4WT0 > e- (0.00430308,-0.34544,-129.949) World 0.0027215
+G4WT0 > e- (0.0451225,-0.0567942,-139.666) World 0.00231955
+G4WT0 > e- (0.0451225,-0.0567942,-139.666) World 0.00231955
+G4WT0 > e- (0.024092,-0.196876,-139.95) World 0.0105107
+G4WT0 > e- (0.290242,-1.2511,-138.591) World 0
+G4WT0 > e- (-0.0175384,-0.0370482,-146.503) World 0.00251641
+G4WT0 > e- (-0.0979804,-0.0166433,-146.467) World 0
+G4WT0 > e- (-0.037807,-0.0628005,-168.851) World 0.00261463
+G4WT0 > e- (-0.0864868,-0.198847,-168.791) World 0
+G4WT0 > e- (0.0509805,0.0174374,-175.52) World 0.00171239
+G4WT0 > e- (0.0509805,0.0174374,-175.52) World 0.00171239
+G4WT0 > e- (0.0161521,-0.0843092,-183.414) World 0.00290472
+G4WT0 > e- (0.0970886,-0.17276,-183.337) World 0
+G4WT0 > e- (0.0691604,-0.0171942,-183.912) World 0.00226807
+G4WT0 > e- (0.130269,-0.0171733,-183.898) World 0.00118673
+G4WT0 > e- (-0.279753,0.218209,-184.429) World 0.0136112
+G4WT0 > e- (-1.42607,0.79187,-184.226) World 0.00930942
+G4WT0 > e- (-0.568493,0.499336,-184.334) World 0.00161729
+G4WT0 > e- (-0.568493,0.499336,-184.334) World 0.00161729
+G4WT0 > e- (-0.0100365,0.0702071,-194.771) World 0.00256424
+G4WT0 > e- (0.00177065,0.11351,-194.721) World 0.00203916
+G4WT0 > proton (0,0,-197.867) World 49.9953
+G4WT0 > proton (-0.08294,-0.096286,-96.1907) Cu_cyl 0
+G4WT0 > e- (0.0156341,-0.0166853,-98.3918) Cu_cyl 0
+G4WT0 > e- (0.0156341,-0.0166853,-98.3918) Cu_cyl 0
+G4WT0 > e- (0.0177727,-0.0154726,-98.4587) Cu_cyl 0
+G4WT0 > e- (0.0177727,-0.0154726,-98.4587) Cu_cyl 0
+G4WT0 > e- (0.0197829,-0.00956135,-98.9007) Cu_cyl 0
+G4WT0 > e- (0.0197829,-0.00956135,-98.9007) Cu_cyl 0
+G4WT0 > e- (0.0177608,-0.00751015,-99.018) Cu_cyl 0
+G4WT0 > e- (0.0177608,-0.00751015,-99.018) Cu_cyl 0
+G4WT0 > e- (0.0187446,-0.00631925,-99.1181) Cu_cyl 0
+G4WT0 > e- (0.0187446,-0.00631925,-99.1181) Cu_cyl 0
+G4WT0 > e- (0.017267,-0.000627197,-99.391) Cu_cyl 0
+G4WT0 > e- (0.017267,-0.000627197,-99.391) Cu_cyl 0
+G4WT0 > e- (0.0150712,0.00136151,-99.4353) Cu_cyl 0
+G4WT0 > e- (0.0150712,0.00136151,-99.4353) Cu_cyl 0
+G4WT0 > e- (0.0160796,0.00130318,-99.4993) Cu_cyl 0
+G4WT0 > e- (0.0160796,0.00130318,-99.4993) Cu_cyl 0
+G4WT0 > e- (0.025717,0.00210722,-99.9512) Cu_cyl 0
+G4WT0 > e- (0.025717,0.00210722,-99.9512) Cu_cyl 0
+G4WT0 > e- (0.0244035,-0.000202104,-100.119) Ag_cyl 0.0715202
+G4WT0 > e- (0.0397047,-0.00364691,-100.118) Ag_cyl 0
+G4WT0 > e- (-0.0215884,0.0091443,-129.563) World 0.000925513
+G4WT0 > e- (-0.00167415,0.0135613,-129.561) World 0
+G4WT0 > e- (-0.0296983,-0.0375192,-139.667) World 0.000498127
+G4WT0 > e- (-0.0296983,-0.0375192,-139.667) World 0.000498127
+G4WT0 > e- (-0.066412,-0.0541192,-146.09) World 0.00205232
+G4WT0 > e- (-0.066412,-0.0541192,-146.09) World 0.00205232
+G4WT0 > e- (-0.0838867,-0.0247026,-172.415) World 0.00295708
+G4WT0 > e- (-0.156549,-0.0401333,-172.408) World 0.00252423
+G4WT0 > e- (0.0230914,0.0860869,-174.798) World 0.00366954
+G4WT0 > e- (0.153016,-0.0383396,-174.698) World 0
+G4WT0 > e- (-0.129297,-0.163081,-190.152) World 0.0108722
+G4WT0 > e- (-1.02161,-1.02854,-189.717) World 0.00456879
+G4WT0 > e- (0.0279722,0.0129353,-197.863) World 7.75103e-05
+G4WT0 > e- (0.028434,0.0129854,-197.863) World 0
+G4WT0 > proton (0,0,-199.928) World 49.9994
+G4WT0 > proton (-0.314863,0.262889,-96.1993) Cu_cyl 0
+G4WT0 > e- (-0.103444,0.233375,-97.8471) Cu_cyl 0
+G4WT0 > e- (-0.103444,0.233375,-97.8471) Cu_cyl 0
+G4WT0 > e- (-0.0831321,0.19582,-98.6127) Cu_cyl 0
+G4WT0 > e- (-0.0831321,0.19582,-98.6127) Cu_cyl 0
+G4WT0 > e- (-0.08546,0.173626,-98.8966) Cu_cyl 0
+G4WT0 > e- (-0.08546,0.173626,-98.8966) Cu_cyl 0
+G4WT0 > e- (-0.0851198,0.169856,-98.9677) Cu_cyl 0
+G4WT0 > e- (-0.0851198,0.169856,-98.9677) Cu_cyl 0
+G4WT0 > e- (-0.0873079,0.169602,-98.98) Cu_cyl 0
+G4WT0 > e- (-0.0873079,0.169602,-98.98) Cu_cyl 0
+G4WT0 > e- (-0.0869038,0.16723,-99.0314) Cu_cyl 0
+G4WT0 > e- (-0.0869038,0.16723,-99.0314) Cu_cyl 0
+G4WT0 > e- (-0.0932382,0.152685,-99.3574) Cu_cyl 0
+G4WT0 > e- (-0.0932382,0.152685,-99.3574) Cu_cyl 0
+G4WT0 > e- (-0.0982391,0.14484,-99.6182) Cu_cyl 0
+G4WT0 > e- (-0.0982391,0.14484,-99.6182) Cu_cyl 0
+G4WT0 > e- (-0.0964595,0.144394,-99.7261) Cu_cyl 0
+G4WT0 > e- (-0.0964595,0.144394,-99.7261) Cu_cyl 0
+G4WT0 > e- (-0.0952898,0.144933,-99.743) Cu_cyl 0
+G4WT0 > e- (-0.0952898,0.144933,-99.743) Cu_cyl 0
+G4WT0 > e- (-0.0965506,0.144734,-99.8422) Cu_cyl 0
+G4WT0 > e- (-0.0965506,0.144734,-99.8422) Cu_cyl 0
+G4WT0 > e- (-0.0977555,0.116703,-102.716) World 0.000489629
+G4WT0 > e- (-0.0977555,0.116703,-102.716) World 0.000489629
+G4WT0 > e- (0.0757317,-0.0297233,-112.434) World 0.010401
+G4WT0 > e- (0.574138,-0.356643,-112.203) World 0.0041682
+G4WT0 > e- (0.254047,-0.232069,-112.35) World 0.00297127
+G4WT0 > e- (0.254047,-0.232069,-112.35) World 0.00297127
+G4WT0 > e- (0.0307304,0.0571543,-134.741) World 0.00288655
+G4WT0 > e- (0.0391544,-0.0896993,-134.513) World 0.00149721
+G4WT0 > e- (-0.0288406,0.0553967,-153.655) World 0.000959088
+G4WT0 > e- (-0.0476465,0.0461487,-153.65) World 0
+G4WT0 > e- (-0.104704,-0.0132974,-156.347) World 0.00412143
+G4WT0 > e- (-0.222897,-0.0340084,-156.032) World 0
+G4WT0 > e- (-0.00934477,0.0184684,-187.553) World 0.000690199
+G4WT0 > e- (-0.00934477,0.0184684,-187.553) World 0.000690199
+G4WT0 > proton (0,0,-200.402) World 49.9988
+G4WT0 > proton (-0.252104,-0.246481,-96.1355) Cu_cyl 0
+G4WT0 > e- (-0.156436,-0.135424,-98.4313) Cu_cyl 0
+G4WT0 > e- (-0.156436,-0.135424,-98.4313) Cu_cyl 0
+G4WT0 > e- (-0.156361,-0.127151,-98.6024) Cu_cyl 0
+G4WT0 > e- (-0.156361,-0.127151,-98.6024) Cu_cyl 0
+G4WT0 > e- (-0.154762,-0.119735,-98.7105) Cu_cyl 0
+G4WT0 > e- (-0.154762,-0.119735,-98.7105) Cu_cyl 0
+G4WT0 > e- (-0.155901,-0.116559,-98.7473) Cu_cyl 0
+G4WT0 > e- (-0.155901,-0.116559,-98.7473) Cu_cyl 0
+G4WT0 > e- (-0.156038,-0.116753,-98.7511) Cu_cyl 0
+G4WT0 > e- (-0.156038,-0.116753,-98.7511) Cu_cyl 0
+G4WT0 > e- (-0.156275,-0.108861,-98.8567) Cu_cyl 0
+G4WT0 > e- (-0.156275,-0.108861,-98.8567) Cu_cyl 0
+G4WT0 > e- (-0.155481,-0.102754,-98.9816) Cu_cyl 0
+G4WT0 > e- (-0.155481,-0.102754,-98.9816) Cu_cyl 0
+G4WT0 > e- (-0.165071,-0.0703198,-100.169) Kapton_cyl2 0
+G4WT0 > e- (-0.165071,-0.0703198,-100.169) Kapton_cyl2 0
+G4WT0 > e- (-0.157018,-0.0713397,-100.193) Kapton_cyl2 0
+G4WT0 > e- (-0.157018,-0.0713397,-100.193) Kapton_cyl2 0
+G4WT0 > e- (-0.163618,-0.0639895,-100.277) Kapton_cyl2 0.0737298
+G4WT0 > e- (-0.168605,-0.0205993,-100.266) Kapton_cyl2 0
+G4WT0 > e- (-0.0732698,-0.0139856,-106.461) World 0.00368198
+G4WT0 > e- (-0.0732698,-0.0139856,-106.461) World 0.00368198
+G4WT0 > e- (-0.0924655,-0.012328,-118.022) World 0.00119224
+G4WT0 > e- (-0.107276,-0.00789584,-117.997) World 0
+G4WT0 > e- (-0.119812,0.240757,-136.624) World 0.0147475
+G4WT0 > e- (-0.18586,0.559885,-136.408) World 0.00958759
+G4WT0 > e- (-0.136773,0.593483,-136.318) World 0.00441411
+G4WT0 > e- (-0.240387,0.409554,-135.927) World 0
+G4WT0 > e- (-0.0017591,-0.0259198,-137.233) World 0.00195759
+G4WT0 > e- (0.0827021,-0.0593634,-137.144) World 0.00101044
+G4WT0 > e- (0.0167224,-0.0194811,-142.786) World 0.00172276
+G4WT0 > e- (0.0149231,-0.0326259,-142.733) World 0
+G4WT0 > e- (-0.0295388,0.0470672,-149.854) World 0.00201753
+G4WT0 > e- (-0.0295388,0.0470672,-149.854) World 0.00201753
+G4WT0 > e- (0.00892799,0.00385714,-169.586) World 0.000868937
+G4WT0 > e- (0.0271811,0.00239526,-169.582) World 0
+G4WT0 > e- (-0.0101665,0.110832,-173.96) World 0.00495976
+G4WT0 > e- (0.0227452,0.17396,-173.901) World 0
+G4WT0 > e- (-0.0504011,0.209945,-173.894) World 0.00167801
+G4WT0 > e- (-0.0944892,0.235968,-173.846) World 0
+G4WT0 > e- (-0.0330722,0.0528294,-180.392) World 0.00206574
+G4WT0 > e- (-0.0330722,0.0528294,-180.392) World 0.00206574
+G4WT0 > e- (0.0207167,-0.0160505,-199.029) World 0
+G4WT0 > e- (0.0207167,-0.0160505,-199.029) World 0
+G4WT0 > e- (0.0067366,-0.0236331,-200.399) World 0.000779204
+G4WT0 > e- (-8.61004e-05,-0.0378101,-200.398) World 0
+G4WT0 > proton (0,0,-190.809) World 49.9907
+G4WT0 > proton (0.0970118,-0.163968,-96.1494) Cu_cyl 0
+G4WT0 > e- (0.0341194,-0.115733,-98.1104) Cu_cyl 0
+G4WT0 > e- (0.0341194,-0.115733,-98.1104) Cu_cyl 0
+G4WT0 > e- (0.0310465,-0.115313,-98.2048) Cu_cyl 0
+G4WT0 > e- (0.0310465,-0.115313,-98.2048) Cu_cyl 0
+G4WT0 > e- (0.0189058,-0.113053,-98.5653) Cu_cyl 0
+G4WT0 > e- (0.0189058,-0.113053,-98.5653) Cu_cyl 0
+G4WT0 > e- (0.0152585,-0.112534,-98.6207) Cu_cyl 0
+G4WT0 > e- (0.0152585,-0.112534,-98.6207) Cu_cyl 0
+G4WT0 > e- (0.0127256,-0.110392,-98.6636) Cu_cyl 0
+G4WT0 > e- (0.0127256,-0.110392,-98.6636) Cu_cyl 0
+G4WT0 > e- (0.0109623,-0.103749,-98.868) Cu_cyl 0
+G4WT0 > e- (0.0109623,-0.103749,-98.868) Cu_cyl 0
+G4WT0 > e- (0.0115829,-0.100458,-98.9562) Cu_cyl 0
+G4WT0 > e- (0.0115829,-0.100458,-98.9562) Cu_cyl 0
+G4WT0 > e- (0.011948,-0.0927999,-99.109) Cu_cyl 0
+G4WT0 > e- (0.011948,-0.0927999,-99.109) Cu_cyl 0
+G4WT0 > e- (0.0149442,-0.069239,-99.7387) Cu_cyl 0
+G4WT0 > e- (0.0149442,-0.069239,-99.7387) Cu_cyl 0
+G4WT0 > e- (0.0867678,-0.0799521,-107.42) World 0.00282099
+G4WT0 > e- (0.0867678,-0.0799521,-107.42) World 0.00282099
+G4WT0 > e- (-0.0294266,-0.0218963,-107.659) World 0.00214137
+G4WT0 > e- (0.0106433,0.0119389,-107.643) World 0.00130131
+G4WT0 > e- (0.935037,-1.95507,-108.151) World 0.0226114
+G4WT0 > e- (5.45366,-2.76235,-104.719) World 0.0119086
+G4WT0 > e- (-2.1923,10.5602,-100.282) World 0.0809402
+G4WT0 > e- (-2.16522,10.5323,-100.258) Kapton_cyl2 0
+G4WT0 > e- (0.0343611,-0.0130506,-162.417) World 0.000639587
+G4WT0 > e- (0.0343611,-0.0130506,-162.417) World 0.000639587
+G4WT0 > e- (0.0811019,-0.0225422,-171.308) World 0.00273751
+G4WT0 > e- (0.164932,-0.0756163,-171.241) World 0
+G4WT0 > e- (0.0992016,-0.0743403,-175.873) World 0.0050824
+G4WT0 > e- (0.278204,-0.359734,-175.831) World 0.00303194
+G4WT0 > e- (0.254074,-0.0822573,-177.25) World 0.0133025
+G4WT0 > e- (0.767961,-0.256754,-176.944) World 0.0112969
+G4WT0 > e- (0.478382,-0.159331,-177.061) World 0.000735205
+G4WT0 > e- (0.478382,-0.159331,-177.061) World 0.000735205
+G4WT0 > proton (0,0,-196.43) World 49.9898
+G4WT0 > proton (-0.240848,0.0314584,-96.2007) Cu_cyl 0
+G4WT0 > e- (-0.151484,-0.130973,-98.0241) Cu_cyl 0
+G4WT0 > e- (-0.151484,-0.130973,-98.0241) Cu_cyl 0
+G4WT0 > e- (-0.111065,-0.146013,-98.5427) Cu_cyl 0
+G4WT0 > e- (-0.111065,-0.146013,-98.5427) Cu_cyl 0
+G4WT0 > e- (-0.101375,-0.148904,-98.7112) Cu_cyl 0
+G4WT0 > e- (-0.101375,-0.148904,-98.7112) Cu_cyl 0
+G4WT0 > e- (-0.0864841,-0.150688,-99.087) Cu_cyl 0
+G4WT0 > e- (-0.0864841,-0.150688,-99.087) Cu_cyl 0
+G4WT0 > e- (-0.0861291,-0.148426,-99.156) Cu_cyl 0
+G4WT0 > e- (-0.0861291,-0.148426,-99.156) Cu_cyl 0
+G4WT0 > e- (-0.085142,-0.149801,-99.1846) Cu_cyl 0
+G4WT0 > e- (-0.085142,-0.149801,-99.1846) Cu_cyl 0
+G4WT0 > e- (-0.0826906,-0.14509,-99.3844) Cu_cyl 0
+G4WT0 > e- (-0.0826906,-0.14509,-99.3844) Cu_cyl 0
+G4WT0 > e- (-0.0854684,-0.15228,-99.8273) Cu_cyl 0
+G4WT0 > e- (-0.0854684,-0.15228,-99.8273) Cu_cyl 0
+G4WT0 > e- (-0.0862299,-0.151823,-99.919) Cu_cyl 0
+G4WT0 > e- (-0.0862299,-0.151823,-99.919) Cu_cyl 0
+G4WT0 > e- (-0.0882795,-0.149974,-99.9862) Cu_cyl 0.0817691
+G4WT0 > e- (-0.0896018,-0.151486,-99.9794) Cu_cyl 0
+G4WT0 > e- (-0.114812,-0.134722,-101.165) World 0.000330037
+G4WT0 > e- (-0.112316,-0.131199,-101.163) World 0
+G4WT0 > e- (-0.017878,-0.0870714,-109.139) World 0.00237868
+G4WT0 > e- (0.00251509,-0.0321533,-109.117) World 0.00206841
+G4WT0 > e- (-0.0337784,-0.0942942,-118.459) World 0.000687963
+G4WT0 > e- (-0.0337784,-0.0942942,-118.459) World 0.000687963
+G4WT0 > e- (-0.0652673,-0.0774992,-120.768) World 0.000737651
+G4WT0 > e- (-0.0652673,-0.0774992,-120.768) World 0.000737651
+G4WT0 > e- (-0.0537629,-0.0795536,-138.664) World 2.12582e-05
+G4WT0 > e- (-0.0537629,-0.0795536,-138.664) World 2.12582e-05
+G4WT0 > e- (-0.0705832,0.0339855,-146.33) World 0.00378408
+G4WT0 > e- (-0.0705832,0.0339855,-146.33) World 0.00378408
+G4WT0 > e- (0.0243437,-0.0206453,-149.04) World 0.00111151
+G4WT0 > e- (0.0243437,-0.0206453,-149.04) World 0.00111151
+G4WT0 > e- (0.198976,-0.0865264,-154.095) World 0.0110575
+G4WT0 > e- (1.20843,-0.812653,-153.34) World 0
+G4WT0 > e- (1.11391,-0.524744,-153.84) World 0.0027613
+G4WT0 > e- (1.11391,-0.524744,-153.84) World 0.0027613
+G4WT0 > e- (0.039081,-0.00860202,-157.038) World 0.00146114
+G4WT0 > e- (0.039081,-0.00860202,-157.038) World 0.00146114
+G4WT0 > e- (-0.0347657,-0.0146379,-157.816) World 0.000601348
+G4WT0 > e- (-0.0347657,-0.0146379,-157.816) World 0.000601348
+G4WT0 > e- (-0.0473741,0.0094847,-168.455) World 0.00107628
+G4WT0 > e- (-0.0694127,0.0177054,-168.444) World 0
+G4WT0 > e- (0.0101762,0.0356618,-192.765) World 0.000440221
+G4WT0 > e- (0.0134971,0.0298069,-192.764) World 0
+G4WT0 > e- (0.0687822,-0.114908,-196.395) World 0.00596483
+G4WT0 > e- (0.556412,-0.572379,-196.02) World 0.000666108
+G4WT0 > Run #2 produces differential Gain (I/B) of 1 +/- 0.316228
 Graphics systems deleted.
 Visualization Manager deleting...
