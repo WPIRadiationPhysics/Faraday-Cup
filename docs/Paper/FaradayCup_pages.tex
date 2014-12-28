@@ -90,6 +90,7 @@ adhodgdon@radsim.org
 
 \maketitle
 
+\newpage
 \begin{abstract}
 A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerators, i.e., 50 to 250 MeV. The FC must be accurate to 1\% as well as portable, hence vacuum-less and low mass. The FC is a copper cylinder coated with kapton insulation and silver ground. The Monte Carlo method (MCNP6 and Geant4) was used to simulate the radiation cascade and predict gain versus height (H), diameter (D) and insulator thickness (K). H and D were mostly functions of proton range. Increasing either increases mass, reducing either increases proton leakage, hence decreases accuracy. Kapton functions to capture backscattered electrons, the function of the fields in a standard FC. Greater K increases capture but increases secondary electron in-leakage. Determining optimal K was made difficult by the lack of low energy proton, electron cross-sections. A secondary electron model was programmed with the SDEF command for the MCNP model based on recently published cross-section approximations. This secondary electron source method was benchmarked against a series of experimental measurements (by others) of protons on copper and on water. Three FCs were built, each with different values of K. They are currently being tested. 
 
@@ -97,6 +98,7 @@ A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerat
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Introduction}
 
 In modern day radiation therapy, protons have become one increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions (References). A novel portable vacuumless Faraday Cup measuring device was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with kapton insulation and grounded with silver (Reference). Monte Carlo computational simulations in MCNP6 (Reference) and GEANT4 (Referenced) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
@@ -106,6 +108,7 @@ Preliminary results indicated that increasing the mass of the Faraday Cup’s co
 In conjunction with the computational calculations, three (3) prototype Faraday Cup measuring devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of kapton. The units were tested in Germany to determine accuracy of the new design. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Experiments}
 
 
@@ -136,23 +139,20 @@ Geant4 is an object-oriented C++ toolkit for developing applications which simul
 \item The behavior of every track is determined dynamically, with each \emph{step}, or stochastically occuring physical process (collisions, absorbtions, etc) of the particle in some medium.
 \end{enumerate}
 
-\subsubsection{UserActions}
-
-A useful feature of Geant4 is the ability to create user-defined actions (methods) throughout each module, which allows for a very fine-tuned analysis throughout the entire simulation.  The following summarizes the custom details and methods for this application
+\noindent A useful feature of Geant4 is the ability to create user-defined actions (methods) throughout each module, which allows for a very fine-tuned analysis throughout the entire simulation.  The following summarizes the custom details and methods for this application
 
 \begin{itemize}
 \item \textbf{DetectorConstruction.cc:} A copper cylinder of radius 3 cm and height 10 cm is covered in Kapton film of varying thickenesses: 59 $\mu$m, 100 $\mu$m and 200 $\mu$m.  The film thickness is iterated by a function which is called before the command macro is examined.  The top face of the copper lies in the $z=0$ plane, with the beam approach the system from beneath.
 \item \textbf{SteppingAction.cc:} [For every step,] immediately checks if the step is the finale of a track.  If so, the particle's vertex (original position) and destination volume and coordinates are found, and a charge signal calculation occurs.  Entering/Leaving the copper gives a net signal of $\pm q$ where $q$ is the charge of the particle.  Entering/Leaving Kapton gives a relative proportionality of
 $$ s = q\times\max\left[r_{\%}, z_{\%}\right], $$
-where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}$ is the percent distance away laterally.  The signals are grouped and saved by a unique eventID number.
-\item \textbf{EventAction.cc:} At the end of each event, the signals are tallied, grouped, and saved by a unique runID number.
-\item \textbf{RunAction.cc:} At the end of each run, the average and standard deviation of the signals are acquired.
+where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}$ is the percent distance away laterally 
+\item \textbf{EventAction.cc:}
+\item \textbf{RunAction.cc:} 
 \end{itemize}
-
-\subsubsection{Output}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Results}
 
 \begin{table}
@@ -189,14 +189,17 @@ where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Conclusions}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Discussion}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \section{Acknowledgments}
 
 We would like to express our sincerest gratitude to Paul Romano and Tom Sutton, who provided the template for this paper.

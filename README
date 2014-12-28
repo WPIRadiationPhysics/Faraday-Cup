@@ -27,38 +27,38 @@ DetectorConstruction.cc defines geometry and logical volumes
 
 (i) Gold slab (r=0.5cm, h=0.079cm) in a vaccuum with uniform EM-fields of E=300V/19cm and B=0.2G.
 
-(ii) Copper cylinder (r=3cm, h=10cm) residing within a Kapton insulation of thicknesses 59, 100, and 200 um (r={3.0059,3.01,3.02}cm, h={10.0118,10.02,10.04}cm) in air.
+(ii) Copper cylinder (r=3cm, h=10cm) residing within a Kapton insulation of thicknesses 59, 100, and 200 microns in air.  A thin layer of silver paint 12 microns thick is applied upon this solid, with a final layer of Kapton film 60 microns thick.
 
-The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d* away
-from the center of the circular face.  The world which contains the beam and cup is
-composed of air  material.
-
-  (i) Vaccuum + EM / (ii) Air
+The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d* away from the center of the circular face.  The world which contains the beam and cup is composed of air  material.
 
 
-                      [(ii) Kapton]
-	            ..===============================+++.
-	          .~/~   :`.                      .~~    ~~.
-                 ./~ (i) Au / (ii) Cu            .~       ~~.
-                ./~        ..                   ~~         ~~.
+  (i) Vaccuum + EM / (ii) Air*
+
+
+                      [(ii) Ag + Kapton]
+	            ..===============================++++.
+	          .~/~   :`.                      .~`    `~.
+                 ./~ (i) Au / (ii) Cu + Kapton   .~       `~.
+                ./~        ..                   '~         `~.
                 ||         .:                   ||          ||
  proton beam    ||         :.                   ||          ||
  ===========>   ||         ..                   ||          ||
                 ||         .,                   ||          ||
                 ||        ,.                    ||          .~
-                ~~       ..`                     ~~         ~.
-                 ``     ,.`                       ~~.      .~
-	          ``~=================================++++
+                ~~       ..`                     ~`         .~
+                 ``     ,.`                       ~`.      .~
+	          ``~================================+++++~
 
-	
+* Has been temporarily changed to a vaccuum to avoid delta ray intrusion due to in-air interactions.
+
+
 2- PHYSICS LIST
  
 The particle's type and the physic processes which will be available in this example are set in the FTFP_BERT physics list. This physics list requires data files for electromagnetic and hadronic processes. See more on installation of the datasets in Geant4 Installation Guide, 
 
 Chapter 3.3: Note On Geant4 Datasets:
 http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch03s03.html
-The following datasets: G4LEDATA, G4LEVELGAMMADATA and G4SAIDXSDATA are
-mandatory for this example.
+The following datasets: G4LEDATA, G4LEVELGAMMADATA and G4SAIDXSDATA are mandatory for this example.
 
  
 3- ACTION INITALIZATION
@@ -103,6 +103,7 @@ The analysis tools are used to accumulate statistics and compute the dispersion 
    
 The accumulated statistic and computed dispersion is printed at the end of run, in RunAction::EndOfRunAction(). When running in multi-threading mode, the histograms accumulated on threads are automatically merged in a single output file, while the ntuple is written in files per thread.
 
+
 8- HOW TO BUILD/RUN
  
 Generate a Makefile, then compile the project into an executable
@@ -134,6 +135,7 @@ and type in the commands from run1.mac line by line:
 - Execute runFaradayCup in the 'interactive mode' with a selected UI session, e.g. tcsh
   % ./runFaradayCup -u tcsh 
 
+
 A- VISUALIZATION
 
 The visualization manager is set via the G4VisExecutive class in the main() function in runFaradayCup.cc. The initialisation of the drawing is done via a set of /vis/ commands in the macro vis.mac. This macro is automatically read from the main function when the example is used in interactive running mode.
@@ -156,6 +158,7 @@ http://geant4.slac.stanford.edu/Presentations/vis/G4[VIS]Tutorial/G4[VIS]Tutoria
 (where [VIS] can be replaced by DAWN, OpenGL and HepRApp)
 
 The tracks are automatically drawn at the end of each event, accumulated for all events and erased at the beginning of the next run.
+
 
 B- USER INTERFACES
 

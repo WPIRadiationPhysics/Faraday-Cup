@@ -1,6 +1,9 @@
                     FaradayCup Changelog
                     --------------------
 
+28 Dec 2014: Shaun Marshall
+- Updated README
+
 21 Dec 2014: Shaun Marshall
 - Paper template conversion
 - Ag specification in place
@@ -28,7 +31,7 @@
 
 18 November 2014: Shaun Marshall
 - (Fixed) Loop through beam energies, append charge file
-- Gold standard (hehehe); Specs listed under docs
+- Gold standard set; Specs listed under docs
 
 7 November 2014: Shaun Marshall
 - (Broken) Appended experimental energies, copper dimension(s)
