@@ -68,6 +68,7 @@
 \authorHead{Shaun Marshall, Blake Currier, Andrew D Hodgdon}
 \shortTitle{Faraday Cup Proton Gain Simulation}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
@@ -96,6 +97,7 @@ A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerat
 \emph{Key Words}: Monte Carlo, Geant, MCNP, Faraday Cup
 \end{abstract}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
@@ -105,12 +107,32 @@ Preliminary results indicated that increasing the mass of the Faraday Cup’s co
 
 In conjunction with the computational calculations, three (3) prototype Faraday Cup measuring devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of kapton. The units were tested in Germany to determine accuracy of the new design. 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Experiments}
+\section{Experimental Background}
 
 
-\subsection{HIT}
+\subsection{Heidelberg Institute of Technology}
 
+Table \ref{tab:HIT_data}
+
+\begin{table}
+  \centering
+  \caption{Measured Gain from HIT Beam Stops}
+  \begin{tabular}{lccccc}
+    \toprule
+    Energy (MeV) & S59 & S100 & S200 \\
+    \midrule
+    70.03  & \num{0.9750} & \num{0.9385} & \num{0.9350} \\
+    100.46 & \num{0.9850} & \num{0.9500} & \num{0.9475} \\
+    130.52 & \num{0.9925} & \num{0.9580} & \num{0.9525} \\
+    160.09 & \num{1.0000} & \num{0.9635} & \num{0.9590} \\
+    190.48 & \num{1.0075} & \num{0.9715} & \num{0.9650} \\
+    221.06 & \num{1.0125} & \num{0.9800} & \num{0.9770} \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:HIT_data}
+\end{table}
 
 \subsection{GO14}
 
@@ -121,11 +143,8 @@ In conjunction with the computational calculations, three (3) prototype Faraday 
 \section{Simulation Results}
 
 
-\subsection{Proton-Beam Measurement}
-
-
 \subsection{MCNP6}
-
+(LATER: from ADH)
 
 \subsection{Geant4}
 
@@ -146,7 +165,11 @@ A useful feature of Geant4 is the ability to create user-defined actions (method
 \begin{itemize}
 \item \textbf{DetectorConstruction.cc:} A copper cylinder of radius 3 cm and height 10 cm is covered in Kapton film of varying thickenesses: 59 $\mu$m, 100 $\mu$m and 200 $\mu$m.  The film thickness is iterated by a function which is called before the command macro is examined.  The top face of the copper lies in the $z=0$ plane, with the beam approach the system from beneath.
 \item \textbf{SteppingAction.cc:} [For every step,] immediately checks if the step is the finale of a track.  If so, the particle's vertex (original position) and destination volume and coordinates are found, and a charge signal calculation occurs.  Entering/Leaving the copper gives a net signal of $\pm q$ where $q$ is the charge of the particle.  Entering/Leaving Kapton gives a relative proportionality of
-$$ s = q\times\max\left[r_{\%}, z_{\%}\right], $$
+
+\begin{equation}
+s_{q\rightleftharpoons KA} = \pm q\times\max\left[r_{\%}, z_{\%}\right], \label{eqn:s_KA}
+\end{equation}
+
 where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}$ is the percent distance away laterally.  The signals are grouped and saved by a unique eventID number.
 \item \textbf{EventAction.cc:} At the end of each event, the signals are tallied, grouped, and saved by a unique runID number.
 \item \textbf{RunAction.cc:} At the end of each run, the average and standard deviation of the signals are acquired.
@@ -177,39 +200,45 @@ Table \ref{tab:geant4setup} summarizes the detector geometry of each run.  The o
   \label{tab:geant4setup}
 \end{table}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
+The units of signal gain are $\frac{Q_net}{Q_P}$, where $Q_{net}$ is the net transfer of charge into the cup, and $Q_P$ is the net charge of the million protons irradiating the cup.  Charges entering and leaving the primary Kapton film covering the copper are subject to the linear proportion behavior defined in Eq.~\ref{eqn:s_KA}.  Table \ref{tab:geant4_data} shows a sample output of each model in both air and vaccuum, the latter to remove oversaturation of beta emissions from the air due to delta-ray production (LATER: citation needed).
+
 \begin{table}
   \centering
-  \caption{Measured and Predicted Gain from 250 MeV Protons}
-  \begin{tabular}{lcccc}
+  \caption{Predicted Gain from High-Energy Protons using Geant4}
+  \begin{tabular}{lccccc}
     \toprule
-    Model & Energy (MeV) & HIT & MCNP6 & Geant4 \\
+    Model & Energy (MeV) & (-Ag/KA) & (-Ag/KA) \emph{in vacuo} & (+Ag/KA) & (+Ag/KA) \emph{in vacuo} \\
     \midrule
-    S59 & 70.03  & \num{0.9750} & \num{0} & \num{0.953588} \\
-        & 100.46 & \num{0.9850} & \num{0} & \num{0.967417} \\
-        & 130.52 & \num{0.9925} & \num{0} & \num{0.975593} \\
-        & 160.09 & \num{1.0000} & \num{0} & \num{0.981094} \\
-        & 190.48 & \num{1.0075} & \num{0} & \num{0.985111} \\
-        & 221.06 & \num{1.0125} & \num{0} & \num{0.988151} \\
+    S59 & 70.03  & \num{0.953588} & \num{1.00036} & \num{0.983320} & \emph{in progress...} \\
+        & 100.46 & \num{0.967417} & \num{1.00068} & \num{0.982263} \\
+        & 130.52 & \num{0.975593} & \num{1.00118} & \num{0.982531} \\
+        & 160.09 & \num{0.981094} & \num{1.00177} & \num{0.983127} \\
+        & 190.48 & \num{0.985111} & \num{1.00238} & \num{0.984641} \\
+        & 221.06 & \num{0.988151} & \num{1.00314} & \num{0.986131} \\
+        & 250.00 & \num{0.990298} & \num{1.00358} & \num{0.987536} \\
     \midrule
-    S100 & 70.03 & \num{0.9385} & \num{0} & \num{0.953827} \\
-        & 100.46 & \num{0.9500} & \num{0} & \num{0.966795} \\
-        & 130.52 & \num{0.9580} & \num{0} & \num{0.975725} \\
-        & 160.09 & \num{0.9635} & \num{0} & \num{0.981055} \\
-        & 190.48 & \num{0.9715} & \num{0} & \num{0.985189} \\
-        & 221.06 & \num{0.9800} & \num{0} & \num{0.988149} \\
+    S100 & 70.03 & \num{0.953827} & \num{1.00036} & \num{0.983731} \\
+        & 100.46 & \num{0.966795} & \num{1.00072} & \num{0.982408} \\
+        & 130.52 & \num{0.975725} & \num{1.00121} & \num{0.982508} \\
+        & 160.09 & \num{0.981055} & \num{1.00180} & \num{0.983059} \\
+        & 190.48 & \num{0.985189} & \num{1.00245} & \num{0.984910} \\
+        & 221.06 & \num{0.988149} & \num{1.00326} & \num{0.986215} \\
+        & 250.00 & \num{0.990324} & \num{1.00349} & \num{0.987278} \\
     \midrule
-    S200 & 70.03 & \num{0.9350} & \num{0} & \num{0.954372} \\
-        & 100.46 & \num{0.9475} & \num{0} & \num{0.966915} \\
-        & 130.52 & \num{0.9525} & \num{0} & \num{0.975377} \\
-        & 160.09 & \num{0.9590} & \num{0} & \num{0.980998} \\
-        & 190.48 & \num{0.9650} & \num{0} & \num{0.985217} \\
-        & 221.06 & \num{0.9770} & \num{0} & \num{0.988312} \\
+    S200 & 70.03 & \num{0.954372} & \num{1.00037} & \num{0.983544} \\
+        & 100.46 & \num{0.966915} & \num{1.00068} & \num{0.982554} \\
+        & 130.52 & \num{0.975377} & \num{1.00126} & \num{0.982246} \\
+        & 160.09 & \num{0.980998} & \num{1.00178} & \num{0.983405} \\
+        & 190.48 & \num{0.985217} & \num{1.00244} & \num{0.984706} \\
+        & 221.06 & \num{0.988312} & \num{1.00320} & \num{0.986402} \\
+        & 250.00 & \num{0.990213} & \num{1.00343} & \num{0.987178} \\
     \bottomrule
   \end{tabular}
-  \label{tab:sample}
+  \label{tab:geant4_data}
 \end{table}
 
 
@@ -238,4 +267,5 @@ We would like to express our sincerest gratitude to Paul Romano and Tom Sutton, 
 
 Code bits?
 
+\pageref{lastpage}
 \end{document}
