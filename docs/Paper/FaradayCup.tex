@@ -66,13 +66,13 @@
 % Insert authors' names and short version of title in lines below
 
 \authorHead{Shaun Marshall, Blake Currier, Andrew D Hodgdon}
-\shortTitle{Faraday Cup Proton Gain Simulation}
+\shortTitle{Proton Gain in Faraday Cup}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\title{Proton Induced Gain in a Portable Faraday Cup}
+\title{Proton-Induced Gain in a Portable Faraday Cup}
 
 \author{Shaun Marshall}
 \author{Blake Currier}
@@ -244,6 +244,15 @@ The units of signal gain are $\frac{Q_net}{Q_P}$, where $Q_{net}$ is the net tra
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
+
+In pursuit of the optimization of this portable Faraday Cup, we considered many variants of applicable theoretical models to corroborate with available experimental data.  Fig. \ref{fig:comp_results} depicts a very convincing similarity in behavior between the HIT beam stop measurements, and the simulation of the copper Faraday Cup in air without the \emph{no} silver/Kapton layer.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5in]{fig_results.png}
+  \caption{Comparison of Geant4 output and HIT measurement.  Generated with Gnuplot.}
+  \label{fig:comp_results}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

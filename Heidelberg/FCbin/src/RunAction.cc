@@ -18,6 +18,7 @@ void RunAction::BeginOfRunAction(const G4Run* /*run*/) {}
 
 void RunAction::EndOfRunAction(const G4Run* run) {
   // Vars, data and file structures
+  G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
   G4String fileVarGet;
   G4double runGain = 0; // Sum of event gains...
   G4double runGainAverage = 0; // ... averaged
@@ -55,7 +56,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << runID << " " << runGainAverage << " +/- " << runGainError << "\n";
+  gainFile << energies[runID%7] << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
   //G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;

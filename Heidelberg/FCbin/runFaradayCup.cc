@@ -100,7 +100,8 @@ int main(int argc,char** argv) {
 	// micrometer particle track cuts
     G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
-  
+      
+	G4int KA_thickness[3] = {59, 100, 200};
 	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 	  // Assign thickness
 	  detConstruction->KaptonThicknessIteration(thickness_i);
@@ -122,7 +123,7 @@ int main(int argc,char** argv) {
       system(runRm);
       
       // Save completed dataset as film iteration
-	  std::ostringstream raw_film_file; raw_film_file << "film" << thickness_i << "gain.txt";
+	  std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
 	  G4String film_file = raw_film_file.str();
 	  G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
 	  system(filmcmd);
