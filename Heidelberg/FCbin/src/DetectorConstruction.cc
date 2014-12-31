@@ -38,7 +38,7 @@ void DetectorConstruction::DefineMaterials() {
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
-  nistManager->FindOrBuildMaterial("G4_Ag");
+  //nistManager->FindOrBuildMaterial("G4_Ag");
   nistManager->FindOrBuildMaterial("G4_AIR");
   
   // Geant4 conventional definition of a vacuum
@@ -80,6 +80,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
+  /*
   // Silver cylinder and cap parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm;
   G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.020*mm;
@@ -93,19 +94,20 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double Kapton_cyl2_height = Ag_cyl_height + 2*0.062*mm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
+  */
   
   // World cylinder parameters
   G4double world_innerRadius = 0*cm;
   G4double world_outerRadius = 4*cm;
-  G4double world_height = Kapton_cyl2_height;
+  G4double world_height = Kapton_cyl1_height;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
+  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
-  G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
+  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! KaptonMaterial ) {
@@ -140,7 +142,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  false,            // no boolean operation
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
-                          
+
+  /*                          
   // Kapton Hollow Cylinder 2 (layer 3) 
   G4VSolid* Kapton_cyl2S 
     = new G4Tubs("Kapton_cyl2",            // its name
@@ -192,6 +195,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
+  */
   
   // Kapton Hollow Cylinder 1 (layer 1) 
   G4VSolid* Kapton_cyl1S 
@@ -214,7 +218,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  G4ThreeVector(),     // its position
                  Kapton_cyl1LV,       // its logical volume                         
                  "Kapton_cyl1",       // its name
-                 Ag_cylLV,            // its mother  volume
+                 worldLV,            // its mother  volume
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
@@ -253,8 +257,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   simpleBoxVisAtt->SetVisibility(true);
   Cu_cylLV->SetVisAttributes(simpleBoxVisAtt);
   Kapton_cyl1LV->SetVisAttributes(simpleBoxVisAtt);
-  Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
-  Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
+  //Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
+  //Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
 
   // Always return the physical World
   return worldPV;
@@ -263,7 +267,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 void DetectorConstruction::KaptonThicknessIteration(G4int thickness_i) {
   // Kapton thickness variable
   G4double Kapton_Thickness[3] = {0.059*mm, 0.1*mm, 0.2*mm};
-  G4cout << "Measuring gain for thickness #" << thickness_i << G4endl;
+  //G4cout << "Measuring gain for thickness #" << thickness_i << G4endl;
   
   // Acquire Kapton logical and physical volumes
   G4LogicalVolume* Kapton_cyl1LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl1");

@@ -11,6 +11,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "../FCbin/CMakeLists.txt"
   "../FCbin/KA_um.dat"
   "../FCbin/dataPlot.gnu"
+  "../FCbin/debugrun.mac"
   "../FCbin/gui.mac"
   "../FCbin/icons.mac"
   "../FCbin/init.mac"

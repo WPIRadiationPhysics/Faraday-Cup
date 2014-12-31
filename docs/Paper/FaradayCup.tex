@@ -109,6 +109,9 @@ In conjunction with the computational calculations, three (3) prototype Faraday 
 \section{Experiments}
 
 
+\subsection{HIT}
+
+
 \subsection{GO14}
 
 
@@ -136,7 +139,7 @@ Geant4 is an object-oriented C++ toolkit for developing applications which simul
 \item The behavior of every track is determined dynamically, with each \emph{step}, or stochastically occuring physical process (collisions, absorbtions, etc) of the particle in some medium.
 \end{enumerate}
 
-\subsubsection{UserActions}
+\subsubsection{UserAction methods}
 
 A useful feature of Geant4 is the ability to create user-defined actions (methods) throughout each module, which allows for a very fine-tuned analysis throughout the entire simulation.  The following summarizes the custom details and methods for this application
 
@@ -149,8 +152,30 @@ where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}
 \item \textbf{RunAction.cc:} At the end of each run, the average and standard deviation of the signals are acquired.
 \end{itemize}
 
-\subsubsection{Output}
+\subsubsection{Experimental parameters}
 
+Table \ref{tab:geant4setup} summarizes the detector geometry of each run.  The order of logical volume layers starting from the innermost are 1) the copper cylinder, 2) the Kapton1 film, 3) the silver paint layer, and 4) the Kapton2 film.  Constructing cylindrical \lq\lq layers" is as straightforward as defining a cylinder within another's logical volume.  Data were acquired as a function of impinging proton energy using the 50-250 MeV range as used in the HIT experiment.  The Kapton1 thickness optimization was applied to this model both with and without the silver and secondary Kapton (\emph{+Ag/KA}).
+
+\begin{table}
+  \centering
+  \caption{Geant4 Simulation Cylindrical Construction}
+  \begin{tabular}{ccc}
+    \toprule
+    Volume  & Radius (mm) & Height (mm) \\
+    \midrule
+    Copper  & \num{30} & \num{100} \\
+    \toprule\toprule
+            & Model    & Thickness ($\mu$m) \\
+    \midrule
+    Kapton1 & S59      & \num{59}  \\
+            & S100     & \num{100} \\
+            & S200     & \num{200} \\
+    Silver  & +Ag/KA   & \num{12}  \\
+    Kapton2 & +Ag/KA   & \num{62}  \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:geant4setup}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
@@ -189,11 +214,11 @@ where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusions}
+\section{Discussion}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion}
+\section{Conclusions}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

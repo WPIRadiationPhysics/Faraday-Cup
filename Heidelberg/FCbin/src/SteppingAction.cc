@@ -41,9 +41,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
   G4double stepZ = stepXYZ[2];
   
-  // Get particle kinetic energy and step number
-  G4double kinEnergy = step->GetTrack()->GetKineticEnergy();
-  G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
+  // Get particle kinetic energy, step number, track and parent numbers
+  //G4double kinEnergy = step->GetTrack()->GetKineticEnergy();
+  //G4int stepNum = step->GetTrack()->GetCurrentStepNumber();
+  //G4int trackNum = step->GetTrack()->GetTrackID();
+  //G4int parentNum = step->GetTrack()->GetParentID();
 
   // Determine film thickness for calculations
   G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
@@ -67,12 +69,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // S200 Beam stop
   if ( atof(fileVarGet) == 2 ) r_KA = 30.200; h_KA = 100.400;
 
-  if ( stepNum == 1 ) { G4cout << stepParticle << " (" << stepXYZ[0] << "," << stepXYZ[1] << "," << stepZ << ") " << volumeName << " " << kinEnergy << G4endl; }
+  //if ( stepNum == 1 ) { G4cout << trackNum << " " << parentNum << " " << stepParticle << " (" << stepXYZ[0] << "," << stepXYZ[1] << "," << stepZ << ") " << volumeName << " " << kinEnergy << G4endl; }
  
   // Track net signal calculation; wait for final state and compare to track origin
   G4double netSignal = 0;
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-	G4cout << stepParticle << " (" << stepXYZ[0] << "," << stepXYZ[1] << "," << stepZ << ") " << volumeName << " " << kinEnergy << G4endl;
+	//G4cout << trackNum << " " << parentNum << " " << stepParticle << " (" << stepXYZ[0] << "," << stepXYZ[1] << "," << stepZ << ") " << volumeName << " " << kinEnergy << G4endl;
 	
 	// Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();

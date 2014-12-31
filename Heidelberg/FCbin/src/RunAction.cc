@@ -58,5 +58,5 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   gainFile << runID << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
-  G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;
+  //G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;
 }

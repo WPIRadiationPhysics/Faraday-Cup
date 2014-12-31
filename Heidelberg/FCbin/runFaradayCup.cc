@@ -9,6 +9,7 @@
 
 #include "G4UImanager.hh"
 #include "G4UIcommand.hh"
+
 #include "FTFP_BERT.hh"
 
 #include "Randomize.hh"
@@ -93,13 +94,13 @@ int main(int argc,char** argv) {
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
-  // micrometer particle track cuts
-  G4String cutCommand = "/run/setCut  0.01 mm";
-  UImanager->ApplyCommand(cutCommand);
-
   // batch mode  
   if ( macro.size() ) {
 	// Kapton Optimization problem- 3D data
+	// micrometer particle track cuts
+    G4String cutCommand = "/run/setCut 0.005 mm";
+    UImanager->ApplyCommand(cutCommand);
+  
 	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 	  // Assign thickness
 	  detConstruction->KaptonThicknessIteration(thickness_i);
@@ -117,8 +118,8 @@ int main(int argc,char** argv) {
 
       // Remove run logs (to be placed in RunAction when confirmed single
       // worker thread to be in control of file I/O)
-      //G4String runRm = "rm " + data_dir + "run*";
-      //system(runRm);
+      G4String runRm = "rm " + data_dir + "run*";
+      system(runRm);
       
       // Save completed dataset as film iteration
 	  std::ostringstream raw_film_file; raw_film_file << "film" << thickness_i << "gain.txt";
