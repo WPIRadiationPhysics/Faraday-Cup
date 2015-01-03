@@ -14,8 +14,6 @@
 \usepackage[colorlinks,breaklinks]{hyperref}
 \hypersetup{linkcolor=black, citecolor=black, urlcolor=black}
 
-\usepackage{lipsum}
-
 \def\equationautorefname{Eq.}
 \def\figureautorefname{Fig.}
 
@@ -256,7 +254,7 @@ Table \ref{tab:mcnp_charge_crossing} shows the breakdown of gain from various ch
 \begin{figure}[H]
   \centering
   \includegraphics[width=4in]{fig_mcnp_tracks.png}
-  \caption{Distribution of 50 Protons of Energy 250 MeV. Note the singular backscatter.}
+  \caption{Distribution of 50 Protons of Energy 250 MeV using MCNP6. Note the singular backscatter.}
   \label{fig:mcnp_tracks}
 \end{figure}
 
@@ -387,6 +385,15 @@ The units of signal gain are $\frac{Q_{net}}{Q_P}$, where $Q_{net}$ is the net t
   \end{tabular}
   \label{tab:geant4_data}
 \end{table}
+
+Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 50 250 MeV protons entering the S59 model.  The track color corresponds to particle charge, red for negative, blue for positive, and green neutral.  As observed in the MCNP6 simulation, neutrons are scattered everywhere; for the most part, electrons created in the Faraday Cup do not travel far, as expected given their low-energy production and high stopping-power in copper.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=5in]{fig_G4_dist.png}
+  \caption{Distribution of 50 Protons of Energy 250 MeV using Geant4.}
+  \label{fig:G4_dist}
+\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

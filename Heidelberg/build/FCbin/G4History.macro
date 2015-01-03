@@ -1,0 +1,609 @@
+/run/verbose 2
+/tracking/storeTrajectory 2
+/run/printProgress 100
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+/tracking/verbose 0
+/gun/particle proton
+/gun/energy 250 MeV
+proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute visTutor/exN03Vis0.mac
+/vis/viewer/set/projection p
+/vis/viewer/set/projection o
+/vis/viewer/refresh
+/vis/viewer/set/projection p
+/vis/viewer/refresh
+/vis/viewer/set/style w
+/vis/viewer/set/hiddenEdge 0
+/vis/viewer/refresh
+/vis/viewer/set/style w
+/vis/viewer/set/hiddenEdge 0
+/vis/viewer/set/projection o
+/vis/viewer/refresh
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
+/control/execute debugrun.mac
+/gun/particle proton
+/gun/energy 250 MeV
+/run/beamOn 50
+/tracking/verbose 0
