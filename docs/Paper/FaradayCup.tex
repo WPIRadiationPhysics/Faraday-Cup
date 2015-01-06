@@ -103,43 +103,20 @@ A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerat
 
 In modern day radiation therapy, protons have become one increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions (References). A novel portable vacuumless Faraday Cup measuring device was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with kapton insulation and grounded with silver (Reference). Monte Carlo computational simulations in MCNP6 (Reference) and GEANT4 (Referenced) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
 
-Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While a greater kapton thickness increases the capture of primary and secondary electrons, it also increases secondary electron leakage. Additionally, determining the optimal kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (Reference). A comprehensive secondary electron evaluation of the kapton was performed and benchmarked against a series of experimental measurements by Borovsky et al.1 and J. Gordon et al (Reference).
+Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While a greater kapton thickness increases the capture of primary and secondary electrons, it also increases secondary electron leakage. Additionally, determining the optimal kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (Reference). A comprehensive secondary electron evaluation of the kapton was performed and benchmarked against a series of experimental measurements by Borovsky et al.\cite{bo88} and J. Gordon et al.\cite{PTC-HIT}
 
-In conjunction with the computational calculations, three (3) prototype Faraday Cup measuring devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of kapton. The units were tested in Germany to determine accuracy of the new design. 
+In conjunction with the computational calculations, three prototype Faraday Cup measuring devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of kapton. The units were tested in Germany to determine accuracy of the new design. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Background}
 
+\subsection{Go99}
 
-\subsection{Heidelberg Institute of Technology}
-
-Table \ref{tab:HIT_data}
-
-\begin{table}
-  \centering
-  \caption{Measured Gain from HIT Beam Stops}
-  \begin{tabular}{lccccc}
-    \toprule
-    Energy (MeV) & S59 & S100 & S200 \\
-    \midrule
-    70.03  & \num{0.9750} & \num{0.9385} & \num{0.9350} \\
-    100.46 & \num{0.9850} & \num{0.9500} & \num{0.9475} \\
-    130.52 & \num{0.9925} & \num{0.9580} & \num{0.9525} \\
-    160.09 & \num{1.0000} & \num{0.9635} & \num{0.9590} \\
-    190.48 & \num{1.0075} & \num{0.9715} & \num{0.9650} \\
-    221.06 & \num{1.0125} & \num{0.9800} & \num{0.9770} \\
-    \bottomrule
-  \end{tabular}
-  \label{tab:HIT_data}
-\end{table}
-
-\subsection{GO14}
+\subsection{HIT Beam Stop Calibration}
 
 
-\subsection{BO88}
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation Results}
 
 
@@ -149,7 +126,7 @@ MCNP version 6.1 with standard cross-section libraries was used to simulate gain
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5in]{fig_geometry.png}
+  \includegraphics[width=5in]{figures/fig_geometry.png}
   \caption{Geometry from side of horizontal copper cylinder}
   \label{fig:model_geometry}
 \end{figure}
@@ -240,7 +217,7 @@ Fig.~\ref{fig:error_diameter} shows the variation of error with copper diameter 
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=4in]{fig_error_diameter.png}
+  \includegraphics[width=4in]{figures/fig_error_diameter.png}
   \caption{Signal Error vs Diameter and Simulation Method}
   \label{fig:error_diameter}
 \end{figure}
@@ -253,7 +230,7 @@ Table \ref{tab:mcnp_charge_crossing} shows the breakdown of gain from various ch
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=4in]{fig_mcnp_tracks.png}
+  \includegraphics[width=4in]{figures/fig_mcnp_tracks.png}
   \caption{Distribution of 50 Protons of Energy 250 MeV using MCNP6. Note the singular backscatter.}
   \label{fig:mcnp_tracks}
 \end{figure}
@@ -261,32 +238,32 @@ Table \ref{tab:mcnp_charge_crossing} shows the breakdown of gain from various ch
 \begin{figure}[H]
         \centering
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_n.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_n.png}
                 \label{fig:mcnp_dist_n}
         \end{subfigure}
         %
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_ph.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_ph.png}
                 \label{fig:mcnp_dist_ph}
         \end{subfigure}
         %
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_e.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_e.png}
                 \label{fig:mcnp_dist_e}
         \end{subfigure}
         
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_d.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_d.png}
                 \label{fig:mcnp_dist_d}
         \end{subfigure}
         %
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_t.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_t.png}
                 \label{fig:mcnp_dist_t}
         \end{subfigure}
         %
         \begin{subfigure}[b]{0.2\textwidth}
-                \includegraphics[width=\textwidth]{fig_mcnp_dist_a.png}
+                \includegraphics[width=\textwidth]{figures/fig_mcnp_dist_a.png}
                 \label{fig:mcnp_dist_a}
         \end{subfigure}
         \caption{Distribution of six other particles}
@@ -390,7 +367,7 @@ Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 5
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=5in]{fig_G4_dist.png}
+  \includegraphics[width=5in]{figures/fig_G4_dist.png}
   \caption{Distribution of 50 Protons of Energy 250 MeV using Geant4.}
   \label{fig:G4_dist}
 \end{figure}
@@ -409,7 +386,7 @@ In pursuit of the optimization of this portable Faraday Cup, we considered many 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{fig_results.png}
+  \includegraphics[width=5in]{figures/fig_results.png}
   \caption{Comparison of Geant4 output and HIT measurement.  Generated with Gnuplot.}
   \label{fig:comp_results}
 \end{figure}
@@ -424,17 +401,33 @@ In pursuit of the optimization of this portable Faraday Cup, we considered many 
 
 We would like to express our sincerest gratitude to Paul Romano and Tom Sutton, who provided the template for this paper.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlength{\baselineskip}{12pt}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\baselineskip}{12pt}
 \bibliographystyle{mc2015}
 \bibliography{references}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-\section{mc-ptc-11-3.0-f?}
+\section{Experimentals Results at HIT\cite{PTC-HIT}}
 
-Code bits?
+\begin{table}[H]
+  \centering
+  \caption{Measured Gain from HIT Beam Stops}
+  \begin{tabular}{lccccc}
+    \toprule
+    Energy (MeV) & S59 & S100 & S200 \\
+    \midrule
+    70.03  & \num{0.9750} & \num{0.9385} & \num{0.9350} \\
+    100.46 & \num{0.9850} & \num{0.9500} & \num{0.9475} \\
+    130.52 & \num{0.9925} & \num{0.9580} & \num{0.9525} \\
+    160.09 & \num{1.0000} & \num{0.9635} & \num{0.9590} \\
+    190.48 & \num{1.0075} & \num{0.9715} & \num{0.9650} \\
+    221.06 & \num{1.0125} & \num{0.9800} & \num{0.9770} \\
+    \bottomrule
+  \end{tabular}
+  \label{tab:HIT_data}
+\end{table}
 
-\pageref{lastpage}
 \end{document}

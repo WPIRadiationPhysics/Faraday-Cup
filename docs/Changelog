@@ -1,8 +1,11 @@
                     FaradayCup Changelog
                     --------------------
 
+6 Jan 2015: Shaun Marshall
+- BibTex and LaTeX Makefile usage (see /docs/Paper/build/ for pdf)
+
 5 Jan 2015: Shaun Marshall
-- Cu radius optimization trials
+- Cu radius optimization trials (FAILING)
 
 1 Jan 2015: Shaun Marshall
 - Experiment rereun
