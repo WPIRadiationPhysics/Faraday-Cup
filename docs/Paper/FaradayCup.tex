@@ -92,20 +92,20 @@ adhodgdon@radsim.org
 \maketitle
 
 \begin{abstract}
-A Faraday Cup (FC) is being designed to calibrate therapy-range proton accelerators, i.e., 50 to 250 MeV. The FC must be accurate to 1\% as well as portable, hence vacuum-less and low mass. The FC is a copper cylinder coated with kapton insulation and silver ground. The Monte Carlo method (MCNP6 and Geant4) was used to simulate the radiation cascade and predict gain versus height (H), diameter (D) and insulator thickness (K). H and D were mostly functions of proton range. Increasing either increases mass, reducing either increases proton leakage, hence decreases accuracy. Kapton functions to capture backscattered electrons, the function of the fields in a standard FC. Greater K increases capture but increases secondary electron in-leakage. Determining optimal K was made difficult by the lack of low energy proton, electron cross-sections. A secondary electron model was programmed with the SDEF command for the MCNP model based on recently published cross-section approximations. This secondary electron source method was benchmarked against a series of experimental measurements (by others) of protons on copper and on water. Three FCs were built, each with different values of K. They are currently being tested. 
+A Portable Faraday Cup (PFC) is being designed to calibrate therapy-range proton accelerators (50 to 250 MeV).  The PFC must be accurate to 1\% and practical, hence vacuum-less and of low mass.  Copper was chosen as the detector core, coated with a Kapton insulating film and silver ground.  The Monte Carlo method (MCNP6 and Geant4) was used to simulate the radiation cascade and predict gain versus height (H), diameter (D) and insulator thickness (K). H and D were mostly functions of proton range; both are proportional to mass and inversely so to proton leakage, and thus decreases detector accuracy. Kapton functions to capture backscattered electrons, the function of the fields in a standard Faraday Cup. Greater K increases capture but increases secondary electron in-leakage. Determining optimal K was made difficult by the lack of low energy proton and electron cross-sections. A secondary electron model was programmed with the SDEF command for the MCNP model based on recently published cross-section approximations. This secondary electron source method was benchmarked against a series of experimental measurements of protons on copper and on water.
 
-\emph{Key Words}: Monte Carlo, Geant, MCNP, Faraday Cup
+\emph{Key Words}: Monte Carlo, Geant4, MCNP6, Faraday Cup
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-In modern day radiation therapy, protons have become one increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions (References). A novel portable vacuumless Faraday Cup measuring device was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with kapton insulation and grounded with silver (Reference). Monte Carlo computational simulations in MCNP6 (Reference) and GEANT4 (Referenced) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
+In modern radiation therapy, protons have become an increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions (CITE). A novel, portable, vacuumless Faraday Cup for detecting charged particles was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with Kapton insulation and grounded with silver (CITE). Monte Carlo computational simulations in MCNP6 (CITE) and GEANT4 (CITE) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
 
-Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While a greater kapton thickness increases the capture of primary and secondary electrons, it also increases secondary electron leakage. Additionally, determining the optimal kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (Reference). A comprehensive secondary electron evaluation of the kapton was performed and benchmarked against a series of experimental measurements by Borovsky et al.\cite{bo88} and J. Gordon et al.\cite{PTC-HIT}
+Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While additional Kapton captures more primary and secondary electrons, it also increases secondary electron leakage into the copper. Optimizing this Kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (CITE). A comprehensive secondary electron evaluation of the Kapton was performed and benchmarked against a series of experimental measurements by J. Gordon et al.\cite{PTC-HIT}
 
-In conjunction with the computational calculations, three prototype Faraday Cup measuring devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of kapton. The units were tested in Germany to determine accuracy of the new design. 
+In corroboration with the computational calculations, three prototype Faraday Cup devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of Kapton. The units were tested in Germany to determine accuracy of the new design.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,7 +122,7 @@ In conjunction with the computational calculations, three prototype Faraday Cup 
 
 \subsection{MCNP6}
 
-MCNP version 6.1 with standard cross-section libraries was used to simulate gain. The material geometry is shown in Fig. \ref{fig:model_geometry} The height of the cylinder is fixed at 10 cm. The diameter is varied from 2 to 10 cm and the Kapton thickness is varied from 25 to 75 microns. The materials are standard copper, Kapton, silver and air at STP. The source is a 2 cm diameter proton beam at 250 MeV. This is the maximum expected energy. A suitable diameter for this energy will be suitable for lower energies. Physics was turned on for seven particles: neutrons, photons, electrons, protons, deuterons, tritons and alphas.
+MCNP version 6.1 with standard cross-section libraries was used to simulate gain. The Faraday Cup geometry is shown in Fig.~\ref{fig:model_geometry}. The height of the cylinder is fixed at 10 cm. The diameter is varied from 2 to 10 cm and the Kapton thickness is varied from 25 to 75 microns. The materials are standard copper, Kapton, silver and air at STP. The source is a 2 cm diameter proton beam at 250 MeV. This is the maximum expected energy. A suitable diameter for this energy will be suitable for lower energies. Physics was turned on for seven particles: neutrons, photons, electrons, protons, deuterons, tritons and alphas.
 
 \begin{figure}[H]
   \centering
@@ -375,6 +375,8 @@ Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 5
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
+
+
 
 It is known that MCNP does not track electrons secondary to protons. Therefore, there are delta rays and secondary electrons from protons that have not been accounted for. This means that the error is greater than has been portrayed. This needs further investigation because it is shown in Fig.~\ref{fig:error_diameter} that electrons (just the SE$_{!h}$) have an impact on the choice of diameter.
 
