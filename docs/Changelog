@@ -1,6 +1,10 @@
                     FaradayCup Changelog
                     --------------------
 
+7 Jan 2015: Shaun Marshall
+- Create flow in beginning
+- 
+
 6 Jan 2015: Shaun Marshall
 - BibTex and LaTeX Makefile usage (see /docs/Paper/build/ for pdf)
 

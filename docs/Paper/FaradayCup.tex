@@ -101,9 +101,9 @@ A Portable Faraday Cup (PFC) is being designed to calibrate therapy-range proton
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-In modern radiation therapy, protons have become an increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions (CITE). A novel, portable, vacuumless Faraday Cup for detecting charged particles was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with Kapton insulation and grounded with silver (CITE). Monte Carlo computational simulations in MCNP6 (CITE) and GEANT4 (CITE) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
+In modern radiation therapy, protons have become an increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions\cite{ne05}\cite{ryckman}. A novel, portable, vacuumless Faraday Cup for detecting charged particles was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with Kapton insulation and grounded with silver (CITE). Monte Carlo computational simulations in MCNP6 (CITE) and GEANT4 (CITE) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
 
-Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While additional Kapton captures more primary and secondary electrons, it also increases secondary electron leakage into the copper. Optimizing this Kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (CITE). A comprehensive secondary electron evaluation of the Kapton was performed and benchmarked against a series of experimental measurements by J. Gordon et al.\cite{PTC-HIT}
+Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While additional Kapton captures more primary and secondary electrons, it also increases secondary electron leakage into the copper. Optimizing this Kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (CITE). A comprehensive secondary electron evaluation of the Kapton was performed and benchmarked against a series of experimental measurements by J. Gordon et al \cite{PTC-HIT}.
 
 In corroboration with the computational calculations, three prototype Faraday Cup devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of Kapton. The units were tested in Germany to determine accuracy of the new design.
 
@@ -111,7 +111,10 @@ In corroboration with the computational calculations, three prototype Faraday Cu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Background}
 
+Only a handful of experimental evidence was available before the gold/aluminum-oxide Faraday Cup emulation at the Los Alamos National Laboratory, which gave charged-particle beam current yields as a function of (at the time, the highest) beam energies from 5-24 MeV; it was found that secondary electron yield varied inversely with impinging proton beam energy\cite{bo88}.  This validates/confirms similar res.  Though simulation techniques struggle to converge to comparable values, the findings establish a reasonable basis in setting the Faraday Cup depth to extend further than the material-specific range of the the particle.  This removes the possibility of transmission-sputtering and second-surface electron emission occurences, providing the user with a more controlled ammeter measurement [ibid].
+
 \subsection{Go99}
+
 
 \subsection{HIT Beam Stop Calibration}
 
