@@ -1,17 +1,15 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Experimental Background}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Go99}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{HIT Beam Stop Calibration}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Simulation Results}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{MCNP6}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Geant4}{section.3}% 7
-\BOOKMARK [3][-]{subsubsection.3.2.1}{UserAction methods}{subsection.3.2}% 8
-\BOOKMARK [3][-]{subsubsection.3.2.2}{Experimental parameters}{subsection.3.2}% 9
-\BOOKMARK [1][-]{section.4}{Results}{}% 10
-\BOOKMARK [2][-]{subsection.4.1}{MCNP6 Simulation}{section.4}% 11
-\BOOKMARK [2][-]{subsection.4.2}{Geant4 Simulation}{section.4}% 12
-\BOOKMARK [1][-]{section.5}{Discussion}{}% 13
-\BOOKMARK [1][-]{section.6}{Conclusions}{}% 14
-\BOOKMARK [1][-]{section.7}{Acknowledgments}{}% 15
-\BOOKMARK [1][-]{section.8}{References}{}% 16
-\BOOKMARK [1][-]{appendix.A}{Experimentals Results at HITPTC-HIT}{}% 17
+\BOOKMARK [1][-]{section.3}{Simulation Results}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{MCNP6}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Geant4}{section.3}% 5
+\BOOKMARK [3][-]{subsubsection.3.2.1}{UserAction methods}{subsection.3.2}% 6
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Experimental parameters}{subsection.3.2}% 7
+\BOOKMARK [1][-]{section.4}{Results}{}% 8
+\BOOKMARK [2][-]{subsection.4.1}{MCNP6 Simulation}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Geant4 Simulation}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{Discussion}{}% 11
+\BOOKMARK [1][-]{section.6}{Conclusions}{}% 12
+\BOOKMARK [1][-]{section.7}{Acknowledgments}{}% 13
+\BOOKMARK [1][-]{section.8}{References}{}% 14
+\BOOKMARK [1][-]{appendix.A}{Experimentals Results at HITPTC-HIT}{}% 15

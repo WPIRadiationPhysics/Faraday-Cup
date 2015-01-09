@@ -11,8 +11,8 @@ W.~Newhauser, N.~Koch, S.~Hummel, M.~Ziegler, and U.~Titt,
 J.~M. Ryckman,
 \newblock ``Using MCNPX to Calculate Primary and Secondary Done in Proton
   Therapy,''
-\newblock {\em Georgie Institute of Technology} (2011),
-\newblock Thesis.
+\newblock {\em Georgia Institute of Technology} (2011),
+\newblock (Master's thesis).
 
 \bibitem{PTC-HIT}
 J.~Gordon and L.~Magallanes,
@@ -23,7 +23,41 @@ J.~Gordon and L.~Magallanes,
 J.~E. Borovsky, D.~J. McComas, and B.~L. Barraclough,
 \newblock ``The Secondary-Electron Yield Measured for 5-24 MeV Protons on
   Aluminum-Oxide and Gold Targets,''
-\newblock {\em Nuclear Instruments and Methods in Physics}, {\bf 30}, pp.
+\newblock {\em Nuclear Instruments and Methods in Physics B}, {\bf 30}, pp.
   191--195 (1988).
+
+\bibitem{st57}
+E.~Sternglass,
+\newblock ``Theory of Secondary Electron Emission by High-Speed Ions,''
+\newblock {\em Physical Review}, {\bf 108}, pp.~1 (1957).
+
+\bibitem{Castaneda}
+C.~Castaneda, L.~McGarry, C.~Cahill, and T.~Essert,
+\newblock ``Secondary electron yields from the bombardment of Al2O3 by protons,
+  deuterons, alpha-particles and positively charged hydrogen molecules at
+  energies in the range of 10 to 80 MeV,''
+\newblock {\em Nuclear Instruments and Methods in Physics Research B}, {\bf
+  129}, pp. 199--202 (1997).
+
+\bibitem{Kramer}
+D.~Kramer,
+\newblock ``Design and Implementation of a Detector for High Flux Mixed
+  Radiation Yields,''
+\newblock {\em Technical University of Liberec} (2008),
+\newblock (Doctoral dissertation).
+
+\bibitem{du02}
+A.~Dubus et~al.,
+\newblock ``Experimental and theoretical study of the ratio between the
+  electron emission yield and the electronic stopping power for protons
+  incident on thin carbon foils,''
+\newblock {\em Nuclear Instruments and Methods in Physics Research B}, {\bf
+  193}, pp. 621--625 (2002).
+
+\bibitem{go99}
+B.~Gottschalk, R.~Platais, and H.~Paganetti,
+\newblock ``Nuclear interactions of 160 MeV protons stopping in copper: A test
+  of Monte Carlo nuclear models,''
+\newblock {\em Medical Physics}, {\bf 26}, pp. 2597 (1999).
 
 \end{thebibliography}

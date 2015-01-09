@@ -94,34 +94,31 @@ adhodgdon@radsim.org
 \begin{abstract}
 A Portable Faraday Cup (PFC) is being designed to calibrate therapy-range proton accelerators (50 to 250 MeV).  The PFC must be accurate to 1\% and practical, hence vacuum-less and of low mass.  Copper was chosen as the detector core, coated with a Kapton insulating film and silver ground.  The Monte Carlo method (MCNP6 and Geant4) was used to simulate the radiation cascade and predict gain versus height (H), diameter (D) and insulator thickness (K). H and D were mostly functions of proton range; both are proportional to mass and inversely so to proton leakage, and thus decreases detector accuracy. Kapton functions to capture backscattered electrons, the function of the fields in a standard Faraday Cup. Greater K increases capture but increases secondary electron in-leakage. Determining optimal K was made difficult by the lack of low energy proton and electron cross-sections. A secondary electron model was programmed with the SDEF command for the MCNP model based on recently published cross-section approximations. This secondary electron source method was benchmarked against a series of experimental measurements of protons on copper and on water.
 
-\emph{Key Words}: Monte Carlo, Geant4, MCNP6, Faraday Cup
+\emph{Key Words}: Monte Carlo, Geant4, MCNP6, Faraday Cup, Proton Beam, Secondary Electron Emission
 \end{abstract}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-In modern radiation therapy, protons have become an increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions\cite{ne05}\cite{ryckman}. A novel, portable, vacuumless Faraday Cup for detecting charged particles was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with Kapton insulation and grounded with silver (CITE). Monte Carlo computational simulations in MCNP6 (CITE) and GEANT4 (CITE) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
+In modern radiation therapy, protons have become an increasingly popular method of treating cancer near critical structures, with many dosimetric advantages of charged particle interactions\cite{ne05,ryckman}. A novel, portable, vacuumless Faraday Cup for detecting charged particles was designed to calibrate proton therapy facilities, in energies ranging from 50 to 250 MeV. The detector is constructed of a copper cylinder, coated with Kapton insulation and grounded with silver (CITE). Monte Carlo computational simulations in MCNP6 (CITE) and GEANT4 (CITE) were performed to evaluate radiation cascade effects and predict signal versus height, diameter and insulator thickness characteristics.
 
 Preliminary results indicated that increasing the mass of the Faraday Cup’s conductor reduced proton leakage but increased the system accuracy. While additional Kapton captures more primary and secondary electrons, it also increases secondary electron leakage into the copper. Optimizing this Kapton thickness has been made difficult by the lack of low energy proton and electron cross-sections in current Monte Carlo based simulation programs (CITE). A comprehensive secondary electron evaluation of the Kapton was performed and benchmarked against a series of experimental measurements by J. Gordon et al \cite{PTC-HIT}.
 
-In corroboration with the computational calculations, three prototype Faraday Cup devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each having a different thickness of Kapton. The units were tested in Germany to determine accuracy of the new design.
+In corroboration with the computational calculations, three prototype Faraday Cup devices were constructed by Pyramid Technical Consultants, Inc. (Waltham, Ma), each with a different thickness of Kapton. The units were tested in Germany to determine accuracy of the new design.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Experimental Background}
 
-Only a handful of experimental evidence was available before the gold/aluminum-oxide Faraday Cup emulation at the Los Alamos National Laboratory, which gave charged-particle beam current yields as a function of (at the time, the highest) beam energies from 5-24 MeV; it was found that secondary electron yield varied inversely with impinging proton beam energy\cite{bo88}.  This validates/confirms similar res.  Though simulation techniques struggle to converge to comparable values, the findings establish a reasonable basis in setting the Faraday Cup depth to extend further than the material-specific range of the the particle.  This removes the possibility of transmission-sputtering and second-surface electron emission occurences, providing the user with a more controlled ammeter measurement [ibid].
+Limited empirical evidence of proton-beam dose was available before the gold/aluminum-oxide Faraday Cup emulations at the Los Alamos National Laboratory, which produced charged-particle beam current yields as a function of (at the time, the highest) beam energies from 5-24 MeV; it was found that secondary electron yield varied inversely with impinging proton beam energy, fitting an inverse-root curve (as predicted by Sternglass) with approximately 10\% error.\cite{bo88,st57}.  This was later semi-empirically validated with similar models\cite{Castaneda} and simulation using a constant-proportionality estimate of the secondary electron yield with the stopping power of protons in respective materials\cite{Kramer}; however, evidence exists which questions the validity of the latter approximation\cite{du02}.  Though simulation techniques struggle to converge to comparable values for low beam energy scenarios, the findings establish a reasonable basis in setting the Faraday Cup depth to extend further than the material-specific range of the the particle.  This removes the possibility of transmission-sputtering and second-surface electron emission occurences, providing the user with a more controlled ammeter measurement\cite{bo88}.
 
-\subsection{Go99}
-
-
-\subsection{HIT Beam Stop Calibration}
-
+A unique approach to the Faraday Cup, a series of copper sheets separated by Kapton insulators, was tested in the Harvard Cyclotron Laboratory at a much higher energy.  This \lq\lq Multilayer" prototype provided empirical data to benchmark the applicability of separate hadronic interaction modules of Geant3.2.1. Each sheet of Kapton offers a mid-range, low-interaction field within which secondary electrons (or other stray charged particles) and their abandoned ion may remain bound to each other\cite{go99}.  This novel approach of \lq\lq trapping" the electrons which would not otherwise be impeded by the dense metal localizes the effects of Coulombic scattering and normalizes the measured total signal of the charged particles scattered per unit length and beam input; a gain differential of depth, independent of contributions of secondary electrons in the air.  The role of the vacuum to constrain particle flux was transferred to a silver external grounding brace in the experiments carried out by the Heidelberg Institute of Technology in a recent development to incorporate portability in measuring device.  Current efforts are directed at establishing proof-of-concept theoretically with simulated reproduction.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Simulation Results}
 
+A variety of adaptations to the model were examined with both MCNP6 and Geant4 Monte Carlo software, the latter across a high-energy spectrum 
 
 \subsection{MCNP6}
 

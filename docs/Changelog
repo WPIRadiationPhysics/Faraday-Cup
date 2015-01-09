@@ -1,9 +1,12 @@
                     FaradayCup Changelog
                     --------------------
 
+8 Jan 2015: Shaun Marshall
+- Inserted citations, additional revisions
+
 7 Jan 2015: Shaun Marshall
-- Create flow in beginning
-- 
+- Revised intro and background
+- Complete draft through background
 
 6 Jan 2015: Shaun Marshall
 - BibTex and LaTeX Makefile usage (see /docs/Paper/build/ for pdf)
