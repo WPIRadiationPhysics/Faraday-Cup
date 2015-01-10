@@ -49,7 +49,6 @@ set(runFaradayCup_SCRIPTS
   init_vis.mac
   run.in
   run-Borovsky.in
-  KA_um.dat
   debugrun.mac
   run.mac
   vis.mac

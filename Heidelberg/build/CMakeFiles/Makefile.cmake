@@ -9,7 +9,6 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
   "../FCbin/CMakeLists.txt"
-  "../FCbin/KA_um.dat"
   "../FCbin/dataPlot.gnu"
   "../FCbin/debugrun.mac"
   "../FCbin/gui.mac"
