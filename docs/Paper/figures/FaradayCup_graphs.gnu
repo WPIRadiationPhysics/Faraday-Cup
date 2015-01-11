@@ -22,6 +22,6 @@ plot "DATA.dat" u 1:2 t "HIT S59" w p lt 4 lc rgb "red", \
      "DATA.dat" u 1:11 t "G4_S59+Ag/KA" w lp lt 4 lc rgb "gray", \
      "DATA.dat" u 1:13 t "G4_S100+Ag/KA" w lp lt 6 lc rgb "gray", \
      "DATA.dat" u 1:15 t "G4_S200+Ag/KA" w lp lt 8 lc rgb "gray", \
-     "DATA.dat" u 1:12 t "G4_S59-Ag/KA_v" w lp lt 4 lc rgb "black", \
-     "DATA.dat" u 1:14 t "G4_S100-Ag/KA_v" w lp lt 6 lc rgb "black", \
-     "DATA.dat" u 1:16 t "G4_S200-Ag/KA_v" w lp lt 8 lc rgb "black"
+     "DATA.dat" u 1:12 t "G4_S59+Ag/KA_v" w lp lt 4 lc rgb "black", \
+     "DATA.dat" u 1:14 t "G4_S100+Ag/KA_v" w lp lt 6 lc rgb "black", \
+     "DATA.dat" u 1:16 t "G4_S200+Ag/KA_v" w lp lt 8 lc rgb "black"
