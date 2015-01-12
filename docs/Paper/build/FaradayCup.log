@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.3.26)  11 JAN 2015 17:26
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.3.26)  12 JAN 2015 13:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1280,16 +1280,16 @@ Package pdftex.def Info: figures/fig_G4_dist.png used on input line 372.
 Underfull \vbox (badness 1571) has occurred while \output is active []
 
  [10 <./figures/fig_G4_dist.png (PNG copy)>]
-<figures/fig_results.png, id=193, 642.4pt x 481.8pt>
-File: figures/fig_results.png Graphic file (type png)
+<figures/fig_G4_results.png, id=193, 642.4pt x 481.8pt>
+File: figures/fig_G4_results.png Graphic file (type png)
 
-<use figures/fig_results.png>
-Package pdftex.def Info: figures/fig_results.png used on input line 393.
+<use figures/fig_G4_results.png>
+Package pdftex.def Info: figures/fig_G4_results.png used on input line 391.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
- (build/FaradayCup.bbl [11 <./figures/fig_results.png>])
+ (build/FaradayCup.bbl [11 <./figures/fig_G4_results.png>])
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@ifnextchar' on input line 417.
+(hyperref)                removing `\@ifnextchar' on input line 415.
 
 
 Underfull \vbox (badness 2486) has occurred while \output is active []
@@ -1298,18 +1298,18 @@ Underfull \vbox (badness 2486) has occurred while \output is active []
 
 AED: lastpage setting LastPage
 [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 437.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 437.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
  (build/FaradayCup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 437.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 437.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 435.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 435.
 Package rerunfilecheck Info: File `FaradayCup.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 437.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 435.
  ) 
 Here is how much of TeX's memory you used:
  17683 strings out of 495059
- 332013 string characters out of 3182030
+ 332028 string characters out of 3182030
  398030 words of memory out of 3000000
  20365 multiletter control sequences out of 15000+200000
  51675 words of font info for 165 fonts, out of 3000000 for 9000
@@ -1327,7 +1327,7 @@ y6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/FaradayCup.pdf (13 pages, 296033 bytes).
+Output written on build/FaradayCup.pdf (13 pages, 295466 bytes).
 PDF statistics:
  270 PDF objects out of 1000 (max. 8388607)
  228 compressed objects within 3 object streams
