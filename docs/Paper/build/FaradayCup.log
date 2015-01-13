@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.3.26)  12 JAN 2015 13:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.6.5)  13 JAN 2015 08:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1192,21 +1192,20 @@ File: figures/fig_geometry.png Graphic file (type png)
 <use figures/fig_geometry.png>
 Package pdftex.def Info: figures/fig_geometry.png used on input line 131.
 (pdftex.def)             Requested size: 361.34999pt x 272.60608pt.
- [3 <./figures/fig_geometry.png (PNG copy)>]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 173.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 146.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 173.
- [4] [5]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 146.
+ [3 <./figures/fig_geometry.png (PNG copy)>] [4] [5]
 <figures/fig_error_diameter.png, id=135, 690.58pt x 686.565pt>
 File: figures/fig_error_diameter.png Graphic file (type png)
 
 <use figures/fig_error_diameter.png>
-Package pdftex.def Info: figures/fig_error_diameter.png used on input line 222.
+Package pdftex.def Info: figures/fig_error_diameter.png used on input line 224.
 
 (pdftex.def)             Requested size: 289.07999pt x 287.40201pt.
 
@@ -1214,90 +1213,84 @@ Package pdftex.def Info: figures/fig_error_diameter.png used on input line 222.
 File: figures/fig_mcnp_tracks.png Graphic file (type png)
 
 <use figures/fig_mcnp_tracks.png>
-Package pdftex.def Info: figures/fig_mcnp_tracks.png used on input line 235.
+Package pdftex.def Info: figures/fig_mcnp_tracks.png used on input line 237.
 (pdftex.def)             Requested size: 289.07999pt x 244.08168pt.
  [6 <./figures/fig_error_diameter.png (PNG copy)>] <figures/fig_mcnp_dist_n.png
 , id=151, 485.56406pt x 434.37282pt>
 File: figures/fig_mcnp_dist_n.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_n.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_n.png used on input line 243.
+Package pdftex.def Info: figures/fig_mcnp_dist_n.png used on input line 245.
 (pdftex.def)             Requested size: 93.94955pt x 84.04286pt.
 
 <figures/fig_mcnp_dist_ph.png, id=152, 472.76625pt x 416.30531pt>
 File: figures/fig_mcnp_dist_ph.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_ph.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_ph.png used on input line 248.
+Package pdftex.def Info: figures/fig_mcnp_dist_ph.png used on input line 250.
 (pdftex.def)             Requested size: 93.94955pt x 82.72598pt.
 
 <figures/fig_mcnp_dist_e.png, id=153, 474.27188pt x 409.53pt>
 File: figures/fig_mcnp_dist_e.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_e.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_e.png used on input line 253.
+Package pdftex.def Info: figures/fig_mcnp_dist_e.png used on input line 255.
 (pdftex.def)             Requested size: 93.94955pt x 81.12343pt.
 
 <figures/fig_mcnp_dist_d.png, id=154, 498.36188pt x 421.575pt>
 File: figures/fig_mcnp_dist_d.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_d.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_d.png used on input line 258.
+Package pdftex.def Info: figures/fig_mcnp_dist_d.png used on input line 260.
 (pdftex.def)             Requested size: 93.94955pt x 79.46967pt.
 
 <figures/fig_mcnp_dist_t.png, id=155, 472.01344pt x 416.30531pt>
 File: figures/fig_mcnp_dist_t.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_t.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_t.png used on input line 263.
+Package pdftex.def Info: figures/fig_mcnp_dist_t.png used on input line 265.
 (pdftex.def)             Requested size: 93.94955pt x 82.85939pt.
 
 <figures/fig_mcnp_dist_a.png, id=156, 469.00218pt x 410.2828pt>
 File: figures/fig_mcnp_dist_a.png Graphic file (type png)
 
 <use figures/fig_mcnp_dist_a.png>
-Package pdftex.def Info: figures/fig_mcnp_dist_a.png used on input line 268.
+Package pdftex.def Info: figures/fig_mcnp_dist_a.png used on input line 270.
 (pdftex.def)             Requested size: 93.94955pt x 82.18657pt.
  [7 <./figures/fig_mcnp_tracks.png (PNG copy)> <./figures/fig_mcnp_dist_n.png (
 PNG copy)> <./figures/fig_mcnp_dist_ph.png (PNG copy)> <./figures/fig_mcnp_dist
 _e.png (PNG copy)> <./figures/fig_mcnp_dist_d.png (PNG copy)> <./figures/fig_mc
 np_dist_t.png (PNG copy)> <./figures/fig_mcnp_dist_a.png (PNG copy)>]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 279.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 281.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 279.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 281.
  [8]
-[9] <figures/fig_G4_dist.png, id=182, 815.045pt x 284.06125pt>
+<figures/fig_G4_dist.png, id=178, 815.045pt x 284.06125pt>
 File: figures/fig_G4_dist.png Graphic file (type png)
 
 <use figures/fig_G4_dist.png>
-Package pdftex.def Info: figures/fig_G4_dist.png used on input line 372.
+Package pdftex.def Info: figures/fig_G4_dist.png used on input line 374.
 (pdftex.def)             Requested size: 361.34999pt x 125.93655pt.
 
-Underfull \vbox (badness 1571) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10 <./figures/fig_G4_dist.png (PNG copy)>]
-<figures/fig_G4_results.png, id=193, 642.4pt x 481.8pt>
+ [9]
+<figures/fig_G4_results.png, id=186, 642.4pt x 481.8pt>
 File: figures/fig_G4_results.png Graphic file (type png)
 
 <use figures/fig_G4_results.png>
-Package pdftex.def Info: figures/fig_G4_results.png used on input line 391.
+Package pdftex.def Info: figures/fig_G4_results.png used on input line 381.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
- (build/FaradayCup.bbl [11 <./figures/fig_G4_results.png>])
+ [10 <./figures/fig_G4_dist.png (PNG copy)> <./figures/fig_G4_results.png>] (bu
+ild/FaradayCup.bbl [11])
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\@ifnextchar' on input line 415.
 
 
-Underfull \vbox (badness 2486) has occurred while \output is active []
-
- [12]
-
 AED: lastpage setting LastPage
-[13]
+[12]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 435.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 435.
  (build/FaradayCup.aux)
@@ -1308,29 +1301,28 @@ Package rerunfilecheck Info: File `FaradayCup.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 435.
  ) 
 Here is how much of TeX's memory you used:
- 17683 strings out of 495059
- 332028 string characters out of 3182030
- 398030 words of memory out of 3000000
+ 17694 strings out of 495059
+ 332126 string characters out of 3182031
+ 405029 words of memory out of 3000000
  20365 multiletter control sequences out of 15000+200000
- 51675 words of font info for 165 fonts, out of 3000000 for 9000
+ 52290 words of font info for 173 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 43i,14n,45p,1277b,825s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 43i,14n,45p,1277b,905s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/FaradayCup.pdf (13 pages, 295466 bytes).
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on build/FaradayCup.pdf (12 pages, 287217 bytes).
 PDF statistics:
- 270 PDF objects out of 1000 (max. 8388607)
- 228 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
+ 263 PDF objects out of 1000 (max. 8388607)
+ 223 compressed objects within 3 object streams
+ 58 named destinations out of 1000 (max. 500000)
  33968 words of extra memory for PDF output out of 35830 (max. 10000000)
 
