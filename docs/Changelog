@@ -1,6 +1,9 @@
                     FaradayCup Changelog
                     --------------------
 
+10-14 Jan 2015: Shaun Marshall
+- Recollecting data
+
 10 Jan 2015: Shaun Marshall
 - Critical function error, thicknesses were off but more importantly not looping
 - Heidelberg stage set for resimulations with cutoff 2.5 um

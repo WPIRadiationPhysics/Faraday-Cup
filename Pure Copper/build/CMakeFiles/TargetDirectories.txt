@@ -1,0 +1,2 @@
+/home/sigma/Git/Faraday-Cup/Pure Copper/build/CMakeFiles/Faraday.dir
+/home/sigma/Git/Faraday-Cup/Pure Copper/build/FCbin/CMakeFiles/runFaradayCup.dir
