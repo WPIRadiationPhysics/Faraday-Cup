@@ -84,7 +84,7 @@ Worcester Polytechnic Institute \\
 
 \author{Andrew D Hodgdon, CHP}
 \affil{
-Radsim, LLC \\
+		Radsim, LLC \\
 584 Grove St, Newton, MA 02462 \\
 adhodgdon@radsim.org
 }
@@ -116,13 +116,13 @@ Limited empirical evidence of proton-beam dose was available before the gold/alu
 A unique approach to the Faraday Cup, a series of copper sheets separated by Kapton insulators, was tested in the Harvard Cyclotron Laboratory at a much higher energy.  This \lq\lq Multilayer" prototype provided empirical data to benchmark the applicability of separate hadronic interaction modules of Geant3.2.1. Each sheet of Kapton offers a mid-range, low-interaction field within which secondary electrons (or other stray charged particles) and their abandoned ion may remain bound to each other\cite{go99}.  This novel approach of \lq\lq trapping" the electrons which would not otherwise be impeded by the dense metal localizes the effects of Coulombic scattering and normalizes the measured total signal of the charged particles scattered per unit length and beam input; a gain differential of depth, independent of contributions of secondary electrons in the air.  The role of the vacuum to constrain particle flux was transferred to a silver external grounding brace in the experiments carried out by the Heidelberg Institute of Technology in a recent development to incorporate portability in measuring device.  Current efforts are directed at establishing proof-of-concept theoretically with simulated reproduction.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Simulation Results}
+\section{Simulation Methodology}
 
 A variety of adaptations to the model were examined with both MCNP6 and Geant4 Monte Carlo software, the latter across a high-energy spectrum 
 
 \subsection{MCNP6}
 
-MCNP version 6.1 with standard cross-section libraries was used to simulate gain. The Faraday Cup geometry is shown in Fig.~\ref{fig:model_geometry}. The height of the cylinder is fixed at 10 cm. The diameter is varied from 2 to 10 cm and the Kapton thickness is varied from 25 to 75 microns. The materials are standard copper, Kapton, silver and air at STP. The source is a 2 cm diameter proton beam at 250 MeV. This is the maximum expected energy. A suitable diameter for this energy will be suitable for lower energies. Physics was turned on for seven particles: neutrons, photons, electrons, protons, deuterons, tritons and alphas.
+MCNP version 6.1 with standard cross-section libraries was used to simulate gain in a solid copper cylinder with varying diameter and Kapton film thickness, and grounded with a layer of silver; the geometry is shown in Fig.~\ref{fig:model_geometry}. The height of the cylinder is fixed at 10 cm, the diameter is varied from 2 to 10 cm and the Kapton thickness is varied from 25 to 75 microns. The materials are standard copper, Kapton, silver and air at STP. The source is a 2 cm diameter proton beam at 250 MeV. This is the maximum expected energy. A suitable diameter for this energy will be suitable for lower energies. Physics was turned on for seven particles: neutrons, photons, electrons, protons, deuterons, tritons and alphas.
 
 \begin{figure}[H]
   \centering
@@ -155,15 +155,7 @@ Error = (Gain-1)\cdot100\%
 
 \subsection{Geant4}
 
-Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information which is organized in the following chronology:
-
-\begin{enumerate}
-\item The \textbf{DetectorConstruction} class is called to verify, store and lock the predefined geometry.
-\item The \textbf{G4UIManager} initializes upon successful compilation and execution of the \emph{main()} routine.  If a visualizer is selected, \textbf{G4VisManager} is also invoked.
-\item The user issues the command to execute a macro file of \emph{runs}; each run is characterized by the defined beam particle type, the beam energy, and the number of \emph{events}, or number of such isolated simulations.  If multithreading is available, \textbf{G4RunManager} allocates the events to the available worker threads on a rolling basis.
-\item For each event, the simulation of the \emph{primary} (beam) particle proceeds, constructing a new \emph{track}, or well-defined trajectory for every particle not at rest.
-\item The behavior of every track is determined dynamically, with each \emph{step}, or stochastically occuring physical process (collisions, absorbtions, etc) of the particle in some medium.
-\end{enumerate}
+Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information of all affected particles.  Each \emph{event} (beam iteration) in a \emph{run} (predefined geometry and physics for a series of events) stores the resulting \emph{tracks} of particles which gained momentum, each for some number of \emph{steps} where the defined physics governs the future pathway.
 
 \subsubsection{UserAction methods}
 
@@ -186,7 +178,7 @@ where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}
 
 Table \ref{tab:geant4setup} summarizes the detector geometry of each run.  The order of logical volume layers starting from the innermost are 1) the copper cylinder, 2) the Kapton1 film, 3) the silver paint layer, and 4) the Kapton2 film.  Constructing cylindrical \lq\lq layers" is as straightforward as defining a cylinder within another's logical volume.  Data were acquired as a function of impinging proton energy using the 50-250 MeV range as used in the HIT experiment.  The Kapton1 thickness optimization was applied to this model both with and without the silver and secondary Kapton (\emph{+Ag/KA}).
 
-\begin{table}
+\begin{table}[H]
   \centering
   \caption{Geant4 Simulation Cylindrical Construction}
   \begin{tabular}{ccc}
@@ -211,11 +203,9 @@ Table \ref{tab:geant4setup} summarizes the detector geometry of each run.  The o
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results}
 
-(LATER: intro info here)
+
 
 \subsection{MCNP6 Simulation}
-
-Fig.~\ref{fig:error_diameter} shows the variation of error with copper diameter and method. Two methods are compared, SRIM (reference) and MCNP6. A diameter of 6cm seems reasonable.
 
 \begin{figure}[H]
   \centering
@@ -224,11 +214,9 @@ Fig.~\ref{fig:error_diameter} shows the variation of error with copper diameter 
   \label{fig:error_diameter}
 \end{figure}
 
-The same calculation was repeated with proton tallies alone, i.e., without any secondary electrons. This shows that if electrons had been completely ignored, the MCNP6 results would have been similar to the SRIM model and a diameter of 8 cm would have seemed reasonable.
+Fig.~\ref{fig:error_diameter} shows the variation of error with copper diameter and method. Two methods are compared, SRIM (reference) and MCNP6. A conservative estimate of the error is found to drop below 1\% beyond a 6 cm diameter.  The same calculation was repeated with proton tallies alone, i.e., without any secondary electrons. This shows that if electrons had been completely ignored, the MCNP6 results would have been similar to the SRIM model and a diameter of 8 cm would have seemed reasonable.
 
-The distribution of proton collisions from 50 beam protons is in Fig.~\ref{fig:mcnp_tracks}. The distribution of 6 other particles (born of 50 Protons) is in Fig.~\ref{fig:mcnp_dist}; neutrons go everywhere. The distribution of electrons (just type SE$_{!h}$) is similar to photons. Table \ref{tab:mcnp_neutral_crossing} shows the boundary crossings of neutral particles. In the problem there are about two neutral particle boundary crossings per beam proton.
-
-Table \ref{tab:mcnp_charge_crossing} shows the breakdown of gain from various charged particles for given directions and copper surfaces. This assumes 250 MeV Proton Beam, 6cm Copper Diameter and 50 microns kapton. The effect of secondary electrons produced directly by proton collisions (SD$_h$) is not included.
+The distribution of proton collisions from 50 beam protons is in Fig.~\ref{fig:mcnp_tracks}. The distribution of 6 other particles (born of 50 Protons) is in Fig.~\ref{fig:mcnp_dist}; neutrons go everywhere. The distribution of electrons (just type SE$_{!h}$) is similar to photons. Table \ref{tab:mcnp_neutral_crossing} shows the boundary crossings of neutral particles. In the problem there are about two neutral particle boundary crossings per beam proton. Table \ref{tab:mcnp_charge_crossing} shows the breakdown of gain from various charged particles for given directions and copper surfaces. This assumes 250 MeV Proton Beam, 6cm Copper Diameter and 50 microns kapton. The effect of secondary electrons produced directly by proton collisions (SD$_h$) is not included.
 
 \begin{figure}[H]
   \centering
@@ -365,7 +353,7 @@ Signal gain is defined in eq.~\ref{eqn:gain_definition}.  Charges entering and l
   \label{tab:geant4_data}
 \end{table}
 
-Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 50 250 MeV protons entering the S59 model.  The track color corresponds to particle charge, red for negative, blue for positive, and green neutral.  As observed in the MCNP6 simulation, neutrons are scattered everywhere; for the most part, electrons created in the Faraday Cup do not travel far, as expected given their low-energy production and high stopping-power in copper. Fig.~\ref{fig:comp_results} compares the Geant4 variants with the measured gains of homologous Faraday Cups at HIT.
+Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 50 250 MeV protons entering the S59 model.  The track color corresponds to particle charge, red for negative, blue for positive, and green neutral.  As observed in the MCNP6 simulation, neutrons are scattered everywhere; for the most part, electrons created in the Faraday Cup do not travel far, as expected given their low-energy production and high stopping-power in copper. Fig.~\ref{fig:comp_results} compares the signal gain in each model in both air and a vacuum, along with a pure copper control.
 
 \begin{figure}[H]
   \centering
@@ -381,6 +369,7 @@ Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 5
   \label{fig:comp_results}
 \end{figure}
 
+In agreement with (LATER), by replacing the air with a vacuum in any model, we remove the negative ions entering the cylinder from delta ray production, resulting in a greater positive charge measured as gain.  The addition of the silver-Kapton layer to the copper-Kapton core does have an apparent negative contribution to the gain reading, and requires a greater beam energy to establish accuracy.  The insulating Kapton thickness gave uncorrelated changes to the signal reading, but as shown from the copper contol run, these changes are not negligible.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion}
