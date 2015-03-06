@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sigma/Git/Faraday-Cup/Geo-Optimization
+CMAKE_SOURCE_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sigma/Git/Faraday-Cup/Geo-Optimization/build
+CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build
 
 # Utility rule file for Faraday.
 
@@ -60,6 +60,6 @@ CMakeFiles/Faraday.dir/clean:
 .PHONY : CMakeFiles/Faraday.dir/clean
 
 CMakeFiles/Faraday.dir/depend:
-	cd /home/sigma/Git/Faraday-Cup/Geo-Optimization/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sigma/Git/Faraday-Cup/Geo-Optimization /home/sigma/Git/Faraday-Cup/Geo-Optimization /home/sigma/Git/Faraday-Cup/Geo-Optimization/build /home/sigma/Git/Faraday-Cup/Geo-Optimization/build /home/sigma/Git/Faraday-Cup/Geo-Optimization/build/CMakeFiles/Faraday.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles/Faraday.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Faraday.dir/depend
 

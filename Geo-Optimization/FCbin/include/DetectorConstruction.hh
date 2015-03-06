@@ -18,7 +18,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 
   public:
     virtual G4VPhysicalVolume* Construct();
-     virtual void RedimensionIteration(G4int Cu_i, G4int KA_i);
+     virtual void KaptonThicknessIteration(G4int thickness_i);
      
   private:
     // methods
@@ -27,7 +27,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
   
     // magnetic field messenger
     static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger; 
-
+    
     G4VPhysicalVolume* fDetector;
     G4bool  fCheckOverlaps; // option to activate checking of volumes overlaps
 };

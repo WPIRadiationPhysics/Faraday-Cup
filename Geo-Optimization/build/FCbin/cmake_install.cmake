@@ -1,4 +1,4 @@
-# Install script for directory: /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin
+# Install script for directory: /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/runFaradayCup"
          RPATH "")
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/sigma/Git/Faraday-Cup/Geo-Optimization/build/FCbin/runFaradayCup")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin/runFaradayCup")
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/runFaradayCup" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/runFaradayCup")
     FILE(RPATH_REMOVE

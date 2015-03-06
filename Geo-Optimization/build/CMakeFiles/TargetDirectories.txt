@@ -1,2 +1,2 @@
-/home/sigma/Git/Faraday-Cup/Geo-Optimization/build/CMakeFiles/Faraday.dir
-/home/sigma/Git/Faraday-Cup/Geo-Optimization/build/FCbin/CMakeFiles/runFaradayCup.dir
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles/Faraday.dir
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin/CMakeFiles/runFaradayCup.dir

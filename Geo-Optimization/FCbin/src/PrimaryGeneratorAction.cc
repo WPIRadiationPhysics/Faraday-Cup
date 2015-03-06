@@ -6,7 +6,7 @@
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4Event.hh"
-#include "G4GeneralParticleSource.hh"
+#include "G4ParticleGun.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
@@ -14,11 +14,8 @@
 
 PrimaryGeneratorAction::PrimaryGeneratorAction()
  : G4VUserPrimaryGeneratorAction(),
-   fParticleGun(0) {
-  
-  fParticleGun = new G4GeneralParticleSource();
-  
-  /*
+   fParticleGun(0)
+{
   G4int nofParticles = 1;
   fParticleGun = new G4ParticleGun(nofParticles);
 
@@ -28,7 +25,6 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
   fParticleGun->SetParticleDefinition(particleDefinition);
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0.0,0.0,1.0));
   fParticleGun->SetParticleEnergy(50.*MeV);
-  */
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction() { delete fParticleGun; }

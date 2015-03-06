@@ -1,2 +1,0 @@
-/home/sigma/Git/Faraday-Cup/Heidelberg/build/CMakeFiles/Faraday.dir
-/home/sigma/Git/Faraday-Cup/Heidelberg/build/FCbin/CMakeFiles/runFaradayCup.dir

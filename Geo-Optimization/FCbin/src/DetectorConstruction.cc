@@ -38,8 +38,8 @@ void DetectorConstruction::DefineMaterials() {
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
-  nistManager->FindOrBuildMaterial("G4_Ag");
   nistManager->FindOrBuildMaterial("G4_AIR");
+  //nistManager->FindOrBuildMaterial("G4_Ag");
   
   // Geant4 conventional definition of a vacuum
   G4double density     = universe_mean_density;  //from PhysicalConstants.h
@@ -67,24 +67,24 @@ void DetectorConstruction::DefineMaterials() {
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*cm;
-  // 2 cm diameter initially
-  G4double Cu_cyl_outerRadius = 1*cm;
-  G4double Cu_cyl_height = 10.*cm;
+  G4double Cu_cyl_outerRadius = 3*cm;
+  G4double Cu_cyl_height = 10*cm;
   G4double Cu_cyl_startAngle = 0*deg;
   G4double Cu_cyl_spanningAngle = 360*deg;
 
   // Kapton cylinder parameters (layers 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
   // S59 Film thickness initially
-  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.025*mm;
-  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.025*mm;
+  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.059*mm;
+  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.059*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
+  /*
   // Silver cylinder and cap parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm;
-  G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.020*mm;
-  G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.020*mm;
+  G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.012*mm;
+  G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.012*mm;
   G4double Ag_cyl_startAngle = 0*deg;
   G4double Ag_cyl_spanningAngle = 360*deg;
   
@@ -94,11 +94,12 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double Kapton_cyl2_height = Ag_cyl_height + 2*0.062*mm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
+  */
   
   // World cylinder parameters
   G4double world_innerRadius = 0*cm;
-  G4double world_outerRadius = 12*cm;
-  G4double world_height = 1.5*Kapton_cyl2_height;
+  G4double world_outerRadius = 10*cm;
+  G4double world_height = 1.5*Kapton_cyl1_height;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
@@ -106,7 +107,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
-  G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
+  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! KaptonMaterial ) {
@@ -121,7 +122,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
     = new G4Tubs("World",            // its name
                  world_innerRadius,
                  world_outerRadius,
-                 world_height,
+                 world_height/2,
                  world_startAngle,
                  world_spanningAngle);
                          
@@ -134,7 +135,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4VPhysicalVolume* worldPV
     = new G4PVPlacement(
                  0,                // no rotation
-                 G4ThreeVector(),  // at (0,0,0)
+                 G4ThreeVector(),
                  worldLV,          // its logical volume                         
                  "World",          // its name
                  0,                // its mother  volume
@@ -142,12 +143,13 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
 
+  /*
   // Kapton Hollow Cylinder 2 (layer 3) 
   G4VSolid* Kapton_cyl2S 
     = new G4Tubs("Kapton_cyl2",            // its name
                  Kapton_cyl2_innerRadius,
                  Kapton_cyl2_outerRadius,
-                 Kapton_cyl2_height,
+                 Kapton_cyl2_height/2,
                  Kapton_cyl2_startAngle,
                  Kapton_cyl2_spanningAngle);
                          
@@ -160,7 +162,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4VPhysicalVolume* Kapton_cyl2PV
     = new G4PVPlacement(
                  0,                   // no rotation
-                 G4ThreeVector(),     // its position
+                 G4ThreeVector(),
                  Kapton_cyl2LV,            // its logical volume                         
                  "Kapton_cyl2",            // its name
                  worldLV,             // its mother  volume
@@ -173,7 +175,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
     = new G4Tubs("Ag_cyl",            // its name
                  Ag_cyl_innerRadius,
                  Ag_cyl_outerRadius,
-                 Ag_cyl_height,
+                 Ag_cyl_height/2,
                  Ag_cyl_startAngle,
                  Ag_cyl_spanningAngle);
                          
@@ -186,20 +188,21 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4VPhysicalVolume* Ag_cylPV
     = new G4PVPlacement(
                  0,                   // no rotation
-                 G4ThreeVector(),     // its position
+                 G4ThreeVector(),
                  Ag_cylLV,            // its logical volume                         
                  "Ag_cyl",            // its name
                  Kapton_cyl2LV,       // its mother  volume
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
+  */
   
   // Kapton Hollow Cylinder 1 (layer 1) 
   G4VSolid* Kapton_cyl1S 
     = new G4Tubs("Kapton_cyl1",       // its name
                  Kapton_cyl1_innerRadius,
                  Kapton_cyl1_outerRadius,
-                 Kapton_cyl1_height,
+                 Kapton_cyl1_height/2,
                  Kapton_cyl1_startAngle,
                  Kapton_cyl1_spanningAngle);
                          
@@ -209,13 +212,13 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  KaptonMaterial,      // its material
                  "Kapton_cyl1");      // its name
                                    
-  G4VPhysicalVolume* Kapton_cyl1PV
+  fDetector
     = new G4PVPlacement(
                  0,                   // no rotation
-                 G4ThreeVector(),     // its position
+                 G4ThreeVector(),
                  Kapton_cyl1LV,       // its logical volume                         
                  "Kapton_cyl1",       // its name
-                 Ag_cylLV,            // its mother  volume
+                 worldLV,            // its mother  volume
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
@@ -226,7 +229,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
     = new G4Tubs("Cu_cyl",            // its name
                  Cu_cyl_innerRadius,
                  Cu_cyl_outerRadius,
-                 Cu_cyl_height,
+                 Cu_cyl_height/2,
                  Cu_cyl_startAngle,
                  Cu_cyl_spanningAngle);
                          
@@ -236,10 +239,10 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  copperMaterial,      // its material
                  "Cu_cyl");           // its name
                                    
-  G4VPhysicalVolume* Cu_cylPV
+  fDetector
     = new G4PVPlacement(
                  0,                   // no rotation
-                 G4ThreeVector(),     // its position
+                 G4ThreeVector(),
                  Cu_cylLV,            // its logical volume                         
                  "Cu_cyl",            // its name
                  Kapton_cyl1LV,       // its mother volume
@@ -250,34 +253,32 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Visualization attributes
   worldLV->SetVisAttributes (G4VisAttributes::Invisible);
-  G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0,1.0,1.0));
+  G4VisAttributes* simpleBoxVisAtt= new G4VisAttributes(G4Colour(1.0, 1.0, 1.0));
   simpleBoxVisAtt->SetVisibility(true);
   Cu_cylLV->SetVisAttributes(simpleBoxVisAtt);
   Kapton_cyl1LV->SetVisAttributes(simpleBoxVisAtt);
-  Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
-  Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
+  //Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
+  //Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
 
   // Always return the physical World
   return worldPV;
 }
 
-void DetectorConstruction::RedimensionIteration(G4int Cu_i, G4int KA_i) {
+void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
   // Variable dimensions
-  G4double Copper_Radius[7] = {1*cm, 1.5*cm, 2*cm, 2.5*cm, 3*cm, 4*cm, 5*cm};
-  G4double Kapton_Thickness[3] = {0.025*mm, 0.050*mm, 0.075*mm};
+  G4double Kapton_Thickness[5] = {0.010*mm, 0.020*mm, 0.030*mm, 0.040*mm, 0.050*mm}; // 10-50 microns
   
   // Acquire logical and physical volumes
   G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
   G4VPhysicalVolume* worldPV = worldLV->GetDaughter(0);
-  G4LogicalVolume* Kapton_cyl2LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl2");
-  G4LogicalVolume* Ag_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Ag_cyl");
+  //G4LogicalVolume* Kapton_cyl2LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl2");
+  //G4LogicalVolume* Ag_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Ag_cyl");
   G4LogicalVolume* Kapton_cyl1LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl1");
   G4LogicalVolume* Cu_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
   
-  
   // Redefine dimensions
   G4double Cu_cyl_innerRadius = 0*cm;
-  G4double Cu_cyl_outerRadius = Copper_Radius[Cu_i];
+  G4double Cu_cyl_outerRadius = 3*cm;
   G4double Cu_cyl_height = 10*cm;
   G4double Cu_cyl_startAngle = 0*deg;
   G4double Cu_cyl_spanningAngle = 360*deg;
@@ -286,9 +287,10 @@ void DetectorConstruction::RedimensionIteration(G4int Cu_i, G4int KA_i) {
   G4double Kapton_cyl1_height = Cu_cyl_height + 2*Kapton_Thickness[KA_i];
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
+  /*
   G4double Ag_cyl_innerRadius = 0*cm;
-  G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.020*mm;
-  G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.020*mm;
+  G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.012*mm;
+  G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.012*mm;
   G4double Ag_cyl_startAngle = 0*deg;
   G4double Ag_cyl_spanningAngle = 360*deg;
   G4double Kapton_cyl2_innerRadius = 0*cm;
@@ -296,36 +298,39 @@ void DetectorConstruction::RedimensionIteration(G4int Cu_i, G4int KA_i) {
   G4double Kapton_cyl2_height = Ag_cyl_height + 2*0.062*mm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
+  */
   
-  // Unlock geometry layer Kapton_2, redefine and lock
+  // Unlock geometry layer Kapton_1, redefine and lock
   G4GeometryManager* geomManager = G4GeometryManager::GetInstance();
   geomManager->OpenGeometry(worldPV);
-  
+
+  /*
   Kapton_cyl2LV->SetSolid(new G4Tubs("Kapton_cyl2",
                  Kapton_cyl2_innerRadius,
                  Kapton_cyl2_outerRadius,
-                 Kapton_cyl2_height,
+                 Kapton_cyl2_height/2,
                  Kapton_cyl2_startAngle,
                  Kapton_cyl2_spanningAngle));
                  
   Ag_cylLV->SetSolid(new G4Tubs("Ag_cyl",
                  Ag_cyl_innerRadius,
                  Ag_cyl_outerRadius,
-                 Ag_cyl_height,
+                 Ag_cyl_height/2,
                  Ag_cyl_startAngle,
                  Ag_cyl_spanningAngle));
+  */
   
   Kapton_cyl1LV->SetSolid(new G4Tubs("Kapton_cyl1",
                  Kapton_cyl1_innerRadius,
                  Kapton_cyl1_outerRadius,
-                 Kapton_cyl1_height,
+                 Kapton_cyl1_height/2,
                  Kapton_cyl1_startAngle,
                  Kapton_cyl1_spanningAngle));
   
   Cu_cylLV->SetSolid(new G4Tubs("Cu_cyl",
                  Cu_cyl_innerRadius,
                  Cu_cyl_outerRadius,
-                 Cu_cyl_height,
+                 Cu_cyl_height/2,
                  Cu_cyl_startAngle,
                  Cu_cyl_spanningAngle));
                  

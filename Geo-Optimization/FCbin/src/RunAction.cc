@@ -14,13 +14,24 @@
 
 RunAction::RunAction() : G4UserRunAction() {}
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
-void RunAction::BeginOfRunAction(const G4Run* /*run*/) {}
+
+void RunAction::BeginOfRunAction(const G4Run* run) {
+  // Primary thread
+  if ( G4Threading::G4GetThreadId() == 0 ) {
+    // Primary energy (run) number
+    G4int E_Num = run->GetRunID();
+    G4cout << "Running energy #" << E_Num << G4endl;
+  }
+}
 
 void RunAction::EndOfRunAction(const G4Run* run) {
   // Vars, data and file structures
+  G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
   G4String fileVarGet;
   G4double runGain = 0; // Sum of event gains...
   G4double runGainAverage = 0; // ... averaged
+  G4double runGainVar = 0; // variance of events gains
+  G4double runGainError = 0; // SD of events gains
   G4int beamCharge = run->GetNumberOfEventToBeProcessed();
   G4int runID = run->GetRunID();
   std::ofstream dataFile;
@@ -39,17 +50,21 @@ void RunAction::EndOfRunAction(const G4Run* run) {
     runGain += atof(fileVarGet);
   }
   runGainAverage = runGain/beamCharge;
-
-  // Signal error calculation
-  G4double signal_error = (1 - runGainAverage)*100.000;
+  // Acquire standard deviation N events (reread run output)
+  std::ifstream rerunFile(runFileName);
+  while(rerunFile.good()) {
+    getline(rerunFile, fileVarGet);
+    runGainVar += pow(atof(fileVarGet) - runGainAverage, 2)/beamCharge;
+  }
+  runGainError = pow(runGainVar, 0.5);
 
   // Run summary
   std::ostringstream rawGainFileName;
-  rawGainFileName << data_dir << "error.txt";
+  rawGainFileName << data_dir << "gain.txt";
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << signal_error << "\n";
+  gainFile << energies[runID%7] << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
   //G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;

@@ -4,7 +4,7 @@
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  ../FCbin/include/ActionInitialization.hh
  ../FCbin/include/DetectorConstruction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Plane3D.h
@@ -59,6 +59,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/memory.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/noncopyable.h
+ /usr/local/geant4/install/include/Geant4/CLHEP/Utility/thread_local.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/type_traits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
@@ -217,7 +218,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4EmMessenger.hh
  /usr/local/geant4/install/include/Geant4/G4EmStandardPhysics.hh
  /usr/local/geant4/install/include/Geant4/G4EnergyRangeManager.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4EquationOfMotion.hh
  /usr/local/geant4/install/include/Geant4/G4EquationOfMotion.icc
  /usr/local/geant4/install/include/Geant4/G4Eta.hh
@@ -227,7 +227,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4EventGenerator.hh
  /usr/local/geant4/install/include/Geant4/G4EventManager.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
- /usr/local/geant4/install/include/Geant4/G4ExcitationHandler.hh
  /usr/local/geant4/install/include/Geant4/G4ExcitedString.hh
  /usr/local/geant4/install/include/Geant4/G4ExcitedStringDecay.hh
  /usr/local/geant4/install/include/Geant4/G4ExcitedStringVector.hh
@@ -295,7 +294,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4InuclParticle.hh
  /usr/local/geant4/install/include/Geant4/G4InuclParticleNames.hh
  /usr/local/geant4/install/include/Geant4/G4IonPhysics.hh
- /usr/local/geant4/install/include/Geant4/G4IonTable.hh
  /usr/local/geant4/install/include/Geant4/G4IonisParamElm.hh
  /usr/local/geant4/install/include/Geant4/G4IonisParamMat.hh
  /usr/local/geant4/install/include/Geant4/G4Ions.hh
@@ -361,6 +359,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4MuonVDNuclearModel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistoryPool.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
  /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
@@ -416,7 +415,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4PartonVector.hh
  /usr/local/geant4/install/include/Geant4/G4PhotoNuclearCrossSection.hh
  /usr/local/geant4/install/include/Geant4/G4PhotoNuclearProcess.hh
- /usr/local/geant4/install/include/Geant4/G4PhysicalConstants.hh
  /usr/local/geant4/install/include/Geant4/G4PhysicalVolumeModel.hh
  /usr/local/geant4/install/include/Geant4/G4PhysicsListHelper.hh
  /usr/local/geant4/install/include/Geant4/G4PhysicsListOrderingParameter.hh
@@ -442,7 +440,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4Positron.hh
  /usr/local/geant4/install/include/Geant4/G4PositronNuclearProcess.hh
  /usr/local/geant4/install/include/Geant4/G4Pow.hh
- /usr/local/geant4/install/include/Geant4/G4PreCompoundModel.hh
  /usr/local/geant4/install/include/Geant4/G4PrimaryParticle.hh
  /usr/local/geant4/install/include/Geant4/G4PrimaryTransformer.hh
  /usr/local/geant4/install/include/Geant4/G4PrimaryVertex.hh
@@ -467,7 +464,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4QuasiElasticChannel.hh
  /usr/local/geant4/install/include/Geant4/G4RNGHelper.hh
  /usr/local/geant4/install/include/Geant4/G4RayTracer.hh
- /usr/local/geant4/install/include/Geant4/G4ReactionDynamics.hh
  /usr/local/geant4/install/include/Geant4/G4ReactionProduct.hh
  /usr/local/geant4/install/include/Geant4/G4ReactionProductVector.hh
  /usr/local/geant4/install/include/Geant4/G4ReferenceCountedHandle.hh
@@ -483,6 +479,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4SPBaryonTable.hh
  /usr/local/geant4/install/include/Geant4/G4SPPartonInfo.hh
  /usr/local/geant4/install/include/Geant4/G4SafetyHelper.hh
+ /usr/local/geant4/install/include/Geant4/G4SampleResonance.hh
  /usr/local/geant4/install/include/Geant4/G4SandiaTable.hh
  /usr/local/geant4/install/include/Geant4/G4Scene.hh
  /usr/local/geant4/install/include/Geant4/G4Scene.icc
@@ -522,7 +519,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4String.icc
  /usr/local/geant4/install/include/Geant4/G4StringModel.hh
  /usr/local/geant4/install/include/Geant4/G4SynchrotronRadiation.hh
- /usr/local/geant4/install/include/Geant4/G4SystemOfUnits.hh
  /usr/local/geant4/install/include/Geant4/G4THitsCollection.hh
  /usr/local/geant4/install/include/Geant4/G4THitsMap.hh
  /usr/local/geant4/install/include/Geant4/G4TauMinus.hh
@@ -678,142 +674,24 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
  ../FCbin/include/PrimaryGeneratorAction.hh
  ../FCbin/include/RunAction.hh
  ../FCbin/include/SteppingAction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc
- /usr/local/geant4/install/include/Geant4/CLHEP/Units/PhysicalConstants.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Units/SystemOfUnits.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/LorentzVector.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/LorentzVector.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/Rotation.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/Rotation.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationInterfaces.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationInterfaces.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationX.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationX.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationY.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationY.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationZ.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationZ.icc
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.h
- /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.icc
- /usr/local/geant4/install/include/Geant4/G4AffineTransform.hh
- /usr/local/geant4/install/include/Geant4/G4AffineTransform.icc
- /usr/local/geant4/install/include/Geant4/G4Allocator.hh
- /usr/local/geant4/install/include/Geant4/G4AllocatorPool.hh
- /usr/local/geant4/install/include/Geant4/G4ApplicationState.hh
- /usr/local/geant4/install/include/Geant4/G4AutoLock.hh
- /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.hh
- /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.icc
- /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
- /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
- /usr/local/geant4/install/include/Geant4/G4DCofThisEvent.hh
- /usr/local/geant4/install/include/Geant4/G4DataInterpolation.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
- /usr/local/geant4/install/include/Geant4/G4Event.hh
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
- /usr/local/geant4/install/include/Geant4/G4GRSSolid.hh
- /usr/local/geant4/install/include/Geant4/G4GRSSolid.icc
- /usr/local/geant4/install/include/Geant4/G4GRSVolume.hh
- /usr/local/geant4/install/include/Geant4/G4GRSVolume.icc
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSource.hh
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSourceMessenger.hh
- /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
- /usr/local/geant4/install/include/Geant4/G4HCofThisEvent.hh
- /usr/local/geant4/install/include/Geant4/G4Log.hh
- /usr/local/geant4/install/include/Geant4/G4LogicalVolume.hh
- /usr/local/geant4/install/include/Geant4/G4LogicalVolume.icc
- /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
- /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
- /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
- /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
- /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
- /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.icc
- /usr/local/geant4/install/include/Geant4/G4NavigationLogger.hh
- /usr/local/geant4/install/include/Geant4/G4Navigator.hh
- /usr/local/geant4/install/include/Geant4/G4Navigator.icc
- /usr/local/geant4/install/include/Geant4/G4NormalNavigation.hh
- /usr/local/geant4/install/include/Geant4/G4NormalNavigation.icc
- /usr/local/geant4/install/include/Geant4/G4PDefSplitter.hh
- /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.hh
- /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.icc
- /usr/local/geant4/install/include/Geant4/G4ParticleDefinition.hh
- /usr/local/geant4/install/include/Geant4/G4ParticleDefinition.icc
- /usr/local/geant4/install/include/Geant4/G4ParticleMomentum.hh
- /usr/local/geant4/install/include/Geant4/G4PhysicsOrderedFreeVector.hh
- /usr/local/geant4/install/include/Geant4/G4PhysicsOrderedFreeVector.icc
- /usr/local/geant4/install/include/Geant4/G4PhysicsVector.hh
- /usr/local/geant4/install/include/Geant4/G4PhysicsVector.icc
- /usr/local/geant4/install/include/Geant4/G4PhysicsVectorType.hh
- /usr/local/geant4/install/include/Geant4/G4PrimaryParticle.hh
- /usr/local/geant4/install/include/Geant4/G4PrimaryVertex.hh
- /usr/local/geant4/install/include/Geant4/G4ReferenceCountedHandle.hh
- /usr/local/geant4/install/include/Geant4/G4Region.hh
- /usr/local/geant4/install/include/Geant4/G4Region.icc
- /usr/local/geant4/install/include/Geant4/G4RegularNavigation.hh
- /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.hh
- /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.icc
- /usr/local/geant4/install/include/Geant4/G4RotationMatrix.hh
- /usr/local/geant4/install/include/Geant4/G4SPSAngDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSEneDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSPosDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSRandomGenerator.hh
- /usr/local/geant4/install/include/Geant4/G4SingleParticleSource.hh
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.hh
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.icc
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelNode.hh
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelNode.icc
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.hh
- /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.icc
  /usr/local/geant4/install/include/Geant4/G4String.hh
  /usr/local/geant4/install/include/Geant4/G4String.icc
- /usr/local/geant4/install/include/Geant4/G4Threading.hh
- /usr/local/geant4/install/include/Geant4/G4ThreeVector.hh
- /usr/local/geant4/install/include/Geant4/G4TouchableHandle.hh
- /usr/local/geant4/install/include/Geant4/G4TouchableHistory.hh
- /usr/local/geant4/install/include/Geant4/G4TouchableHistory.icc
- /usr/local/geant4/install/include/Geant4/G4TouchableHistoryHandle.hh
- /usr/local/geant4/install/include/Geant4/G4TrajectoryContainer.hh
  /usr/local/geant4/install/include/Geant4/G4Types.hh
- /usr/local/geant4/install/include/Geant4/G4UIcommand.hh
- /usr/local/geant4/install/include/Geant4/G4UIdirectory.hh
- /usr/local/geant4/install/include/Geant4/G4UImessenger.hh
- /usr/local/geant4/install/include/Geant4/G4UIparameter.hh
- /usr/local/geant4/install/include/Geant4/G4UItokenNum.hh
  /usr/local/geant4/install/include/Geant4/G4UserEventAction.hh
  /usr/local/geant4/install/include/Geant4/G4UserRunAction.hh
  /usr/local/geant4/install/include/Geant4/G4UserSteppingAction.hh
- /usr/local/geant4/install/include/Geant4/G4VDigiCollection.hh
- /usr/local/geant4/install/include/Geant4/G4VHitsCollection.hh
- /usr/local/geant4/install/include/Geant4/G4VPVParameterisation.hh
- /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.hh
- /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.icc
- /usr/local/geant4/install/include/Geant4/G4VPrimaryGenerator.hh
- /usr/local/geant4/install/include/Geant4/G4VSolid.hh
- /usr/local/geant4/install/include/Geant4/G4VSolid.icc
- /usr/local/geant4/install/include/Geant4/G4VTouchable.hh
- /usr/local/geant4/install/include/Geant4/G4VTouchable.icc
- /usr/local/geant4/install/include/Geant4/G4VTrajectory.hh
  /usr/local/geant4/install/include/Geant4/G4VUserActionInitialization.hh
  /usr/local/geant4/install/include/Geant4/G4VUserDetectorConstruction.hh
- /usr/local/geant4/install/include/Geant4/G4VUserEventInformation.hh
  /usr/local/geant4/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
- /usr/local/geant4/install/include/Geant4/G4VVolumeMaterialScanner.hh
- /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.hh
- /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4ios.hh
- /usr/local/geant4/install/include/Geant4/evtdefs.hh
- /usr/local/geant4/install/include/Geant4/geomdefs.hh
- /usr/local/geant4/install/include/Geant4/geomwdefs.hh
  /usr/local/geant4/install/include/Geant4/globals.hh
- /usr/local/geant4/install/include/Geant4/pwdefs.hh
  /usr/local/geant4/install/include/Geant4/templates.hh
  /usr/local/geant4/install/include/Geant4/tls.hh
- /usr/local/geant4/install/include/Geant4/windefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  ../FCbin/include/DetectorConstruction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -839,8 +717,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/RotationZ.icc
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.icc
- /usr/local/geant4/install/include/Geant4/G4Allocator.hh
- /usr/local/geant4/install/include/Geant4/G4AllocatorPool.hh
  /usr/local/geant4/install/include/Geant4/G4ApplicationState.hh
  /usr/local/geant4/install/include/Geant4/G4AutoDelete.hh
  /usr/local/geant4/install/include/Geant4/G4AutoLock.hh
@@ -945,7 +821,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  ../FCbin/include/Analysis.hh
  ../FCbin/include/EventAction.hh
  ../FCbin/include/RunAction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -993,6 +869,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/memory.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/noncopyable.h
+ /usr/local/geant4/install/include/Geant4/CLHEP/Utility/thread_local.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/type_traits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
@@ -1021,6 +898,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.hh
  /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.icc
  /usr/local/geant4/install/include/Geant4/G4BaseAnalysisManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseFileManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4BinScheme.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
@@ -1034,7 +913,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Element.hh
  /usr/local/geant4/install/include/Geant4/G4ElementTable.hh
  /usr/local/geant4/install/include/Geant4/G4ElementVector.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4Event.hh
  /usr/local/geant4/install/include/Geant4/G4EventManager.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
@@ -1049,6 +927,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4H1ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4H2ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4H3ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4HCofThisEvent.hh
  /usr/local/geant4/install/include/Geant4/G4HnInformation.hh
  /usr/local/geant4/install/include/Geant4/G4HnManager.hh
@@ -1083,6 +962,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4MaterialTable.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistoryPool.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
  /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
@@ -1093,6 +973,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4NormalNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4NormalNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4OrderedTable.hh
+ /usr/local/geant4/install/include/Geant4/G4P1ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4P2ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4PDefSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.icc
@@ -1179,12 +1061,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4UserTrackingAction.hh
  /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.hh
  /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.icc
  /usr/local/geant4/install/include/Geant4/G4VDigiCollection.hh
  /usr/local/geant4/install/include/Geant4/G4VFileManager.hh
  /usr/local/geant4/install/include/Geant4/G4VH1Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VH2Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VH3Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VHitsCollection.hh
  /usr/local/geant4/install/include/Geant4/G4VNtupleManager.hh
+ /usr/local/geant4/install/include/Geant4/G4VP1Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VP2Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VPVParameterisation.hh
  /usr/local/geant4/install/include/Geant4/G4VParticleChange.hh
  /usr/local/geant4/install/include/Geant4/G4VParticleChange.icc
@@ -1204,6 +1091,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4XmlAnalysisManager.hh
  /usr/local/geant4/install/include/Geant4/G4XmlAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4XmlAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4XmlAnalysisReader.icc
  /usr/local/geant4/install/include/Geant4/G4XmlNtupleManager.hh
  /usr/local/geant4/install/include/Geant4/G4ios.hh
  /usr/local/geant4/install/include/Geant4/Randomize.hh
@@ -1217,16 +1106,58 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/pwdefs.hh
  /usr/local/geant4/install/include/Geant4/templates.hh
  /usr/local/geant4/install/include/Geant4/tls.hh
+ /usr/local/geant4/install/include/Geant4/tools/S_STRING
+ /usr/local/geant4/install/include/Geant4/tools/aida_ntuple
+ /usr/local/geant4/install/include/Geant4/tools/array
+ /usr/local/geant4/install/include/Geant4/tools/columns
+ /usr/local/geant4/install/include/Geant4/tools/file
+ /usr/local/geant4/install/include/Geant4/tools/file_format
+ /usr/local/geant4/install/include/Geant4/tools/file_reader
+ /usr/local/geant4/install/include/Geant4/tools/fileis
+ /usr/local/geant4/install/include/Geant4/tools/forit
+ /usr/local/geant4/install/include/Geant4/tools/gzip
+ /usr/local/geant4/install/include/Geant4/tools/handle
  /usr/local/geant4/install/include/Geant4/tools/histo/../mem
+ /usr/local/geant4/install/include/Geant4/tools/histo/../mnmx
+ /usr/local/geant4/install/include/Geant4/tools/histo/axes
  /usr/local/geant4/install/include/Geant4/tools/histo/axis
  /usr/local/geant4/install/include/Geant4/tools/histo/b1
  /usr/local/geant4/install/include/Geant4/tools/histo/b2
+ /usr/local/geant4/install/include/Geant4/tools/histo/b3
+ /usr/local/geant4/install/include/Geant4/tools/histo/base_cloud
  /usr/local/geant4/install/include/Geant4/tools/histo/base_histo
+ /usr/local/geant4/install/include/Geant4/tools/histo/c1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/c2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/c3d
+ /usr/local/geant4/install/include/Geant4/tools/histo/dps
  /usr/local/geant4/install/include/Geant4/tools/histo/h1
  /usr/local/geant4/install/include/Geant4/tools/histo/h1d
  /usr/local/geant4/install/include/Geant4/tools/histo/h2
  /usr/local/geant4/install/include/Geant4/tools/histo/h2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3d
  /usr/local/geant4/install/include/Geant4/tools/histo/histo_data
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/profile_data
+ /usr/local/geant4/install/include/Geant4/tools/mem
+ /usr/local/geant4/install/include/Geant4/tools/mnmx
+ /usr/local/geant4/install/include/Geant4/tools/ntuple_binding
+ /usr/local/geant4/install/include/Geant4/tools/path
+ /usr/local/geant4/install/include/Geant4/tools/raxml
+ /usr/local/geant4/install/include/Geant4/tools/scast
+ /usr/local/geant4/install/include/Geant4/tools/signature
+ /usr/local/geant4/install/include/Geant4/tools/sprintf
+ /usr/local/geant4/install/include/Geant4/tools/sto
+ /usr/local/geant4/install/include/Geant4/tools/strip
+ /usr/local/geant4/install/include/Geant4/tools/stype
+ /usr/local/geant4/install/include/Geant4/tools/tos
+ /usr/local/geant4/install/include/Geant4/tools/value
+ /usr/local/geant4/install/include/Geant4/tools/value.icc
+ /usr/local/geant4/install/include/Geant4/tools/vfind
+ /usr/local/geant4/install/include/Geant4/tools/vmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/../charmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/../cid
  /usr/local/geant4/install/include/Geant4/tools/waxml/../cids
@@ -1238,17 +1169,25 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/tools/waxml/../snpf
  /usr/local/geant4/install/include/Geant4/tools/waxml/../sout
  /usr/local/geant4/install/include/Geant4/tools/waxml/../sprintf
+ /usr/local/geant4/install/include/Geant4/tools/waxml/../srep
  /usr/local/geant4/install/include/Geant4/tools/waxml/../tos
  /usr/local/geant4/install/include/Geant4/tools/waxml/../typedefs
  /usr/local/geant4/install/include/Geant4/tools/waxml/../vfind
  /usr/local/geant4/install/include/Geant4/tools/waxml/../vmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/ntuple
+ /usr/local/geant4/install/include/Geant4/tools/words
+ /usr/local/geant4/install/include/Geant4/tools/xml/../S_STRING
+ /usr/local/geant4/install/include/Geant4/tools/xml/../sto
+ /usr/local/geant4/install/include/Geant4/tools/xml/../strip
+ /usr/local/geant4/install/include/Geant4/tools/xml/element
+ /usr/local/geant4/install/include/Geant4/tools/xml/loader
+ /usr/local/geant4/install/include/Geant4/tools/xml/tree
  /usr/local/geant4/install/include/Geant4/trajectoryControl.hh
  /usr/local/geant4/install/include/Geant4/trkdefs.hh
  /usr/local/geant4/install/include/Geant4/windefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  ../FCbin/include/PrimaryGeneratorAction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -1302,6 +1241,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/memory.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/noncopyable.h
+ /usr/local/geant4/install/include/Geant4/CLHEP/Utility/thread_local.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/type_traits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
@@ -1334,7 +1274,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4CSGSolid.hh
  /usr/local/geant4/install/include/Geant4/G4ClassificationOfNewTrack.hh
  /usr/local/geant4/install/include/Geant4/G4DCofThisEvent.hh
- /usr/local/geant4/install/include/Geant4/G4DataInterpolation.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.icc
  /usr/local/geant4/install/include/Geant4/G4DynamicParticle.hh
@@ -1343,7 +1282,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Element.hh
  /usr/local/geant4/install/include/Geant4/G4ElementTable.hh
  /usr/local/geant4/install/include/Geant4/G4ElementVector.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4Event.hh
  /usr/local/geant4/install/include/Geant4/G4EventManager.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
@@ -1354,8 +1292,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4GRSSolid.icc
  /usr/local/geant4/install/include/Geant4/G4GRSVolume.hh
  /usr/local/geant4/install/include/Geant4/G4GRSVolume.icc
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSource.hh
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSourceMessenger.hh
  /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4HCofThisEvent.hh
  /usr/local/geant4/install/include/Geant4/G4IonisParamElm.hh
@@ -1390,6 +1326,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4MaterialTable.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistoryPool.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
  /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
@@ -1408,6 +1345,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4ParticleChange.icc
  /usr/local/geant4/install/include/Geant4/G4ParticleDefinition.hh
  /usr/local/geant4/install/include/Geant4/G4ParticleDefinition.icc
+ /usr/local/geant4/install/include/Geant4/G4ParticleGun.hh
  /usr/local/geant4/install/include/Geant4/G4ParticleMomentum.hh
  /usr/local/geant4/install/include/Geant4/G4ParticleTable.hh
  /usr/local/geant4/install/include/Geant4/G4ParticleTable.icc
@@ -1439,12 +1377,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4RotationMatrix.hh
  /usr/local/geant4/install/include/Geant4/G4RunManager.hh
  /usr/local/geant4/install/include/Geant4/G4RunManagerKernel.hh
- /usr/local/geant4/install/include/Geant4/G4SPSAngDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSEneDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSPosDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSRandomGenerator.hh
  /usr/local/geant4/install/include/Geant4/G4SandiaTable.hh
- /usr/local/geant4/install/include/Geant4/G4SingleParticleSource.hh
  /usr/local/geant4/install/include/Geant4/G4SmartTrackStack.hh
  /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.hh
  /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.icc
@@ -1544,7 +1477,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  ../FCbin/include/Analysis.hh
  ../FCbin/include/PrimaryGeneratorAction.hh
  ../FCbin/include/RunAction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -1592,6 +1525,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/memory.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/noncopyable.h
+ /usr/local/geant4/install/include/Geant4/CLHEP/Utility/thread_local.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/type_traits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
@@ -1620,12 +1554,13 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.hh
  /usr/local/geant4/install/include/Geant4/G4AuxiliaryNavServices.icc
  /usr/local/geant4/install/include/Geant4/G4BaseAnalysisManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseFileManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4BinScheme.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
  /usr/local/geant4/install/include/Geant4/G4ClassificationOfNewTrack.hh
  /usr/local/geant4/install/include/Geant4/G4DCofThisEvent.hh
- /usr/local/geant4/install/include/Geant4/G4DataInterpolation.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.hh
  /usr/local/geant4/install/include/Geant4/G4DataVector.icc
  /usr/local/geant4/install/include/Geant4/G4DynamicParticle.hh
@@ -1634,7 +1569,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Element.hh
  /usr/local/geant4/install/include/Geant4/G4ElementTable.hh
  /usr/local/geant4/install/include/Geant4/G4ElementVector.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4Event.hh
  /usr/local/geant4/install/include/Geant4/G4EventManager.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
@@ -1646,11 +1580,10 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4GRSSolid.icc
  /usr/local/geant4/install/include/Geant4/G4GRSVolume.hh
  /usr/local/geant4/install/include/Geant4/G4GRSVolume.icc
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSource.hh
- /usr/local/geant4/install/include/Geant4/G4GeneralParticleSourceMessenger.hh
  /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4H1ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4H2ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4H3ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4HCofThisEvent.hh
  /usr/local/geant4/install/include/Geant4/G4HnInformation.hh
  /usr/local/geant4/install/include/Geant4/G4HnManager.hh
@@ -1685,6 +1618,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4MaterialTable.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistoryPool.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
  /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
@@ -1695,6 +1629,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4NormalNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4NormalNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4OrderedTable.hh
+ /usr/local/geant4/install/include/Geant4/G4P1ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4P2ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4PDefSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.icc
@@ -1732,12 +1668,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Run.hh
  /usr/local/geant4/install/include/Geant4/G4RunManager.hh
  /usr/local/geant4/install/include/Geant4/G4RunManagerKernel.hh
- /usr/local/geant4/install/include/Geant4/G4SPSAngDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSEneDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSPosDistribution.hh
- /usr/local/geant4/install/include/Geant4/G4SPSRandomGenerator.hh
  /usr/local/geant4/install/include/Geant4/G4SandiaTable.hh
- /usr/local/geant4/install/include/Geant4/G4SingleParticleSource.hh
  /usr/local/geant4/install/include/Geant4/G4SmartTrackStack.hh
  /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.hh
  /usr/local/geant4/install/include/Geant4/G4SmartVoxelHeader.icc
@@ -1786,18 +1717,22 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4UserTrackingAction.hh
  /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.hh
  /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.icc
  /usr/local/geant4/install/include/Geant4/G4VDigiCollection.hh
  /usr/local/geant4/install/include/Geant4/G4VFileManager.hh
  /usr/local/geant4/install/include/Geant4/G4VH1Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VH2Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VH3Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VHitsCollection.hh
  /usr/local/geant4/install/include/Geant4/G4VNtupleManager.hh
+ /usr/local/geant4/install/include/Geant4/G4VP1Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VP2Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VPVParameterisation.hh
  /usr/local/geant4/install/include/Geant4/G4VParticleChange.hh
  /usr/local/geant4/install/include/Geant4/G4VParticleChange.icc
  /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.hh
  /usr/local/geant4/install/include/Geant4/G4VPhysicalVolume.icc
- /usr/local/geant4/install/include/Geant4/G4VPrimaryGenerator.hh
  /usr/local/geant4/install/include/Geant4/G4VProcess.hh
  /usr/local/geant4/install/include/Geant4/G4VSolid.hh
  /usr/local/geant4/install/include/Geant4/G4VSolid.icc
@@ -1813,6 +1748,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.icc
  /usr/local/geant4/install/include/Geant4/G4XmlAnalysisManager.hh
  /usr/local/geant4/install/include/Geant4/G4XmlAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4XmlAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4XmlAnalysisReader.icc
  /usr/local/geant4/install/include/Geant4/G4XmlNtupleManager.hh
  /usr/local/geant4/install/include/Geant4/G4ios.hh
  /usr/local/geant4/install/include/Geant4/Randomize.hh
@@ -1826,16 +1763,58 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/pwdefs.hh
  /usr/local/geant4/install/include/Geant4/templates.hh
  /usr/local/geant4/install/include/Geant4/tls.hh
+ /usr/local/geant4/install/include/Geant4/tools/S_STRING
+ /usr/local/geant4/install/include/Geant4/tools/aida_ntuple
+ /usr/local/geant4/install/include/Geant4/tools/array
+ /usr/local/geant4/install/include/Geant4/tools/columns
+ /usr/local/geant4/install/include/Geant4/tools/file
+ /usr/local/geant4/install/include/Geant4/tools/file_format
+ /usr/local/geant4/install/include/Geant4/tools/file_reader
+ /usr/local/geant4/install/include/Geant4/tools/fileis
+ /usr/local/geant4/install/include/Geant4/tools/forit
+ /usr/local/geant4/install/include/Geant4/tools/gzip
+ /usr/local/geant4/install/include/Geant4/tools/handle
  /usr/local/geant4/install/include/Geant4/tools/histo/../mem
+ /usr/local/geant4/install/include/Geant4/tools/histo/../mnmx
+ /usr/local/geant4/install/include/Geant4/tools/histo/axes
  /usr/local/geant4/install/include/Geant4/tools/histo/axis
  /usr/local/geant4/install/include/Geant4/tools/histo/b1
  /usr/local/geant4/install/include/Geant4/tools/histo/b2
+ /usr/local/geant4/install/include/Geant4/tools/histo/b3
+ /usr/local/geant4/install/include/Geant4/tools/histo/base_cloud
  /usr/local/geant4/install/include/Geant4/tools/histo/base_histo
+ /usr/local/geant4/install/include/Geant4/tools/histo/c1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/c2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/c3d
+ /usr/local/geant4/install/include/Geant4/tools/histo/dps
  /usr/local/geant4/install/include/Geant4/tools/histo/h1
  /usr/local/geant4/install/include/Geant4/tools/histo/h1d
  /usr/local/geant4/install/include/Geant4/tools/histo/h2
  /usr/local/geant4/install/include/Geant4/tools/histo/h2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3d
  /usr/local/geant4/install/include/Geant4/tools/histo/histo_data
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/profile_data
+ /usr/local/geant4/install/include/Geant4/tools/mem
+ /usr/local/geant4/install/include/Geant4/tools/mnmx
+ /usr/local/geant4/install/include/Geant4/tools/ntuple_binding
+ /usr/local/geant4/install/include/Geant4/tools/path
+ /usr/local/geant4/install/include/Geant4/tools/raxml
+ /usr/local/geant4/install/include/Geant4/tools/scast
+ /usr/local/geant4/install/include/Geant4/tools/signature
+ /usr/local/geant4/install/include/Geant4/tools/sprintf
+ /usr/local/geant4/install/include/Geant4/tools/sto
+ /usr/local/geant4/install/include/Geant4/tools/strip
+ /usr/local/geant4/install/include/Geant4/tools/stype
+ /usr/local/geant4/install/include/Geant4/tools/tos
+ /usr/local/geant4/install/include/Geant4/tools/value
+ /usr/local/geant4/install/include/Geant4/tools/value.icc
+ /usr/local/geant4/install/include/Geant4/tools/vfind
+ /usr/local/geant4/install/include/Geant4/tools/vmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/../charmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/../cid
  /usr/local/geant4/install/include/Geant4/tools/waxml/../cids
@@ -1847,11 +1826,19 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/tools/waxml/../snpf
  /usr/local/geant4/install/include/Geant4/tools/waxml/../sout
  /usr/local/geant4/install/include/Geant4/tools/waxml/../sprintf
+ /usr/local/geant4/install/include/Geant4/tools/waxml/../srep
  /usr/local/geant4/install/include/Geant4/tools/waxml/../tos
  /usr/local/geant4/install/include/Geant4/tools/waxml/../typedefs
  /usr/local/geant4/install/include/Geant4/tools/waxml/../vfind
  /usr/local/geant4/install/include/Geant4/tools/waxml/../vmanip
  /usr/local/geant4/install/include/Geant4/tools/waxml/ntuple
+ /usr/local/geant4/install/include/Geant4/tools/words
+ /usr/local/geant4/install/include/Geant4/tools/xml/../S_STRING
+ /usr/local/geant4/install/include/Geant4/tools/xml/../sto
+ /usr/local/geant4/install/include/Geant4/tools/xml/../strip
+ /usr/local/geant4/install/include/Geant4/tools/xml/element
+ /usr/local/geant4/install/include/Geant4/tools/xml/loader
+ /usr/local/geant4/install/include/Geant4/tools/xml/tree
  /usr/local/geant4/install/include/Geant4/trajectoryControl.hh
  /usr/local/geant4/install/include/Geant4/trkdefs.hh
  /usr/local/geant4/install/include/Geant4/windefs.hh
@@ -1859,7 +1846,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
  ../FCbin/include/DetectorConstruction.hh
  ../FCbin/include/EventAction.hh
  ../FCbin/include/SteppingAction.hh
- /home/sigma/Git/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -1907,6 +1894,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/memory.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/noncopyable.h
+ /usr/local/geant4/install/include/Geant4/CLHEP/Utility/thread_local.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/type_traits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/AxisAngle.icc
@@ -1944,7 +1932,6 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4Element.hh
  /usr/local/geant4/install/include/Geant4/G4ElementTable.hh
  /usr/local/geant4/install/include/Geant4/G4ElementVector.hh
- /usr/local/geant4/install/include/Geant4/G4EnhancedVecAllocator.hh
  /usr/local/geant4/install/include/Geant4/G4Event.hh
  /usr/local/geant4/install/include/Geant4/G4EventManager.hh
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
@@ -1988,6 +1975,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4MaterialTable.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationHistory.icc
+ /usr/local/geant4/install/include/Geant4/G4NavigationHistoryPool.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.hh
  /usr/local/geant4/install/include/Geant4/G4NavigationLevel.icc
  /usr/local/geant4/install/include/Geant4/G4NavigationLevelRep.hh
