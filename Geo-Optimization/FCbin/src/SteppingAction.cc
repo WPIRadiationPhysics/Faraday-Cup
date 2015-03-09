@@ -52,7 +52,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   std::ifstream flag_stream(film_flag);
     
   // Acquire thickness index
-  G4double Kapton_Thickness[5] = {0.010, 0.020, 0.030, 0.040, 0.050};
+  G4double Kapton_Thickness[5] = {0.002, 0.004, 0.006, 0.008, 0.010};
   G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
   r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
   h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];

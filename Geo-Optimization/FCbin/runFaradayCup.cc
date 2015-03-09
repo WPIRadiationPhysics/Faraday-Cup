@@ -102,7 +102,7 @@ int main(int argc,char** argv) {
     UImanager->ApplyCommand(cutCommand);
     
     // Constant vars
-	G4int KA_thickness[5] = {10, 20, 30, 40, 50};
+	G4int KA_thickness[5] = {2, 4, 6, 8, 10};
 	G4String data_dir = "data/";
 	for ( G4int thickness_i=0; thickness_i<5; thickness_i++ ) {
 	  // Assign thickness

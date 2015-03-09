@@ -162,7 +162,7 @@ FCsrc_BINARY_DIR:STATIC=/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Opti
 FCsrc_SOURCE_DIR:STATIC=/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin
 
 //No help, variable specified on the command line.
-Geant4_DIR:UNINITIALIZED=/usr/local/geant4/install/lib/Geant4-10.1.0/
+Geant4_DIR:UNINITIALIZED=/usr/local/geant4/install/lib/Geant4-10.0.3/
 
 //Value Computed by CMake
 Project_BINARY_DIR:STATIC=/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build

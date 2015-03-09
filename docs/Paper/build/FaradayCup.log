@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.3.26)  14 JAN 2015 21:28
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.3.26)  2 MAR 2015 22:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1282,17 +1282,17 @@ File: figures/fig_G4_dist.png Graphic file (type png)
 Package pdftex.def Info: figures/fig_G4_dist.png used on input line 362.
 (pdftex.def)             Requested size: 361.34999pt x 125.93655pt.
 
-<figures/fig_G4_results.png, id=174, 642.4pt x 481.8pt>
-File: figures/fig_G4_results.png Graphic file (type png)
+<figures/fig_results.png, id=174, 642.4pt x 481.8pt>
+File: figures/fig_results.png Graphic file (type png)
 
-<use figures/fig_G4_results.png>
-Package pdftex.def Info: figures/fig_G4_results.png used on input line 369.
+<use figures/fig_results.png>
+Package pdftex.def Info: figures/fig_results.png used on input line 369.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[9 <./figures/fig_G4_dist.png (PNG copy)>] [10 <./figures/fig_G4_results.png>]
+[9 <./figures/fig_G4_dist.png (PNG copy)>] [10 <./figures/fig_results.png>]
 (build/FaradayCup.bbl)
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
@@ -1312,7 +1312,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 424.
  ) 
 Here is how much of TeX's memory you used:
  17686 strings out of 495059
- 332060 string characters out of 3182030
+ 332045 string characters out of 3182030
  404028 words of memory out of 3000000
  20365 multiletter control sequences out of 15000+200000
  51970 words of font info for 171 fonts, out of 3000000 for 9000
@@ -1329,7 +1329,7 @@ sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on build/FaradayCup.pdf (12 pages, 286887 bytes).
+Output written on build/FaradayCup.pdf (12 pages, 287646 bytes).
 PDF statistics:
  257 PDF objects out of 1000 (max. 8388607)
  217 compressed objects within 3 object streams

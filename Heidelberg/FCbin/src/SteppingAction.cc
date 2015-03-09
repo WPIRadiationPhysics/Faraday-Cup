@@ -26,7 +26,7 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
-	// Feature: remove step references in var names, and check right away for "last step"
+  // Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 

@@ -74,9 +74,9 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Kapton cylinder parameters (layers 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
-  // S59 Film thickness initially
-  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.059*mm;
-  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.059*mm;
+  // S10 Film thickness initially
+  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.002*mm;
+  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.002*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
@@ -266,7 +266,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
 void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
   // Variable dimensions
-  G4double Kapton_Thickness[5] = {0.010*mm, 0.020*mm, 0.030*mm, 0.040*mm, 0.050*mm}; // 10-50 microns
+  G4double Kapton_Thickness[5] = {0.002*mm, 0.004*mm, 0.006*mm, 0.008*mm, 0.010*mm}; // 10-50 microns
   
   // Acquire logical and physical volumes
   G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");

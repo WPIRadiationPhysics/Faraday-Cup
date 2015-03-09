@@ -49,7 +49,9 @@ set(runFaradayCup_SCRIPTS
   init_vis.mac
   run.in
   debugrun.mac
-  run.mac
+  run100.mac
+  run1000.mac
+  run10000.mac
   vis.mac
   dataPlot.gnu
   )
