@@ -98,13 +98,14 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 	// Kapton Optimization problem- 3D data
 	// micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.004 mm";
+    G4String cutCommand = "/run/setCut 0.002 mm";
     UImanager->ApplyCommand(cutCommand);
-    
+	
     // Constant vars
-	G4int KA_thickness[5] = {2, 4, 6, 8, 10};
+	G4int KA_thickness[8] = {1, 5, 10, 50, 100, 500, 1000, 5000};
 	G4String data_dir = "data/";
-	for ( G4int thickness_i=0; thickness_i<5; thickness_i++ ) {
+	
+	for ( G4int thickness_i=0; thickness_i<8; thickness_i++ ) {
 	  // Assign thickness
 	  detConstruction->KaptonThicknessIteration(thickness_i);
 	  runManager->GeometryHasBeenModified();
@@ -115,7 +116,7 @@ int main(int argc,char** argv) {
 	  G4String dirCommand = raw_dirCommand.str();
       system(dirCommand);
 	  
-	  // Run experimental beam energies
+      // Run experimental beam energies
 	  G4String command = "/control/execute ";
       UImanager->ApplyCommand(command+macro);
 
@@ -123,8 +124,8 @@ int main(int argc,char** argv) {
       // worker thread to be in control of file I/O)
       G4String runRm = "rm " + data_dir + "run*";
       system(runRm);
-      
-      // Save completed dataset as film iteration
+	  
+	  // Save completed dataset as film iteration
 	  std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
 	  G4String film_file = raw_film_file.str();
 	  G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
@@ -137,6 +138,40 @@ int main(int argc,char** argv) {
   }
   else {
     // interactive mode : define UI session
+    G4String cutCommand = "/run/setCut 0.004 mm";
+    UImanager->ApplyCommand(cutCommand);
+	
+    // Constant vars
+	G4int KA_thickness[8] = {1, 5, 10, 50, 100, 500, 1000, 5000};
+	G4String data_dir = "data/";
+	
+	for ( G4int thickness_i=0; thickness_i<8; thickness_i++ ) {
+	  // Assign thickness
+	  detConstruction->KaptonThicknessIteration(thickness_i);
+	  runManager->GeometryHasBeenModified();
+	  
+	  // Create data directory and leave thickness flag for SteppingAction
+	  std::ostringstream raw_dirCommand;
+	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
+	  G4String dirCommand = raw_dirCommand.str();
+      system(dirCommand);
+	  
+      // Run experimental beam energies
+	  G4String command = "/control/execute ";
+      UImanager->ApplyCommand(command+macro);
+
+      // Remove run logs (to be placed in RunAction when confirmed single
+      // worker thread to be in control of file I/O)
+      G4String runRm = "rm " + data_dir + "run*";
+      system(runRm);
+	  
+	  // Save completed dataset as film iteration
+	  std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
+	  G4String film_file = raw_film_file.str();
+	  G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
+	  system(filmcmd);
+    }
+    
 #ifdef G4UI_USE
     G4UIExecutive* ui = new G4UIExecutive(argc, argv, session);
 #ifdef G4VIS_USE
@@ -144,8 +179,7 @@ int main(int argc,char** argv) {
 #else
     UImanager->ApplyCommand("/control/execute init.mac"); 
 #endif
-    if (ui->IsGUI())
-      UImanager->ApplyCommand("/control/execute gui.mac");
+    if (ui->IsGUI()) { UImanager->ApplyCommand("/control/execute gui.mac"); }
     ui->SessionStart();
     delete ui;
 #endif

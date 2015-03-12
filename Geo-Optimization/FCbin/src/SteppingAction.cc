@@ -6,6 +6,7 @@
 #include "G4Run.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
+#include "G4SystemOfUnits.hh"
 
 #include <iostream>
 #include <fstream>
@@ -49,10 +50,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   std::ostringstream raw_film_flag;
   raw_film_flag << data_dir << ".flag";
   G4String film_flag = raw_film_flag.str();
-  std::ifstream flag_stream(film_flag);
+  std::ifstream flag_stream;
+  flag_stream.open(film_flag);
     
   // Acquire thickness index
-  G4double Kapton_Thickness[5] = {0.002, 0.004, 0.006, 0.008, 0.010};
+  G4double Kapton_Thickness[8] = {0.001, 0.005, 0.010, 0.050, 0.100, 0.500, 1, 5};
   G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
   r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
   h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];
@@ -63,8 +65,16 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Track net signal calculation
   //
   // Wait for final state and compare original and
-  // final positions of charge q
+  // final positions of charge q (p, e, o)
+  G4double pCuSignal = 0;
+  G4double eCuSignal = 0;
+  G4double otherCuSignal = 0;
+  G4double pKASignal = 0;
+  G4double eKASignal = 0;
+  G4double otherKASignal = 0;
   G4double netSignal = 0;
+  
+  // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 	// Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
@@ -74,24 +84,37 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     
     // ORIGIN
     // particle exits cylinder, -q_i
-    if ( volumeNameVertex == "Cu_cyl" ) { netSignal -= stepCharge; }
+    if ( volumeNameVertex == "Cu_cyl" ) { 
+      netSignal -= stepCharge;
+      if ( stepParticle == "proton" ) { pCuSignal -= stepCharge; }
+      if ( stepParticle == "e-" ) { eCuSignal -= stepCharge; }
+      if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherCuSignal -= stepCharge; }
+    }
   
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
       G4double percentRVertex = 0, percentZVertex = 0;
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
-      // Z edges of Kapton (cylinders are upside-down)
+      // Z edges of Kapton (incoming from -z -> 0)
       if ( stepZVertex <= -half_Cu ) { percentZVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZVertex >= half_Cu ) { percentZVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
       
       G4double chargeProp = ((percentRVertex>percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
       netSignal -= stepCharge*(1-chargeProp);
+      if ( stepParticle == "proton" ) { pKASignal -= stepCharge*(1-chargeProp); }
+      if ( stepParticle == "e-" ) { eKASignal -= stepCharge*(1-chargeProp); }
+      if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal -= stepCharge*(1-chargeProp); }
     }
     
     // DESTINATION
     // particle enters cylinder, +q_i
-    if ( volumeName == "Cu_cyl" ) { netSignal += stepCharge; }
+    if ( volumeName == "Cu_cyl" ) {
+      netSignal += stepCharge;
+      if ( stepParticle == "proton" ) { pCuSignal += stepCharge; }
+      if ( stepParticle == "e-" ) { eCuSignal += stepCharge; }
+      if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherCuSignal += stepCharge; }
+    }
         
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
@@ -104,19 +127,23 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       
       G4double chargeProp = ((percentR>percentZ)?percentR:percentZ); // concise maximum function
       netSignal += stepCharge*(1-chargeProp);
+      if ( stepParticle == "proton" ) { pKASignal += stepCharge*(1-chargeProp); }
+      if ( stepParticle == "e-" ) { eKASignal += stepCharge*(1-chargeProp); }
+      if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal += stepCharge*(1-chargeProp); }
+      
     }
-  }
-
-  if ( netSignal != 0 ) { // Zeros already counted
-    G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
     
-    // Add to eventID's dataset
-    std::ostringstream rawEventFileName;
-    rawEventFileName << data_dir << "event" << eventID << "signals.txt";
-    G4String eventFileName = rawEventFileName.str();
-    std::ofstream eventFile;
-    eventFile.open (eventFileName, std::ios::app);
-    eventFile << netSignal << "\n";
-    eventFile.close();
+    if ( netSignal != 0 ) { // Zeros already counted
+      G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+    
+      // Add to eventID's dataset
+      std::ostringstream rawEventFileName;
+      rawEventFileName << data_dir << "event" << eventID << "signals.txt";
+      G4String eventFileName = rawEventFileName.str();
+      std::ofstream eventFile;
+      eventFile.open (eventFileName, std::ios::app);
+      eventFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
+      eventFile.close();
+    }
   }
 }

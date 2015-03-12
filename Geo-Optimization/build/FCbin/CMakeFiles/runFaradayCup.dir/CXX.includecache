@@ -213,6 +213,8 @@ G4Event.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/G4Event.hh
 G4RunManager.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/G4RunManager.hh
+G4SystemOfUnits.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/G4SystemOfUnits.hh
 iostream
 -
 fstream

@@ -30,10 +30,22 @@ void EventAction::EndOfEventAction(const G4Event* event) {
   
   // Acquire net differential gain from event
   std::ifstream eventFile(eventFileName);
-  G4String fileVarGet; G4double netSignal=0;
+  G4String fileVarGet;
+  G4double pCuSignal = 0;
+  G4double eCuSignal = 0;
+  G4double otherCuSignal = 0;
+  G4double pKASignal = 0;
+  G4double eKASignal = 0;
+  G4double otherKASignal = 0;
+  G4double netSignal=0;
   while(eventFile.good()) {
-    getline(eventFile, fileVarGet);
-    netSignal += atof(fileVarGet);
+	getline(eventFile, fileVarGet, ' '); pCuSignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet, ' '); eCuSignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet, ' '); otherCuSignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet, ' '); pKASignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet, ' '); eKASignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet, ' '); otherKASignal += atof(fileVarGet);
+    getline(eventFile, fileVarGet); netSignal += atof(fileVarGet);
   }
   
   // Get current run, ID and beam info
@@ -46,7 +58,7 @@ void EventAction::EndOfEventAction(const G4Event* event) {
   G4String runFileName = rawRunFileName.str();
   std::ofstream runFile;
   runFile.open (runFileName, std::ios::app);
-  runFile << netSignal << "\n";
+  runFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
   runFile.close();
   
   // Remove event file

@@ -35,6 +35,19 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4int beamCharge = run->GetNumberOfEventToBeProcessed();
   G4int runID = run->GetRunID();
   std::ofstream dataFile;
+  
+  G4double pCuSignal = 0;
+  G4double eCuSignal = 0;
+  G4double otherCuSignal = 0;
+  G4double pKASignal = 0;
+  G4double eKASignal = 0;
+  G4double otherKASignal = 0;
+  G4double pCuSignalAverage = 0;
+  G4double eCuSignalAverage = 0;
+  G4double otherCuSignalAverage = 0;
+  G4double pKASignalAverage = 0;
+  G4double eKASignalAverage = 0;
+  G4double otherKASignalAverage = 0;
 
   // Identify run file
   G4String data_dir = "data/";
@@ -46,13 +59,28 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   // Acquire net gain for run (already normalized)
   std::ifstream runFile(runFileName);
   while(runFile.good()) {
-    getline(runFile, fileVarGet);
-    runGain += atof(fileVarGet);
+	getline(runFile, fileVarGet, ' '); pCuSignal += atof(fileVarGet);
+    getline(runFile, fileVarGet, ' '); eCuSignal += atof(fileVarGet);
+    getline(runFile, fileVarGet, ' '); otherCuSignal += atof(fileVarGet);
+    getline(runFile, fileVarGet, ' '); pKASignal += atof(fileVarGet);
+    getline(runFile, fileVarGet, ' '); eKASignal += atof(fileVarGet);
+    getline(runFile, fileVarGet, ' '); otherKASignal += atof(fileVarGet);
+    getline(runFile, fileVarGet); runGain += atof(fileVarGet);
   }
+  
   runGainAverage = runGain/beamCharge;
+  pCuSignalAverage = pCuSignal/beamCharge;
+  eCuSignalAverage = eCuSignal/beamCharge;
+  otherCuSignalAverage = otherCuSignal/beamCharge;
+  pKASignalAverage = pKASignal/beamCharge;
+  eKASignalAverage = eKASignal/beamCharge;
+  otherKASignalAverage = otherKASignal/beamCharge;
+  
+  
   // Acquire standard deviation N events (reread run output)
   std::ifstream rerunFile(runFileName);
   while(rerunFile.good()) {
+	for ( G4int signal_i=0; signal_i<6; signal_i++ ) { getline(rerunFile, fileVarGet, ' '); }
     getline(rerunFile, fileVarGet);
     runGainVar += pow(atof(fileVarGet) - runGainAverage, 2)/beamCharge;
   }
@@ -64,8 +92,6 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << energies[runID%7] << " " << runGainAverage << " +/- " << runGainError << "\n";
+  gainFile << energies[runID%7] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
-
-  //G4cout << "Run #" << runID << " produces differential Gain (I/B) of " << runGainAverage << " +/- " << runGainError << G4endl;
 }
