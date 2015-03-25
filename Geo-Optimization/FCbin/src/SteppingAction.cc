@@ -27,7 +27,7 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
-	// Feature: remove step references in var names, and check right away for "last step"
+  // Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
@@ -58,7 +58,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
   r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
   h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];
-  
+   row
   // All share common center, half in -z hemispace
   G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
 
@@ -76,7 +76,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-	// Get name of volume at track origin (vertex) w/ position
+    // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
     G4double stepRVertex = pow(pow(stepXYZVertex[0],2) + pow(stepXYZVertex[1],2), 0.5);
@@ -145,5 +145,19 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       eventFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
       eventFile.close();
     }
+
+    // Get analysis manager
+    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+    // Fill ntuple row
+    analysisManager->FillNtupleIColumn(0, eventID);
+    analysisManager->FillNtupleDColumn(1, particleCharge);
+    analysisManager->FillNtupleDColumn(2, stepRVertex);
+    analysisManager->FillNtupleDColumn(3, stepZVertex);
+    analysisManager->FillNtupleDColumn(4, stepR);
+    analysisManager->FillNtupleDColumn(5, stepZ);
+    analysisManager->FillNtupleDColumn(6, netSignal);
+    analysisManager->AddNtupleRow();
+
   }
 }

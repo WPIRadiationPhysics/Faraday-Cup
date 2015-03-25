@@ -99,7 +99,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // World cylinder parameters
   G4double world_innerRadius = 0*mm;
   G4double world_outerRadius = 1.5*Kapton_cyl1_outerRadius;
-  G4double world_height = 1.5*Kapton_cyl1_height;
+  G4double world_height = Kapton_cyl1_height + 200*mm;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
@@ -302,7 +302,7 @@ void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
   // World cylinder parameters
   G4double world_innerRadius = 0*mm;
   G4double world_outerRadius = 1.5*Kapton_cyl1_outerRadius;
-  G4double world_height = 1.5*Kapton_cyl1_height;
+  G4double world_height = Kapton_cyl1_height + 200*mm;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
   
@@ -310,12 +310,14 @@ void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
   G4GeometryManager* geomManager = G4GeometryManager::GetInstance();
   geomManager->OpenGeometry(worldPV);
 
-  worldLV->SetSolid(new G4Tubs("World",
+  worldLV->GetSolid()->SetXHalfLength(world_height/2);
+  worldLV->GetSolid()->SetOuterRadius(world_outerRadius);
+  /*worldLV->SetSolid(new G4Tubs("World",
                  world_innerRadius,
                  world_outerRadius,
                  world_height/2,
                  world_startAngle,
-                 world_spanningAngle));
+                 world_spanningAngle));*/
  
   /*
   Kapton_cyl2LV->SetSolid(new G4Tubs("Kapton_cyl2",
@@ -333,19 +335,21 @@ void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
                  Ag_cyl_spanningAngle));
   */
   
-  Kapton_cyl1LV->SetSolid(new G4Tubs("Kapton_cyl1",
+  Kapton_cyl1LV->GetSolid()->SetXHalfLength(Kapton_cyl1_height/2);
+  Kapton_cyl1LV->GetSolid()->SetOuterRadius(Kapton_cyl1_outerRadius);
+  /*Kapton_cyl1LV->SetSolid(new G4Tubs("Kapton_cyl1",
                  Kapton_cyl1_innerRadius,
                  Kapton_cyl1_outerRadius,
                  Kapton_cyl1_height/2,
                  Kapton_cyl1_startAngle,
-                 Kapton_cyl1_spanningAngle));
+                 Kapton_cyl1_spanningAngle));*/
   
-  Cu_cylLV->SetSolid(new G4Tubs("Cu_cyl",
+  /*Cu_cylLV->SetSolid(new G4Tubs("Cu_cyl",
                  Cu_cyl_innerRadius,
                  Cu_cyl_outerRadius,
                  Cu_cyl_height/2,
                  Cu_cyl_startAngle,
-                 Cu_cyl_spanningAngle));
+                 Cu_cyl_spanningAngle));*/
                  
   geomManager->CloseGeometry(worldPV);
 }

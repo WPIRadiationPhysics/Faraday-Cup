@@ -3,6 +3,21 @@
 # Run proton beam ...
 /gun/particle proton
 #
+/gun/energy 1 MeV
+/run/beamOn 100
+#
+/gun/energy 5 MeV
+/run/beamOn 100
+#
+/gun/energy 10 MeV
+/run/beamOn 100
+#
+/gun/energy 25 MeV
+/run/beamOn 100
+#
+/gun/energy 50 MeV
+/run/beamOn 100
+#
 /gun/energy 70.03 MeV
 /run/beamOn 100
 #

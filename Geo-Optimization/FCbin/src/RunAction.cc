@@ -16,6 +16,24 @@ RunAction::RunAction() : G4UserRunAction() {}
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
+  // Create analysis manager
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  // Open an output file
+  G4String fileName = "rootData";
+  analysisManager->OpenFile(fileName);
+
+  // Creating ntuple 
+  analysisManager->CreateNtuple("rootData", "trackInfo");
+  analysisManager->CreateNtupleIColumn("event");
+  analysisManager->CreateNtupleDColumn("particleCharge");
+  analysisManager->CreateNtupleDColumn("rVertex");
+  analysisManager->CreateNtupleDColumn("zVertex");
+  analysisManager->CreateNtupleDColumn("r");
+  analysisManager->CreateNtupleDColumn("z");
+  analysisManager->CreateNtupleDColumn("trackCharge");
+  analysisManager->FinishNtuple();
+
   // Primary thread
   if ( G4Threading::G4GetThreadId() == 0 ) {
     // Primary energy (run) number
@@ -26,7 +44,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 
 void RunAction::EndOfRunAction(const G4Run* run) {
   // Vars, data and file structures
-  G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
+  G4double energies[12] = {1, 5, 10, 25, 50, 70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
   G4String fileVarGet;
   G4double runGain = 0; // Sum of event gains...
   G4double runGainAverage = 0; // ... averaged
@@ -80,7 +98,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   // Acquire standard deviation N events (reread run output)
   std::ifstream rerunFile(runFileName);
   while(rerunFile.good()) {
-	for ( G4int signal_i=0; signal_i<6; signal_i++ ) { getline(rerunFile, fileVarGet, ' '); }
+    for ( G4int signal_i=0; signal_i<6; signal_i++ ) { getline(rerunFile, fileVarGet, ' '); }
     getline(rerunFile, fileVarGet);
     runGainVar += pow(atof(fileVarGet) - runGainAverage, 2)/beamCharge;
   }
@@ -92,6 +110,27 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << energies[runID%7] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
+  gainFile << energies[runID%12] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
+
+  G4int nofEvents = run->GetNumberOfEvent();
+  if ( nofEvents == 0 ) return;
+
+
+  // Analyze ntuple of track info
+  G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
+  analysisReader->SetFileName("rootData");
+  analysisReader->GetNtuple("trackInfo");
+  // read ntuples and do same analysis, keep redundancy to test for plausibility
+
+  
+  // print histogram statistics
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  
+  // save histograms 
+  analysisManager->Write();
+  analysisManager->CloseFile();
+  
+  // complete cleanup
+  delete G4AnalysisManager::Instance();
 }

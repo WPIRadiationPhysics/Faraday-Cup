@@ -98,7 +98,7 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 	// Kapton Optimization problem- 3D data
 	// micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.002 mm";
+    G4String cutCommand = "/run/setCut 0.004 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars

@@ -1,11 +1,11 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o"
-  "CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
-  "CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o"
   "CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o"
-  "CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o"
   "CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o"
+  "CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o"
   "CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
+  "CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o"
+  "CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
   "runFaradayCup.pdb"
   "runFaradayCup"
 )
