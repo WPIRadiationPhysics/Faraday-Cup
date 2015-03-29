@@ -158,7 +158,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       analysisManager->FillNtupleDColumn(5, stepRVertex);
       analysisManager->FillNtupleDColumn(6, stepZVertex);
       analysisManager->FillNtupleDColumn(7, netSignal);
-      analysisManager->AddNtupleRow();
+      analysisManager->AddNtupleRow(0);
     }
   }
 }

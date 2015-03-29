@@ -14,19 +14,17 @@ gROOT->SetStyle("Plain");
 Double_t scale;
 	
 c1 = new TCanvas ("c1","",20,20,1000,500);
-c1.Divide(2,1);
 
-system ("rm -rf gainData.root");
-system ("hadd gainData.root gainData_*.root");
+system ("rm -rf rootData.root");
+system ("hadd rootData.root rootData_*.root");
 
-TFile f("gainData.root"); 
+TFile f("rootData.root"); 
 
 TNtuple* ntuple;
 ntuple = (TNtuple*)f->Get("gainDat"); 
      
-c1.cd(1);
-  ntuple->SetMarkerColor(2);
-  ntuple->Draw("beamEnergy:beamGain");
+ntuple->SetMarkerColor(2);
+ntuple->Draw("beamGain:beamEnergy");
 
 /*
   htemp->GetXaxis()->SetLabelSize(0.025);
