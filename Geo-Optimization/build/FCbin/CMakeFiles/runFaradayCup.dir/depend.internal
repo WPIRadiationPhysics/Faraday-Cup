@@ -3,6 +3,7 @@
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  ../FCbin/include/ActionInitialization.hh
+ ../FCbin/include/Analysis.hh
  ../FCbin/include/DetectorConstruction.hh
  /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
@@ -96,6 +97,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4Allocator.hh
  /usr/local/geant4/install/include/Geant4/G4AllocatorPool.hh
  /usr/local/geant4/install/include/Geant4/G4Alpha.hh
+ /usr/local/geant4/install/include/Geant4/G4AnalysisManagerState.hh
+ /usr/local/geant4/install/include/Geant4/G4AnalysisVerbose.hh
  /usr/local/geant4/install/include/Geant4/G4AntiAlpha.hh
  /usr/local/geant4/install/include/Geant4/G4AntiAlphaInelasticProcess.hh
  /usr/local/geant4/install/include/Geant4/G4AntiBMesonZero.hh
@@ -151,10 +154,14 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4BMesonPlus.hh
  /usr/local/geant4/install/include/Geant4/G4BMesonZero.hh
  /usr/local/geant4/install/include/Geant4/G4BaryonSplitter.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseAnalysisManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseFileManager.hh
+ /usr/local/geant4/install/include/Geant4/G4BaseToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4BertiniElectroNuclearBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4BertiniNeutronBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4BertiniPiKBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4BertiniProtonBuilder.hh
+ /usr/local/geant4/install/include/Geant4/G4BinScheme.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
  /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
  /usr/local/geant4/install/include/Geant4/G4BsMesonZero.hh
@@ -242,6 +249,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4FTFParticipants.hh
  /usr/local/geant4/install/include/Geant4/G4Fancy3DNucleus.hh
  /usr/local/geant4/install/include/Geant4/G4FastVector.hh
+ /usr/local/geant4/install/include/Geant4/G4Fcn.hh
  /usr/local/geant4/install/include/Geant4/G4FermiMomentum.hh
  /usr/local/geant4/install/include/Geant4/G4Field.hh
  /usr/local/geant4/install/include/Geant4/G4FieldManager.hh
@@ -264,6 +272,9 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4GenericIon.hh
  /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4GraphicsSystemList.hh
+ /usr/local/geant4/install/include/Geant4/G4H1ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4H2ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4H3ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4HCofThisEvent.hh
  /usr/local/geant4/install/include/Geant4/G4HadFinalState.hh
  /usr/local/geant4/install/include/Geant4/G4HadProjectile.hh
@@ -286,6 +297,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4HepRepFile.hh
  /usr/local/geant4/install/include/Geant4/G4HepRepFileXMLWriter.hh
  /usr/local/geant4/install/include/Geant4/G4HitFilterFactories.hh
+ /usr/local/geant4/install/include/Geant4/G4HnInformation.hh
+ /usr/local/geant4/install/include/Geant4/G4HnManager.hh
  /usr/local/geant4/install/include/Geant4/G4HyperonFTFPBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4InteractionCode.hh
  /usr/local/geant4/install/include/Geant4/G4InteractionContent.hh
@@ -397,6 +410,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4OpenGLStoredX.hh
  /usr/local/geant4/install/include/Geant4/G4OpticalPhoton.hh
  /usr/local/geant4/install/include/Geant4/G4OrderedTable.hh
+ /usr/local/geant4/install/include/Geant4/G4P1ToolsManager.hh
+ /usr/local/geant4/install/include/Geant4/G4P2ToolsManager.hh
  /usr/local/geant4/install/include/Geant4/G4PDefSplitter.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4ParameterisedNavigation.icc
@@ -472,6 +487,12 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4RegularNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.hh
  /usr/local/geant4/install/include/Geant4/G4ReplicaNavigation.icc
+ /usr/local/geant4/install/include/Geant4/G4RootAnalysisManager.hh
+ /usr/local/geant4/install/include/Geant4/G4RootAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4RootAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4RootAnalysisReader.icc
+ /usr/local/geant4/install/include/Geant4/G4RootNtupleManager.hh
+ /usr/local/geant4/install/include/Geant4/G4RootRNtupleManager.hh
  /usr/local/geant4/install/include/Geant4/G4RotationMatrix.hh
  /usr/local/geant4/install/include/Geant4/G4RunManager.hh
  /usr/local/geant4/install/include/Geant4/G4RunManagerKernel.hh
@@ -562,6 +583,10 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4UserSteppingAction.hh
  /usr/local/geant4/install/include/Geant4/G4UserTrackingAction.hh
  /usr/local/geant4/install/include/Geant4/G4V3DNucleus.hh
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.hh
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisManager.icc
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.hh
+ /usr/local/geant4/install/include/Geant4/G4VAnalysisReader.icc
  /usr/local/geant4/install/include/Geant4/G4VAntiBarionBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4VComponentCrossSection.hh
  /usr/local/geant4/install/include/Geant4/G4VCrossSectionDataSet.hh
@@ -569,10 +594,14 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4VDigi.hh
  /usr/local/geant4/install/include/Geant4/G4VDigiCollection.hh
  /usr/local/geant4/install/include/Geant4/G4VDiscreteProcess.hh
+ /usr/local/geant4/install/include/Geant4/G4VFileManager.hh
  /usr/local/geant4/install/include/Geant4/G4VFilter.hh
  /usr/local/geant4/install/include/Geant4/G4VGraphicsScene.hh
  /usr/local/geant4/install/include/Geant4/G4VGraphicsSystem.hh
  /usr/local/geant4/install/include/Geant4/G4VGraphicsSystem.icc
+ /usr/local/geant4/install/include/Geant4/G4VH1Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VH2Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VH3Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VHighEnergyGenerator.hh
  /usr/local/geant4/install/include/Geant4/G4VHit.hh
  /usr/local/geant4/install/include/Geant4/G4VHitsCollection.hh
@@ -589,7 +618,10 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4VModelFactory.hh
  /usr/local/geant4/install/include/Geant4/G4VModularPhysicsList.hh
  /usr/local/geant4/install/include/Geant4/G4VNeutronBuilder.hh
+ /usr/local/geant4/install/include/Geant4/G4VNtupleManager.hh
  /usr/local/geant4/install/include/Geant4/G4VNuclearDensity.hh
+ /usr/local/geant4/install/include/Geant4/G4VP1Manager.hh
+ /usr/local/geant4/install/include/Geant4/G4VP2Manager.hh
  /usr/local/geant4/install/include/Geant4/G4VPVParameterisation.hh
  /usr/local/geant4/install/include/Geant4/G4VParticipants.hh
  /usr/local/geant4/install/include/Geant4/G4VParticleChange.hh
@@ -604,6 +636,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/G4VProtonBuilder.hh
  /usr/local/geant4/install/include/Geant4/G4VRML1File.hh
  /usr/local/geant4/install/include/Geant4/G4VRML2File.hh
+ /usr/local/geant4/install/include/Geant4/G4VRNtupleManager.hh
  /usr/local/geant4/install/include/Geant4/G4VRestDiscreteProcess.hh
  /usr/local/geant4/install/include/Geant4/G4VSceneHandler.hh
  /usr/local/geant4/install/include/Geant4/G4VSceneHandler.icc
@@ -657,6 +690,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/Randomize.hh
  /usr/local/geant4/install/include/Geant4/evmandefs.hh
  /usr/local/geant4/install/include/Geant4/evtdefs.hh
+ /usr/local/geant4/install/include/Geant4/g4root.hh
+ /usr/local/geant4/install/include/Geant4/g4root_defs.hh
  /usr/local/geant4/install/include/Geant4/geomdefs.hh
  /usr/local/geant4/install/include/Geant4/geomwdefs.hh
  /usr/local/geant4/install/include/Geant4/globals.hh
@@ -664,6 +699,73 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  /usr/local/geant4/install/include/Geant4/rundefs.hh
  /usr/local/geant4/install/include/Geant4/templates.hh
  /usr/local/geant4/install/include/Geant4/tls.hh
+ /usr/local/geant4/install/include/Geant4/tools/histo/axes
+ /usr/local/geant4/install/include/Geant4/tools/histo/axis
+ /usr/local/geant4/install/include/Geant4/tools/histo/b1
+ /usr/local/geant4/install/include/Geant4/tools/histo/b2
+ /usr/local/geant4/install/include/Geant4/tools/histo/b3
+ /usr/local/geant4/install/include/Geant4/tools/histo/base_histo
+ /usr/local/geant4/install/include/Geant4/tools/histo/h1
+ /usr/local/geant4/install/include/Geant4/tools/histo/h1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/h2
+ /usr/local/geant4/install/include/Geant4/tools/histo/h2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3
+ /usr/local/geant4/install/include/Geant4/tools/histo/h3d
+ /usr/local/geant4/install/include/Geant4/tools/histo/histo_data
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1
+ /usr/local/geant4/install/include/Geant4/tools/histo/p1d
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2
+ /usr/local/geant4/install/include/Geant4/tools/histo/p2d
+ /usr/local/geant4/install/include/Geant4/tools/histo/profile_data
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../charmanip
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../cid
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../cids
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../forit
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../mem
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../ntuple_binding
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../pointer
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../rntuple
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../scast
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../snpf
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../sprintf
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../stype
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../tos
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../typedefs
+ /usr/local/geant4/install/include/Geant4/tools/rroot/../vdata
+ /usr/local/geant4/install/include/Geant4/tools/rroot/base_leaf
+ /usr/local/geant4/install/include/Geant4/tools/rroot/buffer
+ /usr/local/geant4/install/include/Geant4/tools/rroot/ifac
+ /usr/local/geant4/install/include/Geant4/tools/rroot/iro
+ /usr/local/geant4/install/include/Geant4/tools/rroot/leaf
+ /usr/local/geant4/install/include/Geant4/tools/rroot/named
+ /usr/local/geant4/install/include/Geant4/tools/rroot/ntuple
+ /usr/local/geant4/install/include/Geant4/tools/rroot/rbuf
+ /usr/local/geant4/install/include/Geant4/tools/rroot/stl_vector
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../cids
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../forit
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../ntuple_booking
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../rcmp
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../safe_cast
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../scast
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../sout
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../typedefs
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../vfind
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../vmanip
+ /usr/local/geant4/install/include/Geant4/tools/wroot/../zfunc
+ /usr/local/geant4/install/include/Geant4/tools/wroot/basket
+ /usr/local/geant4/install/include/Geant4/tools/wroot/branch
+ /usr/local/geant4/install/include/Geant4/tools/wroot/branch_element
+ /usr/local/geant4/install/include/Geant4/tools/wroot/date
+ /usr/local/geant4/install/include/Geant4/tools/wroot/ibo
+ /usr/local/geant4/install/include/Geant4/tools/wroot/idir
+ /usr/local/geant4/install/include/Geant4/tools/wroot/ifile
+ /usr/local/geant4/install/include/Geant4/tools/wroot/iobject
+ /usr/local/geant4/install/include/Geant4/tools/wroot/itree
+ /usr/local/geant4/install/include/Geant4/tools/wroot/key
+ /usr/local/geant4/install/include/Geant4/tools/wroot/ntuple
+ /usr/local/geant4/install/include/Geant4/tools/wroot/seek
+ /usr/local/geant4/install/include/Geant4/tools/wroot/tree
+ /usr/local/geant4/install/include/Geant4/tools/wroot/wbuf
  /usr/local/geant4/install/include/Geant4/trajectoryControl.hh
  /usr/local/geant4/install/include/Geant4/trkdefs.hh
  /usr/local/geant4/install/include/Geant4/windefs.hh

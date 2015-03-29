@@ -15,15 +15,12 @@ Double_t scale;
 	
 c1 = new TCanvas ("c1","",20,20,1000,500);
 
-system ("rm -rf rootData.root");
-system ("hadd rootData.root rootData_*.root");
-
-TFile f("rootData.root"); 
+TFile f("rootData_S59.root"); 
 
 TNtuple* ntuple;
 ntuple = (TNtuple*)f->Get("gainDat"); 
      
-ntuple->SetMarkerColor(2);
+ntuple->SetMarkerColor(5);
 ntuple->Draw("beamGain:beamEnergy");
 
 /*

@@ -43,6 +43,8 @@ G4UserSteppingAction.hh
 ../FCbin/include/G4UserSteppingAction.hh
 
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
+Analysis.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/Analysis.hh
 DetectorConstruction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/DetectorConstruction.hh
 ActionInitialization.hh

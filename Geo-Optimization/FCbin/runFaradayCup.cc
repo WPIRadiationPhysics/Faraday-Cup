@@ -1,3 +1,4 @@
+#include "Analysis.hh"
 #include "DetectorConstruction.hh"
 #include "ActionInitialization.hh"
 
@@ -114,22 +115,28 @@ int main(int argc,char** argv) {
 	  std::ostringstream raw_dirCommand;
 	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
 	  G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);
+          system(dirCommand);
 	  
-      // Run experimental beam energies
+          // Run experimental beam energies
 	  G4String command = "/control/execute ";
-      UImanager->ApplyCommand(command+macro);
+          UImanager->ApplyCommand(command+macro);
 
-      // Remove run logs (to be placed in RunAction when confirmed single
-      // worker thread to be in control of file I/O)
-      G4String runRm = "rm " + data_dir + "run*";
-      system(runRm);
+          // Cleanup analysis
+          delete G4AnalysisManager::Instance();
+
+          // Remove run logs (to be placed in RunAction when confirmed single
+          // worker thread to be in control of file I/O)
+          G4String runRm = "rm " + data_dir + "run*";
+          system(runRm);
 	  
 	  // Save completed dataset as film iteration
 	  std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
 	  G4String film_file = raw_film_file.str();
-	  G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
-	  system(filmcmd);
+          std::ostringstream syscmdStream;
+          syscmdStream << "rm -rf data/rootData.root; hadd data/rootData_S" << KA_thickness[thickness_i] << ".root data/rootData_t*.root; mv data/rootData_t0.root data/rootData_S" << KA_thickness[thickness_i] << "t0.root; mv data/rootData_t1.root data/rootData_S" << KA_thickness[thickness_i] << "t1.root";
+          G4String syscmd = syscmdStream.str();
+          system(syscmd); G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
+	  system(filmcmd); filmcmd = "cp plot.C " + data_dir; system(filmcmd);
     }
     
     // Remove film flag

@@ -13,9 +13,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-RunAction::RunAction() : G4UserRunAction() {
-}
-
+RunAction::RunAction() : G4UserRunAction() {}
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
@@ -130,7 +128,7 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4String gainFileName = rawGainFileName.str();
   std::ofstream gainFile;
   gainFile.open (gainFileName, std::ios::app);
-  gainFile << energies[runID%12] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
+  gainFile << energies[runID%7] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
   G4int nofEvents = run->GetNumberOfEvent();
@@ -147,6 +145,8 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4double ROOT_gain = 0;
   G4int ntupleId = analysisReader->GetNtuple("trackDat", ROOTfileName);
 
+  // Only 250 shows up in beamEnergy row 1 of ntuple 2, 0 gain.  No other rows work, files get cumulative (S100 has 14 rows of trackData)
+
   if ( ntupleId >= 0 ) {
 
     // Set ROOT vars
@@ -162,9 +162,9 @@ void RunAction::EndOfRunAction(const G4Run* run) {
     analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
 
     // Loop through collected values
-    while ( analysisReader->GetNtupleRow() ) { ROOT_gain += ROOT_netCharge/beamCharge; }
+    while ( analysisReader->GetNtupleRow(0) ) { ROOT_gain += ROOT_netCharge/beamCharge; }
   }
-
+  
   // Delete analysis reader 
   delete G4AnalysisReader::Instance();
 
@@ -174,15 +174,11 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   analysisManager->OpenFile(ROOTfileName);
   
   // print gain statistics
-  analysisManager->FillNtupleDColumn(1, 0, energies[runID]);
+  analysisManager->FillNtupleDColumn(1, 0, energies[runID%7]);
   analysisManager->FillNtupleDColumn(1, 1, ROOT_gain);
-  G4cout << "gain is " << ROOT_gain << G4endl;
   analysisManager->AddNtupleRow(1);
   
-  // save statistics
+  // save statistics and cleanup
   analysisManager->Write();
   analysisManager->CloseFile();
-  
-  // complete cleanup
-  delete G4AnalysisManager::Instance();
 }
