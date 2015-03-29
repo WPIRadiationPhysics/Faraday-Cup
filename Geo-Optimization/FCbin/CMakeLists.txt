@@ -55,6 +55,7 @@ set(runFaradayCup_SCRIPTS
   run.in
   vis.mac
   dataPlot.gnu
+  plot.C
   )
 
 foreach(_script ${runFaradayCup_SCRIPTS})

@@ -1,3 +1,4 @@
+#include "Analysis.hh"
 #include "SteppingAction.hh"
 #include "EventAction.hh"
 #include "DetectorConstruction.hh"
@@ -58,7 +59,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
   r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
   h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];
-   row
   // All share common center, half in -z hemispace
   G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
 
@@ -144,20 +144,21 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       eventFile.open (eventFileName, std::ios::app);
       eventFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
       eventFile.close();
+
+      // Get analysis manager and run number
+      G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
+      G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+      // Fill ntuple row
+      analysisManager->FillNtupleIColumn(0, runID);
+      analysisManager->FillNtupleIColumn(1, eventID);
+      analysisManager->FillNtupleDColumn(2, stepCharge);
+      analysisManager->FillNtupleDColumn(3, stepR);
+      analysisManager->FillNtupleDColumn(4, stepZ);
+      analysisManager->FillNtupleDColumn(5, stepRVertex);
+      analysisManager->FillNtupleDColumn(6, stepZVertex);
+      analysisManager->FillNtupleDColumn(7, netSignal);
+      analysisManager->AddNtupleRow();
     }
-
-    // Get analysis manager
-    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-
-    // Fill ntuple row
-    analysisManager->FillNtupleIColumn(0, eventID);
-    analysisManager->FillNtupleDColumn(1, particleCharge);
-    analysisManager->FillNtupleDColumn(2, stepRVertex);
-    analysisManager->FillNtupleDColumn(3, stepZVertex);
-    analysisManager->FillNtupleDColumn(4, stepR);
-    analysisManager->FillNtupleDColumn(5, stepZ);
-    analysisManager->FillNtupleDColumn(6, netSignal);
-    analysisManager->AddNtupleRow();
-
   }
 }

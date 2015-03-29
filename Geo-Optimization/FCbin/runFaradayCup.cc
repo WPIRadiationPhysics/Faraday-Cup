@@ -98,14 +98,14 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 	// Kapton Optimization problem- 3D data
 	// micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.004 mm";
+    G4String cutCommand = "/run/setCut 0.01 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars
-	G4int KA_thickness[8] = {1, 5, 10, 50, 100, 500, 1000, 5000};
+	G4int KA_thickness[3] = {59, 100, 200};
 	G4String data_dir = "data/";
 	
-	for ( G4int thickness_i=0; thickness_i<8; thickness_i++ ) {
+	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 	  // Assign thickness
 	  detConstruction->KaptonThicknessIteration(thickness_i);
 	  runManager->GeometryHasBeenModified();
@@ -138,14 +138,14 @@ int main(int argc,char** argv) {
   }
   else {
     // interactive mode : define UI session
-    G4String cutCommand = "/run/setCut 0.004 mm";
+    G4String cutCommand = "/run/setCut 0.01 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars
-	G4int KA_thickness[8] = {1, 5, 10, 50, 100, 500, 1000, 5000};
+	G4int KA_thickness[3] = {59, 100, 200};
 	G4String data_dir = "data/";
 	
-	for ( G4int thickness_i=0; thickness_i<8; thickness_i++ ) {
+	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 	  // Assign thickness
 	  detConstruction->KaptonThicknessIteration(thickness_i);
 	  runManager->GeometryHasBeenModified();
@@ -154,7 +154,7 @@ int main(int argc,char** argv) {
 	  std::ostringstream raw_dirCommand;
 	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
 	  G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);
+          system(dirCommand);
 	  
       // Run experimental beam energies
 	  G4String command = "/control/execute ";

@@ -15,6 +15,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "../FCbin/icons.mac"
   "../FCbin/init.mac"
   "../FCbin/init_vis.mac"
+  "../FCbin/plot.C"
   "../FCbin/run.in"
   "../FCbin/run.png"
   "../FCbin/run100.mac"
