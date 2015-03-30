@@ -55,7 +55,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   flag_stream.open(film_flag);
     
   // Acquire thickness index
-  G4double Kapton_Thickness[8] = {0.001, 0.005, 0.010, 0.050, 0.100, 0.500, 1, 5};
+  G4double Kapton_Thickness[3] = {0.059, 0.100, 0.200};
   G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
   r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
   h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];
@@ -145,9 +145,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       eventFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
       eventFile.close();
 
-      // Get analysis manager and run number
+      // Get analysis manager, run number and beamCharge
       G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
       G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+      G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
 
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, runID);
@@ -157,8 +158,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       analysisManager->FillNtupleDColumn(4, stepZ);
       analysisManager->FillNtupleDColumn(5, stepRVertex);
       analysisManager->FillNtupleDColumn(6, stepZVertex);
-      analysisManager->FillNtupleDColumn(7, netSignal);
-      analysisManager->AddNtupleRow(0);
+      analysisManager->FillNtupleDColumn(7, netSignal/beamCharge);
+      analysisManager->AddNtupleRow();
     }
   }
 }

@@ -97,48 +97,50 @@ int main(int argc,char** argv) {
 
   // batch mode  
   if ( macro.size() ) {
-	// Kapton Optimization problem- 3D data
-	// micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.01 mm";
+
+    // Kapton Optimization problem- 3D data
+    // micrometer particle track cuts
+    G4String cutCommand = "/run/setCut 0.1 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars
-	G4int KA_thickness[3] = {59, 100, 200};
-	G4String data_dir = "data/";
-	
-	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
-	  // Assign thickness
-	  detConstruction->KaptonThicknessIteration(thickness_i);
-	  runManager->GeometryHasBeenModified();
-	  
-	  // Create data directory and leave thickness flag for SteppingAction
-	  std::ostringstream raw_dirCommand;
-	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
-	  G4String dirCommand = raw_dirCommand.str();
-          system(dirCommand);
-	  
-          // Run experimental beam energies
-	  G4String command = "/control/execute ";
-          UImanager->ApplyCommand(command+macro);
+    G4int KA_thickness[3] = {59, 100, 200};
+    G4String data_dir = "data/";
 
-          // Cleanup analysis
-          delete G4AnalysisManager::Instance();
+    for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 
-          // Remove run logs (to be placed in RunAction when confirmed single
-          // worker thread to be in control of file I/O)
-          G4String runRm = "rm " + data_dir + "run*";
-          system(runRm);
+      // Create data directory and leave thickness flag for SteppingAction
+      std::ostringstream raw_dirCommand;
+      raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
+      G4String dirCommand = raw_dirCommand.str();
+      system(dirCommand);      
+
+      // Assign thickness
+      detConstruction->KaptonThicknessIteration(thickness_i);
+      runManager->GeometryHasBeenModified();
+
+      // Run experimental beam energies
+      G4String command = "/control/execute ";
+      UImanager->ApplyCommand(command+macro);
+
+      // Remove run logs (to be placed in RunAction when confirmed single
+      // worker thread to be in control of file I/O)
+      G4String runRm = "rm " + data_dir + "run*";
+      system(runRm);
 	  
-	  // Save completed dataset as film iteration
-	  std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
-	  G4String film_file = raw_film_file.str();
-          std::ostringstream syscmdStream;
-          syscmdStream << "rm -rf data/rootData.root; hadd data/rootData_S" << KA_thickness[thickness_i] << ".root data/rootData_t*.root; mv data/rootData_t0.root data/rootData_S" << KA_thickness[thickness_i] << "t0.root; mv data/rootData_t1.root data/rootData_S" << KA_thickness[thickness_i] << "t1.root";
-          G4String syscmd = syscmdStream.str();
-          system(syscmd); G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
-	  system(filmcmd); filmcmd = "cp plot.C " + data_dir; system(filmcmd);
+      // Save completed dataset as film iteration
+      std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
+      G4String film_file = raw_film_file.str();
+      std::ostringstream syscmdStream;
+      syscmdStream << "rm -rf data/rootData.root; hadd data/rootData_S" << KA_thickness[thickness_i] << ".root data/rootData_t*.root; mv data/rootData_t0.root data/rootData_S" << KA_thickness[thickness_i] << "t0.root; mv data/rootData_t1.root data/rootData_S" << KA_thickness[thickness_i] << "t1.root";
+      G4String syscmd = syscmdStream.str();
+      system(syscmd); G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
+      system(filmcmd); filmcmd = "cp plot.C " + data_dir; system(filmcmd);
+
+      
+      delete G4AnalysisManager::Instance();
     }
-    
+
     // Remove film flag
     G4String runRm = "rm " + data_dir + ".flag";
     system(runRm);

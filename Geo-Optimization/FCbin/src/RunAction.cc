@@ -14,37 +14,35 @@
 #include <sys/types.h>
 
 RunAction::RunAction() : G4UserRunAction() {}
-RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
+RunAction::~RunAction() {}
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
-  // Create analysis manager
-  G4String data_dir = "data/";
+
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->SetVerboseLevel(1);
+  G4int runID = run->GetRunID();
+  G4String data_dir = "data/";
 
-  // Creating data ntuple 
-  analysisManager->CreateNtuple("trackDat", "Track Data");
-  analysisManager->CreateNtupleIColumn("run");
-  analysisManager->CreateNtupleIColumn("event");
-  analysisManager->CreateNtupleDColumn("particleCharge");
-  analysisManager->CreateNtupleDColumn("r");
-  analysisManager->CreateNtupleDColumn("z");
-  analysisManager->CreateNtupleDColumn("rVertex");
-  analysisManager->CreateNtupleDColumn("zVertex");
-  analysisManager->CreateNtupleDColumn("netCharge");
-  analysisManager->FinishNtuple(0); 
+  // Construct Analysis (to-do: move to Analysis.cc)
+  if ( runID%7 == 0 ) {
+      // Create analysis manager
+      analysisManager->SetVerboseLevel(1);
 
-  analysisManager->CreateNtuple("gainDat", "Gain Data");
-  analysisManager->CreateNtupleDColumn("beamEnergy");
-  analysisManager->CreateNtupleDColumn("beamGain");
-  analysisManager->FinishNtuple(1);
-  
-  // Create data filenames
-  std::ostringstream ROOTfileNameStream, ROOTgainFileNameStream;
+      // Creating data ntuple 
+      analysisManager->CreateNtuple("trackDat", "Track Data");
+      analysisManager->CreateNtupleIColumn("run");
+      analysisManager->CreateNtupleIColumn("event");
+      analysisManager->CreateNtupleDColumn("particleCharge");
+      analysisManager->CreateNtupleDColumn("r");
+      analysisManager->CreateNtupleDColumn("z");
+      analysisManager->CreateNtupleDColumn("rVertex");
+      analysisManager->CreateNtupleDColumn("zVertex");
+      analysisManager->CreateNtupleDColumn("netCharge");
+      analysisManager->FinishNtuple(0);
+    }
+
+  std::ostringstream ROOTfileNameStream;
   ROOTfileNameStream << data_dir << "rootData";
   G4String ROOTfileName = ROOTfileNameStream.str();
-
-  // Open ROOT data file
   analysisManager->OpenFile(ROOTfileName);
 
   // Primary thread
@@ -131,54 +129,60 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   gainFile << energies[runID%7] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
   gainFile.close();
 
-  G4int nofEvents = run->GetNumberOfEvent();
-  if ( nofEvents == 0 ) return;
+  if ( (runID+1)%7 ) {
 
-  // Aquire ROOT data files
-  std::ostringstream ROOTfileNameStream, ROOTgainFileNameStream;
-  ROOTfileNameStream << data_dir << "rootData_t" << G4Threading::G4GetThreadId() << ".root";
-  G4String ROOTfileName = ROOTfileNameStream.str();
-  G4String ROOTgainFileName = ROOTgainFileNameStream.str();
+    // Aquire ROOT data files
+    std::ostringstream ROOTfileNameStream, ROOTgainFileNameStream;
+    ROOTfileNameStream << data_dir << "rootData_t" << G4Threading::G4GetThreadId() << ".root";
+    G4String ROOTfileName = ROOTfileNameStream.str();
+    G4String ROOTgainFileName = ROOTgainFileNameStream.str();
 
-  // Read ntuples and do same analysis, keep redundancy to test for plausibility
-  G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
-  G4double ROOT_gain = 0;
-  G4int ntupleId = analysisReader->GetNtuple("trackDat", ROOTfileName);
+    // Read ntuples and do same analysis, keep redundancy to test for plausibility
+    G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
+    G4int ntupleId = analysisReader->GetNtuple("trackDat", ROOTfileName);
 
-  // Only 250 shows up in beamEnergy row 1 of ntuple 2, 0 gain.  No other rows work, files get cumulative (S100 has 14 rows of trackData)
+    G4double ROOT_gain[7] = {0};
+    if ( ntupleId >= 0 ) {
 
-  if ( ntupleId >= 0 ) {
+      // Set ROOT vars
+      G4int ROOT_eventID, ROOT_runID;
+      G4double ROOT_particleCharge, ROOT_netCharge;
+      G4double ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex;  
+      analysisReader->SetNtupleIColumn("run", ROOT_runID);
+      analysisReader->SetNtupleIColumn("event", ROOT_eventID);
+      analysisReader->SetNtupleDColumn("particleCharge", ROOT_particleCharge);
+      analysisReader->SetNtupleDColumn("r", ROOT_r);
+      analysisReader->SetNtupleDColumn("z", ROOT_z);
+      analysisReader->SetNtupleDColumn("rVertex", ROOT_rVertex);
+      analysisReader->SetNtupleDColumn("zVertex", ROOT_zVertex);
+      analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
 
-    // Set ROOT vars
-    G4int ROOT_eventID;
-    G4double ROOT_particleCharge, ROOT_netCharge;
-    G4double ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex;  
-    analysisReader->SetNtupleIColumn("event", ROOT_eventID);
-    analysisReader->SetNtupleDColumn("particleCharge", ROOT_particleCharge);
-    analysisReader->SetNtupleDColumn("r", ROOT_r);
-    analysisReader->SetNtupleDColumn("z", ROOT_z);
-    analysisReader->SetNtupleDColumn("rVertex", ROOT_rVertex);
-    analysisReader->SetNtupleDColumn("zVertex", ROOT_zVertex);
-    analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
+      // Loop through collected values
+      while ( analysisReader->GetNtupleRow(ntupleId) ) {
+        ROOT_gain[ROOT_runID%7] += ROOT_netCharge;
+      }
+    }
+    
+    // Delete analysis reader 
+    delete G4AnalysisReader::Instance();
 
-    // Loop through collected values
-    while ( analysisReader->GetNtupleRow(0) ) { ROOT_gain += ROOT_netCharge/beamCharge; }
+    // Creating data ntuple 
+    ROOTgainFileNameStream << data_dir << "gainData";
+    ROOTgainFileName = ROOTgainFileNameStream.str();
+    analysisManager->OpenFile(ROOTgainFileName);
+
+    analysisManager->CreateNtuple("gainDat", "Gain Data");
+    analysisManager->CreateNtupleDColumn("beamEnergy");
+    analysisManager->CreateNtupleDColumn("beamGain");
+    analysisManager->FinishNtuple(1);
+  
+    // print gain statistics
+    for ( G4int run_i = 0; run_i < 7; run_i++ ) {
+      analysisManager->FillNtupleDColumn(1, 0, energies[run_i]);
+      analysisManager->FillNtupleDColumn(1, 1, ROOT_gain[run_i]);
+      analysisManager->AddNtupleRow(1);
+    }
+    analysisManager->Write();
+    analysisManager->CloseFile();
   }
-  
-  // Delete analysis reader 
-  delete G4AnalysisReader::Instance();
-
-  // Creating data ntuple 
-  ROOTfileNameStream.str(""); ROOTfileNameStream << data_dir << "rootData";
-  ROOTfileName = ROOTfileNameStream.str();
-  analysisManager->OpenFile(ROOTfileName);
-  
-  // print gain statistics
-  analysisManager->FillNtupleDColumn(1, 0, energies[runID%7]);
-  analysisManager->FillNtupleDColumn(1, 1, ROOT_gain);
-  analysisManager->AddNtupleRow(1);
-  
-  // save statistics and cleanup
-  analysisManager->Write();
-  analysisManager->CloseFile();
 }
