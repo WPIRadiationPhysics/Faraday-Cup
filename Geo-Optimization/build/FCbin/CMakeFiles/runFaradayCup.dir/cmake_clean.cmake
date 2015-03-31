@@ -6,6 +6,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
   "CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o"
   "CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
+  "CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
   "runFaradayCup.pdb"
   "runFaradayCup"
 )

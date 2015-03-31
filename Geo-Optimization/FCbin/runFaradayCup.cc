@@ -72,6 +72,7 @@ int main(int argc,char** argv) {
 
   // Set mandatory initialization classes
   DetectorConstruction* detConstruction = new DetectorConstruction();
+  //Analysis* analysisMechanism = new Analysis();
   runManager->SetUserInitialization(detConstruction);
 
   G4VModularPhysicsList* physicsList = new FTFP_BERT;
@@ -107,13 +108,27 @@ int main(int argc,char** argv) {
     G4int KA_thickness[3] = {59, 100, 200};
     G4String data_dir = "data/";
 
+    // Create data directory
+    std::ostringstream dirCommandStream; dirCommandStream << "mkdir -p " << data_dir;
+    G4String dirCommand = dirCommandStream.str(); system(dirCommand);
+
+    // Acquire nThreads string of '#'s
+    std::ostringstream nThreadsStream;
+    for (G4int numThreads_i=0; numThreads_i < nThreads; numThreads_i++) { nThreadsStream << "#"; }
+    G4String nThreadsString = nThreadsStream.str();
+
+    // Leave nThreads flag for RunAction
+    dirCommandStream.str(""); dirCommand = "";
+    dirCommandStream << "echo \"" << nThreadsString << "\" > " << data_dir << ".nThreads";
+    dirCommand = dirCommandStream.str(); system(dirCommand);
+
     for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 
-      // Create data directory and leave thickness flag for SteppingAction
-      std::ostringstream raw_dirCommand;
-      raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
-      G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);      
+      // Leave thickness flag for SteppingAction
+      dirCommandStream.str(""); dirCommand = "";
+      dirCommandStream << "echo " << thickness_i << " > " << data_dir << ".flag";
+      dirCommand = dirCommandStream.str();
+      system(dirCommand);
 
       // Assign thickness
       detConstruction->KaptonThicknessIteration(thickness_i);
@@ -123,22 +138,33 @@ int main(int argc,char** argv) {
       G4String command = "/control/execute ";
       UImanager->ApplyCommand(command+macro);
 
+      //analysisMechanism->POST_Gain(nThreads, thickness_i);
+      //delete G4AnalysisManager::Instance();
+      // ROOT gain analysis
+      Analysis* gainAnalysis = Analysis::GetAnalysis();
+      //gainAnalysis->POST_Gain(2, floor(runID/7));
+      gainAnalysis->POST_Gain(2, 0);
+
       // Remove run logs (to be placed in RunAction when confirmed single
       // worker thread to be in control of file I/O)
       G4String runRm = "rm " + data_dir + "run*";
       system(runRm);
 	  
-      // Save completed dataset as film iteration
-      std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
-      G4String film_file = raw_film_file.str();
-      std::ostringstream syscmdStream;
-      syscmdStream << "rm -rf data/rootData.root; hadd data/rootData_S" << KA_thickness[thickness_i] << ".root data/rootData_t*.root; mv data/rootData_t0.root data/rootData_S" << KA_thickness[thickness_i] << "t0.root; mv data/rootData_t1.root data/rootData_S" << KA_thickness[thickness_i] << "t1.root";
-      G4String syscmd = syscmdStream.str();
-      system(syscmd); G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
+      // Save completed dataset as film iteration directory
+      std::ostringstream filmDirStream; filmDirStream << data_dir << "S" << KA_thickness[thickness_i];
+      G4String filmDir = filmDirStream.str();
+      std::ostringstream syscmdStream; G4String syscmd = "";
+      // Create film dir
+      syscmd = "mkdir -p " + filmDir; system(syscmd); syscmd = "";
+      // Combine rootData threads, rename undeleted gain output
+      //syscmdStream << "hadd " << data_dir << "rootData.root " << data_dir << "rootData_t*.root; ";
+      //syscmdStream << "hadd " << data_dir << "gainData.root " << data_dir << "gainData_t*.root";
+      syscmd = syscmdStream.str(); system(syscmd); syscmd = "";
+      // Move ROOT files
+      syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
+      // (from prev version) move gain output to film dir
+      G4String filmcmd = "mv " + data_dir + "gain.txt " + filmDir;
       system(filmcmd); filmcmd = "cp plot.C " + data_dir; system(filmcmd);
-
-      
-      delete G4AnalysisManager::Instance();
     }
 
     // Remove film flag

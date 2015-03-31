@@ -201,6 +201,30 @@ src/ActionInitialization.cc.s:
 	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s
 .PHONY : src/ActionInitialization.cc.s
 
+src/Analysis.o: src/Analysis.cc.o
+.PHONY : src/Analysis.o
+
+# target to build an object file
+src/Analysis.cc.o:
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
+.PHONY : src/Analysis.cc.o
+
+src/Analysis.i: src/Analysis.cc.i
+.PHONY : src/Analysis.i
+
+# target to preprocess a source file
+src/Analysis.cc.i:
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
+.PHONY : src/Analysis.cc.i
+
+src/Analysis.s: src/Analysis.cc.s
+.PHONY : src/Analysis.s
+
+# target to generate assembly for a file
+src/Analysis.cc.s:
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
+.PHONY : src/Analysis.cc.s
+
 src/DetectorConstruction.o: src/DetectorConstruction.cc.o
 .PHONY : src/DetectorConstruction.o
 
@@ -340,6 +364,9 @@ help:
 	@echo "... src/ActionInitialization.o"
 	@echo "... src/ActionInitialization.i"
 	@echo "... src/ActionInitialization.s"
+	@echo "... src/Analysis.o"
+	@echo "... src/Analysis.i"
+	@echo "... src/Analysis.s"
 	@echo "... src/DetectorConstruction.o"
 	@echo "... src/DetectorConstruction.i"
 	@echo "... src/DetectorConstruction.s"

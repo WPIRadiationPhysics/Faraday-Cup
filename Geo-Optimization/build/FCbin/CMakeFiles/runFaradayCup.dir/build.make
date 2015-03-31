@@ -210,6 +210,29 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides: FCbin/CMake
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
 
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: ../FCbin/src/Analysis.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc
+
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc > CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
+
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
+
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
+
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides
+
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
+
 # Object files for target runFaradayCup
 runFaradayCup_OBJECTS = \
 "CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o" \
@@ -218,7 +241,8 @@ runFaradayCup_OBJECTS = \
 "CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o" \
 "CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o" \
 "CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
+"CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
 
 # External object files for target runFaradayCup
 runFaradayCup_EXTERNAL_OBJECTS =
@@ -230,6 +254,7 @@ FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/build.make
 FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4Tree.so
 FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4FR.so
@@ -307,6 +332,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.requires
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/requires
 
 FCbin/CMakeFiles/runFaradayCup.dir/clean:

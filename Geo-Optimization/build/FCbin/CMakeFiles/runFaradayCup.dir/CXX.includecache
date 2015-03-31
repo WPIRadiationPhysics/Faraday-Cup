@@ -11,8 +11,12 @@ G4VUserActionInitialization.hh
 ../FCbin/include/G4VUserActionInitialization.hh
 
 ../FCbin/include/Analysis.hh
+globals.hh
+../FCbin/include/globals.hh
 g4root.hh
 ../FCbin/include/g4root.hh
+Analysis.hh
+../FCbin/include/Analysis.hh
 
 ../FCbin/include/DetectorConstruction.hh
 G4VUserDetectorConstruction.hh
@@ -79,6 +83,24 @@ SteppingAction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.hh
 DetectorConstruction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.hh
+
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc
+Analysis.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.hh
+G4UnitsTable.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/G4UnitsTable.hh
+G4SystemOfUnits.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/G4SystemOfUnits.hh
+iostream
+-
+fstream
+-
+string
+-
+stdio.h
+-
+sys/types.h
+-
 
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc
 DetectorConstruction.hh
