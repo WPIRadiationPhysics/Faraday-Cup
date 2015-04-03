@@ -13,7 +13,7 @@ class Analysis {
     ~Analysis();
 
     static Analysis* GetAnalysis();
-    virtual void POST_Gain(G4int nThreads, G4int geo_i);
+    virtual void Analyze_Gain(G4int nThreads);
 };
 
 #endif

@@ -72,7 +72,6 @@ int main(int argc,char** argv) {
 
   // Set mandatory initialization classes
   DetectorConstruction* detConstruction = new DetectorConstruction();
-  //Analysis* analysisMechanism = new Analysis();
   runManager->SetUserInitialization(detConstruction);
 
   G4VModularPhysicsList* physicsList = new FTFP_BERT;
@@ -138,12 +137,9 @@ int main(int argc,char** argv) {
       G4String command = "/control/execute ";
       UImanager->ApplyCommand(command+macro);
 
-      //analysisMechanism->POST_Gain(nThreads, thickness_i);
-      //delete G4AnalysisManager::Instance();
       // ROOT gain analysis
       Analysis* gainAnalysis = Analysis::GetAnalysis();
-      //gainAnalysis->POST_Gain(2, floor(runID/7));
-      gainAnalysis->POST_Gain(2, 0);
+      gainAnalysis->Analyze_Gain(nThreads);
 
       // Remove run logs (to be placed in RunAction when confirmed single
       // worker thread to be in control of file I/O)
@@ -157,7 +153,7 @@ int main(int argc,char** argv) {
       // Create film dir
       syscmd = "mkdir -p " + filmDir; system(syscmd); syscmd = "";
       // Combine rootData threads, rename undeleted gain output
-      //syscmdStream << "hadd " << data_dir << "rootData.root " << data_dir << "rootData_t*.root; ";
+      syscmdStream << "hadd " << data_dir << "rootData.root " << data_dir << "rootData_t*.root; ";
       //syscmdStream << "hadd " << data_dir << "gainData.root " << data_dir << "gainData_t*.root";
       syscmd = syscmdStream.str(); system(syscmd); syscmd = "";
       // Move ROOT files

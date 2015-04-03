@@ -24,17 +24,14 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4String data_dir = "data/";
 
   // Construct Analysis vars
-  std::ostringstream NtupleNameStream, ROOTfileNameStream;
-  G4String NtupleName, ROOTfileName;
+  std::ostringstream ROOTfileNameStream; G4String ROOTfileName;
 
   if ( runID%7 == 0 ) {
     // Create analysis manager
-    analysisManager->SetVerboseLevel(2);
+    analysisManager->SetVerboseLevel(10);
 
-    NtupleNameStream << "trackDat"; // << floor(runID/7);
-    NtupleName = NtupleNameStream.str();
     // Creating data ntuple 
-    analysisManager->CreateNtuple(NtupleName, "Track Data");
+    analysisManager->CreateNtuple("trackDat", "Track Data");
     analysisManager->CreateNtupleIColumn("run");
     analysisManager->CreateNtupleIColumn("event");
     analysisManager->CreateNtupleDColumn("particleCharge");
@@ -78,7 +75,6 @@ void RunAction::EndOfRunAction(const G4Run* run) {
     analysisManager->Write();
     analysisManager->CloseFile();
     delete G4AnalysisManager::Instance();
-
   }
 
   // Final thread: any thread can finish first, so check run state file for nThreads of '#'
@@ -165,10 +161,5 @@ void RunAction::EndOfRunAction(const G4Run* run) {
     gainFile.open (gainFileName, std::ios::app);
     gainFile << energies[runID%7] << " " << pCuSignalAverage << " " << eCuSignalAverage << " " << otherCuSignalAverage << " " << pKASignalAverage << " " << eKASignalAverage << " " << otherKASignalAverage << " " << runGainAverage << " +/- " << runGainError << "\n";
     gainFile.close();
-
-    // If final run in execution
-    if ( (runID+1)%7 == 0 ) {
-
-    }
   }
 }

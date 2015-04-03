@@ -8,21 +8,27 @@
 //   2 - type '.X plot.C' at the ROOT session prompt
 // *********************************************************************
 {
+// Init vars
 gROOT->Reset();
 gStyle->SetPalette(1);
 gROOT->SetStyle("Plain");
 Double_t scale;
-	
+TNtuple* ntuple;
+
+// Construct Canvas	
 c1 = new TCanvas ("c1","",20,20,1000,500);
 
-TFile f("rootData_S59.root"); 
+// S59 gain data
+TFile f1("S59/gainData.root"); 
+ntuple = (TNtuple*)f1->Get("gainDat");
+ntuple->SetMarkerColor(1);
+ntuple->SetMarkerSize(1);
+ntuple->SetFillColor(4);
+ntuple->SetLineColor(3);
+ntuple->Draw("beamEnergy", "beamGain");
 
-TNtuple* ntuple;
-ntuple = (TNtuple*)f->Get("gainDat"); 
-     
-ntuple->SetMarkerColor(5);
-ntuple->Draw("beamGain:beamEnergy");
-
+//c1->Update();
+//c1->Print();
 /*
   htemp->GetXaxis()->SetLabelSize(0.025);
   htemp->GetYaxis()->SetLabelSize(0.025);
