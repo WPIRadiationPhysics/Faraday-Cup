@@ -33,7 +33,6 @@ void Analysis::Analyze_Gain(G4int nThreads) {
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
     // Acquire analysis reader
     G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
-    analysisReader->SetVerboseLevel(2);
 
     // Aquire ROOT data files
     ROOTfileNameStream.str(""); ROOTfileName = "";
@@ -74,7 +73,6 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
   // Creating data ntuple
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->SetVerboseLevel(10);
   analysisManager->SetFileName(ROOTgainFileName);
   analysisManager->CreateNtuple("gainDat", "Gain Data");
   analysisManager->CreateNtupleDColumn("beamEnergy");

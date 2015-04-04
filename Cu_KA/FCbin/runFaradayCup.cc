@@ -10,9 +10,7 @@
 
 #include "G4UImanager.hh"
 #include "G4UIcommand.hh"
-
 #include "FTFP_BERT.hh"
-
 #include "Randomize.hh"
 
 #ifdef G4VIS_USE
@@ -108,7 +106,8 @@ int main(int argc,char** argv) {
     G4String data_dir = "data/";
 
     // Create data directory
-    std::ostringstream dirCommandStream; dirCommandStream << "mkdir -p " << data_dir;
+    std::ostringstream dirCommandStream;
+    dirCommandStream << "rm -f " << data_dir << "; mkdir -p " << data_dir;
     G4String dirCommand = dirCommandStream.str(); system(dirCommand);
 
     // Acquire nThreads string of '#'s
@@ -141,26 +140,17 @@ int main(int argc,char** argv) {
       Analysis* gainAnalysis = Analysis::GetAnalysis();
       gainAnalysis->Analyze_Gain(nThreads);
 
-      // Remove run logs (to be placed in RunAction when confirmed single
-      // worker thread to be in control of file I/O)
-      G4String runRm = "rm " + data_dir + "run*";
-      system(runRm);
-	  
       // Save completed dataset as film iteration directory
       std::ostringstream filmDirStream; filmDirStream << data_dir << "S" << KA_thickness[thickness_i];
-      G4String filmDir = filmDirStream.str();
-      std::ostringstream syscmdStream; G4String syscmd = "";
+      G4String filmDir = filmDirStream.str(), syscmd;
       // Create film dir
-      syscmd = "mkdir -p " + filmDir; system(syscmd); syscmd = "";
-      // Combine rootData threads, rename undeleted gain output
-      syscmdStream << "hadd " << data_dir << "rootData.root " << data_dir << "rootData_t*.root; ";
-      //syscmdStream << "hadd " << data_dir << "gainData.root " << data_dir << "gainData_t*.root";
-      syscmd = syscmdStream.str(); system(syscmd); syscmd = "";
+      syscmd = "mkdir -p " + filmDir; system(syscmd);
+      // Combine rootData threads
+      //syscmd = "hadd rootData.root " + data_dir + "rootData_*"; system(syscmd);
       // Move ROOT files
       syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
-      // (from prev version) move gain output to film dir
-      G4String filmcmd = "mv " + data_dir + "gain.txt " + filmDir;
-      system(filmcmd); filmcmd = "cp plot.C " + data_dir; system(filmcmd);
+      // Move plot to data directory
+      syscmd = "cp plot.C " + data_dir; system(syscmd);
     }
 
     // Remove film flag

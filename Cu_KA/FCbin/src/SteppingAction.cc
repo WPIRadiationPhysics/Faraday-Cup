@@ -136,15 +136,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     if ( netSignal != 0 ) { // Zeros already counted
       G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
     
-      // Add to eventID's dataset
-      std::ostringstream rawEventFileName;
-      rawEventFileName << data_dir << "event" << eventID << "signals.txt";
-      G4String eventFileName = rawEventFileName.str();
-      std::ofstream eventFile;
-      eventFile.open (eventFileName, std::ios::app);
-      eventFile << pCuSignal << " " << eCuSignal << " " << otherCuSignal << " " << pKASignal << " " << eKASignal << " " << otherKASignal << " " << netSignal << "\n";
-      eventFile.close();
-
       // Get analysis manager, run number and beamCharge
       G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
       G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
