@@ -140,7 +140,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
       G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
-      analysisManager->SetVerboseLevel(10);
 
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, runID);

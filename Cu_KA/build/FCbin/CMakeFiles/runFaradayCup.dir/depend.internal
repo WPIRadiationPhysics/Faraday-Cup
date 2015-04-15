@@ -5,7 +5,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
  ../FCbin/include/ActionInitialization.hh
  ../FCbin/include/Analysis.hh
  ../FCbin/include/DetectorConstruction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/runFaradayCup.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Plane3D.h
@@ -776,7 +776,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
  ../FCbin/include/PrimaryGeneratorAction.hh
  ../FCbin/include/RunAction.hh
  ../FCbin/include/SteppingAction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc
  /usr/local/geant4/install/include/Geant4/G4ExceptionSeverity.hh
  /usr/local/geant4/install/include/Geant4/G4String.hh
  /usr/local/geant4/install/include/Geant4/G4String.icc
@@ -793,7 +793,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
  /usr/local/geant4/install/include/Geant4/tls.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
  ../FCbin/include/Analysis.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Units/SystemOfUnits.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Utility/defs.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Vector/ThreeVector.h
@@ -915,7 +915,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
  /usr/local/geant4/install/include/Geant4/windefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
  ../FCbin/include/DetectorConstruction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/DetectorConstruction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -1045,7 +1045,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  ../FCbin/include/Analysis.hh
  ../FCbin/include/EventAction.hh
  ../FCbin/include/RunAction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/EventAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -1404,7 +1404,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
  /usr/local/geant4/install/include/Geant4/windefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  ../FCbin/include/PrimaryGeneratorAction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Point3D.h
@@ -1694,7 +1694,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  ../FCbin/include/Analysis.hh
  ../FCbin/include/PrimaryGeneratorAction.hh
  ../FCbin/include/RunAction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -2057,7 +2057,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
  ../FCbin/include/DetectorConstruction.hh
  ../FCbin/include/EventAction.hh
  ../FCbin/include/SteppingAction.hh
- /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc
+ /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
  /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h

@@ -24,8 +24,6 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4String data_dir = "data/";
 
   // Construct Analysis vars
-  std::ostringstream ROOTfileNameStream; G4String ROOTfileName;
-
   if ( runID%7 == 0 ) {
 
     // Creating data ntuple 
@@ -39,10 +37,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtupleDColumn("zVertex");
     analysisManager->CreateNtupleDColumn("netCharge");
     analysisManager->FinishNtuple();
-
-    ROOTfileNameStream << data_dir << "rootData";
-    ROOTfileName = ROOTfileNameStream.str();
-    analysisManager->OpenFile(ROOTfileName);
+    analysisManager->OpenFile(data_dir+"rootData");
   }
 
   // Primary thread

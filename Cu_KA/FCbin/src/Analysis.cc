@@ -31,13 +31,14 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
   // For each worker thread
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
+
     // Acquire analysis reader
     G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
-
+    
     // Aquire ROOT data files
     ROOTfileNameStream.str(""); ROOTfileName = "";
     NtupleNameStream.str(""); NtupleName = "";
-    ROOTfileNameStream << data_dir << "rootData_t" << workerID << ".root";
+    ROOTfileNameStream << data_dir << "rootData_t" << workerID; //<< ".root";
     ROOTfileName = ROOTfileNameStream.str();
     NtupleNameStream << "trackDat";
     NtupleName = NtupleNameStream.str();
@@ -82,7 +83,6 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
   // populate gain statistics
   for ( G4int run_i = 0; run_i < 7; run_i++ ) {
-    G4cout << "energy: " << energies[run_i] << ", gain: " << ROOT_gain[run_i] << G4endl;
     analysisManager->FillNtupleDColumn(0, energies[run_i]);
     analysisManager->FillNtupleDColumn(1, ROOT_gain[run_i]);
     analysisManager->AddNtupleRow();

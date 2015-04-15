@@ -17,15 +17,41 @@ TNtuple* ntuple;
 
 // Construct Canvas	
 c1 = new TCanvas ("c1","",20,20,1000,500);
+Double_t xl1=.05, yl1=0.75, xl2=xl1+.3, yl2=yl1+.125;
 
 // S59 gain data
 TFile f1("S59/gainData.root"); 
-ntuple = (TNtuple*)f1->Get("gainDat");
-ntuple->SetMarkerColor(1);
-ntuple->SetMarkerSize(1);
-ntuple->SetFillColor(4);
-ntuple->SetLineColor(3);
-ntuple->Draw("beamEnergy", "beamGain");
+n1 = (TNtuple*)f1->Get("gainDat");
+n1->SetMarkerColor(1);
+n1->SetMarkerStyle(24);
+n1->SetFillColor(4);
+n1->SetLineColor(3);
+n1->Draw("beamGain:beamEnergy", "");
+
+// S100 gain data
+TFile f2("S100/gainData.root"); 
+n2 = (TNtuple*)f2->Get("gainDat");
+n2->SetMarkerColor(1);
+n2->SetMarkerStyle(25);
+n2->SetFillColor(4);
+n2->SetLineColor(3);
+n2->Draw("beamGain:beamEnergy", "", "same");
+
+// S200 gain data
+TFile f3("S200/gainData.root"); 
+n3 = (TNtuple*)f3->Get("gainDat");
+n3->SetMarkerColor(1);
+n3->SetMarkerStyle(26);
+n3->SetFillColor(4);
+n3->SetLineColor(3);
+n3->Draw("beamGain:beamEnergy", "", "same");
+
+// Draw legend
+TLegend* leg = new TLegend(xl1, yl1, xl2, yl2);
+leg->AddEntry(n1, "S59", "p");
+leg->AddEntry(n2, "S100", "p");
+leg->AddEntry(n3, "S200", "p");
+leg->Draw();
 
 //c1->Update();
 //c1->Print();

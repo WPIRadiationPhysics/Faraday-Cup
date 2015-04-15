@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization
+CMAKE_SOURCE_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build
+CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build
 
 # Include any dependencies generated for this target.
 include FCbin/CMakeFiles/runFaradayCup.dir/depend.make
@@ -51,17 +51,17 @@ include FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o: ../FCbin/runFaradayCup.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/runFaradayCup.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc > CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/runFaradayCup.cc > CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/runFaradayCup.cc -o CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/runFaradayCup.cc -o CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.requires
@@ -74,17 +74,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.provides.build: FCbin/CMak
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/src/RunAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc > CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc > CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/RunAction.cc -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
@@ -97,17 +97,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides.build: FCbin/CMak
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: ../FCbin/src/ActionInitialization.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc > CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc > CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/ActionInitialization.cc -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
@@ -120,17 +120,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides.build:
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o: ../FCbin/src/DetectorConstruction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/DetectorConstruction.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc > CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/DetectorConstruction.cc > CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/DetectorConstruction.cc -o CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/DetectorConstruction.cc -o CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.requires
@@ -143,17 +143,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.provides.build:
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: ../FCbin/src/PrimaryGeneratorAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc > CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc > CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/PrimaryGeneratorAction.cc -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
@@ -166,17 +166,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides.buil
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o: ../FCbin/src/EventAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_6)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/EventAction.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/EventAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc > CMakeFiles/runFaradayCup.dir/src/EventAction.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/EventAction.cc > CMakeFiles/runFaradayCup.dir/src/EventAction.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/EventAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/EventAction.cc -o CMakeFiles/runFaradayCup.dir/src/EventAction.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/EventAction.cc -o CMakeFiles/runFaradayCup.dir/src/EventAction.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.requires
@@ -189,17 +189,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.provides.build: FCbin/CM
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: ../FCbin/src/SteppingAction.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_7)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc > CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc > CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/SteppingAction.cc -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
@@ -212,17 +212,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build: FCbin
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: ../FCbin/src/Analysis.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc > CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc > CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin/src/Analysis.cc -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires:
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
@@ -319,7 +319,7 @@ FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4global.so
 FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4clhep.so
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable runFaradayCup"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runFaradayCup.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runFaradayCup.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 FCbin/CMakeFiles/runFaradayCup.dir/build: FCbin/runFaradayCup
@@ -336,10 +336,10 @@ FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/requires
 
 FCbin/CMakeFiles/runFaradayCup.dir/clean:
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin && $(CMAKE_COMMAND) -P CMakeFiles/runFaradayCup.dir/cmake_clean.cmake
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && $(CMAKE_COMMAND) -P CMakeFiles/runFaradayCup.dir/cmake_clean.cmake
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/clean
 
 FCbin/CMakeFiles/runFaradayCup.dir/depend:
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/FCbin /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/FCbin/CMakeFiles/runFaradayCup.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin/CMakeFiles/runFaradayCup.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/depend
 

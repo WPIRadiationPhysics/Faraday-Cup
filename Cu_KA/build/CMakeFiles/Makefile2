@@ -47,10 +47,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization
+CMAKE_SOURCE_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build
+CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build
 
 #=============================================================================
 # Target rules for target CMakeFiles/Faraday.dir
@@ -59,15 +59,15 @@ CMAKE_BINARY_DIR = /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimizat
 CMakeFiles/Faraday.dir/all:
 	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/depend
 	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles 
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 
 	@echo "Built target Faraday"
 .PHONY : CMakeFiles/Faraday.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Faraday.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Faraday.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
 .PHONY : CMakeFiles/Faraday.dir/rule
 
 # Convenience name for target.
@@ -105,7 +105,7 @@ FCbin/preinstall:
 FCbin/CMakeFiles/runFaradayCup.dir/all:
 	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/depend
 	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles  1 2 3 4 5 6 7 8
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles  1 2 3 4 5 6 7 8
 	@echo "Built target runFaradayCup"
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/all
 
@@ -115,9 +115,9 @@ all: FCbin/CMakeFiles/runFaradayCup.dir/all
 
 # Build rule for subdir invocation for target.
 FCbin/CMakeFiles/runFaradayCup.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 FCbin/CMakeFiles/runFaradayCup.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Geo-Optimization/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/rule
 
 # Convenience name for target.
