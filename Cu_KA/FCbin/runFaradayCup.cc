@@ -98,8 +98,8 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 
     // Kapton Optimization problem- 3D data
-    // micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.1 mm";
+    // 10 micrometer particle track cuts
+    G4String cutCommand = "/run/setCut 0.01 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars
@@ -147,7 +147,7 @@ int main(int argc,char** argv) {
       // Create film dir
       syscmd = "mkdir -p " + filmDir; system(syscmd);
       // Combine rootData threads
-      //syscmd = "hadd rootData.root " + data_dir + "rootData_*"; system(syscmd);
+      syscmd = "hadd " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
       // Move ROOT files
       syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
       // Move plot to data directory
@@ -176,7 +176,7 @@ int main(int argc,char** argv) {
 	  std::ostringstream raw_dirCommand;
 	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
 	  G4String dirCommand = raw_dirCommand.str();
-          system(dirCommand);
+      system(dirCommand);
 	  
       // Run experimental beam energies
 	  G4String command = "/control/execute ";

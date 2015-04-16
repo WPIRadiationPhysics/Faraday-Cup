@@ -75,9 +75,9 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Kapton cylinder parameters (layer 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
-  // S10 Film thickness initially
-  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.001*mm;
-  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.001*mm;
+  // S59 Film thickness initially
+  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.059*mm;
+  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.059*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
@@ -105,7 +105,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
+  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
   //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");

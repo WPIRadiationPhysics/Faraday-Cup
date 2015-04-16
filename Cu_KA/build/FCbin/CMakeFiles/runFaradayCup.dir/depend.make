@@ -1694,6 +1694,12 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/Analysis
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/PrimaryGeneratorAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/RunAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/src/RunAction.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/BasicVector3D.h
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Normal3D.h
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Point3D.h
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Transform3D.h
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Transform3D.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Geometry/Vector3D.h
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Random/DualRand.h
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Random/JamesRandom.h
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/CLHEP/Random/MTwistEngine.h
@@ -1775,6 +1781,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4BinScheme.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4BlockingList.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4BlockingList.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4CSGSolid.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4ClassificationOfNewTrack.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4DCofThisEvent.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4DataVector.hh
@@ -1797,6 +1804,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4GRSVolume.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4GRSVolume.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4GeomSplitter.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4GeometryManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4H1ToolsManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4H2ToolsManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4H3ToolsManager.hh
@@ -1810,6 +1818,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Log.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4LogicalVolume.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4LogicalVolume.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4LogicalVolumeStore.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4LorentzVector.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4MTHepRandom.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4MTHepRandom.icc
@@ -1842,6 +1851,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4NavigationLogger.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Navigator.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Navigator.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Normal3D.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4NormalNavigation.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4NormalNavigation.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4OrderedTable.hh
@@ -1858,6 +1868,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4ParticleTable.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4ParticleTable.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4ParticleTableIterator.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicalVolumeStore.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsModelCatalog.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsOrderedFreeVector.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsOrderedFreeVector.icc
@@ -1866,6 +1877,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsVector.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsVector.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PhysicsVectorType.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Point3D.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Polyhedron.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PrimaryParticle.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PrimaryTransformer.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4PrimaryVertex.hh
@@ -1898,6 +1911,8 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4SmartVoxelNode.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4SmartVoxelProxy.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4SmartVoxelStat.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4SolidStore.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4StackManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4StackedTrack.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Step.hh
@@ -1925,12 +1940,17 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4TrackingManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4TrackingMessenger.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4TrajectoryContainer.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Transform3D.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Tubs.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Tubs.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Types.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UIcommand.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UIdirectory.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UImessenger.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UIparameter.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UItokenNum.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4USolid.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UTubs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UnitsTable.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UnitsTable.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4UserRunAction.hh
@@ -1947,6 +1967,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VH2Manager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VH3Manager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VHitsCollection.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VNotifier.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VNtupleManager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VP1Manager.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VP2Manager.hh
@@ -1960,6 +1981,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VSolid.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VSolid.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VSteppingVerbose.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VStoreNotifier.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTouchable.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTouchable.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTrajectory.hh
@@ -1967,10 +1989,19 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserTrackInformation.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VVolumeMaterialScanner.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Visible.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4Visible.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VoxelNavigation.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4ios.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/HepPolyhedron.h
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/Randomize.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/UTubs.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/UTubs.icc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/UTypes.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/UUtils.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/UVector3.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/VUSolid.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/evmandefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/evtdefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/g4root.hh

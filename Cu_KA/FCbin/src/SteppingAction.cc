@@ -78,8 +78,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 	
-	// Acquire Analysis Manager instance
+	// Acquire Analysis Manager instance and run Id
 	G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+	G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
 	
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
@@ -112,6 +113,15 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepParticle == "proton" ) { pKASignal -= stepCharge*(1-chargeProp); }
       if ( stepParticle == "e-" ) { eKASignal -= stepCharge*(1-chargeProp); }
       if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal -= stepCharge*(1-chargeProp); }
+      
+      // Add to KA capture statistics
+      if ( volumeName != "Kapton_cyl1" ) {
+        analysisManager->FillNtupleDColumn((runID%7)+2, 0, chargeProp);
+        analysisManager->AddNtupleRow((runID%7)+2);
+	  } else {
+		analysisManager->FillNtupleDColumn((runID%7)+4, 0, chargeProp);
+        analysisManager->AddNtupleRow((runID%7)+4);
+	  }
     }
     
     // DESTINATION
@@ -140,26 +150,33 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepParticle == "e-" ) { eKASignal += stepCharge*(1-chargeProp); }
       if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal += stepCharge*(1-chargeProp); }
       
-      // Analysis: assess capture depth statistics     
+      // Add to KA capture statistics
+      if ( volumeNameVertex != "Kapton_cyl1" ) {
+        analysisManager->FillNtupleDColumn((runID%7)+1, 0, chargeProp);
+        analysisManager->AddNtupleRow((runID%7)+1);
+	  } else {
+		analysisManager->FillNtupleDColumn((runID%7)+3, 0, chargeProp);
+        analysisManager->AddNtupleRow((runID%7)+3);
+	  }
+      
     }
     
     if ( netSignal != 0 ) { // Zeros already counted
-      G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
     
-      // Get analysis manager, run number and beamCharge
-      G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
+      // Acquire beamCharge and eventId
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
+      G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
 
       // Fill ntuple row
-      analysisManager->FillNtupleIColumn(0, runID);
-      analysisManager->FillNtupleIColumn(1, eventID);
-      analysisManager->FillNtupleDColumn(2, stepCharge);
-      analysisManager->FillNtupleDColumn(3, stepR);
-      analysisManager->FillNtupleDColumn(4, stepZ);
-      analysisManager->FillNtupleDColumn(5, stepRVertex);
-      analysisManager->FillNtupleDColumn(6, stepZVertex);
-      analysisManager->FillNtupleDColumn(7, netSignal/beamCharge);
-      analysisManager->AddNtupleRow();
+      analysisManager->FillNtupleIColumn(0, 0, runID);
+      analysisManager->FillNtupleIColumn(0, 1, eventID);
+      analysisManager->FillNtupleDColumn(0, 2, stepCharge);
+      analysisManager->FillNtupleDColumn(0, 3, stepR);
+      analysisManager->FillNtupleDColumn(0, 4, stepZ);
+      analysisManager->FillNtupleDColumn(0, 5, stepRVertex);
+      analysisManager->FillNtupleDColumn(0, 6, stepZVertex);
+      analysisManager->FillNtupleDColumn(0, 7, netSignal/beamCharge);
+      analysisManager->AddNtupleRow(0);
     }
   }
 }

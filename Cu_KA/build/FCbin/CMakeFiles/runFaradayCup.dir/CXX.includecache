@@ -203,8 +203,6 @@ RunAction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.hh
 PrimaryGeneratorAction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.hh
-Analysis.hh
-/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.hh
 G4Run.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4Run.hh
 G4RunManager.hh
@@ -213,6 +211,18 @@ G4UnitsTable.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4UnitsTable.hh
 G4SystemOfUnits.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4SystemOfUnits.hh
+G4LogicalVolume.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4LogicalVolume.hh
+G4LogicalVolumeStore.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4LogicalVolumeStore.hh
+G4Tubs.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4Tubs.hh
+G4PhysicalVolumeStore.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4PhysicalVolumeStore.hh
+G4SolidStore.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4SolidStore.hh
+G4GeometryManager.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4GeometryManager.hh
 iostream
 -
 fstream
