@@ -28,6 +28,7 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
+	
   // Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
@@ -76,6 +77,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
+	
+	// Acquire Analysis Manager instance
+	G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+	
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
@@ -85,6 +90,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // ORIGIN
     // particle exits cylinder, -q_i
     if ( volumeNameVertex == "Cu_cyl" ) { 
+		
       netSignal -= stepCharge;
       if ( stepParticle == "proton" ) { pCuSignal -= stepCharge; }
       if ( stepParticle == "e-" ) { eCuSignal -= stepCharge; }
@@ -93,6 +99,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
+		
       G4double percentRVertex = 0, percentZVertex = 0;
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
@@ -110,6 +117,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // DESTINATION
     // particle enters cylinder, +q_i
     if ( volumeName == "Cu_cyl" ) {
+		
       netSignal += stepCharge;
       if ( stepParticle == "proton" ) { pCuSignal += stepCharge; }
       if ( stepParticle == "e-" ) { eCuSignal += stepCharge; }
@@ -118,6 +126,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
+		
       G4double percentR = 0, percentZ = 0;
       // Radial edge of Kapton
       if ( stepR >= r_Cu ) { percentR = (stepR - r_Cu)/(r_KA - r_Cu); }
@@ -131,6 +140,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepParticle == "e-" ) { eKASignal += stepCharge*(1-chargeProp); }
       if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal += stepCharge*(1-chargeProp); }
       
+      // Analysis: assess capture depth statistics     
     }
     
     if ( netSignal != 0 ) { // Zeros already counted
@@ -138,7 +148,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     
       // Get analysis manager, run number and beamCharge
       G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
-      G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
 
       // Fill ntuple row

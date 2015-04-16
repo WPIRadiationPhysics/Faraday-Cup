@@ -47,8 +47,6 @@ G4UserSteppingAction.hh
 ../FCbin/include/G4UserSteppingAction.hh
 
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/runFaradayCup.cc
-Analysis.hh
-/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/Analysis.hh
 DetectorConstruction.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/DetectorConstruction.hh
 ActionInitialization.hh
@@ -69,6 +67,8 @@ G4VisExecutive.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/G4VisExecutive.hh
 G4UIExecutive.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/G4UIExecutive.hh
+Analysis.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/Analysis.hh
 
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc
 ActionInitialization.hh

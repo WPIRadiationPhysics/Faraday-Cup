@@ -72,51 +72,51 @@ FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.provides: FCbin/CMakeFiles
 
 FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/src/RunAction.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: ../FCbin/src/SteppingAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc > CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc > CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires:
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides.build
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
+FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: ../FCbin/src/ActionInitialization.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: ../FCbin/src/Analysis.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc > CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc > CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires:
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides.build
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
+FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o: ../FCbin/src/DetectorConstruction.cc
@@ -141,28 +141,28 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.provides: FCbin
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: ../FCbin/src/PrimaryGeneratorAction.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/src/RunAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc > CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc > CMakeFiles/runFaradayCup.dir/src/RunAction.cc.i
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc -o CMakeFiles/runFaradayCup.dir/src/RunAction.cc.s
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires:
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides.build
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o: ../FCbin/src/EventAction.cc
@@ -187,74 +187,74 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.provides: FCbin/CMakeFil
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o: ../FCbin/src/SteppingAction.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o: ../FCbin/src/ActionInitialization.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc > CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.i
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc > CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.i
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/SteppingAction.cc -o CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.s
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/ActionInitialization.cc -o CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.s
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires:
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
+FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o: ../FCbin/src/Analysis.cc
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: FCbin/CMakeFiles/runFaradayCup.dir/flags.make
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: ../FCbin/src/PrimaryGeneratorAction.cc
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles $(CMAKE_PROGRESS_8)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o -c /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc > CMakeFiles/runFaradayCup.dir/src/Analysis.cc.i
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc > CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.i
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s"
-	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/Analysis.cc -o CMakeFiles/runFaradayCup.dir/src/Analysis.cc.s
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s"
+	cd /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.cc -o CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.s
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires:
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires:
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
+	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides.build
+.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides
 
-FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
+FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.provides.build: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
 
 # Object files for target runFaradayCup
 runFaradayCup_OBJECTS = \
 "CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o" \
 "CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o" \
-"CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o"
+"CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o" \
+"CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o"
 
 # External object files for target runFaradayCup
 runFaradayCup_EXTERNAL_OBJECTS =
 
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o
-FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
-FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
-FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
-FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
-FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o
+FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
 FCbin/runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/build.make
 FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4Tree.so
 FCbin/runFaradayCup: /usr/local/geant4/install/lib/libG4FR.so
@@ -326,13 +326,13 @@ FCbin/CMakeFiles/runFaradayCup.dir/build: FCbin/runFaradayCup
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/build
 
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/runFaradayCup.cc.o.requires
-FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
-FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
-FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.requires
-FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
-FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.requires
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/SteppingAction.cc.o.requires
 FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/Analysis.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/DetectorConstruction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/EventAction.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/ActionInitialization.cc.o.requires
+FCbin/CMakeFiles/runFaradayCup.dir/requires: FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o.requires
 .PHONY : FCbin/CMakeFiles/runFaradayCup.dir/requires
 
 FCbin/CMakeFiles/runFaradayCup.dir/clean:

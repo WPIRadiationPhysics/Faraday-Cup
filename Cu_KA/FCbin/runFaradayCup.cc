@@ -1,4 +1,3 @@
-#include "Analysis.hh"
 #include "DetectorConstruction.hh"
 #include "ActionInitialization.hh"
 
@@ -20,6 +19,8 @@
 #ifdef G4UI_USE
 #include "G4UIExecutive.hh"
 #endif
+
+#include "Analysis.hh"
 
 namespace {
   void PrintUsage() {
