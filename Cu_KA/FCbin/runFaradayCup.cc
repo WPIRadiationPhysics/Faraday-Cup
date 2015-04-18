@@ -79,10 +79,8 @@ int main(int argc,char** argv) {
   ActionInitialization* actionInitialization
      = new ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
-
-  // Initialize G4 kernel
   runManager->Initialize();
-  
+
 #ifdef G4VIS_USE
   // Initialize visualization
   G4VisManager* visManager = new G4VisExecutive;
@@ -98,8 +96,8 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 
     // Kapton Optimization problem- 3D data
-    // 10 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.01 mm";
+    // 5 micrometer particle track cuts
+    G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars
@@ -123,16 +121,9 @@ int main(int argc,char** argv) {
 
     for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
 
-      // Leave thickness flag for SteppingAction
-      dirCommandStream.str(""); dirCommand = "";
-      dirCommandStream << "echo " << thickness_i << " > " << data_dir << ".flag";
-      dirCommand = dirCommandStream.str();
-      system(dirCommand);
-
       // Assign thickness
-      detConstruction->KaptonThicknessIteration(thickness_i);
-      runManager->GeometryHasBeenModified();
-
+      detConstruction->IterateKaptonThickness(thickness_i);
+      
       // Run experimental beam energies
       G4String command = "/control/execute ";
       UImanager->ApplyCommand(command+macro);
@@ -154,9 +145,6 @@ int main(int argc,char** argv) {
       syscmd = "cp plot.C " + data_dir; system(syscmd);
     }
 
-    // Remove film flag
-    G4String runRm = "rm " + data_dir + ".flag";
-    system(runRm);
   }
   else {
     // interactive mode : define UI session
@@ -168,9 +156,6 @@ int main(int argc,char** argv) {
 	G4String data_dir = "data/";
 	
 	for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
-	  // Assign thickness
-	  detConstruction->KaptonThicknessIteration(thickness_i);
-	  runManager->GeometryHasBeenModified();
 	  
 	  // Create data directory and leave thickness flag for SteppingAction
 	  std::ostringstream raw_dirCommand;

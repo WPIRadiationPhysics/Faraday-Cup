@@ -11,13 +11,13 @@
 // Init vars
 gROOT->Reset();
 gStyle->SetPalette(1);
+gStyle->SetOptStat(0);
 gROOT->SetStyle("Plain");
-Double_t scale;
 TNtuple* ntuple;
 
 // Construct Canvas	
-c1 = new TCanvas ("c1","",20,20,1000,500);
-Double_t xl1=.05, yl1=0.75, xl2=xl1+.3, yl2=yl1+.125;
+TH2F frame("frame","S59-200 Net Gain", 0, 60, 260, 0, 0.95, 1.01);
+frame.Draw();
 
 // S59 gain data
 TFile f1("S59/gainData.root"); 
@@ -26,7 +26,8 @@ n1->SetMarkerColor(1);
 n1->SetMarkerStyle(24);
 n1->SetFillColor(4);
 n1->SetLineColor(3);
-n1->Draw("beamGain:beamEnergy", "");
+n1->Draw("beamGain:beamEnergy", "", "same");
+
 
 // S100 gain data
 TFile f2("S100/gainData.root"); 
@@ -47,6 +48,7 @@ n3->SetLineColor(3);
 n3->Draw("beamGain:beamEnergy", "", "same");
 
 // Draw legend
+Double_t xl1=.15, yl1=0.75, xl2=xl1+.3, yl2=yl1+.125;
 TLegend* leg = new TLegend(xl1, yl1, xl2, yl2);
 leg->AddEntry(n1, "S59", "p");
 leg->AddEntry(n2, "S100", "p");

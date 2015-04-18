@@ -17,6 +17,7 @@
 #include "G4Colour.hh"
 #include "G4PhysicalConstants.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4RunManager.hh"
 
 G4ThreadLocal 
 G4GlobalMagFieldMessenger* DetectorConstruction::fMagFieldMessenger = 0; 
@@ -24,7 +25,11 @@ G4GlobalMagFieldMessenger* DetectorConstruction::fMagFieldMessenger = 0;
 DetectorConstruction::DetectorConstruction()
  : G4VUserDetectorConstruction(),
    fDetector(0),
-   fCheckOverlaps(true) {}
+   fCheckOverlaps(true) {
+	   
+     // default Kapton thickness
+     fKaptonThicknessMM = 0.059;
+   }
 
 DetectorConstruction::~DetectorConstruction() {}
 
@@ -32,6 +37,16 @@ G4VPhysicalVolume* DetectorConstruction::Construct() {
   // Define materials and volumes
   DefineMaterials();  
   return DefineVolumes();
+}
+
+void DetectorConstruction::IterateKaptonThickness(G4int KA_i) {
+  
+  // Redefine Kapton thickness
+  G4double Kapton_thicknesses[3] = {0.059, 0.100, 0.200};
+  fKaptonThicknessMM = Kapton_thicknesses[KA_i];
+  
+  // Reconstruct geometry
+  G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
 
 void DetectorConstruction::DefineMaterials() { 
@@ -65,6 +80,8 @@ void DetectorConstruction::DefineMaterials() {
 
 //// Geometry parameters
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
+	
+  G4cout << "thickness is really " << fKaptonThicknessMM << G4endl;
   
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*mm;
@@ -76,8 +93,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   // Kapton cylinder parameters (layer 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
   // S59 Film thickness initially
-  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + 0.059*mm;
-  G4double Kapton_cyl1_height = Cu_cyl_height + 2*0.059*mm;
+  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + fKaptonThicknessMM*mm;
+  G4double Kapton_cyl1_height = Cu_cyl_height + 2*fKaptonThicknessMM*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
@@ -263,88 +280,4 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Always return the physical World
   return worldPV;
-}
-
-void DetectorConstruction::KaptonThicknessIteration(G4int KA_i) {
-  // Variable dimensions
-  G4double Kapton_Thickness[3] = {0.059*mm, 0.100*mm, 0.200*mm}; // Kapton thicknesses
-  
-  // Acquire logical and physical volumes
-  G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
-  G4VPhysicalVolume* worldPV = worldLV->GetDaughter(0);
-  //G4LogicalVolume* Kapton_cyl2LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl2");
-  //G4LogicalVolume* Ag_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Ag_cyl");
-  G4LogicalVolume* Kapton_cyl1LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl1");
-  //G4LogicalVolume* Cu_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
-  
-  // Redefine dimensions
-  // [Relevant] Copper cylinder parameters (layer 0)
-  G4double Cu_cyl_outerRadius = 30*mm;
-  G4double Cu_cyl_height = 100*mm;
-  G4double Kapton_cyl1_innerRadius = 0*mm;
-  G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + Kapton_Thickness[KA_i];
-  G4double Kapton_cyl1_height = Cu_cyl_height + 2*Kapton_Thickness[KA_i];
-  G4double Kapton_cyl1_startAngle = 0*deg;
-  G4double Kapton_cyl1_spanningAngle = 360*deg;
-  /*
-  G4double Ag_cyl_innerRadius = 0*cm;
-  G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.012*mm;
-  G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.012*mm;
-  G4double Ag_cyl_startAngle = 0*deg;
-  G4double Ag_cyl_spanningAngle = 360*deg;
-  G4double Kapton_cyl2_innerRadius = 0*cm;
-  G4double Kapton_cyl2_outerRadius = Ag_cyl_outerRadius + 0.062*mm;
-  G4double Kapton_cyl2_height = Ag_cyl_height + 2*0.062*mm;
-  G4double Kapton_cyl2_startAngle = 0*deg;
-  G4double Kapton_cyl2_spanningAngle = 360*deg;
-  */
-  // World cylinder parameters
-  G4double world_innerRadius = 0*mm;
-  G4double world_outerRadius = 1.5*Kapton_cyl1_outerRadius;
-  G4double world_height = Kapton_cyl1_height + 200*mm;
-  G4double world_startAngle = 0*deg;
-  G4double world_spanningAngle = 360*deg;
-  
-  // Unlock geometry layer Kapton_1, redefine and lock
-  G4GeometryManager* geomManager = G4GeometryManager::GetInstance();
-  geomManager->OpenGeometry(worldPV);
-
-  worldLV->SetSolid(new G4Tubs("World",
-                 world_innerRadius,
-                 world_outerRadius,
-                 world_height/2,
-                 world_startAngle,
-                 world_spanningAngle));
- 
-  /*
-  Kapton_cyl2LV->SetSolid(new G4Tubs("Kapton_cyl2",
-                 Kapton_cyl2_innerRadius,
-                 Kapton_cyl2_outerRadius,
-                 Kapton_cyl2_height/2,
-                 Kapton_cyl2_startAngle,
-                 Kapton_cyl2_spanningAngle));
-                 
-  Ag_cylLV->SetSolid(new G4Tubs("Ag_cyl",
-                 Ag_cyl_innerRadius,
-                 Ag_cyl_outerRadius,
-                 Ag_cyl_height/2,
-                 Ag_cyl_startAngle,
-                 Ag_cyl_spanningAngle));
-  */
-  
-  Kapton_cyl1LV->SetSolid(new G4Tubs("Kapton_cyl1",
-                 Kapton_cyl1_innerRadius,
-                 Kapton_cyl1_outerRadius,
-                 Kapton_cyl1_height/2,
-                 Kapton_cyl1_startAngle,
-                 Kapton_cyl1_spanningAngle));
-  
-  /*Cu_cylLV->SetSolid(new G4Tubs("Cu_cyl",
-                 Cu_cyl_innerRadius,
-                 Cu_cyl_outerRadius,
-                 Cu_cyl_height/2,
-                 Cu_cyl_startAngle,
-                 Cu_cyl_spanningAngle));*/
-                 
-  geomManager->CloseGeometry(worldPV);
 }

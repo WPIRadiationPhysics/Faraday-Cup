@@ -26,28 +26,13 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 
   // Get Analysis Manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  //analysisManager->SetVerboseLevel(10);
   G4int runID = run->GetRunID();
   G4String data_dir = "data/";
 
   // Construct Track Data ntuple once per macro of runs
   if ( runID%7 == 0 ) {
 	
-	// Print geometry info
-	G4Tubs* Kapton_cyl1Tubs = 0; G4Tubs* Cu_cylTubs = 0;
-	G4double Kapton_cyl1ZHalfLength = 0, Cu_cylZHalfLength = 0;
-	
-	G4LogicalVolume* Kapton_cyl1LV = G4LogicalVolumeStore::GetInstance()->GetVolume("Kapton_cyl1");
-	if ( Kapton_cyl1LV ) Kapton_cyl1Tubs = dynamic_cast< G4Tubs*>(Kapton_cyl1LV->GetSolid());
-	if ( Kapton_cyl1Tubs ) { Kapton_cyl1ZHalfLength = Kapton_cyl1Tubs->GetZHalfLength(); }
-	G4LogicalVolume* Cu_cylLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
-	if ( Cu_cylLV ) Cu_cylTubs = dynamic_cast< G4Tubs*>(Cu_cylLV->GetSolid());
-	if ( Cu_cylTubs ) { Cu_cylZHalfLength = Cu_cylTubs->GetZHalfLength(); }
-	
-	G4double KA_thickness = (Kapton_cyl1ZHalfLength - Cu_cylZHalfLength);
-	G4cout << "KA thickness is " << KA_thickness << G4endl;
-	
-    // Creating Track info ntuple 
+	// Creating Track info ntuple 
     analysisManager->CreateNtuple("trackDat", "Track Data");
     analysisManager->CreateNtupleIColumn(0, "run");
     analysisManager->CreateNtupleIColumn(0, "event");

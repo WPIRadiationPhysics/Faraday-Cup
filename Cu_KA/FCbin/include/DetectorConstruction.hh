@@ -18,13 +18,16 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 
   public:
     virtual G4VPhysicalVolume* Construct();
-    virtual void KaptonThicknessIteration(G4int thickness_i);
+    
+    // Geometry loop method
+    G4double fKaptonThicknessMM;
+    virtual void IterateKaptonThickness(G4int KA_i);
      
   private:
     // methods
     void DefineMaterials();
     G4VPhysicalVolume* DefineVolumes();
-  
+    
     // magnetic field messenger
     static G4ThreadLocal G4GlobalMagFieldMessenger*  fMagFieldMessenger; 
     

@@ -139,6 +139,8 @@ G4PhysicalConstants.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4PhysicalConstants.hh
 G4SystemOfUnits.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4SystemOfUnits.hh
+G4RunManager.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4RunManager.hh
 
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/EventAction.cc
 EventAction.hh
@@ -253,6 +255,12 @@ G4RunManager.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4RunManager.hh
 G4SystemOfUnits.hh
 /home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4SystemOfUnits.hh
+G4LogicalVolume.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4LogicalVolume.hh
+G4LogicalVolumeStore.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4LogicalVolumeStore.hh
+G4Tubs.hh
+/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4Tubs.hh
 iostream
 -
 fstream

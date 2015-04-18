@@ -9,6 +9,10 @@
 #include "G4RunManager.hh"
 #include "G4SystemOfUnits.hh"
 
+#include "G4LogicalVolume.hh"
+#include "G4LogicalVolumeStore.hh"
+#include "G4Tubs.hh"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -28,6 +32,10 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
+	
+  // Acquire run id and thickness index
+  G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
+  G4int KA_i = floor(runID/7); // 7 runs per geometry
 	
   // Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
@@ -57,9 +65,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     
   // Acquire thickness index
   G4double Kapton_Thickness[3] = {0.059, 0.100, 0.200};
-  G4String fileVarGet; while ( flag_stream.good() ) getline(flag_stream, fileVarGet);
-  r_KA = r_Cu + Kapton_Thickness[atoi(fileVarGet)];
-  h_KA = h_Cu + 2*Kapton_Thickness[atoi(fileVarGet)];
+  r_KA = r_Cu + Kapton_Thickness[KA_i];
+  h_KA = h_Cu + 2*Kapton_Thickness[KA_i];
   // All share common center, half in -z hemispace
   G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
 
@@ -78,9 +85,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 	
-	// Acquire Analysis Manager instance and run Id
+	// Acquire Analysis Manager instance
 	G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-	G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
 	
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
@@ -113,6 +119,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepParticle == "proton" ) { pKASignal -= stepCharge*(1-chargeProp); }
       if ( stepParticle == "e-" ) { eKASignal -= stepCharge*(1-chargeProp); }
       if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal -= stepCharge*(1-chargeProp); }
+      
+      if ( chargeProp >= 1 ) {
+		G4cout << "half_KA = " << half_KA << ", percentZVertex = " << percentZVertex << G4endl;
+	    G4cout << stepParticle << " from (" << stepRVertex << "," << stepZVertex << ") in " << volumeNameVertex << " to (" << stepR << "," << stepZ << ") in " << volumeName << ".  Charge prop is " << chargeProp << ". Net signal is " << netSignal << G4endl;
+      }
       
       // Add to KA capture statistics
       if ( volumeName != "Kapton_cyl1" ) {
@@ -150,6 +161,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepParticle == "e-" ) { eKASignal += stepCharge*(1-chargeProp); }
       if ( stepParticle != "proton" && stepParticle != "e-" && stepCharge != 0 ) { otherKASignal += stepCharge*(1-chargeProp); }
       
+      if ( chargeProp >= 1 ) {
+		G4cout << "half_KA = " << half_KA << ", percentZ = " << percentZ << G4endl;
+	    G4cout << stepParticle << " from (" << stepRVertex << "," << stepZVertex << ") in " << volumeNameVertex << " to (" << stepR << "," << stepZ << ") in " << volumeName << ".  Charge prop is " << chargeProp << ". Net signal is " << netSignal << G4endl;
+      }
+      
       // Add to KA capture statistics
       if ( volumeNameVertex != "Kapton_cyl1" ) {
         analysisManager->FillNtupleDColumn((runID%7)+1, 0, chargeProp);
@@ -158,7 +174,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 		analysisManager->FillNtupleDColumn((runID%7)+3, 0, chargeProp);
         analysisManager->AddNtupleRow((runID%7)+3);
 	  }
-      
     }
     
     if ( netSignal != 0 ) { // Zeros already counted
