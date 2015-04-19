@@ -122,7 +122,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
+  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
   //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
