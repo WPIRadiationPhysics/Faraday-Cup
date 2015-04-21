@@ -54,7 +54,7 @@ void DetectorConstruction::DefineMaterials() {
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
   nistManager->FindOrBuildMaterial("G4_AIR");
-  //nistManager->FindOrBuildMaterial("G4_Ag");
+  nistManager->FindOrBuildMaterial("G4_Ag");
   
   // Geant4 conventional definition of a vacuum
   G4double density     = universe_mean_density;  //from PhysicalConstants.h
@@ -92,14 +92,12 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 
   // Kapton cylinder parameters (layer 1)
   G4double Kapton_cyl1_innerRadius = 0*cm;
-  // S59 Film thickness initially
   G4double Kapton_cyl1_outerRadius = Cu_cyl_outerRadius + fKaptonThicknessMM*mm;
   G4double Kapton_cyl1_height = Cu_cyl_height + 2*fKaptonThicknessMM*mm;
   G4double Kapton_cyl1_startAngle = 0*deg;
   G4double Kapton_cyl1_spanningAngle = 360*deg;
 
-  /*
-  // Silver cylinder and cap parameters (layer 2)
+  // Silver cylinder parameters (layer 2)
   G4double Ag_cyl_innerRadius = 0*cm;
   G4double Ag_cyl_outerRadius = Kapton_cyl1_outerRadius + 0.012*mm;
   G4double Ag_cyl_height = Kapton_cyl1_height + 2*0.012*mm;
@@ -112,20 +110,19 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double Kapton_cyl2_height = Ag_cyl_height + 2*0.062*mm;
   G4double Kapton_cyl2_startAngle = 0*deg;
   G4double Kapton_cyl2_spanningAngle = 360*deg;
-  */
   
   // World cylinder parameters
   G4double world_innerRadius = 0*mm;
-  G4double world_outerRadius = 1.5*Kapton_cyl1_outerRadius;
-  G4double world_height = Kapton_cyl1_height + 200*mm;
+  G4double world_outerRadius = 1.5*Kapton_cyl2_outerRadius;
+  G4double world_height = Kapton_cyl2_height + 200*mm;
   G4double world_startAngle = 0*deg;
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
+  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
-  //G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
+  G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
 
   // Throw exception to ensure material usability
   if ( ! defaultMaterial || ! copperMaterial || ! KaptonMaterial ) {
@@ -161,7 +158,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  0,                // copy number
                  fCheckOverlaps);  // checking overlaps 
 
-  /*
   // Kapton Hollow Cylinder 2 (layer 3) 
   G4VSolid* Kapton_cyl2S 
     = new G4Tubs("Kapton_cyl2",            // its name
@@ -213,7 +209,6 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
-  */
   
   // Kapton Hollow Cylinder 1 (layer 1) 
   G4VSolid* Kapton_cyl1S 
@@ -236,7 +231,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
                  G4ThreeVector(),
                  Kapton_cyl1LV,       // its logical volume                         
                  "Kapton_cyl1",       // its name
-                 worldLV,             // its mother  volume
+                 Ag_cylLV,             // its mother  volume
                  false,               // no boolean operation
                  0,                   // copy number
                  fCheckOverlaps);     // checking overlaps
@@ -275,8 +270,8 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   simpleBoxVisAtt->SetVisibility(true);
   Cu_cylLV->SetVisAttributes(simpleBoxVisAtt);
   Kapton_cyl1LV->SetVisAttributes(simpleBoxVisAtt);
-  //Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
-  //Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
+  Ag_cylLV->SetVisAttributes(simpleBoxVisAtt);
+  Kapton_cyl2LV->SetVisAttributes(simpleBoxVisAtt);
 
   // Always return the physical World
   return worldPV;

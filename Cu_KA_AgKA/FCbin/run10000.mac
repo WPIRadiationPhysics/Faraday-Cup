@@ -1,0 +1,27 @@
+# Quick macro file for visualization/debug
+#
+# Run proton beam ...
+/gun/particle proton
+#
+/gun/energy 70.03 MeV
+/run/beamOn 10000
+#
+/gun/energy 100.46 MeV
+/run/beamOn 10000
+#
+/gun/energy 130.52 MeV
+/run/beamOn 10000
+#
+/gun/energy 160.09 MeV
+/run/beamOn 10000
+#
+/gun/energy 190.48 MeV
+/run/beamOn 10000
+#
+/gun/energy 221.06 MeV
+/run/beamOn 10000
+#
+/gun/energy 250.00 MeV
+/run/beamOn 10000
+#
+/tracking/verbose 0
