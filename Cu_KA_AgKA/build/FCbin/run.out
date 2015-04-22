@@ -7,10 +7,8 @@
                             WWW : http://cern.ch/geant4
 *************************************************************
 
-<<< Geant4 Physics List simulation engine: FTFP_BERT 2.0
 
-
-***** Table : Nb of materials = 5 *****
+***** Table : Nb of materials = 4 *****
 
  Material:    G4_Cu    density:  8.960 g/cm3   RadL:   1.436 cm   Nucl.Int.Length:  15.576 cm 
                        Imean: 322.000 eV 
@@ -19,32 +17,6 @@
          --->  Isotope:  Cu63   Z = 29   N =  63   A =  62.93 g/mole   abundance:  69.17 %
          --->  Isotope:  Cu65   Z = 29   N =  65   A =  64.93 g/mole   abundance:  30.83 %
           ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   G4_AIR    density:  1.205 mg/cm3  RadL: 303.921 m    Nucl.Int.Length: 710.137 m  
-                       Imean:  85.700 eV   temperature: 293.15 K  pressure:   1.00 atm
-
-   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:   0.01 %  ElmAbundance   0.02 % 
-
-   --->  Element: N (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:  75.53 %  ElmAbundance  78.44 % 
-
-   --->  Element: O (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  23.18 %  ElmAbundance  21.07 % 
-
-   --->  Element: Ar (Ar)   Z = 18.0   N =  40.0   A =  39.95 g/mole
-         --->  Isotope:  Ar36   Z = 18   N =  36   A =  35.97 g/mole   abundance:   0.34 %
-         --->  Isotope:  Ar38   Z = 18   N =  38   A =  37.96 g/mole   abundance:   0.06 %
-         --->  Isotope:  Ar40   Z = 18   N =  40   A =  39.96 g/mole   abundance:  99.60 %
-          ElmMassFraction:   1.28 %  ElmAbundance   0.47 % 
 
 
  Material:    G4_Ag    density: 10.500 g/cm3   RadL:   8.543 mm   Nucl.Int.Length:  15.858 cm 
@@ -91,7 +63,8 @@
 
 
 
-thickness is really 0.059
+<<< Geant4 Physics List simulation engine: FTFP_BERT 2.0
+
 Checking overlaps for volume Kapton_cyl2 ... OK! 
 Checking overlaps for volume Ag_cyl ... OK! 
 Checking overlaps for volume Kapton_cyl1 ... OK! 
@@ -764,30 +737,30 @@ CoulombScat:   for  pi-, integral: 1     SubType= 1  BuildTable= 1
      Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
 
 ================================================================
-G4WT1 > 
-G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT1 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
-G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT1 > 
-G4WT3 > 
-G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT3 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
-G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-G4WT3 > 
-G4WT2 > 
-G4WT2 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT0 > 
 G4WT0 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT0 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
 G4WT0 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT0 > 
+G4WT1 > 
+G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+G4WT1 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
+G4WT1 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+G4WT1 > 
+G4WT2 > 
+G4WT2 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT2 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
 G4WT2 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 G4WT2 > 
-G4WT1 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT3 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
-G4WT2 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+G4WT3 > 
+G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+G4WT3 >  Local thread RunManagerKernel version Name: geant4-10-01-patch-01 [MT]
+G4WT3 > ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+G4WT3 > 
 G4WT0 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+G4WT1 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+G4WT2 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+G4WT3 > ### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
 Visualization Manager instantiating with verbosity "warnings (3)"...
 Visualization Manager initialising...
 Registering graphics systems...
@@ -832,125 +805,6 @@ Some /vis commands (optionally) take a string to specify colour.
 Available colours:
   black, blue, brown, cyan, gray, green, grey, magenta, red, white, yellow
 
-G4Material WARNING: duplicate name of material Vacuum
-G4Material WARNING: duplicate name of material Kapton
-
-***** Table : Nb of materials = 7 *****
-
- Material:    G4_Cu    density:  8.960 g/cm3   RadL:   1.436 cm   Nucl.Int.Length:  15.576 cm 
-                       Imean: 322.000 eV 
-
-   --->  Element: Cu (Cu)   Z = 29.0   N =  63.6   A =  63.55 g/mole
-         --->  Isotope:  Cu63   Z = 29   N =  63   A =  62.93 g/mole   abundance:  69.17 %
-         --->  Isotope:  Cu65   Z = 29   N =  65   A =  64.93 g/mole   abundance:  30.83 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   G4_AIR    density:  1.205 mg/cm3  RadL: 303.921 m    Nucl.Int.Length: 710.137 m  
-                       Imean:  85.700 eV   temperature: 293.15 K  pressure:   1.00 atm
-
-   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:   0.01 %  ElmAbundance   0.02 % 
-
-   --->  Element: N (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:  75.53 %  ElmAbundance  78.44 % 
-
-   --->  Element: O (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  23.18 %  ElmAbundance  21.07 % 
-
-   --->  Element: Ar (Ar)   Z = 18.0   N =  40.0   A =  39.95 g/mole
-         --->  Isotope:  Ar36   Z = 18   N =  36   A =  35.97 g/mole   abundance:   0.34 %
-         --->  Isotope:  Ar38   Z = 18   N =  38   A =  37.96 g/mole   abundance:   0.06 %
-         --->  Isotope:  Ar40   Z = 18   N =  40   A =  39.96 g/mole   abundance:  99.60 %
-          ElmMassFraction:   1.28 %  ElmAbundance   0.47 % 
-
-
- Material:    G4_Ag    density: 10.500 g/cm3   RadL:   8.543 mm   Nucl.Int.Length:  15.858 cm 
-                       Imean: 470.000 eV 
-
-   --->  Element: Ag (Ag)   Z = 47.0   N = 108.0   A = 107.87 g/mole
-         --->  Isotope: Ag107   Z = 47   N = 107   A = 106.90 g/mole   abundance:  51.84 %
-         --->  Isotope: Ag109   Z = 47   N = 109   A = 108.91 g/mole   abundance:  48.16 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
-
-thickness is really 0.059
 Checking overlaps for volume Kapton_cyl2 ... OK! 
 Checking overlaps for volume Ag_cyl ... OK! 
 Checking overlaps for volume Kapton_cyl1 ... OK! 
@@ -1316,62 +1170,12 @@ CoulombScat:   for  pi-, integral: 1     SubType= 1  BuildTable= 1
       ===== EM models for the G4Region  DefaultRegionForTheWorld ======
   eCoulombScattering :  Emin=        0 eV    Emax=       10 TeV
 G4WT0 > Running energy #0
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.382767,-50.0572) in Kapton_cyl1 to (0.381534,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0307971
 G4WT0 > Running energy #1
-G4WT0 > half_KA = 50.059, percentZ = 1
-G4WT0 > proton from (15.2056,-50.0175) in Kapton_cyl1 to (15.2598,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.703191
-G4WT3 > half_KA = 50.059, percentZ = 1
-G4WT3 > e- from (0.227526,-50.0573) in Kapton_cyl1 to (0.229347,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0285035
 G4WT0 > Running energy #2
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.10467,-50.0588) in Kapton_cyl1 to (0.104772,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00296187
-G4WT2 > half_KA = 50.059, percentZ = 1
-G4WT2 > e- from (0.181715,-50.059) in Kapton_cyl1 to (0.182036,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.000653843
-G4WT2 > half_KA = 50.059, percentZ = 1
-G4WT2 > e- from (0.101605,-50.05) in Kapton_cyl1 to (0.109441,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.153301
-G4WT1 > half_KA = 50.059, percentZ = 0
-G4WT1 > C12 from (30.0588,-38.4853) in Kapton_cyl1 to (30.059,-38.485) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0245913
 G4WT0 > Running energy #3
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.0825696,-50.0664) in Ag_cyl to (0.0913971,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT3 > half_KA = 50.059, percentZ = 1
-G4WT3 > e- from (0.0778194,-50.0583) in Kapton_cyl1 to (0.0778131,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0113717
-G4WT2 > half_KA = 50.059, percentZ = 1
-G4WT2 > e- from (0.0797899,-50.0559) in Kapton_cyl1 to (0.0735699,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0530816
-G4WT2 > half_KA = 50.059, percentZ = 0
-G4WT2 > proton from (30.0578,-37.1538) in Kapton_cyl1 to (30.059,-37.1534) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0206555
 G4WT0 > Running energy #4
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.125061,-50.0584) in Kapton_cyl1 to (0.123634,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00944151
-G4WT0 > half_KA = 50.059, percentZ = 1
-G4WT0 > e- from (0.0626363,-50.0672) in Ag_cyl to (0.116081,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT0 > half_KA = 50.059, percentZ = 1
-G4WT0 > e- from (0.0797255,-50.056) in Kapton_cyl1 to (0.0672177,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0516163
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.274639,-50.0125) in Kapton_cyl1 to (0.292032,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.787561
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.0627747,-50.0589) in Kapton_cyl1 to (0.0653812,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00236303
 G4WT0 > Running energy #5
-G4WT0 > half_KA = 50.059, percentZ = 1
-G4WT0 > C12 from (28.6439,50.0584) in Kapton_cyl1 to (28.644,50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0624367
-G4WT1 > half_KA = 50.059, percentZ = 1
-G4WT1 > e- from (0.0654161,-50.059) in Kapton_cyl1 to (0.0628239,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.000579382
-G4WT1 > half_KA = 50.059, percentZ = 0
-G4WT1 > e- from (30.0586,24.1294) in Kapton_cyl1 to (30.059,24.1297) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0064708
-G4WT3 > half_KA = 50.059, percentZ = 0
-G4WT3 > proton from (30.056,7.56892) in Kapton_cyl1 to (30.059,7.57183) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.051425
-G4WT3 > half_KA = 50.059, percentZ = 1
-G4WT3 > proton from (0.150468,-50.0349) in Kapton_cyl1 to (0.173521,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.407971
 G4WT0 > Running energy #6
-G4WT3 > half_KA = 50.059, percentZ = 0
-G4WT3 > proton from (30.055,-44.3068) in Kapton_cyl1 to (30.059,-44.3038) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0672387
-G4WT3 > half_KA = 50.059, percentZ = 1
-G4WT3 > e- from (0.225355,-50.0583) in Kapton_cyl1 to (0.226693,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0118098
-G4WT1 > half_KA = 50.059, percentZ = 0
-G4WT1 > proton from (30.0482,-1.60668) in Kapton_cyl1 to (30.059,-1.61151) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.182463
-G4WT0 > half_KA = 50.059, percentZ = 1
-G4WT0 > proton from (17.1158,-50.057) in Kapton_cyl1 to (17.121,-50.059) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0332311
 hadd Target file: data/rootData.root
 hadd Source file 1: data/rootData_t0.root
 hadd Source file 2: data/rootData_t1.root
@@ -1380,214 +1184,17 @@ hadd Source file 4: data/rootData_t3.root
 hadd Sources and Target have different compression levels
 hadd merging will be slower
 hadd Target path: data/rootData.root:/
-G4Material WARNING: duplicate name of material Vacuum
-G4Material WARNING: duplicate name of material Kapton
-
-***** Table : Nb of materials = 9 *****
-
- Material:    G4_Cu    density:  8.960 g/cm3   RadL:   1.436 cm   Nucl.Int.Length:  15.576 cm 
-                       Imean: 322.000 eV 
-
-   --->  Element: Cu (Cu)   Z = 29.0   N =  63.6   A =  63.55 g/mole
-         --->  Isotope:  Cu63   Z = 29   N =  63   A =  62.93 g/mole   abundance:  69.17 %
-         --->  Isotope:  Cu65   Z = 29   N =  65   A =  64.93 g/mole   abundance:  30.83 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   G4_AIR    density:  1.205 mg/cm3  RadL: 303.921 m    Nucl.Int.Length: 710.137 m  
-                       Imean:  85.700 eV   temperature: 293.15 K  pressure:   1.00 atm
-
-   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:   0.01 %  ElmAbundance   0.02 % 
-
-   --->  Element: N (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:  75.53 %  ElmAbundance  78.44 % 
-
-   --->  Element: O (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  23.18 %  ElmAbundance  21.07 % 
-
-   --->  Element: Ar (Ar)   Z = 18.0   N =  40.0   A =  39.95 g/mole
-         --->  Isotope:  Ar36   Z = 18   N =  36   A =  35.97 g/mole   abundance:   0.34 %
-         --->  Isotope:  Ar38   Z = 18   N =  38   A =  37.96 g/mole   abundance:   0.06 %
-         --->  Isotope:  Ar40   Z = 18   N =  40   A =  39.96 g/mole   abundance:  99.60 %
-          ElmMassFraction:   1.28 %  ElmAbundance   0.47 % 
-
-
- Material:    G4_Ag    density: 10.500 g/cm3   RadL:   8.543 mm   Nucl.Int.Length:  15.858 cm 
-                       Imean: 470.000 eV 
-
-   --->  Element: Ag (Ag)   Z = 47.0   N = 108.0   A = 107.87 g/mole
-         --->  Isotope: Ag107   Z = 47   N = 107   A = 106.90 g/mole   abundance:  51.84 %
-         --->  Isotope: Ag109   Z = 47   N = 109   A = 108.91 g/mole   abundance:  48.16 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
-
-thickness is really 0.1
 Checking overlaps for volume Kapton_cyl2 ... OK! 
 Checking overlaps for volume Ag_cyl ... OK! 
 Checking overlaps for volume Kapton_cyl1 ... OK! 
 Checking overlaps for volume Cu_cyl ... OK! 
 G4WT0 > Running energy #7
 G4WT0 > Running energy #8
-G4WT0 > half_KA = 50.1, percentZ = 1
-G4WT0 > e- from (0.125019,-50.0997) in Kapton_cyl1 to (0.123806,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00318838
-G4WT3 > half_KA = 50.1, percentZ = 1
-G4WT3 > e- from (0.250539,-50.1262) in Kapton_cyl2 to (0.231111,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
 G4WT0 > Running energy #9
-G4WT0 > half_KA = 50.1, percentZ = 0
-G4WT0 > proton from (30.0586,11.2188) in Kapton_cyl1 to (30.1,11.2328) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.414289
-G4WT0 > half_KA = 50.1, percentZ = 1
-G4WT0 > e- from (0.33068,-50.0995) in Kapton_cyl1 to (0.331999,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0049675
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > proton from (0.186561,-50.011) in Kapton_cyl1 to (0.235377,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.889575
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > e- from (0.118072,-50.0543) in Kapton_cyl1 to (0.166867,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.456689
-G4WT0 > half_KA = 50.1, percentZ = 1
-G4WT0 > e- from (0.147476,-50.0972) in Kapton_cyl1 to (0.146803,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0277367
 G4WT0 > Running energy #10
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > e- from (0.241095,-50.1024) in Ag_cyl to (0.244158,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT3 > half_KA = 50.1, percentZ = 1
-G4WT3 > e- from (0.0440132,-50.0998) in Kapton_cyl1 to (0.042763,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00171888
-G4WT1 > half_KA = 50.1, percentZ = 1
-G4WT1 > e- from (0.0635485,-50.0993) in Kapton_cyl1 to (0.0627489,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00741069
-G4WT1 > half_KA = 50.1, percentZ = 0
-G4WT1 > proton from (30.0828,-41.8701) in Kapton_cyl1 to (30.1,-41.8797) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.172434
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > e- from (0.0285461,-50.0907) in Kapton_cyl1 to (0.0312364,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0932969
-G4WT0 > half_KA = 50.1, percentZ = 0
-G4WT0 > proton from (30.0987,-8.43136) in Kapton_cyl1 to (30.1,-8.43145) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0129903
-G4WT0 > half_KA = 50.1, percentZ = 1
-G4WT0 > e- from (0.0588808,-50.1011) in Ag_cyl to (0.0442794,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
 G4WT0 > Running energy #11
-G4WT3 > half_KA = 50.1, percentZ = 1
-G4WT3 > C12 from (6.43311,-50.0998) in Kapton_cyl1 to (6.43323,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00940101
-G4WT1 > half_KA = 50.1, percentZ = 1
-G4WT1 > e- from (0.135016,-50.0995) in Kapton_cyl1 to (0.136428,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00532068
-G4WT3 > half_KA = 50.1, percentZ = 1
-G4WT3 > e- from (0.165911,-50.0997) in Kapton_cyl1 to (0.165923,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00308258
-G4WT0 > half_KA = 50.1, percentZ = 0
-G4WT0 > proton from (30.0881,-12.8399) in Kapton_cyl1 to (30.1,-12.839) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.119277
 G4WT0 > Running energy #12
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > e- from (0.042818,-50.095) in Kapton_cyl1 to (0.0554963,-50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0497911
-G4WT3 > half_KA = 50.1, percentZ = 0
-G4WT3 > proton from (30.0996,36.2456) in Kapton_cyl1 to (30.1,36.2463) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00440993
-G4WT2 > half_KA = 50.1, percentZ = 1
-G4WT2 > proton from (21.7993,50.0775) in Kapton_cyl1 to (21.7965,50.1) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.225063
 G4WT0 > Running energy #13
-G4WT1 > half_KA = 50.1, percentZ = 0
-G4WT1 > proton from (30.0862,-20.1357) in Kapton_cyl1 to (30.1,-20.1418) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.137597
 hadd Target file: data/rootData.root
 hadd Source file 1: data/rootData_t0.root
 hadd Source file 2: data/rootData_t1.root
@@ -1596,266 +1203,17 @@ hadd Source file 4: data/rootData_t3.root
 hadd Sources and Target have different compression levels
 hadd merging will be slower
 hadd Target path: data/rootData.root:/
-G4Material WARNING: duplicate name of material Vacuum
-G4Material WARNING: duplicate name of material Kapton
-
-***** Table : Nb of materials = 11 *****
-
- Material:    G4_Cu    density:  8.960 g/cm3   RadL:   1.436 cm   Nucl.Int.Length:  15.576 cm 
-                       Imean: 322.000 eV 
-
-   --->  Element: Cu (Cu)   Z = 29.0   N =  63.6   A =  63.55 g/mole
-         --->  Isotope:  Cu63   Z = 29   N =  63   A =  62.93 g/mole   abundance:  69.17 %
-         --->  Isotope:  Cu65   Z = 29   N =  65   A =  64.93 g/mole   abundance:  30.83 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   G4_AIR    density:  1.205 mg/cm3  RadL: 303.921 m    Nucl.Int.Length: 710.137 m  
-                       Imean:  85.700 eV   temperature: 293.15 K  pressure:   1.00 atm
-
-   --->  Element: C (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:   0.01 %  ElmAbundance   0.02 % 
-
-   --->  Element: N (N)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:   N14   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:   N15   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:  75.53 %  ElmAbundance  78.44 % 
-
-   --->  Element: O (O)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:   O16   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:   O17   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:   O18   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  23.18 %  ElmAbundance  21.07 % 
-
-   --->  Element: Ar (Ar)   Z = 18.0   N =  40.0   A =  39.95 g/mole
-         --->  Isotope:  Ar36   Z = 18   N =  36   A =  35.97 g/mole   abundance:   0.34 %
-         --->  Isotope:  Ar38   Z = 18   N =  38   A =  37.96 g/mole   abundance:   0.06 %
-         --->  Isotope:  Ar40   Z = 18   N =  40   A =  39.96 g/mole   abundance:  99.60 %
-          ElmMassFraction:   1.28 %  ElmAbundance   0.47 % 
-
-
- Material:    G4_Ag    density: 10.500 g/cm3   RadL:   8.543 mm   Nucl.Int.Length:  15.858 cm 
-                       Imean: 470.000 eV 
-
-   --->  Element: Ag (Ag)   Z = 47.0   N = 108.0   A = 107.87 g/mole
-         --->  Isotope: Ag107   Z = 47   N = 107   A = 106.90 g/mole   abundance:  51.84 %
-         --->  Isotope: Ag109   Z = 47   N = 109   A = 108.91 g/mole   abundance:  48.16 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
- Material:   Vacuum    density:  0.000 kg/m3   RadL: 204727512.315 pc   Nucl.Int.Length: 113427275.267 pc 
-                       Imean:  19.200 eV   temperature:   0.10 K  pressure:   0.00 atm
-
-   --->  Element: H (H)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:    H1   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:    H2   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction: 100.00 %  ElmAbundance 100.00 % 
-
-
- Material:   Kapton    density:  1.420 g/cm3   RadL:  28.805 cm   Nucl.Int.Length:  55.587 cm 
-                       Imean:  77.223 eV 
-
-   --->  Element: Hydrogen (H2)   Z =  1.0   N =   1.0   A =   1.01 g/mole
-         --->  Isotope:   H21   Z =  1   N =   1   A =   1.01 g/mole   abundance:  99.99 %
-         --->  Isotope:   H22   Z =  1   N =   2   A =   2.01 g/mole   abundance:   0.01 %
-          ElmMassFraction:   2.73 %  ElmAbundance  26.12 % 
-
-   --->  Element: Carbon (C)   Z =  6.0   N =  12.0   A =  12.01 g/mole
-         --->  Isotope:   C12   Z =  6   N =  12   A =  12.00 g/mole   abundance:  98.93 %
-         --->  Isotope:   C13   Z =  6   N =  13   A =  13.00 g/mole   abundance:   1.07 %
-          ElmMassFraction:  72.13 %  ElmAbundance  58.04 % 
-
-   --->  Element: Nitrogen (N2)   Z =  7.0   N =  14.0   A =  14.01 g/mole
-         --->  Isotope:  N214   Z =  7   N =  14   A =  14.00 g/mole   abundance:  99.63 %
-         --->  Isotope:  N215   Z =  7   N =  15   A =  15.00 g/mole   abundance:   0.37 %
-          ElmMassFraction:   7.65 %  ElmAbundance   5.28 % 
-
-   --->  Element: Oxygen (O2)   Z =  8.0   N =  16.0   A =  16.00 g/mole
-         --->  Isotope:  O216   Z =  8   N =  16   A =  15.99 g/mole   abundance:  99.76 %
-         --->  Isotope:  O217   Z =  8   N =  17   A =  17.00 g/mole   abundance:   0.04 %
-         --->  Isotope:  O218   Z =  8   N =  18   A =  18.00 g/mole   abundance:   0.20 %
-          ElmMassFraction:  17.49 %  ElmAbundance  10.56 % 
-
-
-
-thickness is really 0.2
 Checking overlaps for volume Kapton_cyl2 ... OK! 
 Checking overlaps for volume Ag_cyl ... OK! 
 Checking overlaps for volume Kapton_cyl1 ... OK! 
 Checking overlaps for volume Cu_cyl ... OK! 
 G4WT0 > Running energy #14
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > e- from (0.231278,-50.1995) in Kapton_cyl1 to (0.232119,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00247124
-G4WT1 > half_KA = 50.2, percentZ = 1
-G4WT1 > proton from (0.240222,-49.9908) in Cu_cyl to (0.293388,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is -1
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > e- from (0.633469,-50.209) in Ag_cyl to (0.66021,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > e- from (0.177878,-50.2011) in Ag_cyl to (0.169108,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT1 > half_KA = 50.2, percentZ = 1
-G4WT1 > e- from (0.292363,-50.1999) in Kapton_cyl1 to (0.292097,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.000647295
 G4WT0 > Running energy #15
 G4WT0 > Running energy #16
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > e- from (0.0618886,-50.1699) in Kapton_cyl1 to (0.100451,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.150551
-G4WT1 > half_KA = 50.2, percentZ = 1
-G4WT1 > e- from (0.183831,-50.1936) in Kapton_cyl1 to (0.187201,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0322491
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.0676754,-50.1914) in Kapton_cyl1 to (0.0544943,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0431057
 G4WT0 > Running energy #17
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > e- from (0.113918,-50.1992) in Kapton_cyl1 to (0.112521,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00383981
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > e- from (0.395767,-50.1992) in Kapton_cyl1 to (0.396058,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00424522
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > e- from (0.0650956,-50.1987) in Kapton_cyl1 to (0.0629661,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0065338
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.131978,-50.1704) in Kapton_cyl1 to (0.0927872,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.148215
-G4WT1 > half_KA = 50.2, percentZ = 0
-G4WT1 > proton from (30.1731,-27.6037) in Kapton_cyl1 to (30.2,-27.6047) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.134367
 G4WT0 > Running energy #18
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.269608,-50.1999) in Kapton_cyl1 to (0.269873,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00036298
-G4WT1 > half_KA = 50.2, percentZ = 0
-G4WT1 > proton from (30.152,-13.7981) in Kapton_cyl1 to (30.2,-13.8109) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.239961
-G4WT0 > half_KA = 50.2, percentZ = 0
-G4WT0 > C12 from (30.1999,-6.25548) in Kapton_cyl1 to (30.2,-6.25559) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00301971
 G4WT0 > Running energy #19
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > proton from (9.9737,-50.1743) in Kapton_cyl1 to (9.992,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.128294
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.0438682,-50.1994) in Kapton_cyl1 to (0.0449392,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00288078
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.0392078,-50.1991) in Kapton_cyl1 to (0.0430828,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.00434369
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > e- from (0.10254,-50.2002) in Ag_cyl to (0.156422,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > e- from (0.0780077,-50.2026) in Ag_cyl to (0.256921,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0
 G4WT0 > Running energy #20
-G4WT1 > half_KA = 50.2, percentZ = 0
-G4WT1 > proton from (30.1994,-6.90824) in Kapton_cyl1 to (30.2,-6.90782) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00319356
-G4WT3 > half_KA = 50.2, percentZ = 0
-G4WT3 > proton from (30.1993,3.14335) in Kapton_cyl1 to (30.2,3.14348) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00367057
-G4WT0 > half_KA = 50.2, percentZ = 1
-G4WT0 > proton from (13.497,-50.1993) in Kapton_cyl1 to (13.4972,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00351918
-G4WT2 > half_KA = 50.2, percentZ = 0
-G4WT2 > C12 from (30.1993,10.4554) in Kapton_cyl1 to (30.2,10.4553) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0209938
-G4WT0 > half_KA = 50.2, percentZ = 0
-G4WT0 > proton from (30.1954,-29.0413) in Kapton_cyl1 to (30.2,-29.044) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.0227645
-G4WT2 > half_KA = 50.2, percentZ = 0
-G4WT2 > proton from (30.1624,16.6311) in Kapton_cyl1 to (30.2,16.6541) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.188141
-G4WT2 > half_KA = 50.2, percentZ = 1
-G4WT2 > e- from (0.0751372,-50.197) in Kapton_cyl1 to (0.0620242,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is 0.0151684
-G4WT2 > half_KA = 50.2, percentZ = 0
-G4WT2 > proton from (30.1762,14.5728) in Kapton_cyl1 to (30.2,14.5513) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.119233
-G4WT3 > half_KA = 50.2, percentZ = 0
-G4WT3 > C12 from (30.1997,2.18197) in Kapton_cyl1 to (30.2,2.18217) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.00936427
-G4WT3 > half_KA = 50.2, percentZ = 1
-G4WT3 > proton from (0.0628454,-50.1771) in Kapton_cyl1 to (0.050064,-50.2) in Kapton_cyl1.  Charge prop is 1. Net signal is -0.114253
 hadd Target file: data/rootData.root
 hadd Source file 1: data/rootData_t0.root
 hadd Source file 2: data/rootData_t1.root

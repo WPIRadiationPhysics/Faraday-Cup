@@ -25,10 +25,28 @@ void Analysis::Analyze_Gain(G4int nThreads) {
   std::ostringstream NtupleNameStream; G4String NtupleName, ROOTfileName;
   G4String data_dir = "data/";
   G4double ROOT_gain[7] = {0}; 
-  G4int ROOT_eventID, ROOT_runID, ntupleId;
-  G4double ROOT_particleCharge, ROOT_netCharge;
+  G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType;
+  G4double ROOT_particleCharge, ROOT_netCharge, ROOT_trackDepth, ROOT_trackDepthVertex;
   G4double ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex;
-
+  
+  // Acquire analysis manager and create output file
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  G4String ROOTstatsFileName = data_dir + "stats.root";
+  analysisManager->SetFileName(ROOTstatsFileName);
+  
+  // Create charge transfer histograms (100 bins, depth_min to depth_max)
+  // for every energy
+  for ( G4int energy_i = 0; energy_i < 7; energy_i++ ) {
+  
+    analysisManager->CreateH1("sigType0", "worldToKA", 100, 0., 1.);
+    analysisManager->CreateH1("sigType1", "worldToCu", 100, 0., 1.);
+    analysisManager->CreateH1("sigType2", "KAToCu", 100, 0., 1.);
+    analysisManager->CreateH1("sigType3", "KAToWorld", 100, 0., 1.);
+    analysisManager->CreateH1("sigType4", "CuToKA", 100, 0., 1.);
+    analysisManager->CreateH1("sigType5", "CuToWorld", 100, 0., 1.);
+    analysisManager->CreateH1("sigType6", "KAToKA", 100, 0., 1.);
+  }
+  
   // For each worker thread
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
 
@@ -58,10 +76,22 @@ void Analysis::Analyze_Gain(G4int nThreads) {
       analysisReader->SetNtupleDColumn("rVertex", ROOT_rVertex);
       analysisReader->SetNtupleDColumn("zVertex", ROOT_zVertex);
       analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
+      analysisReader->SetNtupleIColumn("signalType", ROOT_signalType);
+      analysisReader->SetNtupleDColumn("trackDepth", ROOT_trackDepth);
+      analysisReader->SetNtupleDColumn("trackDepthVertex", ROOT_trackDepthVertex);
     
       // Loop through collected values of gain
       while ( analysisReader->GetNtupleRow(ntupleId) ) {
+		
+		// Accumulate gain measurement per energy (run)
         ROOT_gain[ROOT_runID%7] += ROOT_netCharge;
+        
+        // Populate track origin/terminus depth histograms
+        if ( ROOT_signalType == 2 || ROOT_signalType == 3 ) {
+          analysisManager->FillH1((ROOT_runID%7)*7 + ROOT_signalType, ROOT_trackDepthVertex);
+        } else {
+          analysisManager->FillH1((ROOT_runID%7)*7 + ROOT_signalType, ROOT_trackDepth);
+	    }
       }
     }
 
@@ -69,12 +99,7 @@ void Analysis::Analyze_Gain(G4int nThreads) {
     delete G4AnalysisReader::Instance();
   }
 
-  // Name ntuple by geometry iteration
-  G4String ROOTgainFileName = data_dir + "gainData.root";
-
   // Creating data ntuple
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->SetFileName(ROOTgainFileName);
   analysisManager->CreateNtuple("gainDat", "Gain Data");
   analysisManager->CreateNtupleDColumn("beamEnergy");
   analysisManager->CreateNtupleDColumn("beamGain");

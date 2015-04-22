@@ -39,40 +39,18 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtupleDColumn(0, "particleCharge");
     analysisManager->CreateNtupleDColumn(0, "r");
     analysisManager->CreateNtupleDColumn(0, "z");
-    analysisManager->CreateNtupleDColumn(0,"rVertex");
+    analysisManager->CreateNtupleDColumn(0, "rVertex");
     analysisManager->CreateNtupleDColumn(0, "zVertex");
     analysisManager->CreateNtupleDColumn(0, "netCharge");
+    analysisManager->CreateNtupleIColumn(0, "signalType");
+    analysisManager->CreateNtupleDColumn(0, "trackDepth");
+    analysisManager->CreateNtupleDColumn(0, "trackDepthVertex");
     analysisManager->FinishNtuple(0);
     
     // Open simulation data file for writing
     analysisManager->OpenFile(data_dir+"rootData");
   }
 
-  // Create Kapton capture statistics ntuple every run
-  std::ostringstream KAntupleNameStream; KAntupleNameStream << "transKA_IN" << (runID%7);
-  G4String KAntupleName = KAntupleNameStream.str();
-  analysisManager->CreateNtuple(KAntupleName, "transKA_IN Data");
-  analysisManager->CreateNtupleDColumn((runID%7)+1, "trans_zDepthPercent");
-  analysisManager->FinishNtuple((runID%7)+1);
-  
-  KAntupleNameStream.str(""); KAntupleNameStream << "transKA_OUT" << (runID%7);
-  KAntupleName = ""; KAntupleName = KAntupleNameStream.str();
-  analysisManager->CreateNtuple(KAntupleName, "transKA_OUT Data");
-  analysisManager->CreateNtupleDColumn((runID%7)+2, "trans_zDepthPercent");
-  analysisManager->FinishNtuple((runID%7)+2);
-  
-  KAntupleNameStream.str(""); KAntupleNameStream << "cisKA_IN" << (runID%7);
-  KAntupleName = ""; KAntupleName = KAntupleNameStream.str();
-  analysisManager->CreateNtuple(KAntupleName, "cisKA_IN Data");
-  analysisManager->CreateNtupleDColumn((runID%7)+3, "cis_zDepthPercent");
-  analysisManager->FinishNtuple((runID%7)+3);
-  
-  KAntupleNameStream.str(""); KAntupleNameStream << "cisKA_OUT" << (runID%7);
-  KAntupleName = ""; KAntupleName = KAntupleNameStream.str();
-  analysisManager->CreateNtuple(KAntupleName, "cisKA_OUT Data");
-  analysisManager->CreateNtupleDColumn((runID%7)+4, "cis_zDepthPercent");
-  analysisManager->FinishNtuple((runID%7)+4);
-    
   // Primary thread
   if ( G4Threading::G4GetThreadId() == 0 ) {
     // Primary energy (run) number

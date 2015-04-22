@@ -29,13 +29,15 @@ DetectorConstruction::DetectorConstruction()
 	   
      // default Kapton thickness
      fKaptonThicknessMM = 0.059;
+     
+     // Acquire material data
+     DefineMaterials();
    }
 
 DetectorConstruction::~DetectorConstruction() {}
 
 G4VPhysicalVolume* DetectorConstruction::Construct() {
-  // Define materials and volumes
-  DefineMaterials();  
+  // Define geometric volumes
   return DefineVolumes();
 }
 
@@ -49,11 +51,12 @@ void DetectorConstruction::IterateKaptonThickness(G4int KA_i) {
   G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
 
-void DetectorConstruction::DefineMaterials() { 
+void DetectorConstruction::DefineMaterials() {
+
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
-  nistManager->FindOrBuildMaterial("G4_AIR");
+  //nistManager->FindOrBuildMaterial("G4_AIR");
   nistManager->FindOrBuildMaterial("G4_Ag");
   
   // Geant4 conventional definition of a vacuum
@@ -81,8 +84,6 @@ void DetectorConstruction::DefineMaterials() {
 //// Geometry parameters
 G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
 	
-  G4cout << "thickness is really " << fKaptonThicknessMM << G4endl;
-  
   // Copper cylinder parameters (layer 0)
   G4double Cu_cyl_innerRadius = 0*mm;
   G4double Cu_cyl_outerRadius = 30*mm;
@@ -119,7 +120,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
+  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
   G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");

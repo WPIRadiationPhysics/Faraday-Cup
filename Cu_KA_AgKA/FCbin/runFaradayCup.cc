@@ -137,8 +137,9 @@ int main(int argc,char** argv) {
       G4String filmDir = filmDirStream.str(), syscmd;
       // Create film dir
       syscmd = "mkdir -p " + filmDir; system(syscmd);
-      // Combine rootData threads
+      // Combine and subsequentially remove rootData threads
       syscmd = "hadd " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
+      syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
       // Move ROOT files
       syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
       // Move plot to data directory
