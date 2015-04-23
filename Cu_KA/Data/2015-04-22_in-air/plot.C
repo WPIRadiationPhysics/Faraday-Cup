@@ -20,7 +20,7 @@ TH2F frame("frame","S59-200 Net Gain", 0, 60, 260, 0, 0.95, 1.01);
 frame.Draw();
 
 // S59 gain data
-TFile f1("S59/gainData.root"); 
+TFile f1("S59/stats.root"); 
 n1 = (TNtuple*)f1->Get("gainDat");
 n1->SetMarkerColor(1);
 n1->SetMarkerStyle(24);
@@ -30,7 +30,7 @@ n1->Draw("beamGain:beamEnergy", "", "same");
 
 
 // S100 gain data
-TFile f2("S100/gainData.root"); 
+TFile f2("S100/stats.root"); 
 n2 = (TNtuple*)f2->Get("gainDat");
 n2->SetMarkerColor(1);
 n2->SetMarkerStyle(25);
@@ -39,7 +39,7 @@ n2->SetLineColor(3);
 n2->Draw("beamGain:beamEnergy", "", "same");
 
 // S200 gain data
-TFile f3("S200/gainData.root"); 
+TFile f3("S200/stats.root"); 
 n3 = (TNtuple*)f3->Get("gainDat");
 n3->SetMarkerColor(1);
 n3->SetMarkerStyle(26);
