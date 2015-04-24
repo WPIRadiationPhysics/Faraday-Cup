@@ -155,23 +155,22 @@ Error = (Gain-1)\cdot100\%
 
 \subsection{Geant4}
 
-Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to organize and accumulate dynamic information of all affected particles.  Each \emph{event} (beam iteration) in a \emph{run} (predefined geometry and physics for a series of events) stores the resulting \emph{tracks} of particles which gained momentum, each for some number of \emph{steps} where the defined physics governs the future pathway.
+Geant4 is an object-oriented C++ toolkit for developing applications which simulate the passage of particles through matter. Libraries of cross-section tables, elemental/molecular properties, and pre-defined stochastic physics processes allow for rapid, intuitive invocation of necessary system setup commands. Once initialized, \lq\lq Manager" modules cooperate to accumulate and organize dynamic information of all affected particles.  Each \emph{event} (beam iteration) in a \emph{run} (predefined geometry and physics for a series of events) stores the resulting \emph{tracks} of particles which gained momentum, each for some number of \emph{steps} where the defined physics governs the future pathway.
 
 \subsubsection{UserAction methods}
 
 A useful feature of Geant4 is the ability to create user-defined actions (methods) throughout each module, which allows for a very fine-tuned analysis throughout the entire simulation.  The following summarizes the custom details and methods for this application
 
 \begin{itemize}
-\item \textbf{DetectorConstruction.cc:} A copper cylinder of radius 3 cm and height 10 cm is covered in Kapton film of varying thickenesses: 59 $\mu$m, 100 $\mu$m and 200 $\mu$m.  The film thickness is iterated by a function which is called before the command macro is examined.  The top face of the copper lies in the $z=0$ plane, with the beam approach the system from beneath.
+\item \textbf{DetectorConstruction.cc:} A copper cylinder of radius 3 cm and height 10 cm is covered in Kapton film of varying thickenesses: 59 $\mu$m, 100 $\mu$m and 200 $\mu$m.  The film thickness is iterated by a function which is called before the command macro is examined.  The $z=0$ plane bisects the world, with the beam approaching the system from beneath.
 \item \textbf{SteppingAction.cc:} [For every step,] immediately checks if the step is the finale of a track.  If so, the particle's vertex (original position) and destination volume and coordinates are found, and a charge signal calculation occurs.  Entering/Leaving the copper gives a net signal of $\pm q$ where $q$ is the charge of the particle.  Entering/Leaving Kapton gives a relative proportionality of
 
 \begin{equation}
-s_{q\rightleftharpoons KA} = \pm q\times\max\left[r_{\%}, z_{\%}\right], \label{eqn:s_KA}
+s_{q\rightleftharpoons KA} = \pm q\times \left(1 - \max\left[r_{\%}, z_{\%}\right]\right), \label{eqn:s_KA}
 \end{equation}
 
 where $r_{\%}$ is the percent distance away from the copper radially and $z_{\%}$ is the percent distance away laterally.  The signals are grouped and saved by a unique eventID number.
-\item \textbf{EventAction.cc:} At the end of each event, the signals are tallied, grouped, and saved by a unique runID number.
-\item \textbf{RunAction.cc:} At the end of each run, the average and standard deviation of the signals are acquired.
+\item \textbf{RunAction.cc:} At the end of each run, the data are output to ROOT data files via a C++ interface.
 \end{itemize}
 
 \subsubsection{Experimental parameters}
@@ -364,8 +363,8 @@ Fig.~\ref{fig:G4_dist} depicts the tracks of particles given the simulation of 5
 
 \begin{figure}[h]
   \centering
-  \includegraphics[width=5in]{figures/fig_results.png}
-  \caption{Comparison of Geant4 output and HIT measurement.  Generated with Gnuplot.}
+  \includegraphics[width=5in]{figures/fig_G4_results.png}
+  \caption{Geant4 Output.  Generated with Gnuplot.}
   \label{fig:comp_results}
 \end{figure}
 
