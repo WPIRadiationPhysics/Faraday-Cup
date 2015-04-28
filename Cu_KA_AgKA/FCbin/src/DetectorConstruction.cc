@@ -56,15 +56,17 @@ void DetectorConstruction::DefineMaterials() {
   // Materials defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_Cu");
-  //nistManager->FindOrBuildMaterial("G4_AIR");
+  nistManager->FindOrBuildMaterial("G4_AIR");
   nistManager->FindOrBuildMaterial("G4_Ag");
   
+  /*
   // Geant4 conventional definition of a vacuum
   G4double density     = universe_mean_density;  //from PhysicalConstants.h
   G4double pressure    = 1.e-19*pascal;
   G4double temperature = 0.1*kelvin;
   new G4Material("Vacuum", 1., 1.01*g/mole, density,
                    kStateGas,temperature,pressure);
+  */
 
   // Manually constructing Kapton, did not seem to find from DB correctly...
   G4Material* Kapton = new G4Material("Kapton",1.42*g/cm3, 4);
@@ -120,7 +122,7 @@ G4VPhysicalVolume* DetectorConstruction::DefineVolumes() {
   G4double world_spanningAngle = 360*deg;
 
   // Get materials
-  G4Material* defaultMaterial = G4Material::GetMaterial("Vacuum");
+  G4Material* defaultMaterial = G4Material::GetMaterial("G4_AIR");
   G4Material* copperMaterial = G4Material::GetMaterial("G4_Cu");
   G4Material* KaptonMaterial = G4Material::GetMaterial("Kapton");
   G4Material* silverMaterial = G4Material::GetMaterial("G4_Ag");
