@@ -24,23 +24,41 @@ plot "DATA.dat" u 1:5 t "G4_Cu" w lp lt 1 lc rgb "brown", \
      "DATA.dat" u 1:17 t "G4_S100+Ag/KA_v" w lp lt 6 lc rgb "black", \
      "DATA.dat" u 1:18 t "G4_S200+Ag/KA_v" w lp lt 8 lc rgb "black"
 
+
 set output "fig_G4_results_air.png"
 
 set key samplen 2 spacing 0.9 font ",8" below
-set title "Experimental Beam Stop and Geant4 Simulation Gains"
+set title "Geant4 Simulation Gains in air"
 
 set xrange [70:222]
-set yrange [0.95:1.005]
+set yrange [0.95:1]
 set xlabel "Energy (MeV)"
 set ylabel "Gain (I/B)"
 
-plot "DATA.dat" u 1:5 t "G4_Cu" w lp lt 1 lc rgb "brown", \
-     "DATA.dat" u 1:7 t "G4_S59-Ag/KA" w lp lt 4 lc rgb "cyan", \
+plot "DATA.dat" u 1:7 t "G4_S59-Ag/KA" w lp lt 4 lc rgb "cyan", \
      "DATA.dat" u 1:8 t "G4_S100-Ag/KA" w lp lt 6 lc rgb "cyan", \
      "DATA.dat" u 1:9 t "G4_S200-Ag/KA" w lp lt 8 lc rgb "cyan", \
      "DATA.dat" u 1:13 t "G4_S59+Ag/KA" w lp lt 4 lc rgb "gray", \
      "DATA.dat" u 1:14 t "G4_S100+Ag/KA" w lp lt 6 lc rgb "gray", \
      "DATA.dat" u 1:15 t "G4_S200+Ag/KA" w lp lt 8 lc rgb "gray"
+
+
+set output "fig_G4_results_vac.png"
+
+set key samplen 2 spacing 0.9 font ",8" below
+set title "Geant4 Simulation Gains in vacuo"
+
+set xrange [70:222]
+set yrange [0.95:1]
+set xlabel "Energy (MeV)"
+set ylabel "Gain (I/B)"
+
+plot "DATA.dat" u 1:10 t "G4_S59-Ag/KA" w lp lt 4 lc rgb "blue", \
+     "DATA.dat" u 1:11 t "G4_S100-Ag/KA" w lp lt 6 lc rgb "blue", \
+     "DATA.dat" u 1:12 t "G4_S200-Ag/KA" w lp lt 8 lc rgb "blue", \
+     "DATA.dat" u 1:16 t "G4_S59+Ag/KA" w lp lt 4 lc rgb "black", \
+     "DATA.dat" u 1:17 t "G4_S100+Ag/KA" w lp lt 6 lc rgb "black", \
+     "DATA.dat" u 1:18 t "G4_S200+Ag/KA" w lp lt 8 lc rgb "black"
 
 
 set output "fig_results.png"
