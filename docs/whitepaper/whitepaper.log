@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.6.5)  30 APR 2015 03:04
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.6.5)  30 APR 2015 16:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -270,154 +270,156 @@ File: figures/fig_error_diameter.png Graphic file (type png)
 
 <use figures/fig_error_diameter.png>
 Package pdftex.def Info: figures/fig_error_diameter.png used on input line 27.
-(pdftex.def)             Requested size: 216.81pt x 215.54626pt.
+(pdftex.def)             Requested size: 433.62pt x 431.10301pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./figures/fig_error_diamet
-er.png (PNG copy)>]
-<figures/fig_G4_results_vac.png, id=12, 642.4pt x 481.8pt>
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./figures/fig_error_di
+ameter.png (PNG copy)>]
+<figures/fig_G4_results_vac.png, id=15, 642.4pt x 481.8pt>
 File: figures/fig_G4_results_vac.png Graphic file (type png)
 
 <use figures/fig_G4_results_vac.png>
-Package pdftex.def Info: figures/fig_G4_results_vac.png used on input line 38.
+Package pdftex.def Info: figures/fig_G4_results_vac.png used on input line 39.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
 
-<figures/Cu_KA_vac/S59/WorldtoKA.png, id=13, 760.8425pt x 542.025pt>
+<figures/Cu_KA_vac/S59/WorldtoKA.png, id=16, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_vac/S59/WorldtoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_vac/S59/WorldtoKA.png>
 Package pdftex.def Info: figures/Cu_KA_vac/S59/WorldtoKA.png used on input line
- 47.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_vac/S59/KAtoCu.png, id=14, 760.8425pt x 542.025pt>
+ 48.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [3 <./figures/fig_G4_results_vac.png>] <figures/Cu_KA_vac/S59/KAtoCu.png, id=2
+1, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_vac/S59/KAtoCu.png Graphic file (type png)
 
 <use figures/Cu_KA_vac/S59/KAtoCu.png>
-Package pdftex.def Info: figures/Cu_KA_vac/S59/KAtoCu.png used on input line 48
+Package pdftex.def Info: figures/Cu_KA_vac/S59/KAtoCu.png used on input line 55
 .
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_vac/S59/CutoKA.png, id=15, 760.8425pt x 542.025pt>
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [4 <./figures/Cu_KA_vac/S59/WorldtoKA.png>] <figures/Cu_KA_vac/S59/CutoKA.png,
+ id=25, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_vac/S59/CutoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_vac/S59/CutoKA.png>
-Package pdftex.def Info: figures/Cu_KA_vac/S59/CutoKA.png used on input line 49
+Package pdftex.def Info: figures/Cu_KA_vac/S59/CutoKA.png used on input line 62
 .
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
- [2 <./figures/fig_G4_results_vac.png>]
-<figures/Cu_KA_AgKA_vac/S59/WorldtoKA.png, id=20, 760.8425pt x 542.025pt>
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [5 <./figures/Cu_KA_vac/S59/KAtoCu.png>] <figures/Cu_KA_AgKA_vac/S59/WorldtoKA
+.png, id=29, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA_vac/S59/WorldtoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA_vac/S59/WorldtoKA.png>
 Package pdftex.def Info: figures/Cu_KA_AgKA_vac/S59/WorldtoKA.png used on input
- line 56.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_AgKA_vac/S59/KAtoCu.png, id=21, 760.8425pt x 542.025pt>
+ line 69.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [6 <./figures/Cu_KA_vac/S59/CutoKA.png>]
+<figures/Cu_KA_AgKA_vac/S59/KAtoCu.png, id=33, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA_vac/S59/KAtoCu.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA_vac/S59/KAtoCu.png>
 Package pdftex.def Info: figures/Cu_KA_AgKA_vac/S59/KAtoCu.png used on input li
-ne 57.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_AgKA_vac/S59/CutoKA.png, id=22, 760.8425pt x 542.025pt>
+ne 76.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [7 <./figures/Cu_KA_AgKA_vac/S59/WorldtoKA.png>]
+<figures/Cu_KA_AgKA_vac/S59/CutoKA.png, id=38, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA_vac/S59/CutoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA_vac/S59/CutoKA.png>
 Package pdftex.def Info: figures/Cu_KA_AgKA_vac/S59/CutoKA.png used on input li
-ne 58.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
- [3 <./figures/Cu_KA_vac/S59/WorldtoKA.png> <./figures/Cu_KA_vac/S59/KAtoCu.png
-> <./figures/Cu_KA_vac/S59/CutoKA.png> <./figures/Cu_KA_AgKA_vac/S59/WorldtoKA.
-png> <./figures/Cu_KA_AgKA_vac/S59/KAtoCu.png> <./figures/Cu_KA_AgKA_vac/S59/Cu
-toKA.png>]
-<figures/fig_G4_results_air.png, id=26, 642.4pt x 481.8pt>
+ne 83.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [8 <./figures/Cu_KA_AgKA_vac/S59/KAtoCu.png>] [9 <./figures/Cu_KA_AgKA_vac/S59
+/CutoKA.png>]
+<figures/fig_G4_results_air.png, id=45, 642.4pt x 481.8pt>
 File: figures/fig_G4_results_air.png Graphic file (type png)
 
 <use figures/fig_G4_results_air.png>
-Package pdftex.def Info: figures/fig_G4_results_air.png used on input line 69.
+Package pdftex.def Info: figures/fig_G4_results_air.png used on input line 95.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--75
+Underfull \hbox (badness 10000) in paragraph at lines 100--101
 
  []
 
-<figures/Cu_KA/S59/WorldtoKA.png, id=27, 760.8425pt x 542.025pt>
+<figures/Cu_KA/S59/WorldtoKA.png, id=46, 760.8425pt x 542.025pt>
 File: figures/Cu_KA/S59/WorldtoKA.png Graphic file (type png)
 
 <use figures/Cu_KA/S59/WorldtoKA.png>
-Package pdftex.def Info: figures/Cu_KA/S59/WorldtoKA.png used on input line 80.
-
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA/S59/KAtoCu.png, id=28, 760.8425pt x 542.025pt>
+Package pdftex.def Info: figures/Cu_KA/S59/WorldtoKA.png used on input line 106
+.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [10 <./figures/fig_G4_results_air.png>]
+<figures/Cu_KA/S59/KAtoCu.png, id=51, 760.8425pt x 542.025pt>
 File: figures/Cu_KA/S59/KAtoCu.png Graphic file (type png)
 
 <use figures/Cu_KA/S59/KAtoCu.png>
-Package pdftex.def Info: figures/Cu_KA/S59/KAtoCu.png used on input line 81.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA/S59/CutoKA.png, id=29, 760.8425pt x 542.025pt>
+Package pdftex.def Info: figures/Cu_KA/S59/KAtoCu.png used on input line 113.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [11 <./figures/Cu_KA/S59/WorldtoKA.png>]
+<figures/Cu_KA/S59/CutoKA.png, id=55, 760.8425pt x 542.025pt>
 File: figures/Cu_KA/S59/CutoKA.png Graphic file (type png)
 
 <use figures/Cu_KA/S59/CutoKA.png>
-Package pdftex.def Info: figures/Cu_KA/S59/CutoKA.png used on input line 82.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
- [4 <./figures/fig_G4_results_air.png>]
-<figures/Cu_KA_AgKA/S59/WorldtoKA.png, id=34, 760.8425pt x 542.025pt>
+Package pdftex.def Info: figures/Cu_KA/S59/CutoKA.png used on input line 120.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [12 <./figures/Cu_KA/S59/KAtoCu.png>]
+<figures/Cu_KA_AgKA/S59/WorldtoKA.png, id=59, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA/S59/WorldtoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA/S59/WorldtoKA.png>
 Package pdftex.def Info: figures/Cu_KA_AgKA/S59/WorldtoKA.png used on input lin
-e 89.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_AgKA/S59/KAtoCu.png, id=35, 760.8425pt x 542.025pt>
+e 127.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [13 <./figures/Cu_KA/S59/CutoKA.png>] <figures/Cu_KA_AgKA/S59/KAtoCu.png, id=6
+4, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA/S59/KAtoCu.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA/S59/KAtoCu.png>
-Package pdftex.def Info: figures/Cu_KA_AgKA/S59/KAtoCu.png used on input line 9
-0.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/Cu_KA_AgKA/S59/CutoKA.png, id=36, 760.8425pt x 542.025pt>
+Package pdftex.def Info: figures/Cu_KA_AgKA/S59/KAtoCu.png used on input line 1
+34.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [14 <./figures/Cu_KA_AgKA/S59/WorldtoKA.png>] <figures/Cu_KA_AgKA/S59/CutoKA.p
+ng, id=68, 760.8425pt x 542.025pt>
 File: figures/Cu_KA_AgKA/S59/CutoKA.png Graphic file (type png)
 
 <use figures/Cu_KA_AgKA/S59/CutoKA.png>
-Package pdftex.def Info: figures/Cu_KA_AgKA/S59/CutoKA.png used on input line 9
-1.
-(pdftex.def)             Requested size: 180.67499pt x 128.70746pt.
-
-<figures/fig_G4_results.png, id=37, 642.4pt x 481.8pt>
+Package pdftex.def Info: figures/Cu_KA_AgKA/S59/CutoKA.png used on input line 1
+41.
+(pdftex.def)             Requested size: 433.62pt x 308.91609pt.
+ [15 <./figures/Cu_KA_AgKA/S59/KAtoCu.png>] <figures/fig_G4_results.png, id=72,
+ 642.4pt x 481.8pt>
 File: figures/fig_G4_results.png Graphic file (type png)
 
 <use figures/fig_G4_results.png>
-Package pdftex.def Info: figures/fig_G4_results.png used on input line 98.
+Package pdftex.def Info: figures/fig_G4_results.png used on input line 148.
 (pdftex.def)             Requested size: 361.34999pt x 271.01918pt.
- [5 <./figures/Cu_KA/S59/WorldtoKA.png> <./figures/Cu_KA/S59/KAtoCu.png> <./fig
-ures/Cu_KA/S59/CutoKA.png> <./figures/Cu_KA_AgKA/S59/WorldtoKA.png> <./figures/
-Cu_KA_AgKA/S59/KAtoCu.png> <./figures/Cu_KA_AgKA/S59/CutoKA.png>] [6 <./figures
-/fig_G4_results.png>] (./whitepaper.aux) ) 
+ [16 <./figures/Cu_KA_AgKA/S59/CutoKA.png>]
+<figures/fig_HIT_results.png, id=76, 642.4pt x 481.8pt>
+File: figures/fig_HIT_results.png Graphic file (type png)
+
+<use figures/fig_HIT_results.png>
+Package pdftex.def Info: figures/fig_HIT_results.png used on input line 155.
+(pdftex.def)             Requested size: 433.62pt x 325.223pt.
+ [17 <./figures/fig_G4_results.png>] [18 <./figures/fig_HIT_results.png>] (./wh
+itepaper.aux) ) 
 Here is how much of TeX's memory you used:
- 2777 strings out of 495059
- 38374 string characters out of 3182031
- 90673 words of memory out of 3000000
- 5898 multiletter control sequences out of 15000+200000
+ 2791 strings out of 495059
+ 38706 string characters out of 3182031
+ 90762 words of memory out of 3000000
+ 5911 multiletter control sequences out of 15000+200000
  9535 words of font info for 36 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,6n,24p,844b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ti10.pfb>
-Output written on whitepaper.pdf (6 pages, 257809 bytes).
+ 38i,6n,24p,864b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+bx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on whitepaper.pdf (18 pages, 267238 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 56 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
 
