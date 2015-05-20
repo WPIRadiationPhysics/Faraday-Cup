@@ -37,7 +37,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
   G4int KA_i = floor(runID/7); // 7 runs per geometry
 	
-  // Feature: remove step references in var names, and check right away for "last step"
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
@@ -82,14 +81,22 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     G4double stepZVertex = stepXYZVertex[2];
     
     // Signal statistics
-    // 0: World -> KA1
-    // 1: World -> Cu
-    // 2: KA1 -> Cu
-    // 3: KA1 -> World
-    // 4: Cu -> KA1
-    // 5: Cu -> World
-    // 6: KA1 -> KA1
-    G4int signalType;
+    // e
+    // 0: KA_in
+    // 1: KA_out
+    // 2: KA_inner
+    // 3: KA_outer
+    // p
+    // 4: KA_in
+    // 5: KA_out
+    // 6: KA_inner
+    // 7: KA_outer
+    // other
+    // 8: KA_in
+    // 9: KA_out
+    // 10: KA_inner
+    // 11: KA_outer
+    G4int signalType = 99; // 99: null event
     G4double trackDepth = 0, trackDepthVertex = 0;
     
     // ORIGIN
@@ -97,9 +104,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     if ( volumeNameVertex == "Cu_cyl" ) { 
 	  netSignal -= stepCharge;
 	  trackDepthVertex = (stepZVertex + half_Cu)/h_Cu;
-	  
-	  if ( volumeName != "Cu_cyl" &&  volumeName != "Kapton_cyl1" ) { signalType = 5; }
-	  if ( volumeName == "Kapton_cyl1" ) { signalType = 4; }
     }
   
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
@@ -115,7 +119,19 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       trackDepthVertex = 1 - ((percentRVertex>percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
       
-      if ( volumeName != "Cu_cyl" &&  volumeName != "Kapton_cyl1" ) { signalType = 3; }
+      // Acquire signal type from particle track for histos
+      if ( stepParticle == "e-" ) {
+        if ( volumeName != "Kapton_cyl1" ) { signalType = 1; }
+        else { signalType = 3; }
+      }
+      else if ( stepParticle == "proton" ) {
+        if ( volumeName != "Kapton_cyl1" ) { signalType = 5; }
+        else { signalType = 7; }
+      }
+      else {
+        if ( volumeName != "Kapton_cyl1" ) { signalType = 9; }
+        else { signalType = 11; }
+      }
     }
     
     // DESTINATION
@@ -123,9 +139,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     if ( volumeName == "Cu_cyl" ) {
 	  netSignal += stepCharge;
       trackDepth = (stepZ + half_Cu)/h_Cu;
-      
-      if ( volumeNameVertex == "Kapton_cyl1" ) { signalType = 2; }
-      if ( volumeNameVertex != "Cu_cyl" &&  volumeNameVertex != "Kapton_cyl1" ) { signalType = 1; }
     }
         
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
@@ -141,8 +154,19 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       trackDepth = 1 - ((percentR>percentZ)?percentR:percentZ); // concise maximum function
       netSignal += stepCharge*trackDepth;
       
-      if ( volumeNameVertex != "Cu_cyl" &&  volumeNameVertex != "Kapton_cyl1" ) { signalType = 0; }
-      if ( volumeNameVertex ==  "Kapton_cyl1" ) { signalType = 6; }
+      // Acquire signal type from particle track for histos
+      if ( stepParticle == "e-" ) {
+        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 0; }
+        else { signalType = 2; }
+      }
+      else if ( stepParticle == "proton" ) {
+        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 4; }
+        else { signalType = 6; }
+      }
+      else {
+        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 8; }
+        else { signalType = 10; }
+      }
     }
     
     if ( netSignal != 0 ) { // Zeros already counted

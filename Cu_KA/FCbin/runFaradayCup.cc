@@ -143,7 +143,8 @@ int main(int argc,char** argv) {
       // Move ROOT files
       syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
       // Move plot to data directory
-      syscmd = "cp plot.C " + data_dir; system(syscmd);
+      syscmd = "cp plotGain.C " + data_dir; system(syscmd);
+      syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
     }
 
   }

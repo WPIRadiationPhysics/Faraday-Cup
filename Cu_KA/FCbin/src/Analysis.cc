@@ -38,13 +38,20 @@ void Analysis::Analyze_Gain(G4int nThreads) {
   // for every energy
   for ( G4int energy_i = 0; energy_i < 7; energy_i++ ) {
   
-    analysisManager->CreateH1("sigType0", "worldToKA", 100, 0., 1.);
-    analysisManager->CreateH1("sigType1", "worldToCu", 100, 0., 1.);
-    analysisManager->CreateH1("sigType2", "KAToCu", 100, 0., 1.);
-    analysisManager->CreateH1("sigType3", "KAToWorld", 100, 0., 1.);
-    analysisManager->CreateH1("sigType4", "CuToKA", 100, 0., 1.);
-    analysisManager->CreateH1("sigType5", "CuToWorld", 100, 0., 1.);
-    analysisManager->CreateH1("sigType6", "KAToKA", 100, 0., 1.);
+    analysisManager->CreateH1("eKA_in", "eKA_in", 100, 0., 1.);
+    analysisManager->CreateH1("eKA_out", "eKA_out", 100, 0., 1.);
+    analysisManager->CreateH1("eKA_inner", "eKA_inner", 100, 0., 1.);
+    analysisManager->CreateH1("eKA_outer", "eKA_outer", 100, 0., 1.);
+
+    analysisManager->CreateH1("pKA_in", "pKA_in", 100, 0., 1.);
+    analysisManager->CreateH1("pKA_out", "pKA_out", 100, 0., 1.);
+    analysisManager->CreateH1("pKA_inner", "pKA_inner", 100, 0., 1.);
+    analysisManager->CreateH1("pKA_outer", "pKA_outer", 100, 0., 1.);
+
+    analysisManager->CreateH1("oKA_in", "oKA_in", 100, 0., 1.);
+    analysisManager->CreateH1("oKA_out", "oKA_out", 100, 0., 1.);
+    analysisManager->CreateH1("oKA_inner", "oKA_inner", 100, 0., 1.);
+    analysisManager->CreateH1("oKA_outer", "oKA_outer", 100, 0., 1.);
   }
 
   // For each worker thread
@@ -67,7 +74,7 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
     if ( ntupleId >= 0 ) {
       
-      // Get relevant values      
+      // Get relevant values
       analysisReader->SetNtupleIColumn("run", ROOT_runID);
       analysisReader->SetNtupleIColumn("event", ROOT_eventID);
       analysisReader->SetNtupleDColumn("particleCharge", ROOT_particleCharge);
@@ -85,13 +92,15 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
         // Accumulate gain measurement per energy (run)
         ROOT_gain[ROOT_runID%7] += ROOT_netCharge;
-        
-        // Populate track origin/terminus depth histograms
-        if ( ROOT_signalType == 2 || ROOT_signalType == 3 ) {
-          analysisManager->FillH1((ROOT_runID%7)*7 + ROOT_signalType, ROOT_trackDepthVertex);
-        } else {
-          analysisManager->FillH1((ROOT_runID%7)*7 + ROOT_signalType, ROOT_trackDepth);
-	    }
+
+        // Populate track origin/terminus depth histograms for non-null events
+        if ( ROOT_signalType != 99 ) {
+          if ( ROOT_signalType == 1 || ROOT_signalType == 3 || ROOT_signalType == 5 || ROOT_signalType == 7 || ROOT_signalType == 9 || ROOT_signalType == 11 ) {
+            analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepthVertex);
+          } else {
+            analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepth);
+          }
+        }
       }
     }
 
