@@ -1,5 +1,5 @@
-# Macro file for the initialization phase of example B4
-# when running in interactive mode with visualization
+# Macro file for the initialization phase of when running
+# in interactive mode with visualization
 #
 # Sets some default verbose
 #
