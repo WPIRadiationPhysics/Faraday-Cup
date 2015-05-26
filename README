@@ -25,20 +25,18 @@ B- USER INTERFACES
 
 DetectorConstruction.cc defines geometry and logical volumes
 
-(i) Gold slab (r=0.5cm, h=0.079cm) in a vaccuum with uniform EM-fields of E=300V/19cm and B=0.2G.
+Copper cylinder (r=3cm, h=10cm) residing within a Kapton insulation of thicknesses 59, 100, and 200 microns in air.  A thin layer of silver paint 12 microns thick is applied upon this solid, with a final layer of Kapton film 60 microns thick.
 
-(ii) Copper cylinder (r=3cm, h=10cm) residing within a Kapton insulation of thicknesses 59, 100, and 200 microns in air.  A thin layer of silver paint 12 microns thick is applied upon this solid, with a final layer of Kapton film 60 microns thick.
-
-The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d* away from the center of the circular face.  The world which contains the beam and cup is composed of air  material.
+The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d* away from the center of the circular face.  The world which contains the beam and cup is composed of air material.
 
 
-  (i) Vaccuum + EM / (ii) Air*
 
+        Air
+                      Ag + Kapton
 
-                      [(ii) Ag + Kapton]
 	            ..===============================++++.
 	          .~/~   :`.                      .~`    `~.
-                 ./~ (i) Au / (ii) Cu + Kapton   .~       `~.
+                 ./~   Cu + Kapton               .~       `~.
                 ./~        ..                   '~         `~.
                 ||         .:                   ||          ||
  proton beam    ||         :.                   ||          ||
@@ -49,16 +47,14 @@ The beam is aligned to hit the Faraday Cup in the (+z)-direction, a distance *d*
                  ``     ,.`                       ~`.      .~
 	          ``~================================+++++~
 
-* Has been temporarily changed to a vaccuum to avoid delta ray intrusion due to in-air interactions.
 
 
 2- PHYSICS LIST
  
-The particle's type and the physic processes which will be available in this example are set in the FTFP_BERT physics list. This physics list requires data files for electromagnetic and hadronic processes. See more on installation of the datasets in Geant4 Installation Guide, 
+The particle's type and the physic processes which will be available are set in the FTFP_BERT2.0 physics list. This physics list requires data files for electromagnetic and hadronic processes. See more on installation of the datasets in Geant4 Installation Guide, 
 
 Chapter 3.3: Note On Geant4 Datasets:
 http://geant4.web.cern.ch/geant4/UserDocumentation/UsersGuides/InstallationGuide/html/ch03s03.html
-The following datasets: G4LEDATA, G4LEVELGAMMADATA and G4SAIDXSDATA are mandatory for this example.
 
  
 3- ACTION INITALIZATION
@@ -90,7 +86,7 @@ The user can choose the frequency of printing via the Geant4 interactive command
 
 6- DETECTOR RESPONSE
  
-Both deposition and leakage of the charged particles are recorded on an event by event basis within the (i) gold (ii) copper and Kapton logical volumes.
+Both deposition and leakage of the charged particles are recorded on an event by event basis within the copper and Kapton logical volumes.
    
 These quantities are data members of the EventAction class; they are collected step by step in SteppingAction::UserSteppingAction().
    
@@ -99,7 +95,7 @@ In EventAction::EndOfEventAction(), these quantities are printed and filled in h
 
 7- HISTOGRAMS
 
-The analysis tools are used to accumulate statistics and compute the dispersion of the energy deposit and track lengths of the charged particles.
+The analysis tools are used to accumulate statistics and compute the distribution of the energy deposition and track lengths of the charged particles.
    
 The accumulated statistic and computed dispersion is printed at the end of run, in RunAction::EndOfRunAction(). When running in multi-threading mode, the histograms accumulated on threads are automatically merged in a single output file, while the ntuple is written in files per thread.
 
@@ -138,7 +134,7 @@ and type in the commands from run1.mac line by line:
 
 A- VISUALIZATION
 
-The visualization manager is set via the G4VisExecutive class in the main() function in runFaradayCup.cc. The initialisation of the drawing is done via a set of /vis/ commands in the macro vis.mac. This macro is automatically read from the main function when the example is used in interactive running mode.
+The visualization manager is set via the G4VisExecutive class in the main() function in runFaradayCup.cc. The initialisation of the drawing is done via a set of /vis/ commands in the macro vis.mac. This macro is automatically read from the main function when used in interactive running mode.
 
 By default, vis.mac opens an OpenGL viewer (/vis/open OGL). The user can change the initial viewer by commenting out this line and instead uncommenting one of the other /vis/open statements, such as HepRepFile or DAWNFILE (which produce files that can be viewed with the HepRApp and DAWN viewers, respectively).  Note that one can always open new viewers at any time from the command line.  For example, if you already have a view in, say, an OpenGL window with a name "viewer-0", then
   /vis/open DAWNFILE
