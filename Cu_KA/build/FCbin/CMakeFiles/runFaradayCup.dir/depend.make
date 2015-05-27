@@ -1870,6 +1870,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: /usr/local/g
 FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o: /usr/local/geant4/install/include/Geant4/windefs.hh
 
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/Analysis.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/DetectorConstruction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/PrimaryGeneratorAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/include/RunAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: ../FCbin/src/RunAction.cc
@@ -2164,6 +2165,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTouchable.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTouchable.icc
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VTrajectory.hh
+FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserDetectorConstruction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserEventInformation.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o: /usr/local/geant4/install/include/Geant4/G4VUserTrackInformation.hh

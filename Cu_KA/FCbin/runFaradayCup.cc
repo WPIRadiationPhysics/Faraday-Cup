@@ -75,7 +75,7 @@ int main(int argc,char** argv) {
 
   G4VModularPhysicsList* physicsList = new FTFP_BERT;
   runManager->SetUserInitialization(physicsList);
-    
+  
   ActionInitialization* actionInitialization
      = new ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
@@ -95,58 +95,83 @@ int main(int argc,char** argv) {
   // batch mode  
   if ( macro.size() ) {
 
-    // Kapton Optimization problem- 3D data
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.005 mm";
+    G4String cutCommand = "/run/setCut 0.001 mm";
     UImanager->ApplyCommand(cutCommand);
 	
-    // Constant vars
+    // Constant vars, declarations
     G4int KA_thickness[3] = {59, 100, 200};
-    G4String data_dir = "data/";
+    std::ostringstream data_dirStream, dirCommandStream, filmDirStream;
+    G4String data_dir, dirCommand, syscmd, filmDir;
 
-    // Create data directory
-    std::ostringstream dirCommandStream;
-    dirCommandStream << "rm -f " << data_dir << "; mkdir -p " << data_dir;
-    G4String dirCommand = dirCommandStream.str(); system(dirCommand);
+    // Model loop
+    for ( G4int model_i=0; model_i<3; model_i++ ) {
 
-    // Acquire nThreads string of '#'s
-    std::ostringstream nThreadsStream;
-    for (G4int numThreads_i=0; numThreads_i < nThreads; numThreads_i++) { nThreadsStream << "#"; }
-    G4String nThreadsString = nThreadsStream.str();
+      // Create geometry-specific data dir
+      data_dirStream.str("");
+      data_dirStream << "data/";
+      data_dir = data_dirStream.str();
 
-    // Leave nThreads flag for RunAction
-    dirCommandStream.str(""); dirCommand = "";
-    dirCommandStream << "echo \"" << nThreadsString << "\" > " << data_dir << ".nThreads";
-    dirCommand = dirCommandStream.str(); system(dirCommand);
+      // Create data directory, remove old if any
+      dirCommandStream.str("");
+      dirCommandStream << "rm -f " << data_dir << "; mkdir -p " << data_dir;
+      dirCommand = dirCommandStream.str(); system(dirCommand);
 
-    for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
+      // Assign geometric configuration
+      detConstruction->ModelConfiguration(model_i);
 
-      // Assign thickness
-      detConstruction->IterateKaptonThickness(thickness_i);
+      // Unsheathed Cu primary model
+      if ( model_i == 0 ) {
+
+        // Run experimental beam energies
+        syscmd = "/control/execute ";
+        UImanager->ApplyCommand(syscmd+macro);
+
+        // ROOT gain analysis
+        Analysis* gainAnalysis = Analysis::GetAnalysis();
+        gainAnalysis->Analyze_Gain(nThreads);
+
+        // Combine and subsequentially remove worker rootData threads
+        syscmd = "hadd -f " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
+        syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
+        // Move plot to data directory
+        syscmd = "cp plotGain.C " + data_dir; system(syscmd);
+        syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
+               
+      // Kapton (layer 1) thickness iteration for secondary models
+      } else { for ( G4int KA_i=0; KA_i<3; KA_i++ ) {
+
+        // Assign thickness
+        detConstruction->IterateKaptonThickness(KA_i);
       
-      // Run experimental beam energies
-      G4String command = "/control/execute ";
-      UImanager->ApplyCommand(command+macro);
+        // Run experimental beam energies
+        syscmd = "/control/execute ";
+        UImanager->ApplyCommand(syscmd+macro);
 
-      // ROOT gain analysis
-      Analysis* gainAnalysis = Analysis::GetAnalysis();
-      gainAnalysis->Analyze_Gain(nThreads);
+        // ROOT gain analysis
+        Analysis* gainAnalysis = Analysis::GetAnalysis();
+        gainAnalysis->Analyze_Gain(nThreads);
 
-      // Save completed dataset as film iteration directory
-      std::ostringstream filmDirStream; filmDirStream << data_dir << "S" << KA_thickness[thickness_i];
-      G4String filmDir = filmDirStream.str(), syscmd;
-      // Create film dir
-      syscmd = "mkdir -p " + filmDir; system(syscmd);
-      // Combine and subsequentially remove rootData threads
-      syscmd = "hadd " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
-      syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
-      // Move ROOT files
-      syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
-      // Move plot to data directory
-      syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-      syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
+        // Save completed dataset as film iteration directory
+        filmDirStream.str("");
+        filmDirStream << data_dir << "S" << KA_thickness[KA_i];
+        filmDir = filmDirStream.str();
+        // Create film dir
+        syscmd = "mkdir -p " + filmDir; system(syscmd);
+        // Combine and subsequentially remove worker rootData threads
+        syscmd = "hadd -f " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
+        syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
+        // Move ROOT files
+        syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
+        // Move plot to data directory
+        syscmd = "cp plotGain.C " + data_dir; system(syscmd);
+        syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
+      }}
+
+      // Rename data dir as model index
+      data_dirStream.str(""); data_dirStream << "data" << model_i << "/";
+      data_dir = data_dirStream.str(); syscmd = "mv data " + data_dir; system(syscmd);
     }
-
   }
   else {
     // interactive mode : define UI session
@@ -166,7 +191,7 @@ int main(int argc,char** argv) {
       system(dirCommand);
 	  
       // Run experimental beam energies
-	  G4String command = "/control/execute ";
+      G4String command = "/control/execute ";
       UImanager->ApplyCommand(command+macro);
 
       // Remove run logs (to be placed in RunAction when confirmed single

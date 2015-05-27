@@ -1,6 +1,7 @@
 #include "Analysis.hh"
 #include "RunAction.hh"
 #include "PrimaryGeneratorAction.hh"
+#include "DetectorConstruction.hh"
 
 #include "G4Run.hh"
 #include "G4RunManager.hh"
@@ -32,7 +33,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   // Construct Track Data ntuple once per macro of runs
   if ( runID%7 == 0 ) {
 	
-	// Creating Track info ntuple 
+    // Creating Track info ntuple 
     analysisManager->CreateNtuple("trackDat", "Track Data");
     analysisManager->CreateNtupleIColumn(0, "run");
     analysisManager->CreateNtupleIColumn(0, "event");
@@ -53,9 +54,9 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 
   // Primary thread
   if ( G4Threading::G4GetThreadId() == 0 ) {
+
     // Primary energy (run) number
-    G4int E_Num = run->GetRunID();
-    G4cout << "Running energy #" << E_Num << G4endl;
+    G4cout << "Running energy #" << runID << G4endl;
   }
 }
 

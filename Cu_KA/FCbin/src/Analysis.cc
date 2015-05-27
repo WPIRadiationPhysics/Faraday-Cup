@@ -95,9 +95,13 @@ void Analysis::Analyze_Gain(G4int nThreads) {
 
         // Populate track origin/terminus depth histograms for non-null events
         if ( ROOT_signalType != 99 ) {
+
+          // Removals
           if ( ROOT_signalType == 1 || ROOT_signalType == 3 || ROOT_signalType == 5 || ROOT_signalType == 7 || ROOT_signalType == 9 || ROOT_signalType == 11 ) {
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepthVertex);
-          } else {
+          }
+          // Depositions
+          else {
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepth);
           }
         }

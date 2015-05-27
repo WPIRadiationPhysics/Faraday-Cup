@@ -205,6 +205,8 @@ RunAction.hh
 /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.hh
 PrimaryGeneratorAction.hh
 /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/PrimaryGeneratorAction.hh
+DetectorConstruction.hh
+/git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/DetectorConstruction.hh
 G4Run.hh
 /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/G4Run.hh
 G4RunManager.hh

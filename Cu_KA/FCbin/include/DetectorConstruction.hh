@@ -19,7 +19,11 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
   public:
     virtual G4VPhysicalVolume* Construct();
     
-    // Geometry loop method
+    // Geometry configuration loop method
+    G4int fConstructKA, fConstructAgKA;
+    virtual void ModelConfiguration(G4int model_i);
+
+    // Kapton thickness loop method
     G4double fKaptonThicknessMM;
     virtual void IterateKaptonThickness(G4int KA_i);
      

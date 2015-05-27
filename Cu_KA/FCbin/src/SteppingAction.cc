@@ -156,7 +156,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       
       // Acquire signal type from particle track for histos
       if ( stepParticle == "e-" ) {
-        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 0; }
+        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 0;
+        G4cout << stepParticle << " FROM (" << stepRVertex << "," << stepZVertex << ") in " << volumeNameVertex << " TO (" << stepR << "," << stepZ << ") in " << volumeName << G4endl; }
         else { signalType = 2; }
       }
       else if ( stepParticle == "proton" ) {

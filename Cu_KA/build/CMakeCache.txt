@@ -170,7 +170,7 @@ Project_BINARY_DIR:STATIC=/git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/git/WPIRadiationPhysics/Faraday-Cup/Cu_KA
 
-//Build example with Geant4 UI and Vis drivers
+//Build with Geant4 UI and Vis drivers
 WITH_GEANT4_UIVIS:BOOL=ON
 
 

@@ -1871,6 +1871,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/PrimaryGeneratorAction.cc.o
  /usr/local/geant4/install/include/Geant4/windefs.hh
 FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  ../FCbin/include/Analysis.hh
+ ../FCbin/include/DetectorConstruction.hh
  ../FCbin/include/PrimaryGeneratorAction.hh
  ../FCbin/include/RunAction.hh
  /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/FCbin/src/RunAction.cc
@@ -2165,6 +2166,7 @@ FCbin/CMakeFiles/runFaradayCup.dir/src/RunAction.cc.o
  /usr/local/geant4/install/include/Geant4/G4VTouchable.hh
  /usr/local/geant4/install/include/Geant4/G4VTouchable.icc
  /usr/local/geant4/install/include/Geant4/G4VTrajectory.hh
+ /usr/local/geant4/install/include/Geant4/G4VUserDetectorConstruction.hh
  /usr/local/geant4/install/include/Geant4/G4VUserEventInformation.hh
  /usr/local/geant4/install/include/Geant4/G4VUserPrimaryGeneratorAction.hh
  /usr/local/geant4/install/include/Geant4/G4VUserTrackInformation.hh

@@ -12,6 +12,7 @@ class RunAction : public G4UserRunAction {
     RunAction();
     virtual ~RunAction();
 
+    G4int fConstructKA, fConstructAgKA;
     virtual void BeginOfRunAction(const G4Run* run);
     virtual void   EndOfRunAction(const G4Run* run);
 };
