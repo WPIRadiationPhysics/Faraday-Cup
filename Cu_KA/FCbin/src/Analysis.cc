@@ -33,6 +33,7 @@ void Analysis::Analyze_Gain(G4int nThreads) {
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   G4String ROOTstatsFileName = data_dir + "stats.root";
   analysisManager->SetFileName(ROOTstatsFileName);
+  analysisManager->SetVerboseLevel(10);
 
   // Create charge transfer histograms (100 bins, depth_min to depth_max)
   // for every energy
@@ -96,13 +97,20 @@ void Analysis::Analyze_Gain(G4int nThreads) {
         // Populate track origin/terminus depth histograms for non-null events
         if ( ROOT_signalType != 99 ) {
 
+          G4cout << ROOT_signalType << " FROM (" << ROOT_rVertex << ", " << ROOT_zVertex << ") TO (" << ROOT_r << ", " << ROOT_z << ") in run " << ROOT_runID << G4endl;
+
           // Removals
-          if ( ROOT_signalType == 1 || ROOT_signalType == 3 || ROOT_signalType == 5 || ROOT_signalType == 7 || ROOT_signalType == 9 || ROOT_signalType == 11 ) {
+          if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepthVertex);
           }
           // Depositions
+          else if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
+            analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepth);
+          }
+          // Inner/Outer
           else {
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepth);
+            analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType + 1, ROOT_trackDepthVertex);
           }
         }
       }

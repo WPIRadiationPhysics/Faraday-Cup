@@ -33,9 +33,14 @@ SteppingAction::~SteppingAction() {}
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
 	
-  // Acquire run id and thickness index
+  // Acquire run id
   G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
-  G4int KA_i = floor(runID/7); // 7 runs per geometry
+
+  // 7 runs per thieck, ditch first 7 (Cu)
+  // [Cu runs end up with thickness_KA=0.059mm, but this doesn't matter
+  // as without the KA volume it won't undergo calculations anyway]
+  G4int KA_i = floor((runID-7)/7);
+  if ( KA_i < 0 ) { KA_i = 0; }
 	
   // Get particle charge
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
@@ -56,7 +61,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4String data_dir = "data/";
   
   // Acquire thickness index
-  G4double Kapton_Thickness[3] = {0.059, 0.100, 0.200};
+  G4double Kapton_Thickness[6] = {0.059, 0.100, 0.200, 0.059, 0.100, 0.200};
   r_KA = r_Cu + Kapton_Thickness[KA_i];
   h_KA = h_Cu + 2*Kapton_Thickness[KA_i];
   // All share common center, half in -z hemispace
@@ -71,8 +76,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 	
-	// Acquire Analysis Manager instance
-	G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+    // Acquire Analysis Manager instance
+    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 	
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
@@ -81,21 +86,18 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     G4double stepZVertex = stepXYZVertex[2];
     
     // Signal statistics
-    // e
+    // e-
     // 0: KA_in
     // 1: KA_out
-    // 2: KA_inner
-    // 3: KA_outer
-    // p
-    // 4: KA_in
-    // 5: KA_out
-    // 6: KA_inner
-    // 7: KA_outer
+    // 2: KA_cis
+    // proton
+    // 3: KA_in
+    // 4: KA_out
+    // 5: KA_cis
     // other
-    // 8: KA_in
-    // 9: KA_out
-    // 10: KA_inner
-    // 11: KA_outer
+    // 6: KA_in
+    // 7: KA_out
+    // 8: KA_cis
     G4int signalType = 99; // 99: null event
     G4double trackDepth = 0, trackDepthVertex = 0;
     
@@ -118,20 +120,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       
       trackDepthVertex = 1 - ((percentRVertex>percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
-      
-      // Acquire signal type from particle track for histos
-      if ( stepParticle == "e-" ) {
-        if ( volumeName != "Kapton_cyl1" ) { signalType = 1; }
-        else { signalType = 3; }
-      }
-      else if ( stepParticle == "proton" ) {
-        if ( volumeName != "Kapton_cyl1" ) { signalType = 5; }
-        else { signalType = 7; }
-      }
-      else {
-        if ( volumeName != "Kapton_cyl1" ) { signalType = 9; }
-        else { signalType = 11; }
-      }
     }
     
     // DESTINATION
@@ -153,25 +141,27 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       
       trackDepth = 1 - ((percentR>percentZ)?percentR:percentZ); // concise maximum function
       netSignal += stepCharge*trackDepth;
-      
-      // Acquire signal type from particle track for histos
-      if ( stepParticle == "e-" ) {
-        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 0;
-        G4cout << stepParticle << " FROM (" << stepRVertex << "," << stepZVertex << ") in " << volumeNameVertex << " TO (" << stepR << "," << stepZ << ") in " << volumeName << G4endl; }
-        else { signalType = 2; }
-      }
-      else if ( stepParticle == "proton" ) {
-        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 4; }
-        else { signalType = 6; }
-      }
-      else {
-        if ( volumeNameVertex != "Kapton_cyl1" ) { signalType = 8; }
-        else { signalType = 10; }
-      }
     }
-    
+
     if ( netSignal != 0 ) { // Zeros already counted
     
+      // Acquire signal type from particle track for histos
+      if ( stepParticle == "e-" ) {
+        if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 0; }
+        if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 1; }
+        if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 2; }
+      }
+      if ( stepParticle == "proton" ) {
+        if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 4; }
+        if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 5; }
+        if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 6; }
+      }
+      if ( stepParticle != "e-" && stepParticle != "proton" ) {
+        if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 8; }
+        if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 9; }
+        if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 10; }
+      }
+
       // Acquire beamCharge and eventId
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
       G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();

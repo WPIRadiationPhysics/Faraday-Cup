@@ -96,7 +96,7 @@ int main(int argc,char** argv) {
   if ( macro.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.001 mm";
+    G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars, declarations
