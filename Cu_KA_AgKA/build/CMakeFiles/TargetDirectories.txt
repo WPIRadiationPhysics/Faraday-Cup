@@ -1,2 +1,0 @@
-/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA_AgKA/build/CMakeFiles/Faraday.dir
-/home/sigma/Git/WPIRadiationPhysics/Faraday-Cup/Cu_KA_AgKA/build/FCbin/CMakeFiles/runFaradayCup.dir
