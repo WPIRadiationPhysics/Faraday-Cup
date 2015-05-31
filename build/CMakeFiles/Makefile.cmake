@@ -8,25 +8,24 @@ SET(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 SET(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
-  "../FCbin/CMakeLists.txt"
-  "../FCbin/dataPlot.gnu"
-  "../FCbin/debugrun.mac"
-  "../FCbin/gui.mac"
-  "../FCbin/icons.mac"
-  "../FCbin/init.mac"
-  "../FCbin/init_vis.mac"
-  "../FCbin/plotGain.C"
-  "../FCbin/plotHisto.C"
-  "../FCbin/run.in"
-  "../FCbin/run.png"
-  "../FCbin/run100.mac"
-  "../FCbin/run1000.mac"
-  "../FCbin/run10000.mac"
-  "../FCbin/run100000.mac"
-  "../FCbin/vis.mac"
   "CMakeFiles/CMakeCCompiler.cmake"
   "CMakeFiles/CMakeCXXCompiler.cmake"
   "CMakeFiles/CMakeSystem.cmake"
+  "../scripts/dataPlot.gnu"
+  "../scripts/debugrun.mac"
+  "../scripts/gui.mac"
+  "../scripts/icons.mac"
+  "../scripts/init.mac"
+  "../scripts/init_vis.mac"
+  "../scripts/plotGain.C"
+  "../scripts/plotHisto.C"
+  "../scripts/run.in"
+  "../scripts/run.png"
+  "../scripts/run100.mac"
+  "../scripts/run1000.mac"
+  "../scripts/run10000.mac"
+  "../scripts/run100000.mac"
+  "../scripts/vis.mac"
   "/usr/local/geant4/install/lib/Geant4-10.1.1/Geant4Config.cmake"
   "/usr/local/geant4/install/lib/Geant4-10.1.1/Geant4ConfigVersion.cmake"
   "/usr/local/geant4/install/lib/Geant4-10.1.1/Geant4LibraryDepends-release.cmake"
@@ -73,11 +72,9 @@ SET(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 SET(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "FCbin/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 SET(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Faraday.dir/DependInfo.cmake"
-  "FCbin/CMakeFiles/runFaradayCup.dir/DependInfo.cmake"
+  "CMakeFiles/FaradayCup.dir/DependInfo.cmake"
   )

@@ -102,17 +102,16 @@ The accumulated statistic and computed dispersion is printed at the end of run, 
 Generate a Makefile, then compile the project into an executable
   % mkdir build
   % cd build
-  % cmake -DGeant4_DIR=$G4COMP ..
+  % cmake -DGeant4_DIR=/path/to/G4COMP ..
   % make
-  % cd FCbin
    
 The program can be run with the following optional arguments:
-  % ./runFaradayCup [-m run.in ] [-u UIsession] [-t nThreads]
+  % ./FaradayCup [-m run.in ] [-u UIsession] [-t nThreads]
    
 The -t option is available only in multi-threading mode and it allows the user to override the Geant4 default number of threads. The number of threads can be also set via G4FORCENUMBEROFTHREADS environment variable which has the top priority.
  
-- Execute runFaradayCup in the 'interactive mode' with visualization
-  % ./runFaradayCup
+- Execute FaradayCup in the 'interactive mode' with visualization
+  % ./FaradayCup
 and type in the commands from run1.mac line by line:  
   Idle> /tracking/verbose 1 
   Idle> /run/beamOn 1
@@ -122,16 +121,16 @@ and type in the commands from run1.mac line by line:
   Idle> /control/execute run1.mac
   ....
   Idle> exit
-- Execute runFaradayCup in the 'batch' mode from macro files (without visualization)
-  % ./runFaradayCup -m run2.mac
-  % ./runFaradayCup -m runFaradayCup.in > runFaradayCup.out
-- Execute runFaradayCup in the 'interactive mode' with a selected UI session, e.g. tcsh
-  % ./runFaradayCup -u tcsh 
+- Execute FaradayCup in the 'batch' mode from macro files (without visualization)
+  % ./FaradayCup -m run2.mac
+  % ./FaradayCup -m FaradayCup.in > FaradayCup.out
+- Execute FaradayCup in the 'interactive mode' with a selected UI session, e.g. tcsh
+  % ./FaradayCup -u tcsh 
 
 
 A- VISUALIZATION
 
-The visualization manager is set via the G4VisExecutive class in the main() function in runFaradayCup.cc. The initialisation of the drawing is done via a set of /vis/ commands in the macro vis.mac. This macro is automatically read from the main function when used in interactive running mode.
+The visualization manager is set via the G4VisExecutive class in the main() function in FaradayCup.cc. The initialisation of the drawing is done via a set of /vis/ commands in the macro vis.mac. This macro is automatically read from the main function when used in interactive running mode.
 
 By default, vis.mac opens an OpenGL viewer (/vis/open OGL). The user can change the initial viewer by commenting out this line and instead uncommenting one of the other /vis/open statements, such as HepRepFile or DAWNFILE (which produce files that can be viewed with the HepRApp and DAWN viewers, respectively).  Note that one can always open new viewers at any time from the command line.  For example, if you already have a view in, say, an OpenGL window with a name "viewer-0", then
   /vis/open DAWNFILE
@@ -155,4 +154,4 @@ The tracks are automatically drawn at the end of each event, accumulated for all
 
 B- USER INTERFACES
 
-The user command interface is set via the G4UIExecutive class in the main() function in runFaradayCup.cc. The selection of the user command interface is then done automatically according to the Geant4 configuration or it can be done explicitly via the third argument of the G4UIExecutive constructor (see runFaradayCup.cc).
+The user command interface is set via the G4UIExecutive class in the main() function in FaradayCup.cc. The selection of the user command interface is then done automatically according to the Geant4 configuration or it can be done explicitly via the third argument of the G4UIExecutive constructor (see FaradayCup.cc).

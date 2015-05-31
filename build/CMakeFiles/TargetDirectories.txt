@@ -1,2 +1,1 @@
-/git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles/Faraday.dir
-/git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/FCbin/CMakeFiles/runFaradayCup.dir
+/git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles/FaradayCup.dir

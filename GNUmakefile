@@ -1,16 +1,22 @@
-SUBDIR = FCbin
+# $Id: GNUmakefile,v 1.2 2000-10-19 12:22:10 stanaka Exp $
+# --------------------------------------------------------------
+# GNUmakefile for Faraday Cup.  Shaun Marshall, 10/09/2014.
+# --------------------------------------------------------------
 
-.PHONY: bin clean clean_bin debug
+name := runFaradayCup
+G4TARGET := $(name)
+G4EXLIB := true
 
-bin:
-	@for dir in $(SUBDIR); do (cd $$dir && $(MAKE) bin); done;:
- 
-clean:
-	@for dir in $(SUBDIR); do (cd $$dir && $(MAKE) clean); done;:
- 
-clean_bin:
-	@for dir in $(SUBDIR); do (cd $$dir && $(MAKE) clean_bin); done;:
- 
-debug:
-	@for dir in $(SUBDIR); do (cd $$dir && $(MAKE) debug); done;:
- 
+ifndef G4INSTALL
+  G4INSTALL = ../../..
+endif
+
+.PHONY: all
+all: lib bin
+
+include $(G4INSTALL)/config/binmake.gmk
+
+visclean:
+	rm -f g4*.prim g4*.eps g4*.wrl
+	rm -f .DAWN_*
+

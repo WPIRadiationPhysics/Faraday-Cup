@@ -47,90 +47,44 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA
+CMAKE_SOURCE_DIR = /git/WPIRadiationPhysics/Faraday-Cup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build
+CMAKE_BINARY_DIR = /git/WPIRadiationPhysics/Faraday-Cup/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/Faraday.dir
+# Target rules for target CMakeFiles/FaradayCup.dir
 
 # All Build rule for target.
-CMakeFiles/Faraday.dir/all:
-	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/depend
-	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 
-	@echo "Built target Faraday"
-.PHONY : CMakeFiles/Faraday.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Faraday.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Faraday.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
-.PHONY : CMakeFiles/Faraday.dir/rule
-
-# Convenience name for target.
-Faraday: CMakeFiles/Faraday.dir/rule
-.PHONY : Faraday
-
-# clean rule for target.
-CMakeFiles/Faraday.dir/clean:
-	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/clean
-.PHONY : CMakeFiles/Faraday.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Faraday.dir/clean
-.PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory FCbin
-
-# Convenience name for "all" pass in the directory.
-FCbin/all: FCbin/CMakeFiles/runFaradayCup.dir/all
-.PHONY : FCbin/all
-
-# Convenience name for "clean" pass in the directory.
-FCbin/clean: FCbin/CMakeFiles/runFaradayCup.dir/clean
-.PHONY : FCbin/clean
-
-# Convenience name for "preinstall" pass in the directory.
-FCbin/preinstall:
-.PHONY : FCbin/preinstall
-
-#=============================================================================
-# Target rules for target FCbin/CMakeFiles/runFaradayCup.dir
-
-# All Build rule for target.
-FCbin/CMakeFiles/runFaradayCup.dir/all:
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/depend
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles  1 2 3 4 5 6 7 8
-	@echo "Built target runFaradayCup"
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/all
+CMakeFiles/FaradayCup.dir/all:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/depend
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles  1 2 3 4 5 6 7 8
+	@echo "Built target FaradayCup"
+.PHONY : CMakeFiles/FaradayCup.dir/all
 
 # Include target in all.
-all: FCbin/CMakeFiles/runFaradayCup.dir/all
+all: CMakeFiles/FaradayCup.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-FCbin/CMakeFiles/runFaradayCup.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 8
-	$(MAKE) -f CMakeFiles/Makefile2 FCbin/CMakeFiles/runFaradayCup.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/rule
+CMakeFiles/FaradayCup.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/FaradayCup.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles 0
+.PHONY : CMakeFiles/FaradayCup.dir/rule
 
 # Convenience name for target.
-runFaradayCup: FCbin/CMakeFiles/runFaradayCup.dir/rule
-.PHONY : runFaradayCup
+FaradayCup: CMakeFiles/FaradayCup.dir/rule
+.PHONY : FaradayCup
 
 # clean rule for target.
-FCbin/CMakeFiles/runFaradayCup.dir/clean:
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/clean
-.PHONY : FCbin/CMakeFiles/runFaradayCup.dir/clean
+CMakeFiles/FaradayCup.dir/clean:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/clean
+.PHONY : CMakeFiles/FaradayCup.dir/clean
 
 # clean rule for target.
-clean: FCbin/CMakeFiles/runFaradayCup.dir/clean
+clean: CMakeFiles/FaradayCup.dir/clean
 .PHONY : clean
 
 #=============================================================================

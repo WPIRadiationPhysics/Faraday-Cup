@@ -1,0 +1,5 @@
+# Source build
+build/
+
+# Custom recompile
+run.sh

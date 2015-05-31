@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA
+CMAKE_SOURCE_DIR = /git/WPIRadiationPhysics/Faraday-Cup
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build
+CMAKE_BINARY_DIR = /git/WPIRadiationPhysics/Faraday-Cup/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -110,9 +110,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/Cu_KA/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /git/WPIRadiationPhysics/Faraday-Cup/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -140,30 +140,209 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Faraday
+# Target rules for targets named FaradayCup
 
 # Build rule for target.
-Faraday: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Faraday
-.PHONY : Faraday
+FaradayCup: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 FaradayCup
+.PHONY : FaradayCup
 
 # fast build rule for target.
-Faraday/fast:
-	$(MAKE) -f CMakeFiles/Faraday.dir/build.make CMakeFiles/Faraday.dir/build
-.PHONY : Faraday/fast
+FaradayCup/fast:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/build
+.PHONY : FaradayCup/fast
 
-#=============================================================================
-# Target rules for targets named runFaradayCup
+FaradayCup.o: FaradayCup.cc.o
+.PHONY : FaradayCup.o
 
-# Build rule for target.
-runFaradayCup: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 runFaradayCup
-.PHONY : runFaradayCup
+# target to build an object file
+FaradayCup.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/FaradayCup.cc.o
+.PHONY : FaradayCup.cc.o
 
-# fast build rule for target.
-runFaradayCup/fast:
-	$(MAKE) -f FCbin/CMakeFiles/runFaradayCup.dir/build.make FCbin/CMakeFiles/runFaradayCup.dir/build
-.PHONY : runFaradayCup/fast
+FaradayCup.i: FaradayCup.cc.i
+.PHONY : FaradayCup.i
+
+# target to preprocess a source file
+FaradayCup.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/FaradayCup.cc.i
+.PHONY : FaradayCup.cc.i
+
+FaradayCup.s: FaradayCup.cc.s
+.PHONY : FaradayCup.s
+
+# target to generate assembly for a file
+FaradayCup.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/FaradayCup.cc.s
+.PHONY : FaradayCup.cc.s
+
+src/ActionInitialization.o: src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.o
+
+# target to build an object file
+src/ActionInitialization.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/ActionInitialization.cc.o
+.PHONY : src/ActionInitialization.cc.o
+
+src/ActionInitialization.i: src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.i
+
+# target to preprocess a source file
+src/ActionInitialization.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/ActionInitialization.cc.i
+.PHONY : src/ActionInitialization.cc.i
+
+src/ActionInitialization.s: src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.s
+
+# target to generate assembly for a file
+src/ActionInitialization.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/ActionInitialization.cc.s
+.PHONY : src/ActionInitialization.cc.s
+
+src/Analysis.o: src/Analysis.cc.o
+.PHONY : src/Analysis.o
+
+# target to build an object file
+src/Analysis.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/Analysis.cc.o
+.PHONY : src/Analysis.cc.o
+
+src/Analysis.i: src/Analysis.cc.i
+.PHONY : src/Analysis.i
+
+# target to preprocess a source file
+src/Analysis.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/Analysis.cc.i
+.PHONY : src/Analysis.cc.i
+
+src/Analysis.s: src/Analysis.cc.s
+.PHONY : src/Analysis.s
+
+# target to generate assembly for a file
+src/Analysis.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/Analysis.cc.s
+.PHONY : src/Analysis.cc.s
+
+src/DetectorConstruction.o: src/DetectorConstruction.cc.o
+.PHONY : src/DetectorConstruction.o
+
+# target to build an object file
+src/DetectorConstruction.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/DetectorConstruction.cc.o
+.PHONY : src/DetectorConstruction.cc.o
+
+src/DetectorConstruction.i: src/DetectorConstruction.cc.i
+.PHONY : src/DetectorConstruction.i
+
+# target to preprocess a source file
+src/DetectorConstruction.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/DetectorConstruction.cc.i
+.PHONY : src/DetectorConstruction.cc.i
+
+src/DetectorConstruction.s: src/DetectorConstruction.cc.s
+.PHONY : src/DetectorConstruction.s
+
+# target to generate assembly for a file
+src/DetectorConstruction.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/DetectorConstruction.cc.s
+.PHONY : src/DetectorConstruction.cc.s
+
+src/EventAction.o: src/EventAction.cc.o
+.PHONY : src/EventAction.o
+
+# target to build an object file
+src/EventAction.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/EventAction.cc.o
+.PHONY : src/EventAction.cc.o
+
+src/EventAction.i: src/EventAction.cc.i
+.PHONY : src/EventAction.i
+
+# target to preprocess a source file
+src/EventAction.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/EventAction.cc.i
+.PHONY : src/EventAction.cc.i
+
+src/EventAction.s: src/EventAction.cc.s
+.PHONY : src/EventAction.s
+
+# target to generate assembly for a file
+src/EventAction.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/EventAction.cc.s
+.PHONY : src/EventAction.cc.s
+
+src/PrimaryGeneratorAction.o: src/PrimaryGeneratorAction.cc.o
+.PHONY : src/PrimaryGeneratorAction.o
+
+# target to build an object file
+src/PrimaryGeneratorAction.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/PrimaryGeneratorAction.cc.o
+.PHONY : src/PrimaryGeneratorAction.cc.o
+
+src/PrimaryGeneratorAction.i: src/PrimaryGeneratorAction.cc.i
+.PHONY : src/PrimaryGeneratorAction.i
+
+# target to preprocess a source file
+src/PrimaryGeneratorAction.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/PrimaryGeneratorAction.cc.i
+.PHONY : src/PrimaryGeneratorAction.cc.i
+
+src/PrimaryGeneratorAction.s: src/PrimaryGeneratorAction.cc.s
+.PHONY : src/PrimaryGeneratorAction.s
+
+# target to generate assembly for a file
+src/PrimaryGeneratorAction.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/PrimaryGeneratorAction.cc.s
+.PHONY : src/PrimaryGeneratorAction.cc.s
+
+src/RunAction.o: src/RunAction.cc.o
+.PHONY : src/RunAction.o
+
+# target to build an object file
+src/RunAction.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/RunAction.cc.o
+.PHONY : src/RunAction.cc.o
+
+src/RunAction.i: src/RunAction.cc.i
+.PHONY : src/RunAction.i
+
+# target to preprocess a source file
+src/RunAction.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/RunAction.cc.i
+.PHONY : src/RunAction.cc.i
+
+src/RunAction.s: src/RunAction.cc.s
+.PHONY : src/RunAction.s
+
+# target to generate assembly for a file
+src/RunAction.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/RunAction.cc.s
+.PHONY : src/RunAction.cc.s
+
+src/SteppingAction.o: src/SteppingAction.cc.o
+.PHONY : src/SteppingAction.o
+
+# target to build an object file
+src/SteppingAction.cc.o:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/SteppingAction.cc.o
+.PHONY : src/SteppingAction.cc.o
+
+src/SteppingAction.i: src/SteppingAction.cc.i
+.PHONY : src/SteppingAction.i
+
+# target to preprocess a source file
+src/SteppingAction.cc.i:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/SteppingAction.cc.i
+.PHONY : src/SteppingAction.cc.i
+
+src/SteppingAction.s: src/SteppingAction.cc.s
+.PHONY : src/SteppingAction.s
+
+# target to generate assembly for a file
+src/SteppingAction.cc.s:
+	$(MAKE) -f CMakeFiles/FaradayCup.dir/build.make CMakeFiles/FaradayCup.dir/src/SteppingAction.cc.s
+.PHONY : src/SteppingAction.cc.s
 
 # Help Target
 help:
@@ -171,14 +350,37 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... Faraday"
+	@echo "... FaradayCup"
 	@echo "... edit_cache"
 	@echo "... install"
 	@echo "... install/local"
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... runFaradayCup"
+	@echo "... FaradayCup.o"
+	@echo "... FaradayCup.i"
+	@echo "... FaradayCup.s"
+	@echo "... src/ActionInitialization.o"
+	@echo "... src/ActionInitialization.i"
+	@echo "... src/ActionInitialization.s"
+	@echo "... src/Analysis.o"
+	@echo "... src/Analysis.i"
+	@echo "... src/Analysis.s"
+	@echo "... src/DetectorConstruction.o"
+	@echo "... src/DetectorConstruction.i"
+	@echo "... src/DetectorConstruction.s"
+	@echo "... src/EventAction.o"
+	@echo "... src/EventAction.i"
+	@echo "... src/EventAction.s"
+	@echo "... src/PrimaryGeneratorAction.o"
+	@echo "... src/PrimaryGeneratorAction.i"
+	@echo "... src/PrimaryGeneratorAction.s"
+	@echo "... src/RunAction.o"
+	@echo "... src/RunAction.i"
+	@echo "... src/RunAction.s"
+	@echo "... src/SteppingAction.o"
+	@echo "... src/SteppingAction.i"
+	@echo "... src/SteppingAction.s"
 .PHONY : help
 
 

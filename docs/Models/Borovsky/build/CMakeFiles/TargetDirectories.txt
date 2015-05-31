@@ -1,2 +1,0 @@
-/home/sigma/Git/Faraday-Cup/Borovsky/build/CMakeFiles/Faraday.dir
-/home/sigma/Git/Faraday-Cup/Borovsky/build/FCbin/CMakeFiles/runFaradayCup.dir
