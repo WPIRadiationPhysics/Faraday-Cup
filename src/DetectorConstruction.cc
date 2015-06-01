@@ -57,7 +57,7 @@ void DetectorConstruction::ModelConfiguration(G4int model_i) {
   G4RunManager::GetRunManager()->ReinitializeGeometry();
 }
 
-void DetectorConstruction::IterateKaptonThickness(G4int KA_thickness) {
+void DetectorConstruction::IterateKaptonThickness(G4double KA_thickness) {
   
   // Redefine Kapton thickness
   fKaptonThicknessMM = KA_thickness/1000;

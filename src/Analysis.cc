@@ -24,7 +24,7 @@ void Analysis::Analyze_Gain(G4int nThreads) {
   std::ostringstream ROOTfileNameStream;
   std::ostringstream NtupleNameStream; G4String NtupleName, ROOTfileName;
   G4String data_dir = "data/";
-  G4double ROOT_gain[7] = {0}; 
+  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*12] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_trackDepth, ROOT_trackDepthVertex;
   G4double ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex;
@@ -63,7 +63,7 @@ void Analysis::Analyze_Gain(G4int nThreads) {
     // Aquire ROOT data files
     ROOTfileNameStream.str(""); ROOTfileName = "";
     NtupleNameStream.str(""); NtupleName = "";
-    ROOTfileNameStream << data_dir << "rootData_t" << workerID; //<< ".root";
+    ROOTfileNameStream << data_dir << "rootData_t" << workerID;
     ROOTfileName = ROOTfileNameStream.str();
     NtupleNameStream << "trackDat";
     NtupleName = NtupleNameStream.str();
@@ -108,9 +108,20 @@ void Analysis::Analyze_Gain(G4int nThreads) {
           else {
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType, ROOT_trackDepth);
             analysisManager->FillH1((ROOT_runID%7)*12 + ROOT_signalType + 1, ROOT_trackDepthVertex);
+
+            // Semi-duplicate histogram, redundant scaling command
+            ROOT_histoEntries[(ROOT_runID%7)*12 + ROOT_signalType + 1] += 1;
           }
+
+          // Increment histo scaling factor
+          ROOT_histoEntries[(ROOT_runID%7)*12 + ROOT_signalType] += 1;
         }
       }
+    }
+
+    // Rescale histos by num entries
+    for ( G4int histo_i = 0; histo_i < (7*12); histo_i++) {
+      analysisManager->ScaleH1(histo_i, (1/ROOT_histoEntries[histo_i]));
     }
 
     // Remove analysis reader
