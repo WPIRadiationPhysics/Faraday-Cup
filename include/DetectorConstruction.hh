@@ -25,7 +25,7 @@ class DetectorConstruction : public G4VUserDetectorConstruction {
 
     // Kapton thickness loop method
     G4double fKaptonThicknessMM;
-    virtual void IterateKaptonThickness(G4int KA_thickness);
+    virtual void IterateKaptonThickness(G4double KA_thickness);
      
   private:
     // methods

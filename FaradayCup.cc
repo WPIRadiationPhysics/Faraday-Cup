@@ -96,13 +96,16 @@ int main(int argc,char** argv) {
   if ( macroFile.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.1 mm";
+    G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
 	
     // Constant vars, declarations
-    G4int KA_thickness[3] = {59, 100, 200};
+    G4double KA_thickness[3] = {59, 100, 200};
     std::ostringstream data_dirStream, syscmdStream, filmDirStream;
     G4String data_dir, dirCommand, syscmd, filmDir;
+
+    // Delete any existing datasets
+    syscmd = "rm -rf ./model*"; system(syscmd);
 
     // Model loop
     for ( G4int model_i=0; model_i<3; model_i++ ) {
@@ -132,10 +135,12 @@ int main(int argc,char** argv) {
         syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
                
       // Kapton (layer 1) thickness iteration for secondary models
-      } else { for ( G4int KA_i=0; KA_i<(int)(sizeof(KA_thickness)/sizeof(G4int)); KA_i++ ) {
+      } else { for ( G4int KA_i=0; KA_i<(int)(sizeof(KA_thickness)/sizeof(G4double)); KA_i++ ) {
+
+        G4cout << "KA_i is " << KA_i << ", thickness is " << KA_thickness[KA_i] << G4endl;
 
         // Assign thickness
-        detConstruction->IterateKaptonThickness(KA_i);
+        detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
       
         // Run experimental beam energies
         syscmd = "/control/execute ";
