@@ -81,6 +81,9 @@ int main(int argc,char** argv) {
   runManager->SetUserInitialization(actionInitialization);
   runManager->Initialize();
 
+  // Simulation analysis object
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+
 #ifdef G4VIS_USE
   // Initialize visualization
   G4VisManager* visManager = new G4VisExecutive;
@@ -101,6 +104,9 @@ int main(int argc,char** argv) {
 	
     // Constant vars, declarations
     G4double KA_thickness[3] = {59, 100, 200};
+    G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
+    G4int nThicknesses = (int)sizeof(KA_thickness)/sizeof(G4double);
+    G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
     std::ostringstream data_dirStream, syscmdStream, filmDirStream;
     G4String data_dir, dirCommand, syscmd, filmDir;
 
@@ -117,27 +123,30 @@ int main(int argc,char** argv) {
       // Assign geometric configuration
       detConstruction->ModelConfiguration(KA_thickness[model_i]);
 
+      // Nullify experiments
+      simulationAnalysis->nullExperiments();
+
       // Unsheathed Cu primary model
       if ( model_i == 0 ) {
 
         // Run experimental beam energies
         UImanager->ApplyCommand("/control/execute "+macroFile);
 
-        // ROOT gain analysis
-        Analysis* gainAnalysis = Analysis::GetAnalysis();
-        gainAnalysis->Analyze_Gain(nThreads);
+        // Set experiments
+        simulationAnalysis->measureGain();
 
-        // Combine and subsequentially remove worker rootData threads
-        syscmd = "hadd -f " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
-        syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
+        // Begin calculations
+        simulationAnalysis->analyzeTracks(nThreads, nEnergies);
+
+        // Combine and subsequentially remove worker signalTracks threads
+        syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
+        syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
         syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
                
       // Kapton (layer 1) thickness iteration for secondary models
-      } else { for ( G4int KA_i=0; KA_i<(int)(sizeof(KA_thickness)/sizeof(G4double)); KA_i++ ) {
-
-        G4cout << "KA_i is " << KA_i << ", thickness is " << KA_thickness[KA_i] << G4endl;
+      } else { for ( G4int KA_i=0; KA_i<nThicknesses; KA_i++ ) {
 
         // Assign thickness
         detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
@@ -146,9 +155,14 @@ int main(int argc,char** argv) {
         syscmd = "/control/execute ";
         UImanager->ApplyCommand(syscmd+macroFile);
 
-        // ROOT gain analysis
-        Analysis* gainAnalysis = Analysis::GetAnalysis();
-        gainAnalysis->Analyze_Gain(nThreads);
+        // Calculate gain measurements
+        simulationAnalysis->measureGain();
+
+        // KA charge defect histograms
+        simulationAnalysis->measureKAAxialCharge();
+
+        // Begin calculations
+        simulationAnalysis->analyzeTracks(nThreads, nEnergies);
 
         // Save completed dataset as film iteration directory
         filmDirStream.str("");
@@ -156,9 +170,9 @@ int main(int argc,char** argv) {
         filmDir = filmDirStream.str();
         // Create film dir
         syscmd = "mkdir -p " + filmDir; system(syscmd);
-        // Combine and subsequentially remove worker rootData threads
-        syscmd = "hadd -f " + data_dir + "rootData.root " + data_dir + "rootData_t*"; system(syscmd);
-        syscmd = "rm " + data_dir + "rootData_t*"; system(syscmd);
+        // Combine and subsequentially remove worker signalTracks threads
+        syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
+        syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
         // Move ROOT files
         syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
         // Move plot to data directory
