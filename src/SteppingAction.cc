@@ -76,9 +76,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 	
-    // Acquire Analysis Manager instance
-    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
@@ -162,9 +159,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 10; }
       }
 
-      // Acquire beamCharge and eventId
+      // Acquire beamCharge, eventId and analysis manager
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
       G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+      G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, 0, runID);

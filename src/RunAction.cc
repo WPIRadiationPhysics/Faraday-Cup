@@ -49,7 +49,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->FinishNtuple(0);
     
     // Open simulation data file for writing
-    analysisManager->OpenFile(data_dir+"rootData");
+    analysisManager->OpenFile(data_dir+"signalTracks");
   }
 
   // Primary thread
