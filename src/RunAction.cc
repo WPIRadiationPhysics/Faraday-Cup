@@ -34,7 +34,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   if ( runID%7 == 0 ) {
 	
     // Creating Track info ntuple 
-    analysisManager->CreateNtuple("trackDat", "Track Data");
+    analysisManager->CreateNtuple("trackData", "Track Data");
     analysisManager->CreateNtupleIColumn(0, "run");
     analysisManager->CreateNtupleIColumn(0, "event");
     analysisManager->CreateNtupleDColumn(0, "particleCharge");
@@ -42,10 +42,12 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtupleDColumn(0, "z");
     analysisManager->CreateNtupleDColumn(0, "rVertex");
     analysisManager->CreateNtupleDColumn(0, "zVertex");
+    analysisManager->CreateNtupleDColumn(0, "rDepth");
+    analysisManager->CreateNtupleDColumn(0, "zDepth");
+    analysisManager->CreateNtupleDColumn(0, "rDepthVertex");
+    analysisManager->CreateNtupleDColumn(0, "zDepthVertex");
     analysisManager->CreateNtupleDColumn(0, "netCharge");
     analysisManager->CreateNtupleIColumn(0, "signalType");
-    analysisManager->CreateNtupleDColumn(0, "trackDepth");
-    analysisManager->CreateNtupleDColumn(0, "trackDepthVertex");
     analysisManager->FinishNtuple(0);
     
     // Open simulation data file for writing
