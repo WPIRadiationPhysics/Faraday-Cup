@@ -69,6 +69,11 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
 
+  // Create output file
+  G4String ROOTAnalysisFileName = data_dir + "Analysis.root";
+  analysisManager->SetFileName(ROOTAnalysisFileName);
+  analysisManager->OpenFile();
+
   // Initialize analysis preloads
   if ( simulationAnalysis->isMeasureGain() == 1 ) { simulationAnalysis->measureGainPreload(); }
   if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) { simulationAnalysis->measureKAAxialChargePreload(nEnergies); }
@@ -105,22 +110,22 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       analysisReader->SetNtupleIColumn("signalType", ROOT_signalType);
       analysisReader->SetNtupleDColumn("trackDepth", ROOT_trackDepth);
       analysisReader->SetNtupleDColumn("trackDepthVertex", ROOT_trackDepthVertex);
-    
-      // Loop through collected values of gain for contributions to gain
-      // (note: null events here are charged particles tracks [hence filling ntuple] which don't contribute)
-      while ( analysisReader->GetNtupleRow(ntupleId) ) { if ( ROOT_signalType != 99 ) {
 
-        // Histo id w.r.t. Cu runs lacking any histos
-        ROOT_histoID = ((ROOT_runID-nEnergies)%nEnergies)*fMeasureKAAxialChargeNumHistos + ROOT_signalType;
-        //G4cout << "runID: " << ROOT_runID << ", signalType: " << ROOT_signalType << ", histoID: " << ROOT_histoID << G4endl;
+
+      // Loop through collected values of gain for contributions to gain
+      // (note: null events here are charged particles tracks [hence filling ntuple] which don't contribute in Kapton)
+      while ( analysisReader->GetNtupleRow(ntupleId) ) {
 
         // Accumulate gain measurement per energy (run)
         if ( simulationAnalysis->isMeasureGain() == 1 ) {
           ROOT_gain[ROOT_runID%nEnergies] += ROOT_netCharge;
         }
 
-        // Populate track origin/terminus depth histograms
-        if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
+        // Populate track origin/terminus depth in KA histograms
+        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
+
+          // Histo id w.r.t. Cu runs lacking any histos
+          ROOT_histoID = ((ROOT_runID-nEnergies)%nEnergies)*fMeasureKAAxialChargeNumHistos + ROOT_signalType;
 
           // Removals
           if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
@@ -142,17 +147,6 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
           // Increment histo scaling factor
           ROOT_histoEntries[ROOT_histoID] += 1;
         }
-      }}
-    }
-
-    // Rescale histos by num entries
-    if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
-      for ( G4int histo_i = 0; histo_i < (nEnergies*fMeasureKAAxialChargeNumHistos); histo_i++) {
-
-        // Don't break null histos
-        if ( ROOT_histoEntries[histo_i] != 0 ) {
-          analysisManager->ScaleH1(histo_i, (1/ROOT_histoEntries[histo_i]));
-        }
       }
     }
 
@@ -160,10 +154,16 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
     delete G4AnalysisReader::Instance();
   }
 
-  // Create output file
-  G4String ROOTAnalysisFileName = data_dir + "Analysis.root";
-  analysisManager->SetFileName(ROOTAnalysisFileName);
-  analysisManager->OpenFile();
+  // Rescale histos by num entries
+  if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
+    for ( G4int histo_i = 0; histo_i < (nEnergies*fMeasureKAAxialChargeNumHistos); histo_i++) {
+
+      // Don't break null histos
+      if ( ROOT_histoEntries[histo_i] != 0 ) {
+        analysisManager->ScaleH1(histo_i, (1/ROOT_histoEntries[histo_i]));
+      }
+    }
+  }
 
   // populate gain statistics
   if ( simulationAnalysis->isMeasureGain() == 1 ) {

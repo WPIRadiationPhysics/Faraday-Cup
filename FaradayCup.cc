@@ -132,7 +132,7 @@ int main(int argc,char** argv) {
         // Run experimental beam energies
         UImanager->ApplyCommand("/control/execute "+macroFile);
 
-        // Set experiments
+        // Calculate gain measurements
         simulationAnalysis->measureGain();
 
         // Begin calculations
