@@ -98,7 +98,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     G4int signalType = 99; // 99: null event
     G4double trackDepth = 0, trackDepthVertex = 0,
              stepRDepth = 0, stepRUndepth = 0, stepZDepth = 0,
-             stepRDepthVertex = 0, stepRUndepthVertex, stepZDepthVertex = 0;
+             stepRDepthVertex = 0, stepRUndepthVertex = 0, stepZDepthVertex = 0;
 
     // ORIGIN
     // particle exits copper, -q_i

@@ -33,40 +33,22 @@ void Analysis::measureKAAxialChargePreload(G4int nEnergies) {
   for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
     
     // electrons, z
-    analysisManager->CreateH1("eKAz_in", "eKAz_in", 100, 0., 1.);
-    analysisManager->CreateH1("eKAz_out", "eKAz_out", 100, 0., 1.);
-    analysisManager->CreateH1("eKAz_inner", "eKAz_inner", 100, 0., 1.);
-    analysisManager->CreateH1("eKAz_outer", "eKAz_outer", 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_in", "eKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_out", "eKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_inner", "eKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_outer", "eKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
     // protons, z
-    analysisManager->CreateH1("pKAz_in", "pKAz_in", 100, 0., 1.);
-    analysisManager->CreateH1("pKAz_out", "pKAz_out", 100, 0., 1.);
-    analysisManager->CreateH1("pKAz_inner", "pKAz_inner", 100, 0., 1.);
-    analysisManager->CreateH1("pKAz_outer", "pKAz_outer", 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_in", "pKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_out", "pKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_inner", "pKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_outer", "pKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
     // ions, z
-    analysisManager->CreateH1("oKAz_in", "oKAz_in", 100, 0., 1.);
-    analysisManager->CreateH1("oKAz_out", "oKAz_out", 100, 0., 1.);
-    analysisManager->CreateH1("oKAz_inner", "oKAz_inner", 100, 0., 1.);
-    analysisManager->CreateH1("oKAz_outer", "oKAz_outer", 100, 0., 1.);
-
-    // electrons, r
-    analysisManager->CreateH1("eKAr_in", "eKAr_in", 100, 0., .1);
-    analysisManager->CreateH1("eKAr_out", "eKAr_out", 100, 0., .1);
-    analysisManager->CreateH1("eKAr_inner", "eKAr_inner", 100, 0., .1);
-    analysisManager->CreateH1("eKAr_outer", "eKAr_outer", 100, 0., .1);
-
-    // protons, r
-    analysisManager->CreateH1("pKAr_in", "pKAr_in", 100, 0., .1);
-    analysisManager->CreateH1("pKAr_out", "pKAr_out", 100, 0., .1);
-    analysisManager->CreateH1("pKAr_inner", "pKAr_inner", 100, 0., .1);
-    analysisManager->CreateH1("pKAr_outer", "pKAr_outer", 100, 0., .1);
-
-    // ions, r
-    analysisManager->CreateH1("oKAr_in", "oKAr_in", 100, 0., .1);
-    analysisManager->CreateH1("oKAr_out", "oKAr_out", 100, 0., .1);
-    analysisManager->CreateH1("oKAr_inner", "oKAr_inner", 100, 0., .1);
-    analysisManager->CreateH1("oKAr_outer", "oKAr_outer", 100, 0., .1);
+    analysisManager->CreateH2("oKAzr_in", "oKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_out", "oKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_inner", "oKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_outer", "oKAzr_outer", 100, 0., 1., 100, 0., 1.);
   }
 }
 
@@ -77,9 +59,9 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   std::ostringstream ROOTfileNameStream;
   std::ostringstream NtupleNameStream; G4String NtupleName, ROOTfileName;
   G4String data_dir = "data/";
-  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*24] = {0}; 
+  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*12] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
-  G4int fMeasureKAAxialChargeNumHistos = 24;
+  G4int fMeasureKAAxialChargeNumHistos = 12;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
                             ROOT_rDepth, ROOT_zDepth, ROOT_rDepthVertex, ROOT_zDepthVertex;
   
@@ -149,29 +131,23 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
           // Depositions
           if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
-            analysisManager->FillH1(ROOT_histoID, ROOT_zDepth);
-            analysisManager->FillH1(ROOT_histoID+12, ROOT_rDepth);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
           }
           // Removals
           else if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
-            analysisManager->FillH1(ROOT_histoID, ROOT_zDepthVertex);
-            analysisManager->FillH1(ROOT_histoID+12, ROOT_rDepthVertex);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepthVertex, ROOT_rDepthVertex);
           }
           // Inner/Outer
           else {
-            analysisManager->FillH1(ROOT_histoID, ROOT_zDepth);
-            analysisManager->FillH1(ROOT_histoID+12, ROOT_rDepth);
-            analysisManager->FillH1(ROOT_histoID + 1, ROOT_zDepthVertex);
-            analysisManager->FillH1(ROOT_histoID+12 + 1, ROOT_rDepthVertex);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
+            analysisManager->FillH2(ROOT_histoID + 1, ROOT_zDepthVertex, ROOT_rDepthVertex);
 
             // Semi-duplicate histogram, redundant scaling command
             ROOT_histoEntries[ROOT_histoID + 1] += 1;
-            ROOT_histoEntries[ROOT_histoID+12 + 1] += 1;
           }
 
           // Increment histo scaling factor
           ROOT_histoEntries[ROOT_histoID] += 1;
-          ROOT_histoEntries[ROOT_histoID+12] += 1;
         }
       }
     }
@@ -186,7 +162,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
       // Don't break null histos
       if ( ROOT_histoEntries[histo_i] != 0 ) {
-        analysisManager->ScaleH1(histo_i, (1/ROOT_histoEntries[histo_i]));
+        analysisManager->ScaleH2(histo_i, (1/ROOT_histoEntries[histo_i]));
       }
     }
   }

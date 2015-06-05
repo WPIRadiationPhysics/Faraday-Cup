@@ -11,14 +11,15 @@ gStyle->SetOptStat(0);
 TCanvas histoCanvas("histoCanvas","Charge Deposition/Removal in Kaption");
 
 // In Data
-TFile f1("S59/stats.root"); 
+TFile f1("S200/Analysis.root"); 
 
-TH1F* h1 = (TH1F*)f1->Get("eKA_in");
+TH2F* h1 = (TH2F*)f1->Get("eKAz_inner");
 h1->SetFillColor(1);
 h1->SetLineColor(1);
 h1->SetBarWidth(0.5);
-h1->Draw("hist B");
+h1->Draw("lego2 0");
 
+/*
 // Out Data, offset x1
 TH1F* h2 = (TH1F*)f1->Get("eKA_out");
 h2->SetFillColor(3);
@@ -35,6 +36,7 @@ leg_hist->SetHeader("Kapton e- Tracking");
 leg_hist->AddEntry(h1,"e- Deposit","l");
 leg_hist->AddEntry(h2,"e- Removal","l");
 leg_hist->Draw("same");
+*/
 
 histoCanvas->Modified();
 histoCanvas->Update();
