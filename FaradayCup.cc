@@ -173,8 +173,9 @@ int main(int argc,char** argv) {
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
         syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
-        // Move ROOT files
+        // Move ROOT files to film directory and create film histos path
         syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
+        syscmd = "mkdir " + filmDir + "/histos"; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
         syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
