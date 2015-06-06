@@ -86,18 +86,20 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // e-
     // 0: KA_in
     // 1: KA_out
-    // 2: KA_cis
+    // 2-3: KA_cis
     // proton
-    // 3: KA_in
-    // 4: KA_out
-    // 5: KA_cis
+    // 4: KA_in
+    // 5: KA_out
+    // 6-7: KA_cis
     // other
-    // 6: KA_in
-    // 7: KA_out
-    // 8: KA_cis
+    // 8: KA_in
+    // 9: KA_out
+    // 10-11: KA_cis
     G4int signalType = 99; // 99: null event
-    G4double trackDepth = 0, trackDepthVertex = 0;
-    
+    G4double trackDepth = 0, trackDepthVertex = 0,
+             stepRDepth = 0, stepRUndepth = 0, stepZDepth = 0,
+             stepRDepthVertex = 0, stepRUndepthVertex = 0, stepZDepthVertex = 0;
+
     // ORIGIN
     // particle exits copper, -q_i
     if ( volumeNameVertex == "Cu_cyl" ) { 
@@ -108,35 +110,36 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
 		
-      G4double percentRVertex = 0, percentZVertex = 0;
       // Radial edge of Kapton
-      if ( stepRVertex >= r_Cu ) { percentRVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
+      if ( stepRVertex >= r_Cu ) { stepRDepthVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
       // Z edges of Kapton (incoming from -z -> 0)
-      if ( stepZVertex <= -half_Cu ) { percentZVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
-      if ( stepZVertex >= half_Cu ) { percentZVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
-      
-      trackDepthVertex = 1 - ((percentRVertex>percentZVertex)?percentRVertex:percentZVertex); // concise maximum function
+      if ( stepZVertex <= -half_Cu ) { stepZDepthVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
+      if ( stepZVertex >= half_Cu ) { stepZDepthVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
+      stepRUndepth = stepRVertex/r_KA;
+
+      trackDepthVertex = 1 - ((stepRDepthVertex>stepZDepthVertex)?stepRDepthVertex:stepZDepthVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
     }
     
     // DESTINATION
     // particle enters copper, +q_i
     if ( volumeName == "Cu_cyl" ) {
-	  netSignal += stepCharge;
+
+      netSignal += stepCharge;
       trackDepth = (stepZ + half_Cu)/h_Cu;
     }
         
     // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
     if ( volumeName == "Kapton_cyl1" ) {
 		
-      G4double percentR = 0, percentZ = 0;
       // Radial edge of Kapton
-      if ( stepR >= r_Cu ) { percentR = (stepR - r_Cu)/(r_KA - r_Cu); }
+      if ( stepR >= r_Cu ) { stepRDepth = (stepR - r_Cu)/(r_KA - r_Cu); }
       // Z edges of Kapton (cylinders are upside-down)
-      if ( stepZ <= -half_Cu ) { percentZ = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
-      if ( stepZ >= half_Cu ) { percentZ = (stepZ - half_Cu)/(half_KA - half_Cu); }
+      if ( stepZ <= -half_Cu ) { stepZDepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
+      if ( stepZ >= half_Cu ) { stepZDepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
+      stepRUndepth = stepR/r_KA;
       
-      trackDepth = 1 - ((percentR>percentZ)?percentR:percentZ); // concise maximum function
+      trackDepth = 1 - ((stepRDepth>stepZDepth)?stepRDepth:stepZDepth); // concise maximum function
       netSignal += stepCharge*trackDepth;
     }
 
@@ -164,6 +167,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
       G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
+      //G4cout << "from (" << stepRDepthVertex << "," << stepZDepthVertex << ") to (" << stepRDepth << "," << stepZDepth << ")" << G4endl;
+
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, 0, runID);
       analysisManager->FillNtupleIColumn(0, 1, eventID);
@@ -172,10 +177,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       analysisManager->FillNtupleDColumn(0, 4, stepZ);
       analysisManager->FillNtupleDColumn(0, 5, stepRVertex);
       analysisManager->FillNtupleDColumn(0, 6, stepZVertex);
-      analysisManager->FillNtupleDColumn(0, 7, netSignal/beamCharge);
-      analysisManager->FillNtupleIColumn(0, 8, signalType);
-      analysisManager->FillNtupleDColumn(0, 9, trackDepth);
-      analysisManager->FillNtupleDColumn(0, 10, trackDepthVertex);
+      analysisManager->FillNtupleDColumn(0, 7, stepRUndepth);
+      analysisManager->FillNtupleDColumn(0, 8, stepZDepth);
+      analysisManager->FillNtupleDColumn(0, 9, stepRUndepthVertex);
+      analysisManager->FillNtupleDColumn(0, 10, stepZDepthVertex);
+      analysisManager->FillNtupleDColumn(0, 11, netSignal/beamCharge);
+      analysisManager->FillNtupleIColumn(0, 12, signalType);
       analysisManager->AddNtupleRow(0);
     }
   }

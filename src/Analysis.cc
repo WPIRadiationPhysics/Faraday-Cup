@@ -31,24 +31,24 @@ void Analysis::measureKAAxialChargePreload(G4int nEnergies) {
   // Create KA charge deposition/removal/transfer histograms
   // (100 percentile bins of KA_thickness inward) for every energy
   for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
-  
-    // electrons
-    analysisManager->CreateH1("eKA_in", "eKA_in", 100, 0., 1.);
-    analysisManager->CreateH1("eKA_out", "eKA_out", 100, 0., 1.);
-    analysisManager->CreateH1("eKA_inner", "eKA_inner", 100, 0., 1.);
-    analysisManager->CreateH1("eKA_outer", "eKA_outer", 100, 0., 1.);
+    
+    // electrons, z
+    analysisManager->CreateH2("eKAzr_in", "eKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_out", "eKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_inner", "eKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eKAzr_outer", "eKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // protons
-    analysisManager->CreateH1("pKA_in", "pKA_in", 100, 0., 1.);
-    analysisManager->CreateH1("pKA_out", "pKA_out", 100, 0., 1.);
-    analysisManager->CreateH1("pKA_inner", "pKA_inner", 100, 0., 1.);
-    analysisManager->CreateH1("pKA_outer", "pKA_outer", 100, 0., 1.);
+    // protons, z
+    analysisManager->CreateH2("pKAzr_in", "pKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_out", "pKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_inner", "pKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pKAzr_outer", "pKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // other charge contributions
-    analysisManager->CreateH1("oKA_in", "oKA_in", 100, 0., 1.);
-    analysisManager->CreateH1("oKA_out", "oKA_out", 100, 0., 1.);
-    analysisManager->CreateH1("oKA_inner", "oKA_inner", 100, 0., 1.);
-    analysisManager->CreateH1("oKA_outer", "oKA_outer", 100, 0., 1.);
+    // ions, z
+    analysisManager->CreateH2("oKAzr_in", "oKAzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_out", "oKAzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_inner", "oKAzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oKAzr_outer", "oKAzr_outer", 100, 0., 1., 100, 0., 1.);
   }
 }
 
@@ -62,8 +62,8 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*12] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
   G4int fMeasureKAAxialChargeNumHistos = 12;
-  G4double ROOT_particleCharge, ROOT_netCharge, ROOT_trackDepth, ROOT_trackDepthVertex;
-  G4double ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex;
+  G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
+                            ROOT_rDepth, ROOT_zDepth, ROOT_rDepthVertex, ROOT_zDepthVertex;
   
   // Acquire analysis manager and object
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
@@ -89,7 +89,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
     NtupleNameStream.str(""); NtupleName = "";
     ROOTfileNameStream << data_dir << "signalTracks_t" << workerID;
     ROOTfileName = ROOTfileNameStream.str();
-    NtupleNameStream << "trackDat";
+    NtupleNameStream << "trackData";
     NtupleName = NtupleNameStream.str();
     
     // Read ntuples and do preloaded analyses
@@ -106,10 +106,12 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       analysisReader->SetNtupleDColumn("z", ROOT_z);
       analysisReader->SetNtupleDColumn("rVertex", ROOT_rVertex);
       analysisReader->SetNtupleDColumn("zVertex", ROOT_zVertex);
+      analysisReader->SetNtupleDColumn("rDepth", ROOT_rDepth);
+      analysisReader->SetNtupleDColumn("zDepth", ROOT_zDepth);
+      analysisReader->SetNtupleDColumn("rDepthVertex", ROOT_rDepthVertex);
+      analysisReader->SetNtupleDColumn("zDepthVertex", ROOT_zDepthVertex);
       analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
       analysisReader->SetNtupleIColumn("signalType", ROOT_signalType);
-      analysisReader->SetNtupleDColumn("trackDepth", ROOT_trackDepth);
-      analysisReader->SetNtupleDColumn("trackDepthVertex", ROOT_trackDepthVertex);
 
 
       // Loop through collected values of gain for contributions to gain
@@ -127,18 +129,18 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
           // Histo id w.r.t. Cu runs lacking any histos
           ROOT_histoID = ((ROOT_runID-nEnergies)%nEnergies)*fMeasureKAAxialChargeNumHistos + ROOT_signalType;
 
-          // Removals
-          if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
-            analysisManager->FillH1(ROOT_histoID, ROOT_trackDepthVertex);
-          }
           // Depositions
-          else if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
-            analysisManager->FillH1(ROOT_histoID, ROOT_trackDepth);
+          if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
+          }
+          // Removals
+          else if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepthVertex, ROOT_rDepthVertex);
           }
           // Inner/Outer
           else {
-            analysisManager->FillH1(ROOT_histoID, ROOT_trackDepth);
-            analysisManager->FillH1(ROOT_histoID + 1, ROOT_trackDepthVertex);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
+            analysisManager->FillH2(ROOT_histoID + 1, ROOT_zDepthVertex, ROOT_rDepthVertex);
 
             // Semi-duplicate histogram, redundant scaling command
             ROOT_histoEntries[ROOT_histoID + 1] += 1;
@@ -160,7 +162,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
       // Don't break null histos
       if ( ROOT_histoEntries[histo_i] != 0 ) {
-        analysisManager->ScaleH1(histo_i, (1/ROOT_histoEntries[histo_i]));
+        analysisManager->ScaleH2(histo_i, (1/ROOT_histoEntries[histo_i]));
       }
     }
   }

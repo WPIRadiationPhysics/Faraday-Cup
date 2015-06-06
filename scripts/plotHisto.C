@@ -4,54 +4,181 @@
 //   2 - type '.X plot.C' at the ROOT session prompt
 // *********************************************************************
 {
-// Init vars
-gStyle->SetOptStat(0);
+  // TDirectory file method syntax requires const char names
+  // Therefore no looping.  Thanks, CERN.
 
-// Construct Canvas
-TCanvas histoCanvas("histoCanvas","Charge Deposition/Removal in Kaption");
+  // Init vars
+  TH2F* h2;
+  gStyle->SetOptStat(0);
 
-// In Data
-TFile f1("S59/stats.root"); 
+  // Construct Canvas
+  TCanvas histoCanvas("histoCanvas","histoCanvas");
 
-TH1F* h1 = (TH1F*)f1->Get("eKA_in");
-h1->SetFillColor(1);
-h1->SetLineColor(1);
-h1->SetBarWidth(0.5);
-h1->Draw("hist B");
+  // Set data file
+  TFile f1("S59/Analysis.root");
+  TFile f2("S100/Analysis.root");
+  TFile f3("S200/Analysis.root");
 
-// Out Data, offset x1
-TH1F* h2 = (TH1F*)f1->Get("eKA_out");
-h2->SetFillColor(3);
-h2->SetLineColor(3);
-h2->SetBarWidth(0.5);
-h2->SetBarOffset(0.75);
-h2->Draw("hist same B");
+  /// histogram construction ///
 
-// LATER: Inner Data, offset x2; Outer Data, offset x3 
+    // S59
+    // eKAzr_in
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_in;4");
+    h2->SetTitle("e- inter S59 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
 
-// Legend
-leg_hist = new TLegend(0.5,0.6,0.79,0.79);
-leg_hist->SetHeader("Kapton e- Tracking");
-leg_hist->AddEntry(h1,"e- Deposit","l");
-leg_hist->AddEntry(h2,"e- Removal","l");
-leg_hist->Draw("same");
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S59/histos/eKAzr_in4.png");
 
-histoCanvas->Modified();
-histoCanvas->Update();
+    // eKAzr_out
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_out;4");
+    h2->SetTitle("e- inter S59 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
 
-/*
-  htemp->GetXaxis()->SetLabelSize(0.025);
-  htemp->GetYaxis()->SetLabelSize(0.025);
-  htemp->GetZaxis()->SetLabelSize(0.025);
-  htemp->GetXaxis()->SetTitleSize(0.035);
-  htemp->GetYaxis()->SetTitleSize(0.035);
-  htemp->GetZaxis()->SetTitleSize(0.035);
-  htemp->GetXaxis()->SetTitleOffset(1.6);
-  htemp->GetYaxis()->SetTitleOffset(1.6);
-  htemp->GetZaxis()->SetTitleOffset(1.6);
-  htemp->GetXaxis()->SetTitle("z (micrometer)");
-  htemp->GetYaxis()->SetTitle("x (nanometer)");
-  htemp->GetZaxis()->SetTitle("y (nanometer)");
-  htemp->SetTitle("Track Structure in liquid water");
-*/  
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S59/histos/eKAzr_out4.png");
+
+    // eKAzr_inner
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_inner;4");
+    h2->SetTitle("e- intra S59 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S59/histos/eKAzr_inner4.png");
+
+    // eKAzr_outer
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_outer;4");
+    h2->SetTitle("e- intra S59 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S59/histos/eKAzr_outer4.png");
+
+    // S100
+    // eKAzr_in
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_in;4");
+    h2->SetTitle("e- inter S100 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S100/histos/eKAzr_in4.png");
+
+    // eKAzr_out
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_out;4");
+    h2->SetTitle("e- inter S100 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S100/histos/eKAzr_out4.png");
+
+    // eKAzr_inner
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_inner;4");
+    h2->SetTitle("e- intra S100 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S100/histos/eKAzr_inner4.png");
+
+    // eKAzr_outer
+    // Get and format histogram
+    h2 = (TH2F*)f1.Get("eKAzr_outer;4");
+    h2->SetTitle("e- intra S100 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S100/histos/eKAzr_outer4.png");
+
+    // S200
+    // eKAzr_in
+    // Get and format histogram
+    h2 = (TH2F*)f2.Get("eKAzr_in;4");
+    h2->SetTitle("e- inter S200 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data
+    histoCanvas->Modified();
+    histoCanvas->Update();
+
+    // Save canvas as png image to file
+    histoCanvas->Print("S200/histos/eKAzr_in4.png");
+
+    // eKAzr_out
+    // Get and format histogram
+    h2 = (TH2F*)f2.Get("eKAzr_out;4");
+    h2->SetTitle("e- inter S200 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S200/histos/eKAzr_out4.png");
+
+    // eKAzr_inner
+    // Get and format histogram
+    h2 = (TH2F*)f2.Get("eKAzr_inner;4");
+    h2->SetTitle("e- intra S200 Kapton deposition distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S200/histos/eKAzr_inner4.png");
+
+    // eKAzr_outer
+    // Get and format histogram
+    h2 = (TH2F*)f2.Get("eKAzr_outer;4");
+    h2->SetTitle("e- intra S200 Kapton removal distribution @ 160 MeV");
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data and save as png to file
+    histoCanvas->Modified();
+    histoCanvas->Update();
+    histoCanvas->Print("S200/histos/eKAzr_outer4.png");
 }
