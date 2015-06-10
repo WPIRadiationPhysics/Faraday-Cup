@@ -135,6 +135,9 @@ int main(int argc,char** argv) {
         // Calculate gain measurements
         simulationAnalysis->measureGain();
 
+        // Cu charge defect histograms
+        simulationAnalysis->measureCuCharge();
+
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
 
@@ -158,8 +161,11 @@ int main(int argc,char** argv) {
         // Calculate gain measurements
         simulationAnalysis->measureGain();
 
+        // Cu charge defect histograms
+        simulationAnalysis->measureCuCharge();
+
         // KA charge defect histograms
-        simulationAnalysis->measureKAAxialCharge();
+        simulationAnalysis->measureKACharge();
 
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);

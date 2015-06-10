@@ -42,10 +42,14 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtupleDColumn(0, "z");
     analysisManager->CreateNtupleDColumn(0, "rVertex");
     analysisManager->CreateNtupleDColumn(0, "zVertex");
-    analysisManager->CreateNtupleDColumn(0, "rDepth");
-    analysisManager->CreateNtupleDColumn(0, "zDepth");
-    analysisManager->CreateNtupleDColumn(0, "rDepthVertex");
-    analysisManager->CreateNtupleDColumn(0, "zDepthVertex");
+    analysisManager->CreateNtupleDColumn(0, "rCuDepth");
+    analysisManager->CreateNtupleDColumn(0, "zCuDepth");
+    analysisManager->CreateNtupleDColumn(0, "rCuDepthVertex");
+    analysisManager->CreateNtupleDColumn(0, "zCuDepthVertex");
+    analysisManager->CreateNtupleDColumn(0, "rKADepth");
+    analysisManager->CreateNtupleDColumn(0, "zKADepth");
+    analysisManager->CreateNtupleDColumn(0, "rKADepthVertex");
+    analysisManager->CreateNtupleDColumn(0, "zKADepthVertex");
     analysisManager->CreateNtupleDColumn(0, "netCharge");
     analysisManager->CreateNtupleIColumn(0, "signalType");
     analysisManager->FinishNtuple(0);

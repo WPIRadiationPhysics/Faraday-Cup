@@ -23,13 +23,42 @@ void Analysis::measureGainPreload() {
   analysisManager->FinishNtuple();
 }
 
-void Analysis::measureKAAxialChargePreload(G4int nEnergies) {
+void Analysis::measureCuChargePreload(G4int nEnergies) {
+
+  // Acquire analysis manager
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  // Create Cu charge deposition/removal/transfer histograms
+  // (1000 tenth-percentile bins of h_Cu inward and r_Cu outward) for every energy
+  for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+    
+    // electrons, z
+    analysisManager->CreateH2("eCuzr_in", "eCuzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eCuzr_out", "eCuzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eCuzr_inner", "eCuzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("eCuzr_outer", "eCuzr_outer", 100, 0., 1., 100, 0., 1.);
+
+    // protons, z
+    analysisManager->CreateH2("pCuzr_in", "pCuzr_in", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("pCuzr_out", "pCuzr_out", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("pCuzr_inner", "pCuzr_inner", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("pCuzr_outer", "pCuzr_outer", 1000, 0., 1., 1000, 0., 1.);
+
+    // ions, z
+    analysisManager->CreateH2("oCuzr_in", "oCuzr_in", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 1000, 0., 1., 1000, 0., 1.);
+  }
+}
+
+void Analysis::measureKAChargePreload(G4int nEnergies) {
 
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Create KA charge deposition/removal/transfer histograms
-  // (100 percentile bins of KA_thickness inward) for every energy
+  // (100 percentile bins of KA_thickness inward and r_Ka outward) for every energy
   for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
     
     // electrons, z
@@ -61,9 +90,10 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4String data_dir = "data/";
   G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*12] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
-  G4int fMeasureKAAxialChargeNumHistos = 12;
+  G4int CuDepthNumHistos = 12; G4int KADepthNumHistos = 12;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
-                            ROOT_rDepth, ROOT_zDepth, ROOT_rDepthVertex, ROOT_zDepthVertex;
+                            ROOT_rCuDepth, ROOT_zCuDepth, ROOT_rCuDepthVertex, ROOT_zCuDepthVertex,
+                            ROOT_rKADepth, ROOT_zKADepth, ROOT_rKADepthVertex, ROOT_zKADepthVertex;
   
   // Acquire analysis manager and object
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
@@ -76,7 +106,8 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
   // Initialize analysis preloads
   if ( simulationAnalysis->isMeasureGain() == 1 ) { simulationAnalysis->measureGainPreload(); }
-  if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) { simulationAnalysis->measureKAAxialChargePreload(nEnergies); }
+  if ( simulationAnalysis->isMeasureCuCharge() == 1 ) { simulationAnalysis->measureCuChargePreload(nEnergies); }
+  if ( simulationAnalysis->isMeasureKACharge() == 1 ) { simulationAnalysis->measureKAChargePreload(nEnergies); }
 
   // Read through signalTracks for both workers
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
@@ -106,10 +137,14 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       analysisReader->SetNtupleDColumn("z", ROOT_z);
       analysisReader->SetNtupleDColumn("rVertex", ROOT_rVertex);
       analysisReader->SetNtupleDColumn("zVertex", ROOT_zVertex);
-      analysisReader->SetNtupleDColumn("rDepth", ROOT_rDepth);
-      analysisReader->SetNtupleDColumn("zDepth", ROOT_zDepth);
-      analysisReader->SetNtupleDColumn("rDepthVertex", ROOT_rDepthVertex);
-      analysisReader->SetNtupleDColumn("zDepthVertex", ROOT_zDepthVertex);
+      analysisReader->SetNtupleDColumn("rCuDepth", ROOT_rCuDepth);
+      analysisReader->SetNtupleDColumn("zCuDepth", ROOT_zCuDepth);
+      analysisReader->SetNtupleDColumn("rCuDepthVertex", ROOT_rCuDepthVertex);
+      analysisReader->SetNtupleDColumn("zCuDepthVertex", ROOT_zCuDepthVertex);
+      analysisReader->SetNtupleDColumn("rKADepth", ROOT_rKADepth);
+      analysisReader->SetNtupleDColumn("zKADepth", ROOT_zKADepth);
+      analysisReader->SetNtupleDColumn("rKADepthVertex", ROOT_rKADepthVertex);
+      analysisReader->SetNtupleDColumn("zKADepthVertex", ROOT_zKADepthVertex);
       analysisReader->SetNtupleDColumn("netCharge", ROOT_netCharge);
       analysisReader->SetNtupleIColumn("signalType", ROOT_signalType);
 
@@ -123,24 +158,52 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
           ROOT_gain[ROOT_runID%nEnergies] += ROOT_netCharge;
         }
 
-        // Populate track origin/terminus depth in KA histograms
-        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
+        // Histo id w.r.t. Cu runs lacking any KA histos
+        if ( ROOT_runID < nEnergies ) { // model 0
+          ROOT_histoID = (ROOT_runID%nEnergies)*CuDepthNumHistos + ROOT_signalType;
+        } else { // models 1, 2
+          ROOT_histoID = CuDepthNumHistos*nEnergies + ((ROOT_runID-nEnergies)%nEnergies)*(CuDepthNumHistos+KADepthNumHistos) + ROOT_signalType;
+        }
 
-          // Histo id w.r.t. Cu runs lacking any histos
-          ROOT_histoID = ((ROOT_runID-nEnergies)%nEnergies)*fMeasureKAAxialChargeNumHistos + ROOT_signalType;
+        // Populate track origin/terminus depth in Cu histograms
+        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
 
           // Depositions
           if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
-            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepth, ROOT_rCuDepth);
           }
           // Removals
           else if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
-            analysisManager->FillH2(ROOT_histoID, ROOT_zDepthVertex, ROOT_rDepthVertex);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepthVertex, ROOT_rCuDepthVertex);
           }
           // Inner/Outer
           else {
-            analysisManager->FillH2(ROOT_histoID, ROOT_zDepth, ROOT_rDepth);
-            analysisManager->FillH2(ROOT_histoID + 1, ROOT_zDepthVertex, ROOT_rDepthVertex);
+            analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepth, ROOT_rCuDepth);
+            analysisManager->FillH2(ROOT_histoID + 1, ROOT_zCuDepthVertex, ROOT_rCuDepthVertex);
+
+            // Semi-duplicate histogram, redundant scaling command
+            ROOT_histoEntries[ROOT_histoID + 1] += 1;
+          }
+
+          // Increment histo scaling factor
+          ROOT_histoEntries[ROOT_histoID] += 1;
+        }
+
+        // Populate track origin/terminus depth in KA histograms
+        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureKACharge() == 1 ) {
+
+          // Depositions
+          if ( ROOT_signalType == 12 || ROOT_signalType == 16 || ROOT_signalType == 20 ) {
+            analysisManager->FillH2(ROOT_histoID, ROOT_zKADepth, ROOT_rKADepth);
+          }
+          // Removals
+          else if ( ROOT_signalType == 13 || ROOT_signalType == 17 || ROOT_signalType == 21 ) {
+            analysisManager->FillH2(ROOT_histoID, ROOT_zKADepthVertex, ROOT_rKADepthVertex);
+          }
+          // Inner/Outer
+          else {
+            analysisManager->FillH2(ROOT_histoID, ROOT_zKADepth, ROOT_rKADepth);
+            analysisManager->FillH2(ROOT_histoID + 1, ROOT_zKADepthVertex, ROOT_rKADepthVertex);
 
             // Semi-duplicate histogram, redundant scaling command
             ROOT_histoEntries[ROOT_histoID + 1] += 1;
@@ -156,9 +219,10 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
     delete G4AnalysisReader::Instance();
   }
 
-  // Rescale histos by num entries
-  if ( simulationAnalysis->isMeasureKAAxialCharge() == 1 ) {
-    for ( G4int histo_i = 0; histo_i < (nEnergies*fMeasureKAAxialChargeNumHistos); histo_i++) {
+  /*
+  // Rescale histos by num entries // TEMPORARILY DISABLED
+  if ( simulationAnalysis->isMeasureCuCharge() == 1  || simulationAnalysis->isMeasureKACharge() == 1 ) {
+    for ( G4int histo_i = 0; histo_i < (nEnergies*KADepthNumHistos); histo_i++) {
 
       // Don't break null histos
       if ( ROOT_histoEntries[histo_i] != 0 ) {
@@ -166,6 +230,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       }
     }
   }
+  */
 
   // populate gain statistics
   if ( simulationAnalysis->isMeasureGain() == 1 ) {

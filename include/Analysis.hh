@@ -17,13 +17,15 @@ class Analysis {
     { static Analysis the_analysis; return &the_analysis; }
 
     // Nullify experiment parameters
-    void nullExperiments() { fMeasureGain = 0; fMeasureKAAxialCharge = 0; }
+    void nullExperiments() { fMeasureGain = 0; fMeasureCuCharge = 0; fMeasureKACharge = 0; }
 
     // Get/Set experiment types
     void measureGain() { fMeasureGain = 1; }
-    void measureKAAxialCharge() { fMeasureKAAxialCharge = 1; }
+    void measureCuCharge() { fMeasureCuCharge = 1; }
+    void measureKACharge() { fMeasureKACharge = 1; }
     G4int isMeasureGain() { return fMeasureGain; }
-    G4int isMeasureKAAxialCharge() { return fMeasureKAAxialCharge; }
+    G4int isMeasureCuCharge() { return fMeasureCuCharge; }
+    G4int isMeasureKACharge() { return fMeasureKACharge; }
 
     // Locate track files and read through
     virtual void analyzeTracks(G4int nThreads, G4int nEnergies);
@@ -32,10 +34,12 @@ class Analysis {
 
     // Measurement functions
     void measureGainPreload();
-    void measureKAAxialChargePreload(G4int nEnergies);
+    void measureCuChargePreload(G4int nEnergies);
+    void measureKAChargePreload(G4int nEnergies);
 
     G4int fMeasureGain;
-    G4int fMeasureKAAxialCharge;
+    G4int fMeasureCuCharge;
+    G4int fMeasureKACharge;
 };
 
 #endif
