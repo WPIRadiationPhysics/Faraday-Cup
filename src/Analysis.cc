@@ -89,7 +89,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4String NtupleName, ROOTfileName, data_dir = "data/";
   G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*24] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
-  G4int CuDepthNumHistos = 12, KADepthNumHistos = 12;
+  G4int CuDepthNumHistos = 12, KADepthNumHistos = 12, numDepthHistosPerRun;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
                             ROOT_rCuDepth, ROOT_zCuDepth, ROOT_rCuDepthVertex, ROOT_zCuDepthVertex,
                             ROOT_rKADepth, ROOT_zKADepth, ROOT_rKADepthVertex, ROOT_zKADepthVertex;
@@ -97,7 +97,6 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   // Acquire analysis manager and object
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
-  analysisManager->SetVerboseLevel(10);
 
   // Create output file
   G4String ROOTAnalysisFileName = data_dir + "Analysis.root";
@@ -153,8 +152,6 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       // (note: null events here are charged particles tracks [hence filling ntuple] which don't contribute in Kapton)
       while ( analysisReader->GetNtupleRow(ntupleId) ) {
 
-        G4cout << "Acquires row of data" << G4endl;
-
         // Accumulate gain measurement per energy (run)
         if ( simulationAnalysis->isMeasureGain() == 1 ) {
           ROOT_gain[ROOT_runID%nEnergies] += ROOT_netCharge;
@@ -162,12 +159,11 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
         // Histo id w.r.t. Cu runs lacking any KA histos
         if ( ROOT_runID < nEnergies ) { // model 0
-          ROOT_histoID = (ROOT_runID%nEnergies)*CuDepthNumHistos + ROOT_signalType;
+          numDepthHistosPerRun = CuDepthNumHistos;
         } else { // models 1, 2
-          ROOT_histoID = (ROOT_runID%nEnergies)*(CuDepthNumHistos+KADepthNumHistos) + ROOT_signalType;
+          numDepthHistosPerRun = CuDepthNumHistos + KADepthNumHistos;
         }
-
-        G4cout << "runID: " << ROOT_runID << ", signalType: " << ROOT_signalType << ", histoID: " << ROOT_histoID << G4endl;
+        ROOT_histoID = (ROOT_runID%nEnergies)*numDepthHistosPerRun + ROOT_signalType;
 
         // Populate track origin/terminus depth in Cu histograms
         if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
