@@ -39,16 +39,16 @@ void Analysis::measureCuChargePreload(G4int nEnergies) {
     analysisManager->CreateH2("eCuzr_outer", "eCuzr_outer", 100, 0., 1., 100, 0., 1.);
 
     // protons, z
-    analysisManager->CreateH2("pCuzr_in", "pCuzr_in", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("pCuzr_out", "pCuzr_out", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("pCuzr_inner", "pCuzr_inner", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("pCuzr_outer", "pCuzr_outer", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("pCuzr_in", "pCuzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pCuzr_out", "pCuzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pCuzr_inner", "pCuzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("pCuzr_outer", "pCuzr_outer", 100, 0., 1., 100, 0., 1.);
 
     // ions, z
-    analysisManager->CreateH2("oCuzr_in", "oCuzr_in", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 1000, 0., 1., 1000, 0., 1.);
-    analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 1000, 0., 1., 1000, 0., 1.);
+    analysisManager->CreateH2("oCuzr_in", "oCuzr_in", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 100, 0., 1., 100, 0., 1.);
+    analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 100, 0., 1., 100, 0., 1.);
   }
 }
 
@@ -85,12 +85,11 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
   // Set ROOT vars
   G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
-  std::ostringstream ROOTfileNameStream;
-  std::ostringstream NtupleNameStream; G4String NtupleName, ROOTfileName;
-  G4String data_dir = "data/";
-  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*12] = {0}; 
+  std::ostringstream ROOTfileNameStream, NtupleNameStream;
+  G4String NtupleName, ROOTfileName, data_dir = "data/";
+  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*24] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
-  G4int CuDepthNumHistos = 12; G4int KADepthNumHistos = 12;
+  G4int CuDepthNumHistos = 12, KADepthNumHistos = 12;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
                             ROOT_rCuDepth, ROOT_zCuDepth, ROOT_rCuDepthVertex, ROOT_zCuDepthVertex,
                             ROOT_rKADepth, ROOT_zKADepth, ROOT_rKADepthVertex, ROOT_zKADepthVertex;
@@ -98,6 +97,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   // Acquire analysis manager and object
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  analysisManager->SetVerboseLevel(10);
 
   // Create output file
   G4String ROOTAnalysisFileName = data_dir + "Analysis.root";
@@ -153,6 +153,8 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
       // (note: null events here are charged particles tracks [hence filling ntuple] which don't contribute in Kapton)
       while ( analysisReader->GetNtupleRow(ntupleId) ) {
 
+        G4cout << "Acquires row of data" << G4endl;
+
         // Accumulate gain measurement per energy (run)
         if ( simulationAnalysis->isMeasureGain() == 1 ) {
           ROOT_gain[ROOT_runID%nEnergies] += ROOT_netCharge;
@@ -162,8 +164,10 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
         if ( ROOT_runID < nEnergies ) { // model 0
           ROOT_histoID = (ROOT_runID%nEnergies)*CuDepthNumHistos + ROOT_signalType;
         } else { // models 1, 2
-          ROOT_histoID = CuDepthNumHistos*nEnergies + ((ROOT_runID-nEnergies)%nEnergies)*(CuDepthNumHistos+KADepthNumHistos) + ROOT_signalType;
+          ROOT_histoID = (ROOT_runID%nEnergies)*(CuDepthNumHistos+KADepthNumHistos) + ROOT_signalType;
         }
+
+        G4cout << "runID: " << ROOT_runID << ", signalType: " << ROOT_signalType << ", histoID: " << ROOT_histoID << G4endl;
 
         // Populate track origin/terminus depth in Cu histograms
         if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
@@ -190,7 +194,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
         }
 
         // Populate track origin/terminus depth in KA histograms
-        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureKACharge() == 1 ) {
+        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
 
           // Depositions
           if ( ROOT_signalType == 12 || ROOT_signalType == 16 || ROOT_signalType == 20 ) {
