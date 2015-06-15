@@ -159,7 +159,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // If charge particle track is relevant to analysis
     if ( ( stepCharge != 0 ) &&
          ( volumeName == "Cu_cyl" || volumeNameVertex == "Cu_cyl" ||
-           volumeName == "KA_cyl1" || volumeNameVertex == "KA_cyl1" ) ) {
+           volumeName == "Kapton_cyl1" || volumeNameVertex == "Kapton_cyl1" ) ) {
     
       // Acquire signal type from particle track for histos
       if ( stepParticle == "e-" ) {

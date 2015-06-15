@@ -23,62 +23,56 @@ void Analysis::measureGainPreload() {
   analysisManager->FinishNtuple();
 }
 
-void Analysis::measureCuChargePreload(G4int nEnergies) {
+void Analysis::measureCuChargePreload() {
 
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Create Cu charge deposition/removal/transfer histograms
   // (1000 tenth-percentile bins of h_Cu inward and r_Cu outward) for every energy
-  for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
-    
-    // electrons, z
-    analysisManager->CreateH2("eCuzr_in", "eCuzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eCuzr_out", "eCuzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eCuzr_inner", "eCuzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eCuzr_outer", "eCuzr_outer", 100, 0., 1., 100, 0., 1.);
+  // electrons, z
+  analysisManager->CreateH2("eCuzr_in", "eCuzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eCuzr_out", "eCuzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eCuzr_inner", "eCuzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eCuzr_outer", "eCuzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // protons, z
-    analysisManager->CreateH2("pCuzr_in", "pCuzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pCuzr_out", "pCuzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pCuzr_inner", "pCuzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pCuzr_outer", "pCuzr_outer", 100, 0., 1., 100, 0., 1.);
+  // protons, z
+  analysisManager->CreateH2("pCuzr_in", "pCuzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pCuzr_out", "pCuzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pCuzr_inner", "pCuzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pCuzr_outer", "pCuzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // ions, z
-    analysisManager->CreateH2("oCuzr_in", "oCuzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 100, 0., 1., 100, 0., 1.);
-  }
+  // ions, z
+  analysisManager->CreateH2("oCuzr_in", "oCuzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 100, 0., 1., 100, 0., 1.);
 }
 
-void Analysis::measureKAChargePreload(G4int nEnergies) {
+void Analysis::measureKAChargePreload() {
 
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Create KA charge deposition/removal/transfer histograms
   // (100 percentile bins of KA_thickness inward and r_Ka outward) for every energy
-  for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
-    
-    // electrons, z
-    analysisManager->CreateH2("eKAzr_in", "eKAzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eKAzr_out", "eKAzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eKAzr_inner", "eKAzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("eKAzr_outer", "eKAzr_outer", 100, 0., 1., 100, 0., 1.);
+  // electrons, z
+  analysisManager->CreateH2("eKAzr_in", "eKAzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eKAzr_out", "eKAzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eKAzr_inner", "eKAzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eKAzr_outer", "eKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // protons, z
-    analysisManager->CreateH2("pKAzr_in", "pKAzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pKAzr_out", "pKAzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pKAzr_inner", "pKAzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("pKAzr_outer", "pKAzr_outer", 100, 0., 1., 100, 0., 1.);
+  // protons, z
+  analysisManager->CreateH2("pKAzr_in", "pKAzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pKAzr_out", "pKAzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pKAzr_inner", "pKAzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pKAzr_outer", "pKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-    // ions, z
-    analysisManager->CreateH2("oKAzr_in", "oKAzr_in", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oKAzr_out", "oKAzr_out", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oKAzr_inner", "oKAzr_inner", 100, 0., 1., 100, 0., 1.);
-    analysisManager->CreateH2("oKAzr_outer", "oKAzr_outer", 100, 0., 1., 100, 0., 1.);
-  }
+  // ions, z
+  analysisManager->CreateH2("oKAzr_in", "oKAzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oKAzr_out", "oKAzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oKAzr_inner", "oKAzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oKAzr_outer", "oKAzr_outer", 100, 0., 1., 100, 0., 1.);
 }
 
 void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
@@ -105,8 +99,10 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
   // Initialize analysis preloads
   if ( simulationAnalysis->isMeasureGain() == 1 ) { simulationAnalysis->measureGainPreload(); }
-  if ( simulationAnalysis->isMeasureCuCharge() == 1 ) { simulationAnalysis->measureCuChargePreload(nEnergies); }
-  if ( simulationAnalysis->isMeasureKACharge() == 1 ) { simulationAnalysis->measureKAChargePreload(nEnergies); }
+  for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+    if ( simulationAnalysis->isMeasureCuCharge() == 1 ) { simulationAnalysis->measureCuChargePreload(); }
+    if ( simulationAnalysis->isMeasureKACharge() == 1 ) { simulationAnalysis->measureKAChargePreload(); }
+  }
 
   // Read through signalTracks for both workers
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
@@ -157,12 +153,9 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
           ROOT_gain[ROOT_runID%nEnergies] += ROOT_netCharge;
         }
 
-        // Histo id w.r.t. Cu runs lacking any KA histos
-        if ( ROOT_runID < nEnergies ) { // model 0
-          numDepthHistosPerRun = CuDepthNumHistos;
-        } else { // models 1, 2
-          numDepthHistosPerRun = CuDepthNumHistos + KADepthNumHistos;
-        }
+        // Acquire histo ID with a lack of KA histos on Cu run
+        if ( simulationAnalysis->isMeasureKACharge() != 1 ) { numDepthHistosPerRun = CuDepthNumHistos; }
+        else { numDepthHistosPerRun = (CuDepthNumHistos + KADepthNumHistos); }
         ROOT_histoID = (ROOT_runID%nEnergies)*numDepthHistosPerRun + ROOT_signalType;
 
         // Populate track origin/terminus depth in Cu histograms
@@ -177,7 +170,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepthVertex, ROOT_rCuDepthVertex);
           }
           // Inner/Outer
-          else {
+          else if ( ROOT_signalType == 2 || ROOT_signalType == 6 || ROOT_signalType == 10 ) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepth, ROOT_rCuDepth);
             analysisManager->FillH2(ROOT_histoID + 1, ROOT_zCuDepthVertex, ROOT_rCuDepthVertex);
 
@@ -201,7 +194,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zKADepthVertex, ROOT_rKADepthVertex);
           }
           // Inner/Outer
-          else {
+          else if ( ROOT_signalType == 14 || ROOT_signalType == 18 || ROOT_signalType == 22 ) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zKADepth, ROOT_rKADepth);
             analysisManager->FillH2(ROOT_histoID + 1, ROOT_zKADepthVertex, ROOT_rKADepthVertex);
 
