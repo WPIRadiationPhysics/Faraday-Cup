@@ -87,7 +87,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
   std::ostringstream ROOTfileNameStream, NtupleNameStream;
   G4String NtupleName, ROOTfileName, data_dir = "data/";
-  G4double ROOT_gain[7] = {0}; G4double ROOT_histoEntries[7*24] = {0}; 
+  G4double ROOT_gain[7] = {0}, ROOT_histoEntries[7*24] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
   G4int CuDepthNumHistos = 12, KADepthNumHistos = 12, numDepthHistosPerRun;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
@@ -169,11 +169,11 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
         if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
 
           // Depositions
-          if ( ROOT_signalType == 0 || ROOT_signalType == 3 || ROOT_signalType == 6 ) {
+          if ( ROOT_signalType == 0 || ROOT_signalType == 4 || ROOT_signalType == 8 ) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepth, ROOT_rCuDepth);
           }
           // Removals
-          else if ( ROOT_signalType == 1 || ROOT_signalType == 4 || ROOT_signalType == 7 ) {
+          else if ( ROOT_signalType == 1 || ROOT_signalType == 5 || ROOT_signalType == 9 ) {
             analysisManager->FillH2(ROOT_histoID, ROOT_zCuDepthVertex, ROOT_rCuDepthVertex);
           }
           // Inner/Outer
@@ -190,7 +190,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
         }
 
         // Populate track origin/terminus depth in KA histograms
-        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureCuCharge() == 1 ) {
+        if ( ROOT_signalType != 99 && simulationAnalysis->isMeasureKACharge() == 1 ) {
 
           // Depositions
           if ( ROOT_signalType == 12 || ROOT_signalType == 16 || ROOT_signalType == 20 ) {
