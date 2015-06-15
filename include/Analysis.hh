@@ -34,8 +34,8 @@ class Analysis {
 
     // Measurement functions
     void measureGainPreload();
-    void measureCuChargePreload(G4int nEnergies);
-    void measureKAChargePreload(G4int nEnergies);
+    void measureCuChargePreload();
+    void measureKAChargePreload();
 
     G4int fMeasureGain;
     G4int fMeasureCuCharge;
