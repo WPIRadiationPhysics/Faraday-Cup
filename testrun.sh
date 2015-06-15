@@ -9,7 +9,7 @@ if [ "$G4COMP" == "" ]; then
 fi
 
 # Rebuild and run application
-rm -r build
+rm -rf build
 mkdir build
 cd build
 cmake ..

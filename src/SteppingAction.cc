@@ -156,7 +156,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       netSignal += stepCharge*trackDepth;
     }
 
-    if ( netSignal != 0 ) { // If trajectory contributes to gain
+    // If charge particle track is relevant to analysis
+    if ( ( stepCharge != 0 ) &&
+         ( volumeName == "Cu_cyl" || volumeNameVertex == "Cu_cyl" ||
+           volumeName == "KA_cyl1" || volumeNameVertex == "KA_cyl1" ) ) {
     
       // Acquire signal type from particle track for histos
       if ( stepParticle == "e-" ) {
@@ -194,8 +197,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
       G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
       G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-
-      //G4cout << "from (" << stepRKADepthVertex << "," << stepZKADepthVertex << ") to (" << stepRKADepth << "," << stepZKADepth << ")" << G4endl;
 
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, 0, runID);
