@@ -60,7 +60,9 @@ set(FaradayCup_SCRIPTS
   vis.mac
   dataPlot.gnu
   plotGain.C
-  plotHisto.C
+  plotHistoPureCu.C
+  plotHistoCu.C
+  plotHistoKA.C
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})

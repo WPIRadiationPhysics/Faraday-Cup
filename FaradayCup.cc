@@ -144,9 +144,11 @@ int main(int argc,char** argv) {
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
         syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
+        // Create histos path
+        syscmd = "mkdir " + data_dir + "/histos"; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-        syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
+        syscmd = "cp plotHistoPureCu.C " + data_dir; system(syscmd);
                
       // Kapton (layer 1) thickness iteration for secondary models
       } else { for ( G4int KA_i=0; KA_i<nThicknesses; KA_i++ ) {
@@ -184,7 +186,8 @@ int main(int argc,char** argv) {
         syscmd = "mkdir " + filmDir + "/histos"; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-        syscmd = "cp plotHisto.C " + data_dir; system(syscmd);
+        syscmd = "cp plotHistoCu.C " + data_dir; system(syscmd);
+        syscmd = "cp plotHistoKA.C " + data_dir; system(syscmd);
       }}
 
       // Rename data dir as model index

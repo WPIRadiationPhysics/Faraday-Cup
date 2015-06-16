@@ -13,5 +13,5 @@ rm -rf build
 mkdir build
 cd build
 cmake ..
-make -j2
-time ./FaradayCup -t 2 -m run100.mac > run.out
+make -j4
+time ./FaradayCup -t 4 -m run10000.mac > run.out
