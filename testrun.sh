@@ -1,6 +1,10 @@
 #/bin/bash
 ## Test run bash macro
 
+# Number of cores/events (latter as power of 10)
+nThreads=2
+nEvents=1000
+
 # Test for Geant4 libraries
 if [ "$G4COMP" == "" ]; then
 
@@ -13,5 +17,5 @@ rm -rf build
 mkdir build
 cd build
 cmake ..
-make -j4
-time ./FaradayCup -t 4 -m run10000.mac > run.out
+make "-j""$nThreads"
+time ./FaradayCup -t "$nThreads" -m "run""$nEvents"".mac" > run.out
