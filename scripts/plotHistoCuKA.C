@@ -12,7 +12,7 @@
   TH2F* h2;
   int* runEnergy[7] = {70, 100, 130, 160, 190, 220, 250};
   int* KaptonThickness[3] = {59, 100, 200};
-  char* volumeName[2] = {"Cu", "KA"}; char particleName[3] = {'e', 'p', 'o'};
+  char* volumeName[2] = {"Cu", "KA"}; char particleName[5] = {'e', 'p', 'o', 'n', 'g'};
   char* dataFileName[30], interDepHistoName[30], intraDepHistoName[30],
         figTitleA[50], figTitleB[50], pngNameA[30], pngNameB[30];
   char* syscmd[50];
@@ -38,7 +38,7 @@
 
       // Logical volume, particle, and energy iteration
       for ( int volume_i = 0; volume_i < 2; volume_i++ ) {
-      for ( int particle_i = 0; particle_i < 3; particle_i++ ) {
+      for ( int particle_i = 0; particle_i < 5; particle_i++ ) {
 
       // Create particle-volume directory
       sprintf(syscmd, "mkdir histos/S%d/%c%s/", KaptonThickness[KA_i], particleName[particle_i], volumeName[volume_i]);

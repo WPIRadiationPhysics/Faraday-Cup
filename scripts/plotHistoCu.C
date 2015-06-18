@@ -11,7 +11,7 @@
   // Var declaration
   TH2F* h2;
   int* runEnergy[7] = {70, 100, 130, 160, 190, 220, 250};
-  char particleName[3] = {'e', 'p', 'o'};
+  char particleName[5] = {'e', 'p', 'o', 'n', 'g'};
   char* interDepHistoName[30], intraDepHistoName[30],
         figTitleA[50], figTitleB[50], pngNameA[30], pngNameB[30];
   char* syscmd[50];
@@ -26,7 +26,7 @@
   TFile f("Analysis.root");
 
   // Particle and energy iteration
-  for ( int particle_i = 0; particle_i < 3; particle_i++ ) {
+  for ( int particle_i = 0; particle_i < 5; particle_i++ ) {
 
   // Create particle directory
   sprintf(syscmd, "mkdir histos/%cCu/", particleName[particle_i]);
