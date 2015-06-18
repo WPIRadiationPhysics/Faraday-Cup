@@ -47,6 +47,18 @@ void Analysis::measureCuChargePreload() {
   analysisManager->CreateH2("oCuzr_out", "oCuzr_out", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oCuzr_inner", "oCuzr_inner", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oCuzr_outer", "oCuzr_outer", 100, 0., 1., 100, 0., 1.);
+
+  // neutrons
+  analysisManager->CreateH2("nCuzr_in", "nCuzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nCuzr_out", "nCuzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nCuzr_inner", "nCuzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nCuzr_outer", "nCuzr_outer", 100, 0., 1., 100, 0., 1.);
+
+  // gammas
+  analysisManager->CreateH2("gCuzr_in", "gCuzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gCuzr_out", "gCuzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gCuzr_inner", "gCuzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gCuzr_outer", "gCuzr_outer", 100, 0., 1., 100, 0., 1.);
 }
 
 void Analysis::measureKAChargePreload() {
@@ -56,23 +68,35 @@ void Analysis::measureKAChargePreload() {
 
   // Create KA charge deposition/removal/transfer histograms
   // (100 percentile bins of KA_thickness inward and r_Ka outward) for every energy
-  // electrons, z
+  // electrons
   analysisManager->CreateH2("eKAzr_in", "eKAzr_in", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("eKAzr_out", "eKAzr_out", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("eKAzr_inner", "eKAzr_inner", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("eKAzr_outer", "eKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-  // protons, z
+  // protons
   analysisManager->CreateH2("pKAzr_in", "pKAzr_in", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pKAzr_out", "pKAzr_out", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pKAzr_inner", "pKAzr_inner", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pKAzr_outer", "pKAzr_outer", 100, 0., 1., 100, 0., 1.);
 
-  // ions, z
+  // ions
   analysisManager->CreateH2("oKAzr_in", "oKAzr_in", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oKAzr_out", "oKAzr_out", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oKAzr_inner", "oKAzr_inner", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oKAzr_outer", "oKAzr_outer", 100, 0., 1., 100, 0., 1.);
+
+  // neutrons
+  analysisManager->CreateH2("nKAzr_in", "nKAzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nKAzr_out", "nKAzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nKAzr_inner", "nKAzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nKAzr_outer", "nKAzr_outer", 100, 0., 1., 100, 0., 1.);
+
+  // gammas
+  analysisManager->CreateH2("gKAzr_in", "gKAzr_in", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gKAzr_out", "gKAzr_out", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gKAzr_inner", "gKAzr_inner", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gKAzr_outer", "gKAzr_outer", 100, 0., 1., 100, 0., 1.);
 }
 
 void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
@@ -81,9 +105,9 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
   std::ostringstream ROOTfileNameStream, NtupleNameStream;
   G4String NtupleName, ROOTfileName, data_dir = "data/";
-  G4double ROOT_gain[7] = {0}, ROOT_histoEntries[7*24] = {0}; 
+  G4int CuDepthNumHistos = 20, KADepthNumHistos = 20, numDepthHistosPerRun;
+  G4double ROOT_gain[7] = {0}, ROOT_histoEntries[7*(20+20)] = {0}; 
   G4int ROOT_eventID, ROOT_runID, ntupleId, ROOT_signalType, ROOT_histoID;
-  G4int CuDepthNumHistos = 12, KADepthNumHistos = 12, numDepthHistosPerRun;
   G4double ROOT_particleCharge, ROOT_netCharge, ROOT_r, ROOT_z, ROOT_rVertex, ROOT_zVertex, 
                             ROOT_rCuDepth, ROOT_zCuDepth, ROOT_rCuDepthVertex, ROOT_zCuDepthVertex,
                             ROOT_rKADepth, ROOT_zKADepth, ROOT_rKADepthVertex, ROOT_zKADepthVertex;

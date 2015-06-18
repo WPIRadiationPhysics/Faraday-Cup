@@ -32,50 +32,50 @@ SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
-	
-  // Acquire run id
-  G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
 
-  // 7 runs per thieck, ditch first 7 (Cu)
-  // [Cu runs end up with thickness_KA=0.059mm, but this doesn't matter
-  // as without the KA volume it won't undergo calculations anyway]
-  G4int KA_i = floor((runID-7)/7);
-  if ( KA_i < 0 ) { KA_i = 0; }
-	
-  // Get particle charge
-  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
-
-  // Get particle name
-  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
-
-  // Get name of volume at step location
-  G4String volumeName = step->GetTrack()->GetVolume()->GetName();
-
-  // Get step position r,z-position
-  G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
-  G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
-  G4double stepZ = stepXYZ[2];
-  
-  // Determine film thickness for calculations
-  G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
-  G4String data_dir = "data/";
-  
-  // Acquire thickness index
-  G4double Kapton_Thickness[6] = {0.059, 0.100, 0.200, 0.059, 0.100, 0.200};
-  r_KA = r_Cu + Kapton_Thickness[KA_i];
-  h_KA = h_Cu + 2*Kapton_Thickness[KA_i];
-  // All share common center, half in -z hemispace
-  G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
-
-  // Track net signal calculation
-  //
-  // Wait for final state and compare original and
-  // final positions of charge q
-  G4double netSignal = 0;
-  
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
+
+    // Acquire run id
+    G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
+
+    // 7 runs per thieck, ditch first 7 (Cu)
+    // [Cu runs end up with thickness_KA=0.059mm, but this doesn't matter
+    // as without the KA volume it won't undergo calculations anyway]
+    G4int KA_i = floor((runID-7)/7);
+    if ( KA_i < 0 ) { KA_i = 0; }
 	
+    // Get particle charge
+    G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
+
+    // Get particle name
+    G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
+
+    // Get name of volume at step location
+    G4String volumeName = step->GetTrack()->GetVolume()->GetName();
+
+    // Get step position r,z-position
+    G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
+    G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
+    G4double stepZ = stepXYZ[2];
+  
+    // Determine film thickness for calculations
+    G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
+    G4String data_dir = "data/";
+  
+    // Acquire thickness index
+    G4double Kapton_Thickness[6] = {0.059, 0.100, 0.200, 0.059, 0.100, 0.200};
+    r_KA = r_Cu + Kapton_Thickness[KA_i];
+    h_KA = h_Cu + 2*Kapton_Thickness[KA_i];
+    // All share common center, half in -z hemispace
+    G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
+
+    // Track net signal calculation
+    //
+    // Wait for final state and compare original and
+    // final positions of charge q
+    G4double netSignal = 0;
+  
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
@@ -83,6 +83,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     G4double stepZVertex = stepXYZVertex[2];
     
     // Signal statistics
+
     // Cu
     // 0: e_in
     // 1: e_out
@@ -93,16 +94,30 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // 8: o_in
     // 9: o_out
     // 10-11: o_cis
+    // 12: n_in
+    // 13: n_out
+    // 14-15: n_cis
+    // 16: g_in
+    // 17: g_out
+    // 18-19: g_cis
+
     // KA
-    // 12: e_in
-    // 13: e_out
-    // 14-15: e_cis
-    // 16: p_in
-    // 17: p_out
-    // 18-19: p_cis
-    // 20: o_in
-    // 21: o_out
-    // 22-23: o_cis
+    // 20: e_in
+    // 21: e_out
+    // 22-23: e_cis
+    // 24: p_in
+    // 25: p_out
+    // 26-27: p_cis
+    // 28: o_in
+    // 29: o_out
+    // 30-31: o_cis
+    // 32: n_in
+    // 33: n_out
+    // 34-35: n_cis
+    // 36: g_in
+    // 37: g_out
+    // 38-39: g_cis
+
     G4int signalType = 99; // 99: null event
     G4double trackDepth = 0, trackDepthVertex = 0,
              stepRCuUndepth = 0, stepRCuUndepthVertex = 0,
@@ -156,8 +171,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       netSignal += stepCharge*trackDepth;
     }
 
-    // If charge particle track is relevant to analysis
-    if ( ( stepCharge != 0 ) &&
+    // If charge particle or neutron/gamma track is relevant to analysis
+    if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) && 
          ( volumeName == "Cu_cyl" || volumeNameVertex == "Cu_cyl" ||
            volumeName == "Kapton_cyl1" || volumeNameVertex == "Kapton_cyl1" ) ) {
     
@@ -169,9 +184,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 1; }
         else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 2; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 12; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 13; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 14; }
+        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 20; }
+        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 21; }
+        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 22; }
       }
       else if ( stepParticle == "proton" ) {
 
@@ -180,9 +195,31 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 5; }
         else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 6; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 16; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 17; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 18; }
+        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 24; }
+        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 25; }
+        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 26; }
+      }
+      else if ( stepParticle == "neutron" ) {
+
+        // Copper
+        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 12; }
+        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 13; }
+        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 14; }
+        // Kapton
+        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 32; }
+        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 33; }
+        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 34; }
+      }
+      else if ( stepParticle == "gamma" ) {
+
+        // Copper
+        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 16; }
+        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 17; }
+        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 18; }
+        // Kapton
+        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 36; }
+        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 37; }
+        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 38; }
       }
       else {
 
@@ -191,9 +228,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 9; }
         else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 10; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 20; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 21; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 22; }
+        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 28; }
+        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 29; }
+        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 30; }
       }
 
       // Acquire beamCharge, eventId and analysis manager
