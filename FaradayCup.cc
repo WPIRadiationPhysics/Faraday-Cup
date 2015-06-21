@@ -138,8 +138,12 @@ int main(int argc,char** argv) {
         // Cu charge defect histograms
         simulationAnalysis->measureCuCharge();
 
+        G4cout << "About to do analysis" << G4endl; // Checkpoint
+
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
+        G4cout << "Completes track analysis" << G4endl; // Checkpoint
+        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
 
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
@@ -169,6 +173,7 @@ int main(int argc,char** argv) {
 
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
+        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
 
         // Save completed dataset as film iteration directory
         filmDirStream.str("");

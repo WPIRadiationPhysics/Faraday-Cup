@@ -1,6 +1,9 @@
 #include "Analysis.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4LogicalVolume.hh"
+#include "G4LogicalVolumeStore.hh"
+#include "G4Tubs.hh"
 
 #include <iostream>
 #include <fstream>
@@ -99,6 +102,136 @@ void Analysis::measureKAChargePreload() {
   analysisManager->CreateH2("gKAzr_outer", "gKAzr_outer", 100, 0., 1., 100, 0., 1.);
 }
 
+void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
+
+  G4cout << "Makes it to analysis" << G4endl; // Checkpoint
+
+  // Create H3 quiver histogram structure
+  struct quiverHisto {
+
+    // p_n n-direction momentum histos in 3D (r,z) space
+    G4double p_r[100][100] = {{0}},
+             p_z[100][100] = {{0}};
+  };
+
+  G4cout << "Defines histo structure" << G4endl; // Checkpoint
+
+  // Set ROOT vars
+  G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
+  std::ostringstream ROOTfileNameStream, NtupleNameStream, cascadeFileNameStream;
+  G4String cascadeFileName, NtupleName, ROOTfileName, data_dir = "data/";
+  G4int ntupleId, ROOT_runID, ROOT_particleType;
+  G4double ROOT_x, ROOT_y, ROOT_z, ROOT_px, ROOT_py, ROOT_pz;
+
+  // Declare 3D particle momenta quiver histos per energy and particle
+  struct quiverHisto particleQuiver[5][7];
+
+  G4cout << "Declares quivers" << G4endl; // Checkpoint
+
+  // Acquire world logical volume dimensions
+  G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
+  G4Tubs* worldTubs = 0;
+  worldTubs = dynamic_cast< G4Tubs*>(worldLV->GetSolid()); 
+  G4double worldZHalfLength = worldTubs->GetZHalfLength(),
+           worldOuterRadius = worldTubs->GetOuterRadius();
+
+  G4cout << "Obtains world parameters: " << worldZHalfLength << " and " << worldOuterRadius << G4endl; // Checkpoint
+
+  // Read through signalTracks for both workers
+  for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
+
+    // Acquire analysis reader
+    G4AnalysisReader* analysisReader = G4AnalysisReader::Instance();
+    
+    // Aquire ROOT data files
+    ROOTfileNameStream.str(""); ROOTfileName = "";
+    NtupleNameStream.str(""); NtupleName = "";
+    ROOTfileNameStream << data_dir << "signalTracks_t" << workerID;
+    ROOTfileName = ROOTfileNameStream.str();
+    NtupleNameStream << "cascadeData";
+    NtupleName = NtupleNameStream.str();
+    
+    // Read ntuples and do preloaded analyses
+    analysisReader->SetFileName(ROOTfileName);
+    ntupleId = analysisReader->GetNtuple(NtupleName);
+
+    if ( ntupleId >= 0 ) {
+      
+      // Get relevant values
+      analysisReader->SetNtupleIColumn("run", ROOT_runID);
+      analysisReader->SetNtupleIColumn("particleType", ROOT_particleType);
+      analysisReader->SetNtupleDColumn("x", ROOT_x);
+      analysisReader->SetNtupleDColumn("y", ROOT_y);
+      analysisReader->SetNtupleDColumn("z", ROOT_z);
+      analysisReader->SetNtupleDColumn("p_x", ROOT_px);
+      analysisReader->SetNtupleDColumn("p_y", ROOT_py);
+      analysisReader->SetNtupleDColumn("p_z", ROOT_pz);
+
+      // Loop through collected cascade fragments
+      while ( analysisReader->GetNtupleRow(ntupleId) ) {
+
+        G4double ROOT_r = pow(pow(ROOT_x,2) + pow(ROOT_y,2), 0.5),
+                 ROOT_pr = pow(pow(ROOT_px,2) + pow(ROOT_py,2), 0.5);
+
+        // if vec{r} dot vec{pr} is less than zero [thus cos(theta_r-theta_pr)<0], then inward-facing r-momentum
+        // {cos/sin}(theta_r) = {ROOT_x/ROOT_y}/ROOT_r, {cos/sin}(theta_pr) = {ROOT_px/ROOT_py}/ROOT_pr
+        // thus, cos(theta_r-theta_pr) = cos(theta_r)*cos(theta_pr) + sin(theta_r)*sin(theta_pr); ignore denominator
+        G4double inwardRMomentumCheck = ROOT_x*ROOT_px + ROOT_y*ROOT_py;
+        if ( inwardRMomentumCheck < 0 ) { ROOT_pr = -ROOT_pr; }
+
+        // Acquire position as bin in 100^3 grid
+        G4int rBin = floor((ROOT_r/worldOuterRadius)*100),
+              zBin = floor(0.5*(1+(ROOT_z/worldZHalfLength))*100);
+
+        G4cout << "runID: " << ROOT_runID << ", particleType: " << ROOT_particleType
+                            << ", rBin: " << rBin << ", zBin: " << zBin
+                            << ", pr: " << ROOT_pr << ", pz: " << ROOT_pz << G4endl; // Checkpoint
+
+        // Fill particle histogram structures by energy run number and particle type number
+        particleQuiver[ROOT_particleType][ROOT_runID%7].p_r[rBin][zBin] += ROOT_pr;
+        particleQuiver[ROOT_particleType][ROOT_runID%7].p_z[rBin][zBin] += ROOT_pz;
+      }
+    }
+
+    // Remove analysis reader
+    delete G4AnalysisReader::Instance();
+  }
+
+  G4cout << "Finishes acquisition, begins output" << G4endl; // Checkpoint
+
+  // Output cascade data
+  for ( G4int particle_i = 0; particle_i < 5; particle_i++ ) {
+    for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+      for ( G4int bin_ir = 0; bin_ir < 100; bin_ir++ ) {
+      for ( G4int bin_iz = 0; bin_iz < 100; bin_iz++ ) {
+
+          // Define data filename
+          cascadeFileNameStream.str("");
+          switch ( particle_i+1 ) {
+            case 1: cascadeFileNameStream << data_dir << "eCascade_" << energies[energy_i] << "MeV.dat"; break;
+            case 2: cascadeFileNameStream << data_dir << "pCascade_" << energies[energy_i] << "MeV.dat"; break;
+            case 3: cascadeFileNameStream << data_dir << "oCascade_" << energies[energy_i] << "MeV.dat"; break;
+            case 4: cascadeFileNameStream << data_dir << "nCascade_" << energies[energy_i] << "MeV.dat"; break;
+            case 5: cascadeFileNameStream << data_dir << "gCascade_" << energies[energy_i] << "MeV.dat"; break;
+          }
+          cascadeFileName = cascadeFileNameStream.str();
+
+          // Check for particle-energy's data file, create if necessar; open
+          std::ofstream cascadeFile;
+          std::ifstream cascadeFileTest(cascadeFileName);
+          if ( ! cascadeFileTest ) { cascadeFile.open (cascadeFileName); }
+          else { cascadeFile.open (cascadeFileName, std::ios::app); }
+
+          // Append file and close
+          cascadeFile << bin_ir << " " << bin_iz << " " <<
+                         particleQuiver[particle_i][energy_i].p_r[bin_ir][bin_iz] << " " <<
+                         particleQuiver[particle_i][energy_i].p_z[bin_ir][bin_iz] << "\n";
+          cascadeFile.close();
+      }}
+    }
+  }
+}
+
 void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
 
   // Set ROOT vars
@@ -117,7 +250,7 @@ void Analysis::analyzeTracks(G4int nThreads, G4int nEnergies) {
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
 
   // Create output file
-  G4String ROOTAnalysisFileName = data_dir + "Analysis.root";
+  G4String ROOTAnalysisFileName = data_dir + "trackAnalysis.root";
   analysisManager->SetFileName(ROOTAnalysisFileName);
   analysisManager->OpenFile();
 

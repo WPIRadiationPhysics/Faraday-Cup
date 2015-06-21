@@ -30,6 +30,9 @@ class Analysis {
     // Locate track files and read through
     virtual void analyzeTracks(G4int nThreads, G4int nEnergies);
 
+    // Locate cascade files and read through
+    virtual void analyzeCascades(G4int nThreads, G4int nEnergies);
+
   private:
 
     // Measurement functions

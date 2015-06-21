@@ -33,31 +33,68 @@ SteppingAction::~SteppingAction() {}
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
 
+  // Acquire run id
+  G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
+
+  // Get seed num
+  //G4cout << G4RunManager::GetRunManager()->GetCurrentEvent()->GetRandomNumberStatus() << G4endl;
+
+  // Get particle charge
+  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
+
+  // Get particle name and type
+  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
+  G4int stepParticleType = 99;
+  if ( stepParticle == "e-" ) { stepParticleType = 1; }
+  if ( stepParticle == "proton" ) { stepParticleType = 2; }
+  if ( stepParticle == "neutron" ) { stepParticleType = 4; }
+  if ( stepParticle == "gamma" ) { stepParticleType = 5; }
+  if ( stepParticle == 99 && stepCharge != 0 ) { stepParticleType = 3; }
+ 
+  // Get step position
+  G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
+  G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
+
+  // Get step momenta
+  G4ThreeVector stepPxPyPz = step->GetTrack()->GetMomentum();
+  G4double stepPx = stepPxPyPz[0], stepPy = stepPxPyPz[1], stepPz = stepPxPyPz[2];
+
+  // Acquire beamCharge, eventId and analysis manager
+  G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
+  G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  // Fill e- momenta histos for nonzero momenta
+  if ( stepParticleType == 1 && ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 ) ) {
+
+    // Fill ntuple row
+    analysisManager->FillNtupleIColumn(1, 0, runID);
+    analysisManager->FillNtupleIColumn(1, 1, stepParticleType);
+    analysisManager->FillNtupleDColumn(1, 2, stepX);
+    analysisManager->FillNtupleDColumn(1, 3, stepY);
+    analysisManager->FillNtupleDColumn(1, 4, stepZ);
+    analysisManager->FillNtupleDColumn(1, 5, stepPx);
+    analysisManager->FillNtupleDColumn(1, 6, stepPy);
+    analysisManager->FillNtupleDColumn(1, 7, stepPz);
+    analysisManager->AddNtupleRow(1);
+  }
+
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-
-    // Acquire run id
-    G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
 
     // 7 runs per thieck, ditch first 7 (Cu)
     // [Cu runs end up with thickness_KA=0.059mm, but this doesn't matter
     // as without the KA volume it won't undergo calculations anyway]
     G4int KA_i = floor((runID-7)/7);
     if ( KA_i < 0 ) { KA_i = 0; }
-	
-    // Get particle charge
-    G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
-
-    // Get particle name
-    G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
 
     // Get name of volume at step location
     G4String volumeName = step->GetTrack()->GetVolume()->GetName();
 
-    // Get step position r,z-position
-    G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
+    // Acquire step r-position 
+    //G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
     G4double stepR = pow(pow(stepXYZ[0],2) + pow(stepXYZ[1],2), 0.5);
-    G4double stepZ = stepXYZ[2];
+    stepZ = stepXYZ[2];
   
     // Determine film thickness for calculations
     G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
@@ -232,11 +269,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 29; }
         else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 30; }
       }
-
-      // Acquire beamCharge, eventId and analysis manager
-      G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
-      G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
-      G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, 0, runID);
