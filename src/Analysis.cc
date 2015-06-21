@@ -104,8 +104,6 @@ void Analysis::measureKAChargePreload() {
 
 void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
 
-  G4cout << "Makes it to analysis" << G4endl; // Checkpoint
-
   // Create H3 quiver histogram structure
   struct quiverHisto {
 
@@ -113,8 +111,6 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
     G4double p_r[100][100] = {{0}},
              p_z[100][100] = {{0}};
   };
-
-  G4cout << "Defines histo structure" << G4endl; // Checkpoint
 
   // Set ROOT vars
   G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
@@ -126,16 +122,12 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
   // Declare 3D particle momenta quiver histos per energy and particle
   struct quiverHisto particleQuiver[5][7];
 
-  G4cout << "Declares quivers" << G4endl; // Checkpoint
-
   // Acquire world logical volume dimensions
   G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
   G4Tubs* worldTubs = 0;
   worldTubs = dynamic_cast< G4Tubs*>(worldLV->GetSolid()); 
   G4double worldZHalfLength = worldTubs->GetZHalfLength(),
            worldOuterRadius = worldTubs->GetOuterRadius();
-
-  G4cout << "Obtains world parameters: " << worldZHalfLength << " and " << worldOuterRadius << G4endl; // Checkpoint
 
   // Read through signalTracks for both workers
   for ( G4int workerID = 0; workerID < nThreads; workerID++ ) {
@@ -184,10 +176,6 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
               // Adjust slight funcational anomaly
               if ( rBin == 100 ) { rBin = 99; }
               if ( zBin == 100 ) { zBin = 99; }
-
-        if ( ROOT_runID >= 7 && ( ROOT_particleType < 0 || ROOT_particleType > 5) ) {
-        G4cout << "runID: " << ROOT_runID << ", particleType: " << ROOT_particleType << ", rBin: " << rBin << ", zBin: " << zBin << G4endl; // Checkpoint
-        }
 
         // Fill particle histogram structures by energy run number and particle type number
         particleQuiver[ROOT_particleType][ROOT_runID%7].p_r[rBin][zBin] += ROOT_pr;

@@ -80,22 +80,16 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 
 void RunAction::EndOfRunAction(const G4Run* run) {
 
-  G4cout << "Finishes run" << G4endl; // Checkpoint
-
   // Vars, data and file structures
   G4int runID = run->GetRunID();
 
   // Save statistics per energy macro
   if ( (runID+1)%7 == 0 ) {
 
-    G4cout << "At last run" << G4endl; // Checkpoint
-
     // Acquire Analysis Manager, write and delete
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
     analysisManager->Write();
     analysisManager->CloseFile();
     delete G4AnalysisManager::Instance();
-    
-    G4cout << "Saves data" << G4endl; // Checkpoint
   }
 }

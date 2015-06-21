@@ -138,12 +138,14 @@ int main(int argc,char** argv) {
         // Cu charge defect histograms
         simulationAnalysis->measureCuCharge();
 
-        G4cout << "About to do analysis" << G4endl; // Checkpoint
 
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
-        G4cout << "Completes track analysis" << G4endl; // Checkpoint
         simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+
+        // Make cascade histogram directory and move histograms
+        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
+        system(syscmd);
 
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
@@ -174,23 +176,22 @@ int main(int argc,char** argv) {
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
         simulationAnalysis->analyzeCascades(nThreads, nEnergies);
-        G4cout << "Finishes both analyses" << G4endl; // Checkpoint
+
+        // Make cascade histogram directory and move histograms
+        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
+        system(syscmd);
 
         // Save completed dataset as film iteration directory
         filmDirStream.str("");
-        G4cout << "FileStream emptied, data_dir: " << data_dir << ", KA_i: " << KA_i << ", nThicknesses: " << nThicknesses << G4endl; // Checkpoint
         filmDirStream << data_dir << "S" << KA_thickness[KA_i];
-        G4cout << "FilmDirStream refilled: " << filmDirStream << G4endl; // Checkpoint
         filmDir = filmDirStream.str();
-        G4cout << "Acquire film dir: " << filmDir << G4endl; // Checkpoint
         // Create film dir
         syscmd = "mkdir -p " + filmDir; system(syscmd);
-        G4cout << "Creates film dir" << G4endl; // Checkpoint
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
         syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
-        // Move ROOT files to film directory and create film histos path
-        syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
+        // Move ROOT files and cascades to film directory and create film histos path
+        syscmd = "mv " + data_dir + "cascades " + data_dir + "*.root " + filmDir; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
         syscmd = "cp plotHistoCuKA.C " + data_dir; system(syscmd);
