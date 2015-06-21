@@ -174,13 +174,18 @@ int main(int argc,char** argv) {
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
         simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+        G4cout << "Finishes both analyses" << G4endl; // Checkpoint
 
         // Save completed dataset as film iteration directory
         filmDirStream.str("");
+        G4cout << "FileStream emptied, data_dir: " << data_dir << ", KA_i: " << KA_i << ", nThicknesses: " << nThicknesses << G4endl; // Checkpoint
         filmDirStream << data_dir << "S" << KA_thickness[KA_i];
+        G4cout << "FilmDirStream refilled: " << filmDirStream << G4endl; // Checkpoint
         filmDir = filmDirStream.str();
+        G4cout << "Acquire film dir: " << filmDir << G4endl; // Checkpoint
         // Create film dir
         syscmd = "mkdir -p " + filmDir; system(syscmd);
+        G4cout << "Creates film dir" << G4endl; // Checkpoint
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
         syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
@@ -214,7 +219,7 @@ int main(int argc,char** argv) {
 	  std::ostringstream raw_dirCommand;
 	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
 	  G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);
+          system(dirCommand);
 	  
       // Run experimental beam energies
       G4String command = "/control/execute ";

@@ -36,7 +36,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Acquire run id
   G4int runID = G4RunManager::GetRunManager()->GetCurrentRun()->GetRunID();
 
-  // Get seed num
+  // Get seed num (look into this, gives error)
   //G4cout << G4RunManager::GetRunManager()->GetCurrentEvent()->GetRandomNumberStatus() << G4endl;
 
   // Get particle charge
@@ -45,11 +45,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Get particle name and type
   G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
   G4int stepParticleType = 99;
-  if ( stepParticle == "e-" ) { stepParticleType = 1; }
-  if ( stepParticle == "proton" ) { stepParticleType = 2; }
-  if ( stepParticle == "neutron" ) { stepParticleType = 4; }
-  if ( stepParticle == "gamma" ) { stepParticleType = 5; }
-  if ( stepParticle == 99 && stepCharge != 0 ) { stepParticleType = 3; }
+  if ( stepParticle == "e-" ) { stepParticleType = 0; }
+  if ( stepParticle == "proton" ) { stepParticleType = 1; }
+  if ( stepParticle == "neutron" ) { stepParticleType = 3; }
+  if ( stepParticle == "gamma" ) { stepParticleType = 4; }
+  if ( stepParticle == 99 && stepCharge != 0 ) { stepParticleType = 2; }
  
   // Get step position
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
@@ -64,8 +64,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4int eventID = G4RunManager::GetRunManager()->GetCurrentEvent()->GetEventID();
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-  // Fill e- momenta histos for nonzero momenta
-  if ( stepParticleType == 1 && ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 ) ) {
+  // Fill histos for nonzero momenta; separated statements to disclude stationary uncharged secondary processes
+  if ( stepParticleType != 99) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) {
 
     // Fill ntuple row
     analysisManager->FillNtupleIColumn(1, 0, runID);
@@ -77,7 +77,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     analysisManager->FillNtupleDColumn(1, 6, stepPy);
     analysisManager->FillNtupleDColumn(1, 7, stepPz);
     analysisManager->AddNtupleRow(1);
-  }
+  }}
 
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
