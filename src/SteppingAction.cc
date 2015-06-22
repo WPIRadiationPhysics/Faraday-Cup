@@ -89,8 +89,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     analysisManager->FillNtupleIColumn(1, 1, stepParticleType);
     analysisManager->FillNtupleDColumn(1, 2, stepR);
     analysisManager->FillNtupleDColumn(1, 3, stepZ);
-    analysisManager->FillNtupleDColumn(1, 4, eDepR);
-    analysisManager->FillNtupleDColumn(1, 5, eDepZ);
+    analysisManager->FillNtupleDColumn(1, 4, eDepR/beamCharge);
+    analysisManager->FillNtupleDColumn(1, 5, eDepZ/beamCharge);
     analysisManager->AddNtupleRow(1);
   }}}
 
