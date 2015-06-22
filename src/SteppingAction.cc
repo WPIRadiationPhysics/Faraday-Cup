@@ -55,6 +55,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
   G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
 
+  // Get name of volume at step location
+  G4String volumeName = step->GetTrack()->GetVolume()->GetName();
+
   // Get step momenta
   G4ThreeVector stepPxPyPz = step->GetTrack()->GetMomentum();
   G4double stepPx = stepPxPyPz[0], stepPy = stepPxPyPz[1], stepPz = stepPxPyPz[2];
@@ -65,19 +68,31 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Fill histos for nonzero momenta; separated statements to disclude stationary uncharged secondary processes
-  if ( stepParticleType != 99) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) {
+  if ( stepParticleType != 99 ) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) { if ( volumeName != "World" ) {
+
+    // Convert to cylindrical polar coordinates
+    G4double stepR = pow(pow(stepX,2) + pow(stepY,2), 0.5),
+             stepPr = pow(pow(stepPx,2) + pow(stepPy,2), 0.5);
+
+    // if vec{r} dot vec{pr} is less than zero [thus cos(theta_r-theta_pr)<0], then inward-facing r-momentum
+    // {cos/sin}(theta_r) = {stepX/stepY}/stepR, {cos/sin}(theta_pr) = {stepPx/stepPy}/stepPr
+    // thus, cos(theta_r-theta_pr) = cos(theta_r)*cos(theta_pr) + sin(theta_r)*sin(theta_pr); ignore denominator
+    if ( stepX*stepPx + stepY*stepPy < 0 ) { stepPr = -stepPr; }
+
+    // Get Energy deposition and break into vector components
+    G4double eDep = step->GetTotalEnergyDeposit();
+    G4double eDepR = eDep*stepPr/pow(pow(stepPr,2) + pow(stepPz,2), 0.5),
+             eDepZ = eDep*stepPz/pow(pow(stepPr,2) + pow(stepPz,2), 0.5);
 
     // Fill ntuple row
     analysisManager->FillNtupleIColumn(1, 0, runID);
     analysisManager->FillNtupleIColumn(1, 1, stepParticleType);
-    analysisManager->FillNtupleDColumn(1, 2, stepX);
-    analysisManager->FillNtupleDColumn(1, 3, stepY);
-    analysisManager->FillNtupleDColumn(1, 4, stepZ);
-    analysisManager->FillNtupleDColumn(1, 5, stepPx);
-    analysisManager->FillNtupleDColumn(1, 6, stepPy);
-    analysisManager->FillNtupleDColumn(1, 7, stepPz);
+    analysisManager->FillNtupleDColumn(1, 2, stepR);
+    analysisManager->FillNtupleDColumn(1, 3, stepZ);
+    analysisManager->FillNtupleDColumn(1, 4, eDepR);
+    analysisManager->FillNtupleDColumn(1, 5, eDepZ);
     analysisManager->AddNtupleRow(1);
-  }}
+  }}}
 
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
@@ -87,9 +102,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // as without the KA volume it won't undergo calculations anyway]
     G4int KA_i = floor((runID-7)/7);
     if ( KA_i < 0 ) { KA_i = 0; }
-
-    // Get name of volume at step location
-    G4String volumeName = step->GetTrack()->GetVolume()->GetName();
 
     // Acquire step r-position 
     //G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();

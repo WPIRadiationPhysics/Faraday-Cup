@@ -107,9 +107,9 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
   // Create H3 quiver histogram structure
   struct quiverHisto {
 
-    // p_n n-direction momentum histos in 3D (r,z) space
-    G4double p_r[100][100] = {{0}},
-             p_z[100][100] = {{0}};
+    // E_n n-direction deposition histos in 3D (r,z) space
+    G4double E_r[100][100] = {{0}},
+             E_z[100][100] = {{0}};
   };
 
   // Set ROOT vars
@@ -117,9 +117,9 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
   std::ostringstream ROOTfileNameStream, NtupleNameStream, cascadeFileNameStream;
   G4String cascadeFileName, NtupleName, ROOTfileName, data_dir = "data/";
   G4int ntupleId, ROOT_runID, ROOT_particleType;
-  G4double ROOT_x, ROOT_y, ROOT_z, ROOT_px, ROOT_py, ROOT_pz;
+  G4double ROOT_r, ROOT_z, ROOT_Er, ROOT_Ez;
 
-  // Declare 3D particle momenta quiver histos per energy and particle
+  // Declare 3D particle energyDeposition quiver histos per energy and particle
   struct quiverHisto particleQuiver[5][7];
 
   // Acquire world logical volume dimensions
@@ -152,34 +152,24 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
       // Get relevant values
       analysisReader->SetNtupleIColumn("run", ROOT_runID);
       analysisReader->SetNtupleIColumn("particleType", ROOT_particleType);
-      analysisReader->SetNtupleDColumn("x", ROOT_x);
-      analysisReader->SetNtupleDColumn("y", ROOT_y);
+      analysisReader->SetNtupleDColumn("r", ROOT_r);
       analysisReader->SetNtupleDColumn("z", ROOT_z);
-      analysisReader->SetNtupleDColumn("p_x", ROOT_px);
-      analysisReader->SetNtupleDColumn("p_y", ROOT_py);
-      analysisReader->SetNtupleDColumn("p_z", ROOT_pz);
+      analysisReader->SetNtupleDColumn("eDep_r", ROOT_Er);
+      analysisReader->SetNtupleDColumn("eDep_z", ROOT_Ez);
 
       // Loop through collected cascade fragments
       while ( analysisReader->GetNtupleRow(ntupleId) ) {
 
-        G4double ROOT_r = pow(pow(ROOT_x,2) + pow(ROOT_y,2), 0.5),
-                 ROOT_pr = pow(pow(ROOT_px,2) + pow(ROOT_py,2), 0.5);
-
-        // if vec{r} dot vec{pr} is less than zero [thus cos(theta_r-theta_pr)<0], then inward-facing r-momentum
-        // {cos/sin}(theta_r) = {ROOT_x/ROOT_y}/ROOT_r, {cos/sin}(theta_pr) = {ROOT_px/ROOT_py}/ROOT_pr
-        // thus, cos(theta_r-theta_pr) = cos(theta_r)*cos(theta_pr) + sin(theta_r)*sin(theta_pr); ignore denominator
-        if ( ROOT_x*ROOT_px + ROOT_y*ROOT_py < 0 ) { ROOT_pr = -ROOT_pr; }
-
-        // Acquire position as bin in 100^3 grid
+        // Acquire position as bin in 100^2 grid
         G4int rBin = floor((ROOT_r/worldOuterRadius)*100),
               zBin = floor(0.5*(1+(ROOT_z/worldZHalfLength))*100);
-              // Adjust slight funcational anomaly
-              if ( rBin == 100 ) { rBin = 99; }
-              if ( zBin == 100 ) { zBin = 99; }
+              // Adjust slight functional anomaly
+              if ( rBin >= 100 ) { rBin = 99; }
+              if ( zBin >= 100 ) { zBin = 99; }
 
         // Fill particle histogram structures by energy run number and particle type number
-        particleQuiver[ROOT_particleType][ROOT_runID%7].p_r[rBin][zBin] += ROOT_pr;
-        particleQuiver[ROOT_particleType][ROOT_runID%7].p_z[rBin][zBin] += ROOT_pz;
+        particleQuiver[ROOT_particleType][ROOT_runID%7].E_r[rBin][zBin] += ROOT_Er;
+        particleQuiver[ROOT_particleType][ROOT_runID%7].E_z[rBin][zBin] += ROOT_Ez;
       }
     }
 
@@ -202,24 +192,22 @@ void Analysis::analyzeCascades(G4int nThreads, G4int nEnergies) {
       }
       cascadeFileName = cascadeFileNameStream.str();
 
-      // Check for particle-energy's data file, create if necessar; open
+      // Open particle-energy's data file
       std::ofstream cascadeFile;
-      std::ifstream cascadeFileTest(cascadeFileName);
-      if ( ! cascadeFileTest ) { cascadeFile.open (cascadeFileName); }
-      else { cascadeFile.open (cascadeFileName, std::ios::app); }
+      cascadeFile.open (cascadeFileName);
 
       // Loop through particleQuiver histogram
       for ( G4int bin_ir = 0; bin_ir < 100; bin_ir++ ) {
       for ( G4int bin_iz = 0; bin_iz < 100; bin_iz++ ) {
 
         // Aquire bin's vector, append file with non-zeros
-        G4double binPr = particleQuiver[particle_i][energy_i].p_r[bin_ir][bin_iz],
-                 binPz = particleQuiver[particle_i][energy_i].p_z[bin_ir][bin_iz];
+        G4double binEr = particleQuiver[particle_i][energy_i].E_r[bin_ir][bin_iz],
+                 binEz = particleQuiver[particle_i][energy_i].E_z[bin_ir][bin_iz];
 
-        if ( ! ( binPr == 0 && binPz == 0 ) ) {
+        if ( ! ( binEr == 0 && binEz == 0 ) ) {
 
           // Append file and close
-          cascadeFile << bin_ir << " " << bin_iz << " " << binPr << " " << binPz << "\n";
+          cascadeFile << bin_ir << " " << bin_iz << " " << binEr << " " << binEz << "\n";
         }
       }}
 

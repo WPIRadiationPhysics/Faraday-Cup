@@ -4,7 +4,7 @@
 % q={e-, p+, o, n, g} data and displays N_q(p_z, p_r) quiver
 
 % Define cascade file
-cascadeDataFile = "model0/eCascade.dat";
+cascadeDataFile = "data/model0/cascades/eCascade_250MeV.dat";
 
 % Load data matrix from file
 cascadeData = load(cascadeDataFile);

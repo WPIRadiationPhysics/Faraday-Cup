@@ -58,12 +58,10 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtuple("cascadeData", "Cascade Data");
     analysisManager->CreateNtupleIColumn(1, "run");
     analysisManager->CreateNtupleIColumn(1, "particleType");
-    analysisManager->CreateNtupleDColumn(1, "x");
-    analysisManager->CreateNtupleDColumn(1, "y");
+    analysisManager->CreateNtupleDColumn(1, "r");
     analysisManager->CreateNtupleDColumn(1, "z");
-    analysisManager->CreateNtupleDColumn(1, "p_x");
-    analysisManager->CreateNtupleDColumn(1, "p_y");
-    analysisManager->CreateNtupleDColumn(1, "p_z");
+    analysisManager->CreateNtupleDColumn(1, "eDep_r");
+    analysisManager->CreateNtupleDColumn(1, "eDep_z");
     analysisManager->FinishNtuple(1);
 
     // Open simulation data file for writing
