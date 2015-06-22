@@ -138,8 +138,14 @@ int main(int argc,char** argv) {
         // Cu charge defect histograms
         simulationAnalysis->measureCuCharge();
 
+
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
+        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+
+        // Make cascade histogram directory and move histograms
+        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
+        system(syscmd);
 
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
@@ -169,6 +175,11 @@ int main(int argc,char** argv) {
 
         // Begin calculations
         simulationAnalysis->analyzeTracks(nThreads, nEnergies);
+        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+
+        // Make cascade histogram directory and move histograms
+        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
+        system(syscmd);
 
         // Save completed dataset as film iteration directory
         filmDirStream.str("");
@@ -179,8 +190,8 @@ int main(int argc,char** argv) {
         // Combine and subsequentially remove worker signalTracks threads
         syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
         syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
-        // Move ROOT files to film directory and create film histos path
-        syscmd = "mv " + data_dir + "*.root " + filmDir; system(syscmd);
+        // Move ROOT files and cascades to film directory and create film histos path
+        syscmd = "mv " + data_dir + "cascades " + data_dir + "*.root " + filmDir; system(syscmd);
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
         syscmd = "cp plotHistoCuKA.C " + data_dir; system(syscmd);
@@ -209,7 +220,7 @@ int main(int argc,char** argv) {
 	  std::ostringstream raw_dirCommand;
 	  raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
 	  G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);
+          system(dirCommand);
 	  
       // Run experimental beam energies
       G4String command = "/control/execute ";

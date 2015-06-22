@@ -30,10 +30,10 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4int runID = run->GetRunID();
   G4String data_dir = "data/";
 
-  // Construct Track Data ntuple once per macro of runs
+  // Construct data ntuples once per macro of runs
   if ( runID%7 == 0 ) {
 	
-    // Creating Track info ntuple 
+    // Creating track info ntuple 
     analysisManager->CreateNtuple("trackData", "Track Data");
     analysisManager->CreateNtupleIColumn(0, "run");
     analysisManager->CreateNtupleIColumn(0, "event");
@@ -53,7 +53,17 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
     analysisManager->CreateNtupleDColumn(0, "netCharge");
     analysisManager->CreateNtupleIColumn(0, "signalType");
     analysisManager->FinishNtuple(0);
-    
+
+    // Creating cascade info ntuple
+    analysisManager->CreateNtuple("cascadeData", "Cascade Data");
+    analysisManager->CreateNtupleIColumn(1, "run");
+    analysisManager->CreateNtupleIColumn(1, "particleType");
+    analysisManager->CreateNtupleDColumn(1, "r");
+    analysisManager->CreateNtupleDColumn(1, "z");
+    analysisManager->CreateNtupleDColumn(1, "eDep_r");
+    analysisManager->CreateNtupleDColumn(1, "eDep_z");
+    analysisManager->FinishNtuple(1);
+
     // Open simulation data file for writing
     analysisManager->OpenFile(data_dir+"signalTracks");
   }
@@ -69,11 +79,12 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 void RunAction::EndOfRunAction(const G4Run* run) {
 
   // Vars, data and file structures
-  G4String fileVarGet;
   G4int runID = run->GetRunID();
 
   // Save statistics per energy macro
   if ( (runID+1)%7 == 0 ) {
+
+    // Acquire Analysis Manager, write and delete
     G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
     analysisManager->Write();
     analysisManager->CloseFile();

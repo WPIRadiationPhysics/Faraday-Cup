@@ -63,6 +63,7 @@ set(FaradayCup_SCRIPTS
   plotGainCu.C
   plotHistoCu.C
   plotHistoCuKA.C
+  cascadeField.m
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})
