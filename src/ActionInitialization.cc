@@ -11,7 +11,9 @@ ActionInitialization::ActionInitialization(DetectorConstruction* detConstruction
 
 ActionInitialization::~ActionInitialization() {}
 
-void ActionInitialization::BuildForMaster() const {}
+void ActionInitialization::BuildForMaster() const {
+  RunAction* runAction = new RunAction();
+}
 
 void ActionInitialization::Build() const {
   SetUserAction(new PrimaryGeneratorAction);

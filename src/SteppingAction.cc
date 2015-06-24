@@ -85,13 +85,12 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
              eDepZ = eDep*stepPz/pow(pow(stepPr,2) + pow(stepPz,2), 0.5);
 
     // Fill ntuple row
-    analysisManager->FillNtupleIColumn(1, 0, runID);
-    analysisManager->FillNtupleIColumn(1, 1, stepParticleType);
-    analysisManager->FillNtupleDColumn(1, 2, stepR);
-    analysisManager->FillNtupleDColumn(1, 3, stepZ);
-    analysisManager->FillNtupleDColumn(1, 4, eDepR/beamCharge);
-    analysisManager->FillNtupleDColumn(1, 5, eDepZ/beamCharge);
-    analysisManager->AddNtupleRow(1);
+    analysisManager->FillNtupleIColumn(0, 0, stepParticleType);
+    analysisManager->FillNtupleDColumn(0, 1, stepR);
+    analysisManager->FillNtupleDColumn(0, 2, stepZ);
+    analysisManager->FillNtupleDColumn(0, 3, eDepR/beamCharge);
+    analysisManager->FillNtupleDColumn(0, 4, eDepZ/beamCharge);
+    analysisManager->AddNtupleRow(0);
   }}}
 
   // If end of track
@@ -110,7 +109,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   
     // Determine film thickness for calculations
     G4double r_Cu = 30, h_Cu = 100, r_KA, h_KA;
-    G4String data_dir = "data/";
   
     // Acquire thickness index
     G4double Kapton_Thickness[6] = {0.059, 0.100, 0.200, 0.059, 0.100, 0.200};
@@ -167,18 +165,20 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // 37: g_out
     // 38-39: g_cis
 
+    // Declare vars
     G4int signalType = 99; // 99: null event
     G4double trackDepth = 0, trackDepthVertex = 0,
-             stepRCuUndepth = 0, stepRCuUndepthVertex = 0,
+             stepRCuDepth = 0, stepRCuDepthVertex = 0,
              stepZCuDepth = 0, stepZCuDepthVertex = 0,
-             stepRKADepth = 0, stepRKAUndepth = 0, stepZKADepth = 0,
-             stepRKADepthVertex = 0, stepRKAUndepthVertex = 0, stepZKADepthVertex = 0;
+             stepRKADepth = 0, stepZKADepth = 0,
+             stepRKADepthVertex = 0, stepZKADepthVertex = 0;
+    G4int histoID;
 
     // ORIGIN
     // particle exits copper, -q_i
     if ( volumeNameVertex == "Cu_cyl" ) {
           
-	  stepRCuUndepthVertex = stepRVertex/r_Cu;
+	  stepRCuDepthVertex = stepRVertex/r_Cu;
 	  stepZCuDepthVertex = (stepZVertex + half_Cu)/h_Cu;
 	  netSignal -= stepCharge;
     }
@@ -191,7 +191,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       // Z edges of Kapton (incoming from -z -> 0)
       if ( stepZVertex <= -half_Cu ) { stepZKADepthVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZVertex >= half_Cu ) { stepZKADepthVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
-      stepRKAUndepthVertex = stepRVertex/r_KA;
+      stepRKADepthVertex = stepRVertex/r_KA;
 
       trackDepthVertex = 1 - ((stepRKADepthVertex>stepZKADepthVertex)?stepRKADepthVertex:stepZKADepthVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
@@ -201,7 +201,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // particle enters copper, +q_i
     if ( volumeName == "Cu_cyl" ) {
 
-      stepRCuUndepth = stepR/r_Cu;
+      stepRCuDepth = stepR/r_Cu;
       stepZCuDepth = (stepZ + half_Cu)/h_Cu;
       netSignal += stepCharge;
     }
@@ -214,11 +214,15 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       // Z edges of Kapton (cylinders are upside-down)
       if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
-      stepRKAUndepth = stepR/r_KA;
+      stepRKADepth = stepR/r_KA;
       
       trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
       netSignal += stepCharge*trackDepth;
     }
+
+    // Acquire analysis instance and append gain
+    Analysis* simulationAnalysis = Analysis::GetAnalysis();
+    simulationAnalysis->appendRunGain(netSignal/beamCharge);
 
     // If charge particle or neutron/gamma track is relevant to analysis
     if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) && 
@@ -227,6 +231,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     
       // Acquire signal type from particle track for histos
       if ( stepParticle == "e-" ) {
+
+        // Copper 2D Gain Histogram
+        if ( volumeName == "Cu_cyl" ) {
+          histoID = analysisManager->GetH2Id("eGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        } else if ( volumeName == "Kapton_cyl1" ) {
+          histoID = analysisManager->GetH2Id("eGainHistoKA"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        }
 
         // Copper
         if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 0; }
@@ -239,6 +250,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       }
       else if ( stepParticle == "proton" ) {
 
+        // Copper/Kapton 2D Gain Histogram
+        if ( volumeName == "Cu_cyl" ) {
+          histoID = analysisManager->GetH2Id("pGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        } else if ( volumeName == "Kapton_cyl1" ) {
+          histoID = analysisManager->GetH2Id("pGainHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth);
+        }
+
         // Copper
         if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 4; }
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 5; }
@@ -249,6 +267,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 26; }
       }
       else if ( stepParticle == "neutron" ) {
+
+        // Copper/Kapton 2D Gain Histogram
+        if ( volumeName == "Cu_cyl" ) {
+          histoID = analysisManager->GetH2Id("nGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        } else if ( volumeName == "Kapton_cyl1" ) {
+          histoID = analysisManager->GetH2Id("nGainHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth);
+        }
 
         // Copper
         if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 12; }
@@ -261,6 +286,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       }
       else if ( stepParticle == "gamma" ) {
 
+        // Copper/Kapton 2D Gain Histogram
+        if ( volumeName == "Cu_cyl" ) {
+          histoID = analysisManager->GetH2Id("gGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        } else if ( volumeName == "Kapton_cyl1" ) {
+          histoID = analysisManager->GetH2Id("gGainHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth);
+        }
+
         // Copper
         if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 16; }
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 17; }
@@ -272,6 +304,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       }
       else {
 
+        // Copper/Kapton 2D Gain Histogram
+        if ( volumeName == "Cu_cyl" ) {
+          histoID = analysisManager->GetH2Id("oGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+        } else if ( volumeName == "Kapton_cyl1" ) {
+          histoID = analysisManager->GetH2Id("oGainHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth);
+        }
+
         // Copper
         if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 8; }
         else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 9; }
@@ -282,6 +321,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 30; }
       }
 
+/*
       // Fill ntuple row
       analysisManager->FillNtupleIColumn(0, 0, runID);
       analysisManager->FillNtupleIColumn(0, 1, eventID);
@@ -290,17 +330,18 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       analysisManager->FillNtupleDColumn(0, 4, stepZ);
       analysisManager->FillNtupleDColumn(0, 5, stepRVertex);
       analysisManager->FillNtupleDColumn(0, 6, stepZVertex);
-      analysisManager->FillNtupleDColumn(0, 7, stepRCuUndepth);
+      analysisManager->FillNtupleDColumn(0, 7, stepRCuDepth);
       analysisManager->FillNtupleDColumn(0, 8, stepZCuDepth);
-      analysisManager->FillNtupleDColumn(0, 9, stepRCuUndepthVertex);
+      analysisManager->FillNtupleDColumn(0, 9, stepRCuDepthVertex);
       analysisManager->FillNtupleDColumn(0, 10, stepZCuDepthVertex);
-      analysisManager->FillNtupleDColumn(0, 11, stepRKAUndepth);
+      analysisManager->FillNtupleDColumn(0, 11, stepRKADepth);
       analysisManager->FillNtupleDColumn(0, 12, stepZKADepth);
-      analysisManager->FillNtupleDColumn(0, 13, stepRKAUndepthVertex);
+      analysisManager->FillNtupleDColumn(0, 13, stepRKADepthVertex);
       analysisManager->FillNtupleDColumn(0, 14, stepZKADepthVertex);
       analysisManager->FillNtupleDColumn(0, 15, netSignal/beamCharge);
       analysisManager->FillNtupleIColumn(0, 16, signalType);
       analysisManager->AddNtupleRow(0);
+*/
     }
   }
 }

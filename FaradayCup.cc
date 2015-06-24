@@ -96,11 +96,12 @@ int main(int argc,char** argv) {
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
   // batch mode  
-  if ( macroFile.size() ) {
+  //if ( macroFile.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.005 mm";
+    G4String cutCommand = "/run/setCut 0.1 mm";
     UImanager->ApplyCommand(cutCommand);
+    UImanager->ApplyCommand("/gun/particle proton");
 	
     // Constant vars, declarations
     G4double KA_thickness[3] = {59, 100, 200};
@@ -110,101 +111,105 @@ int main(int argc,char** argv) {
     std::ostringstream data_dirStream, syscmdStream, filmDirStream;
     G4String data_dir, dirCommand, syscmd, filmDir;
 
-    // Delete any existing datasets
-    syscmd = "rm -rf ./model*"; system(syscmd);
+    // Initialize main data directory
+    system("mkdir -p data");
+
+    simulationAnalysis->SetNThreads(nThreads);
+    simulationAnalysis->SetNEnergies(nEnergies);
 
     // Model loop
     for ( G4int model_i=0; model_i<3; model_i++ ) {
 
-      // Create data directory
-      data_dir = "data/";
-      syscmd = "mkdir -p " + data_dir; system(syscmd);
-
       // Assign geometric configuration
-      detConstruction->ModelConfiguration(KA_thickness[model_i]);
-
-      // Nullify experiments
-      simulationAnalysis->nullExperiments();
+      detConstruction->ModelConfiguration(model_i);
 
       // Unsheathed Cu primary model
       if ( model_i == 0 ) {
+        for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+
+        // Nullify experiments
+        simulationAnalysis->nullExperiments();
+
+        // Set data directory
+        data_dir = "data/model0/";
+        simulationAnalysis->SetAnalysisDIR(data_dir);
+
+        // Set run energy for analysis
+        simulationAnalysis->SetRunEnergy(energies[energy_i]);
 
         // Run experimental beam energies
-        UImanager->ApplyCommand("/control/execute "+macroFile);
+        //UImanager->ApplyCommand("/control/execute "+macroFile);
+        syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
+        syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
+        UImanager->ApplyCommand("/run/beamOn 100");
 
-        // Calculate gain measurements
-        simulationAnalysis->measureGain();
-
-        // Cu charge defect histograms
-        simulationAnalysis->measureCuCharge();
-
+        // Combine and subsequentially remove worker trackData threads
+        //syscmd = "hadd -f " + data_dir + "trackData.root " + data_dir + "trackData_t*"; system(syscmd);
+        //syscmd = "rm " + data_dir + "trackData_t*"; system(syscmd);
 
         // Begin calculations
-        simulationAnalysis->analyzeTracks(nThreads, nEnergies);
-        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+        //simulationAnalysis->analyzeGainTracks(nThreads, nEnergies);
+        simulationAnalysis->analyzeCascadeTracks();
 
-        // Make cascade histogram directory and move histograms
-        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
-        system(syscmd);
+        // Calculate gain measurements
+        //simulationAnalysis->measureGain();
 
-        // Combine and subsequentially remove worker signalTracks threads
-        syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
-        syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
+        // Cu 2D gain histograms
+        //simulationAnalysis->measureGainHistoCu();
+
         // Move plot to data directory
         syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
         syscmd = "cp plotHistoCu.C " + data_dir; system(syscmd);
+        }
                
       // Kapton (layer 1) thickness iteration for secondary models
       } else { for ( G4int KA_i=0; KA_i<nThicknesses; KA_i++ ) {
+        for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+
+        // Nullify experiments
+        simulationAnalysis->nullExperiments();
+
+        // Set data directory
+        data_dirStream.str(""); data_dirStream << "data/model" << model_i << "/S" << KA_thickness[KA_i] << "/";
+        data_dir = data_dirStream.str(); simulationAnalysis->SetAnalysisDIR(data_dir);
 
         // Assign thickness
         detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
       
         // Run experimental beam energies
-        syscmd = "/control/execute ";
-        UImanager->ApplyCommand(syscmd+macroFile);
+        //syscmd = "/control/execute ";
+        //UImanager->ApplyCommand(syscmd+macroFile);
+        syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
+        syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
+        UImanager->ApplyCommand("/run/beamOn 100");
 
-        // Calculate gain measurements
-        simulationAnalysis->measureGain();
-
-        // Cu charge defect histograms
-        simulationAnalysis->measureCuCharge();
-
-        // KA charge defect histograms
-        simulationAnalysis->measureKACharge();
+        // Combine and subsequentially remove worker trackData threads
+        //syscmd = "hadd -f " + data_dir + "trackData.root " + data_dir + "trackData_t*"; system(syscmd);
+        //syscmd = "rm " + data_dir + "trackData_t*"; system(syscmd);
 
         // Begin calculations
-        simulationAnalysis->analyzeTracks(nThreads, nEnergies);
-        simulationAnalysis->analyzeCascades(nThreads, nEnergies);
+        //simulationAnalysis->analyzeGainTracks(nThreads, nEnergies);
+        simulationAnalysis->analyzeCascadeTracks();
 
-        // Make cascade histogram directory and move histograms
-        syscmd = "mkdir data/cascades; mv data/*MeV.dat data/cascades";
-        system(syscmd);
+        // Calculate gain measurements
+        //simulationAnalysis->measureGain();
 
-        // Save completed dataset as film iteration directory
-        filmDirStream.str("");
-        filmDirStream << data_dir << "S" << KA_thickness[KA_i];
-        filmDir = filmDirStream.str();
-        // Create film dir
-        syscmd = "mkdir -p " + filmDir; system(syscmd);
-        // Combine and subsequentially remove worker signalTracks threads
-        syscmd = "hadd -f " + data_dir + "signalTracks.root " + data_dir + "signalTracks_t*"; system(syscmd);
-        syscmd = "rm " + data_dir + "signalTracks_t*"; system(syscmd);
-        // Move ROOT files and cascades to film directory and create film histos path
-        syscmd = "mv " + data_dir + "cascades " + data_dir + "*.root " + filmDir; system(syscmd);
+        // Cu 2D gain histograms
+        //simulationAnalysis->measureGainHistoCu();
+
+        // KA 2D gain histograms
+        //simulationAnalysis->measureGainHistoKA();
+
+        // Begin calculations
+        //simulationAnalysis->analyzeGainTracks(nThreads, nEnergies);
+        //simulationAnalysis->analyzeCascadeTracks(nThreads, nEnergies);
+
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
         syscmd = "cp plotHistoCuKA.C " + data_dir; system(syscmd);
-      }}
-
-      // Rename data dir as model index
-      data_dirStream.str(""); data_dirStream << "model" << model_i << "/";
-      data_dir = data_dirStream.str(); syscmd = "mv data " + data_dir; system(syscmd);
+      }}}
     }
-
-    // Place model directories in single data directory
-    syscmd = "mkdir data; mv model* data"; system(syscmd);
-  }
+  /* }
   else {
     // interactive mode : define UI session
     G4String cutCommand = "/run/setCut 0.01 mm";
@@ -250,6 +255,7 @@ int main(int argc,char** argv) {
     delete ui;
 #endif
   }
+  */
 
 #ifdef G4VIS_USE
   delete visManager;
