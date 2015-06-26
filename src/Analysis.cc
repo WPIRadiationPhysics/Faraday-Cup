@@ -1,4 +1,5 @@
 #include "Analysis.hh"
+#include "G4RunManager.hh"
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4LogicalVolume.hh"
@@ -142,7 +143,7 @@ void Analysis::analyzeCascadeTracks() {
     // Aquire ROOT data files
     ROOTfileNameStream.str(""); ROOTfileName = "";
     NtupleNameStream.str(""); NtupleName = "";
-    ROOTfileNameStream << data_dir << "trackData_t" << workerID << ".root";
+    ROOTfileNameStream << data_dir << "trackData-" << RunID%nEnergies << "_t" << workerID << ".root";
     ROOTfileName = ROOTfileNameStream.str();
     NtupleNameStream << "cascadeData";
     NtupleName = NtupleNameStream.str();

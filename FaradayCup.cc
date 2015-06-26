@@ -99,7 +99,7 @@ int main(int argc,char** argv) {
   //if ( macroFile.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.1 mm";
+    G4String cutCommand = "/run/setCut 0.01 mm";
     UImanager->ApplyCommand(cutCommand);
     UImanager->ApplyCommand("/gun/particle proton");
 	
@@ -118,7 +118,7 @@ int main(int argc,char** argv) {
     simulationAnalysis->SetNEnergies(nEnergies);
 
     // Model loop
-    for ( G4int model_i=0; model_i<3; model_i++ ) {
+    for ( G4int model_i = 0; model_i < 3; model_i++ ) {
 
       // Assign geometric configuration
       detConstruction->ModelConfiguration(model_i);
@@ -143,13 +143,16 @@ int main(int argc,char** argv) {
         syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
         UImanager->ApplyCommand("/run/beamOn 100");
 
-        // Combine and subsequentially remove worker trackData threads
-        //syscmd = "hadd -f " + data_dir + "trackData.root " + data_dir + "trackData_t*"; system(syscmd);
-        //syscmd = "rm " + data_dir + "trackData_t*"; system(syscmd);
-
         // Begin calculations
         //simulationAnalysis->analyzeGainTracks(nThreads, nEnergies);
         simulationAnalysis->analyzeCascadeTracks();
+
+        // Combine and subsequentially remove worker trackData threads
+        syscmdStream.str(""); syscmdStream << "hadd " << data_dir << "cascadeHistos/cascadeData-" << energy_i << ".root "
+                                                      << data_dir << "trackData-" << energy_i << "_t*";
+        syscmd = syscmdStream.str(); system(syscmd);
+        syscmdStream.str(""); syscmdStream << "rm " << data_dir << "trackData-" << energy_i << "_t*";
+        syscmd = syscmdStream.str(); system(syscmd);
 
         // Calculate gain measurements
         //simulationAnalysis->measureGain();
@@ -159,11 +162,15 @@ int main(int argc,char** argv) {
 
         // Move plot to data directory
         syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
-        syscmd = "cp plotHistoCu.C " + data_dir; system(syscmd);
+        syscmd = "cp plotGainHistoCu.C " + data_dir; system(syscmd);
         }
                
       // Kapton (layer 1) thickness iteration for secondary models
-      } else { for ( G4int KA_i=0; KA_i<nThicknesses; KA_i++ ) {
+      } else { for ( G4int KA_i = 0; KA_i < nThicknesses; KA_i++ ) {
+
+        // Assign thickness
+        detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
+
         for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
 
         // Nullify experiments
@@ -173,9 +180,9 @@ int main(int argc,char** argv) {
         data_dirStream.str(""); data_dirStream << "data/model" << model_i << "/S" << KA_thickness[KA_i] << "/";
         data_dir = data_dirStream.str(); simulationAnalysis->SetAnalysisDIR(data_dir);
 
-        // Assign thickness
-        detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
-      
+        // Set run energy for analysis
+        simulationAnalysis->SetRunEnergy(energies[energy_i]);
+
         // Run experimental beam energies
         //syscmd = "/control/execute ";
         //UImanager->ApplyCommand(syscmd+macroFile);
@@ -183,13 +190,20 @@ int main(int argc,char** argv) {
         syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
         UImanager->ApplyCommand("/run/beamOn 100");
 
-        // Combine and subsequentially remove worker trackData threads
-        //syscmd = "hadd -f " + data_dir + "trackData.root " + data_dir + "trackData_t*"; system(syscmd);
-        //syscmd = "rm " + data_dir + "trackData_t*"; system(syscmd);
-
         // Begin calculations
         //simulationAnalysis->analyzeGainTracks(nThreads, nEnergies);
         simulationAnalysis->analyzeCascadeTracks();
+
+        // Combine and subsequentially remove worker trackData threads
+        syscmdStream.str(""); syscmdStream << "hadd -f " << data_dir << "cascadeHistos/cascadeData-" << energy_i << ".root "
+                                                         << data_dir << "trackData-" << energy_i << "_t*";
+        syscmd = syscmdStream.str(); system(syscmd);
+        syscmdStream.str(""); syscmdStream << "rm " << data_dir << "trackData-" << energy_i << "_t*";
+        syscmd = syscmdStream.str(); system(syscmd);
+
+        // Combine and subsequentially remove worker trackData threads
+        //syscmd = "hadd -f " + data_dir + "trackData.root " + data_dir + "trackData_t*"; system(syscmd);
+        //syscmd = "rm " + data_dir + "trackData_t*"; system(syscmd);
 
         // Calculate gain measurements
         //simulationAnalysis->measureGain();
@@ -206,7 +220,7 @@ int main(int argc,char** argv) {
 
         // Move plot to data directory
         syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-        syscmd = "cp plotHistoCuKA.C " + data_dir; system(syscmd);
+        syscmd = "cp plotGainHistoCuKA.C " + data_dir; system(syscmd);
       }}}
     }
   /* }

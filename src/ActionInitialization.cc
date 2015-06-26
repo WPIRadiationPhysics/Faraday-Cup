@@ -12,14 +12,16 @@ ActionInitialization::ActionInitialization(DetectorConstruction* detConstruction
 ActionInitialization::~ActionInitialization() {}
 
 void ActionInitialization::BuildForMaster() const {
-  RunAction* runAction = new RunAction();
+  //RunAction* runAction = new RunAction();
+  SetUserAction(new RunAction);
 }
 
 void ActionInitialization::Build() const {
   SetUserAction(new PrimaryGeneratorAction);
-  RunAction* runAction = new RunAction();
+  //RunAction* runAction = new RunAction();
+  //runAction = new RunAction();
+  SetUserAction(new RunAction);
   EventAction* eventAction = new EventAction;
-  SetUserAction(runAction);
   SetUserAction(eventAction);
   SetUserAction(new SteppingAction(fDetConstruction, eventAction));
 }

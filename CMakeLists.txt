@@ -61,8 +61,8 @@ set(FaradayCup_SCRIPTS
   dataPlot.gnu
   plotGain.C
   plotGainCu.C
-  plotHistoCu.C
-  plotHistoCuKA.C
+  plotGainHistoCu.C
+  plotGainHistoCuKA.C
   cascadeField.m
   )
 

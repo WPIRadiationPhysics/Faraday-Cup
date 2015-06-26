@@ -23,6 +23,7 @@
 RunAction::RunAction() : G4UserRunAction() {
 
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
 
   // Create percentile particle gain histograms once per energy
   analysisManager->CreateH2("eGainHistoCu", "eGainHistoCu", 100, 0., 1., 100, 0., 1.);
@@ -44,8 +45,6 @@ RunAction::RunAction() : G4UserRunAction() {
   analysisManager->CreateNtupleDColumn(0, "eDep_r");
   analysisManager->CreateNtupleDColumn(0, "eDep_z");
   analysisManager->FinishNtuple(0);
-
-
 }
 
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
@@ -54,11 +53,16 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
 
   G4int runID = run->GetRunID();
   G4int threadID = G4Threading::G4GetThreadId();
+  G4String trackDataFileName; std::ostringstream trackDataFileNameStream;
+
+  //if ( isMaster ) {
 
   // Get Analysis manager and instance
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  analysisManager->SetVerboseLevel(10);
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
+  simulationAnalysis->SetRunID(runID);
 
   // Acquire and create model's analysis directory
   G4String data_dir = simulationAnalysis->GetAnalysisDIR();
@@ -102,17 +106,32 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   */
 
   // Open simulation data file for writing
-  analysisManager->OpenFile(data_dir+"trackData");
+  G4int nEnergies = simulationAnalysis->GetNEnergies();
+  trackDataFileNameStream << data_dir << "trackData-" << runID%nEnergies;
+  trackDataFileName = trackDataFileNameStream.str();
+  G4cout << "pathname is " << trackDataFileName << " via " << runID << " mod " << nEnergies << G4endl;
+  analysisManager->SetFileName(trackDataFileName);
+  analysisManager->OpenFile();
 
   // Primary thread
-  if ( threadID == 0 ) {
+  //if ( threadID == 0 ) {
 
-    // Primary energy (run) number
-    G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl;
-  }
+  // Primary energy (run) number
+  G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl;
+  //}
+
+  //}
 }
 
 void RunAction::EndOfRunAction(const G4Run* run) {
+
+  // Acquire Analysis Manager, write and delete
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  //if(isMaster) {
+  analysisManager->Write();
+  analysisManager->CloseFile();
+  //}
 
   // Acquire runID and analysis object
   G4int runID = run->GetRunID();
@@ -125,11 +144,6 @@ void RunAction::EndOfRunAction(const G4Run* run) {
   G4int threadID = G4Threading::G4GetThreadId();
 
   //if ( threadID == -1 ) {
-
-  // Acquire Analysis Manager, write and delete
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-  analysisManager->Write();
-  analysisManager->CloseFile();
 
   // Acquire current gain
   G4double runGain = simulationAnalysis->recallRunGain();

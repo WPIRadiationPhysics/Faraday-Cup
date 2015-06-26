@@ -215,7 +215,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
       stepRKADepth = stepR/r_KA;
-      
+
       trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
       netSignal += stepCharge*trackDepth;
     }
@@ -225,9 +225,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     simulationAnalysis->appendRunGain(netSignal/beamCharge);
 
     // If charge particle or neutron/gamma track is relevant to analysis
-    if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) && 
-         ( volumeName == "Cu_cyl" || volumeNameVertex == "Cu_cyl" ||
-           volumeName == "Kapton_cyl1" || volumeNameVertex == "Kapton_cyl1" ) ) {
+    if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
+         //( volumeName == "Cu_cyl" || volumeNameVertex == "Cu_cyl" ||
+           //volumeName == "Kapton_cyl1" || volumeNameVertex == "Kapton_cyl1" ) ) {
     
       // Acquire signal type from particle track for histos
       if ( stepParticle == "e-" ) {
@@ -236,17 +236,17 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         if ( volumeName == "Cu_cyl" ) {
           histoID = analysisManager->GetH2Id("eGainHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
         } else if ( volumeName == "Kapton_cyl1" ) {
-          histoID = analysisManager->GetH2Id("eGainHistoKA"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
+          histoID = analysisManager->GetH2Id("eGainHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth);
         }
 
         // Copper
-        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 0; }
-        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 1; }
-        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 2; }
+        //if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 0; }
+        //else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 1; }
+        //else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 2; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 20; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 21; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 22; }
+        //else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 20; }
+        //else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 21; }
+        //else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 22; }
       }
       else if ( stepParticle == "proton" ) {
 
@@ -258,13 +258,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         }
 
         // Copper
-        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 4; }
-        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 5; }
-        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 6; }
+        //if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 4; }
+        //else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 5; }
+       // else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 6; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 24; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 25; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 26; }
+        //else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 24; }
+        //else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 25; }
+        //else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 26; }
       }
       else if ( stepParticle == "neutron" ) {
 
@@ -276,13 +276,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         }
 
         // Copper
-        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 12; }
-        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 13; }
-        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 14; }
+        //if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 12; }
+        //else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 13; }
+        //else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 14; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 32; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 33; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 34; }
+        //else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 32; }
+        //else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 33; }
+        //else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 34; }
       }
       else if ( stepParticle == "gamma" ) {
 
@@ -294,13 +294,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         }
 
         // Copper
-        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 16; }
-        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 17; }
-        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 18; }
+        //if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 16; }
+        //else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 17; }
+        //else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 18; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 36; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 37; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 38; }
+        //else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 36; }
+        //else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 37; }
+        //else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 38; }
       }
       else {
 
@@ -312,13 +312,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         }
 
         // Copper
-        if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 8; }
-        else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 9; }
-        else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 10; }
+        //if ( volumeNameVertex != "Cu_cyl" && volumeName == "Cu_cyl" ) { signalType = 8; }
+        //else if ( volumeNameVertex == "Cu_cyl" && volumeName != "Cu_cyl" ) { signalType = 9; }
+        //else if ( volumeNameVertex == "Cu_cyl"  && volumeName == "Cu_cyl" ) { signalType = 10; }
         // Kapton
-        else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 28; }
-        else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 29; }
-        else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 30; }
+        //else if ( volumeNameVertex != "Kapton_cyl1" && volumeName == "Kapton_cyl1" ) { signalType = 28; }
+        //else if ( volumeNameVertex == "Kapton_cyl1" && volumeName != "Kapton_cyl1" ) { signalType = 29; }
+        //else if ( volumeNameVertex == "Kapton_cyl1"  && volumeName == "Kapton_cyl1" ) { signalType = 30; }
       }
 
 /*

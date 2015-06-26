@@ -16,10 +16,12 @@ class Analysis {
     static Analysis* GetAnalysis()
     { static Analysis the_analysis; return &the_analysis; }
 
-    // Get/Set runEnergy ,nThreads, and nEnergies
+    // Get/Set global vars (modelID, runEnergy, RunID, nThreads, nEnergies)
+    void SetRunID(G4int runid) { RunID = runid; }
     void SetRunEnergy(G4double runenergy) { runEnergy = runenergy; }
     void SetNThreads(G4int nthreads) { nThreads = nthreads; }
     void SetNEnergies(G4int nenergies) { nEnergies = nenergies; }
+    G4int GetRunID() { return RunID; }
     G4double GetRunEnergy() { return runEnergy; }
     G4int GetNThreads() { return nThreads; }
     G4int GetNEnergies() { return nEnergies; }
@@ -62,7 +64,7 @@ class Analysis {
 
     // vars
     G4double runEnergy, runGain;
-    G4int nThreads, nEnergies;
+    G4int nThreads, nEnergies, RunID;
 
     // Measurement functions
     void measureGainPreload();
