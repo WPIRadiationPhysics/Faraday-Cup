@@ -20,74 +20,80 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-RunAction::RunAction() : G4UserRunAction() {}
-RunAction::~RunAction() {}
+RunAction::RunAction() : G4UserRunAction() {
+
+  // Acquire analysis manager
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+
+  // Create percentile particle gain histograms once per energy
+  analysisManager->CreateH2("eDepHistoCu", "eDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pDepHistoCu", "pDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oDepHistoCu", "oDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nDepHistoCu", "nDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gDepHistoCu", "gDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("eDepHistoKA", "eDepHistoKA", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("pDepHistoKA", "pDepHistoKA", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("oDepHistoKA", "oDepHistoKA", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("nDepHistoKA", "nDepHistoKA", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gDepHistoKA", "gDepHistoKA", 100, 0., 1., 100, 0., 1.);
+
+  // Creating cascade cascade info ntuple
+  analysisManager->CreateNtuple("cascadeData", "Cascade Data");
+  analysisManager->CreateNtupleIColumn(0, "particleType");
+  analysisManager->CreateNtupleDColumn(0, "r");
+  analysisManager->CreateNtupleDColumn(0, "z");
+  analysisManager->CreateNtupleDColumn(0, "eDep_r");
+  analysisManager->CreateNtupleDColumn(0, "eDep_z");
+  analysisManager->FinishNtuple(0);
+}
+
+RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
 
-  // Get Analysis Manager
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  // Acquire runID, and declare vars
   G4int runID = run->GetRunID();
-  G4String data_dir = "data/";
+  G4String trackDataFileName; std::ostringstream trackDataFileNameStream;
 
-  // Construct data ntuples once per macro of runs
-  if ( runID%7 == 0 ) {
-	
-    // Creating track info ntuple 
-    analysisManager->CreateNtuple("trackData", "Track Data");
-    analysisManager->CreateNtupleIColumn(0, "run");
-    analysisManager->CreateNtupleIColumn(0, "event");
-    analysisManager->CreateNtupleDColumn(0, "particleCharge");
-    analysisManager->CreateNtupleDColumn(0, "r");
-    analysisManager->CreateNtupleDColumn(0, "z");
-    analysisManager->CreateNtupleDColumn(0, "rVertex");
-    analysisManager->CreateNtupleDColumn(0, "zVertex");
-    analysisManager->CreateNtupleDColumn(0, "rCuDepth");
-    analysisManager->CreateNtupleDColumn(0, "zCuDepth");
-    analysisManager->CreateNtupleDColumn(0, "rCuDepthVertex");
-    analysisManager->CreateNtupleDColumn(0, "zCuDepthVertex");
-    analysisManager->CreateNtupleDColumn(0, "rKADepth");
-    analysisManager->CreateNtupleDColumn(0, "zKADepth");
-    analysisManager->CreateNtupleDColumn(0, "rKADepthVertex");
-    analysisManager->CreateNtupleDColumn(0, "zKADepthVertex");
-    analysisManager->CreateNtupleDColumn(0, "netCharge");
-    analysisManager->CreateNtupleIColumn(0, "signalType");
-    analysisManager->FinishNtuple(0);
+  // Get Analysis manager and instance
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  G4double runEnergy = simulationAnalysis->GetRunEnergy();
+  simulationAnalysis->SetRunID(runID);
 
-    // Creating cascade info ntuple
-    analysisManager->CreateNtuple("cascadeData", "Cascade Data");
-    analysisManager->CreateNtupleIColumn(1, "run");
-    analysisManager->CreateNtupleIColumn(1, "particleType");
-    analysisManager->CreateNtupleDColumn(1, "r");
-    analysisManager->CreateNtupleDColumn(1, "z");
-    analysisManager->CreateNtupleDColumn(1, "eDep_r");
-    analysisManager->CreateNtupleDColumn(1, "eDep_z");
-    analysisManager->FinishNtuple(1);
+  // Acquire and create model's analysis directory
+  G4String data_dir = simulationAnalysis->GetAnalysisDIR();
+  G4String syscmd = "mkdir -p " + data_dir; system(syscmd);
+  
+  // Open simulation data file for writing
+  G4int nEnergies = simulationAnalysis->GetNEnergies();
+  trackDataFileNameStream << data_dir << "trackData-" << runID%nEnergies;
+  trackDataFileName = trackDataFileNameStream.str();
+  analysisManager->SetFileName(trackDataFileName);
+  analysisManager->OpenFile();
 
-    // Open simulation data file for writing
-    analysisManager->OpenFile(data_dir+"signalTracks");
-  }
-
-  // Primary thread
-  if ( G4Threading::G4GetThreadId() == 0 ) {
-
-    // Primary energy (run) number
-    G4cout << "Running energy #" << runID << G4endl;
-  }
+  // Primary energy
+  G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl;
 }
 
-void RunAction::EndOfRunAction(const G4Run* run) {
+void RunAction::EndOfRunAction(const G4Run* /*run*/) {
 
-  // Vars, data and file structures
-  G4int runID = run->GetRunID();
+  // Acquire Analysis Manager, write and close
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  analysisManager->Write();
+  analysisManager->CloseFile();
 
-  // Save statistics per energy macro
-  if ( (runID+1)%7 == 0 ) {
+  // Acquire analysis object and energy
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  G4double runEnergy = simulationAnalysis->GetRunEnergy();
 
-    // Acquire Analysis Manager, write and delete
-    G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
-    analysisManager->Write();
-    analysisManager->CloseFile();
-    delete G4AnalysisManager::Instance();
-  }
+  // Constant vars
+  G4String data_dir = simulationAnalysis->GetAnalysisDIR(),
+           syscmd;
+
+  // Acquire current gain
+  G4double runGain = simulationAnalysis->recallRunGain();
+
+  // Print run gain to output
+  G4cout << "Gain measurement for beam energy of " << runEnergy << " MeV: " << runGain << G4endl;
 }

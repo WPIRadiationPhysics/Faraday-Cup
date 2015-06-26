@@ -18,4 +18,4 @@ mkdir build
 cd build
 cmake ..
 make "-j""$nThreads"
-time ./FaradayCup -t "$nThreads" -m "run""$nEvents"".mac" > run.out
+time ./FaradayCup -t "$nThreads" > run.out
