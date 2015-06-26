@@ -58,12 +58,11 @@ set(FaradayCup_SCRIPTS
   run100000.mac
   run.in
   vis.mac
-  dataPlot.gnu
   plotGain.C
   plotGainCu.C
-  plotGainHistoCu.C
-  plotGainHistoCuKA.C
-  cascadeField.m
+  plotDepHistoCu.C
+  plotDepHistoCuKA.C
+  plotCascadeHisto.m
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})
