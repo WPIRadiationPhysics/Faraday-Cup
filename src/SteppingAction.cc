@@ -22,16 +22,18 @@
 #include <stdio.h>
 
 // Initialize Step Procedure
-SteppingAction::SteppingAction(
-                const DetectorConstruction* detectorConstruction,
-                EventAction* eventAction)
-               : G4UserSteppingAction(),
-                 fDetConstruction(detectorConstruction),
-                 fEventAction(eventAction) {}
+SteppingAction::SteppingAction( const DetectorConstruction* detectorConstruction,
+                               EventAction* eventAction)
+                               : G4UserSteppingAction(),
+                                 fDetConstruction(detectorConstruction),
+                                 fEventAction(eventAction) {}
 SteppingAction::~SteppingAction() {}
 
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
+
+  // Declare vars
+  G4int histoID;
 
   // Get seed num (look into this, gives error)
   //G4cout << G4RunManager::GetRunManager()->GetCurrentEvent()->GetRandomNumberStatus() << G4endl;
@@ -89,6 +91,26 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     analysisManager->AddNtupleRow(0);
   }}}
 
+  // If initial step of non-primary track
+  if ( step->GetTrack()->GetCurrentStepNumber() == 1 && step->GetTrack()->GetParentID() != 0 ) {
+
+    // Obtain and fill respective spectra histogram with kinetic energy
+    G4double stepKE = step->GetTrack()->GetKineticEnergy();
+    if ( stepKE != 0 ) {
+             if ( stepParticle == "e-" ) {
+        histoID = analysisManager->GetH1Id("eSpectra"); analysisManager->FillH1(histoID, stepKE);
+      } else if ( stepParticle == "proton" ) {
+        histoID = analysisManager->GetH1Id("pSpectra"); analysisManager->FillH1(histoID, stepKE);
+      } else if ( stepParticle == "neutron" ) {
+        histoID = analysisManager->GetH1Id("nSpectra"); analysisManager->FillH1(histoID, stepKE);
+      } else if ( stepParticle == "gamma" ) {
+        histoID = analysisManager->GetH1Id("gSpectra"); analysisManager->FillH1(histoID, stepKE);
+      } else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) ) {
+        histoID = analysisManager->GetH1Id("oSpectra"); analysisManager->FillH1(histoID, stepKE);
+      }
+    }
+  }
+
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 
@@ -127,7 +149,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
              stepRCuDepth = 0, stepZCuDepth = 0,
              stepRKADepth = 0, stepZKADepth = 0,
              stepRKADepthVertex = 0, stepZKADepthVertex = 0;
-    G4int histoID;
 
     // ORIGIN
     // particle exits copper, -q_i

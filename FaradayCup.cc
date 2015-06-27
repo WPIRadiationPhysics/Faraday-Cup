@@ -99,7 +99,7 @@ int main(int argc,char** argv) {
   //if ( macroFile.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.1 mm";
+    G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
     UImanager->ApplyCommand("/gun/particle proton");
 	
