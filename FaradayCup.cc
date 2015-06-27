@@ -99,7 +99,7 @@ int main(int argc,char** argv) {
   //if ( macroFile.size() ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.1 mm";
+    G4String cutCommand = "/run/setCut 0.005 mm";
     UImanager->ApplyCommand(cutCommand);
     UImanager->ApplyCommand("/gun/particle proton");
 	
@@ -147,6 +147,7 @@ int main(int argc,char** argv) {
 
           // Move plot scripts to data directory
           syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
+          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCu.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
         }
@@ -182,6 +183,7 @@ int main(int argc,char** argv) {
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);
+          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCuKA.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
       }}}

@@ -25,7 +25,7 @@ RunAction::RunAction() : G4UserRunAction() {
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-  // Create percentile particle gain histograms once per energy
+  // Create percentile particle gain histograms
   analysisManager->CreateH2("eDepHistoCu", "eDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pDepHistoCu", "pDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("oDepHistoCu", "oDepHistoCu", 100, 0., 1., 100, 0., 1.);
@@ -45,6 +45,13 @@ RunAction::RunAction() : G4UserRunAction() {
   analysisManager->CreateNtupleDColumn(0, "eDep_r");
   analysisManager->CreateNtupleDColumn(0, "eDep_z");
   analysisManager->FinishNtuple(0);
+
+  // Create particle energy Spectra histograms
+  analysisManager->CreateH1("eSpectra", "eSpectra", 100, 0., 1*MeV);
+  analysisManager->CreateH1("pSpectra", "pSpectra", 100, 0., 0.1*MeV);
+  analysisManager->CreateH1("oSpectra", "oSpectra", 100, 0., 10*MeV);
+  analysisManager->CreateH1("nSpectra", "nSpectra", 100, 0., 10*MeV);
+  analysisManager->CreateH1("gSpectra", "gSpectra", 100, 0., 10*MeV);
 }
 
 RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
