@@ -147,6 +147,7 @@ int main(int argc,char** argv) {
 
           // Move plot scripts to data directory
           syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
+          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCu.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
         }
@@ -182,6 +183,7 @@ int main(int argc,char** argv) {
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);
+          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCuKA.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
       }}}

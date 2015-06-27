@@ -16,7 +16,8 @@ for model in `seq 0 2`; do
 
     cd "data/model$model"
 
-    # Plot deposition and cascade histograms
+    # Plot particle spectra, deposition and cascade histograms
+    root -blnq plotSpectra.C
     root -blnq plotDepHistoCu.C
     octave plotCascadeHisto.m
 
@@ -28,7 +29,8 @@ for model in `seq 0 2`; do
 
     cd "data/model$model/S$KA"
 
-    # Plot deposition and cascade histograms
+    # Plot particle spectra, deposition and cascade histograms
+    root -blnq plotSpectra.C
     root -blnq plotDepHistoCuKA.C
     octave plotCascadeHisto.m
 

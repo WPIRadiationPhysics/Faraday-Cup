@@ -59,6 +59,7 @@ set(FaradayCup_SCRIPTS
   run.in
   vis.mac
   plotGain.C
+  plotSpectra.C
   plotGainCu.C
   plotDepHistoCu.C
   plotDepHistoCuKA.C
