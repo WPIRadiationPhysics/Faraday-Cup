@@ -30,7 +30,7 @@ class Analysis {
 
     // Get/Set data directory
     G4String GetAnalysisDIR() { return analysisDIR; }
-    void SetAnalysisDIR(G4String dir_i) { analysisDIR = dir_i; }
+    void SetAnalysisDIR(G4String analysisdir) { analysisDIR = analysisdir; }
 
     // Nullify experiment parameters
     void nullExperiments() {
@@ -38,6 +38,9 @@ class Analysis {
       fMeasureGain = 0;
       analysisDIR = "data";
       runKA_thickness = 0;
+      for ( G4int npro = 0; npro < 6; npro++ ){
+      for ( G4int nneu = 0; nneu < 6; nneu++ ){
+        runBranchingPN[npro][nneu] = 0; }}
     }
 
     // Get/Set experiment types
@@ -48,7 +51,17 @@ class Analysis {
     void appendRunGain(G4double trackSignal) { runGain += trackSignal; }
     G4double recallRunGain() { return runGain; }
 
-    // Locate cascade track files and read through
+    // Append/Recall proton-neutron branching ratios
+    void appendRunBranchingPN(G4int numprotons, G4int numneutrons) {
+      if ( numprotons > 5 ) { numprotons = 5; }
+      if ( numneutrons > 5 ) { numneutrons = 5; }
+      runBranchingPN[numprotons][numneutrons] += 1;
+    }
+    G4double recallRunBranchingPN(G4int npro, G4int nneu)
+      { return runBranchingPN[npro][nneu]; }
+
+    // Analysis methods
+    virtual void analyzeBranchingRatiosPN();
     virtual void analyzeCascadeTracks();
 
   private:
@@ -59,6 +72,9 @@ class Analysis {
     // vars
     G4double runEnergy, runGain, runKA_thickness;
     G4int nThreads, nEnergies, RunID;
+
+    // (p,Np,Mn) Branching ratios matrix
+    G4int runBranchingPN[6][6]; // zero through 5+ foreach
 
     // Measurement functions
     void measureGainPreload();

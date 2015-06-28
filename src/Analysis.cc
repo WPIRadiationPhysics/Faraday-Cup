@@ -27,6 +27,48 @@ void Analysis::measureGainPreload() {
   analysisManager->FinishNtuple();
 }
 
+void Analysis::analyzeBranchingRatiosPN() {
+
+  // Acquire analysis instance
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+
+  // Declare analysis vars
+  G4double runBranchingRatios[6][6] = {{0}};
+  G4int runBranchNormal = 0;
+
+  // Obtain branching ratio values and append normalization factor
+  for ( G4int npro = 0; npro < 6; npro++ ){
+    for ( G4int nneu = 0; nneu < 6; nneu++ ){
+      runBranchingRatios[npro][nneu] = simulationAnalysis->recallRunBranchingPN(npro, nneu);
+      runBranchNormal += runBranchingRatios[npro][nneu];
+    }
+  }
+
+  // Create branching ratio output directory
+  G4String syscmd = "mkdir -p " + analysisDIR + "branchRatios";
+  system(syscmd);
+
+  // Acquire branching ratio output filename
+  std::ostringstream runBranchingFileNameStream;
+  G4String runBranchingFileName;
+  runBranchingFileNameStream << analysisDIR << "branchRatios/ratiosPN-" << RunID << ".csv";
+  runBranchingFileName = runBranchingFileNameStream.str();
+
+  // Open branching ratio output file
+  std::ofstream runBranchingFileStream;
+  runBranchingFileStream.open (runBranchingFileName);
+  
+  // Print normalized (p,NpMn) output to csv
+  for ( G4int npro = 0; npro < 6; npro++ ){
+    for ( G4int nneu = 0; nneu < 6; nneu++ ){
+      runBranchingRatios[npro][nneu] = runBranchingRatios[npro][nneu]/runBranchNormal;
+      runBranchingFileStream << runBranchingRatios[npro][nneu];
+      if ( nneu != 5 ) { runBranchingFileStream << ","; }
+    }
+    runBranchingFileStream << G4endl;
+  }
+}
+
 void Analysis::analyzeCascadeTracks() {
 
   // Create H3 quiver histogram structure
@@ -37,12 +79,9 @@ void Analysis::analyzeCascadeTracks() {
              E_z[100][100] = {{0}};
   };
 
-  // Acquire analysis instance
-  Analysis* simulationAnalysis = Analysis::GetAnalysis();
-
   // Set ROOT vars
   std::ostringstream ROOTfileNameStream, NtupleNameStream, cascadeFileNameStream, syscmdStream;
-  G4String cascadeFileName, NtupleName, ROOTfileName, data_dir = simulationAnalysis->GetAnalysisDIR();
+  G4String cascadeFileName, NtupleName, ROOTfileName;
   G4int ntupleId, ROOT_particleType;
   G4double ROOT_r, ROOT_z, ROOT_Er, ROOT_Ez;
 
@@ -50,12 +89,12 @@ void Analysis::analyzeCascadeTracks() {
   struct quiverHisto particleQuiver[5];
 
   // Create cascade output directory
-  G4String syscmd = "mkdir -p " + data_dir + "cascadeHistos";
+  G4String syscmd = "mkdir -p " + analysisDIR + "cascadeHistos";
   system(syscmd);
 
   // Combine and subsequentially remove worker trackData threads
-  //syscmdStream.str(""); syscmdStream << "hadd -f " << data_dir << "cascadeHistos/cascadeData-" << RunID%nEnergies << ".root "
-  //                                                    << data_dir << "trackData-" << RunID%nEnergies << "_t*";
+  //syscmdStream.str(""); syscmdStream << "hadd -f " << analysisDIR << "cascadeHistos/cascadeData-" << RunID%nEnergies << ".root "
+  //                                                    << analysisDIR << "trackData-" << RunID%nEnergies << "_t*";
   //syscmd = syscmdStream.str(); system(syscmd);
 
   // Acquire world logical volume dimensions
@@ -73,7 +112,7 @@ void Analysis::analyzeCascadeTracks() {
     // Aquire ROOT data files
     ROOTfileNameStream.str(""); ROOTfileName = "";
     NtupleNameStream.str(""); NtupleName = "";
-    ROOTfileNameStream << data_dir << "trackData-" << RunID%nEnergies << "_t" << workerID << ".root";
+    ROOTfileNameStream << analysisDIR << "trackData-" << RunID%nEnergies << "_t" << workerID << ".root";
     ROOTfileName = ROOTfileNameStream.str();
     NtupleNameStream << "cascadeData";
     NtupleName = NtupleNameStream.str();
@@ -112,7 +151,7 @@ void Analysis::analyzeCascadeTracks() {
   delete G4AnalysisReader::Instance();
 
   //Remove data files
-  syscmdStream.str(""); syscmdStream << "rm " << data_dir << "trackData-" << RunID%nEnergies << "_t*";
+  syscmdStream.str(""); syscmdStream << "rm " << analysisDIR << "trackData-" << RunID%nEnergies << "_t*";
   syscmd = syscmdStream.str(); system(syscmd);
 
   // Output cascade data
@@ -121,11 +160,11 @@ void Analysis::analyzeCascadeTracks() {
     // Define data filename
     cascadeFileNameStream.str("");
     switch ( particle_i ) {
-      case 0: cascadeFileNameStream << data_dir << "cascadeHistos/eCascade_" << runEnergy << "MeV.dat"; break;
-      case 1: cascadeFileNameStream << data_dir << "cascadeHistos/pCascade_" << runEnergy << "MeV.dat"; break;
-      case 2: cascadeFileNameStream << data_dir << "cascadeHistos/oCascade_" << runEnergy << "MeV.dat"; break;
-      case 3: cascadeFileNameStream << data_dir << "cascadeHistos/nCascade_" << runEnergy << "MeV.dat"; break;
-      case 4: cascadeFileNameStream << data_dir << "cascadeHistos/gCascade_" << runEnergy << "MeV.dat"; break;
+      case 0: cascadeFileNameStream << analysisDIR << "cascadeHistos/eCascade_" << runEnergy << "MeV.dat"; break;
+      case 1: cascadeFileNameStream << analysisDIR << "cascadeHistos/pCascade_" << runEnergy << "MeV.dat"; break;
+      case 2: cascadeFileNameStream << analysisDIR << "cascadeHistos/oCascade_" << runEnergy << "MeV.dat"; break;
+      case 3: cascadeFileNameStream << analysisDIR << "cascadeHistos/nCascade_" << runEnergy << "MeV.dat"; break;
+      case 4: cascadeFileNameStream << analysisDIR << "cascadeHistos/gCascade_" << runEnergy << "MeV.dat"; break;
     }
     cascadeFileName = cascadeFileNameStream.str();
 

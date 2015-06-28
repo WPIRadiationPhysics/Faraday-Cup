@@ -2,12 +2,14 @@
 #include "SteppingAction.hh"
 #include "EventAction.hh"
 #include "DetectorConstruction.hh"
+#include "G4SteppingManager.hh"
 
 #include "G4Step.hh"
 #include "G4Run.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
 #include "G4SystemOfUnits.hh"
+#include "G4UnitsTable.hh"
 
 #include "G4LogicalVolume.hh"
 #include "G4LogicalVolumeStore.hh"
@@ -32,6 +34,42 @@ SteppingAction::~SteppingAction() {}
 // Step Procedure (for every step...)
 void SteppingAction::UserSteppingAction(const G4Step* step) {
 
+  //// WISHLIST: Separate stepping data-collection processes into
+  //// their own function to be called alongside specific analyses
+  //// (note: currently recycling some vars between latter functions)
+
+  // Acquire analysis instance
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+
+  //// Branching ratios analysis data
+  // If primary track step
+  if ( step->GetTrack()->GetParentID() == 0 ) {
+
+    // Obtain total number of and track pointer to secondary particles
+    G4int nSecAtRest = fpSteppingManager->GetfN2ndariesAtRestDoIt();
+    G4int nSecAlong  = fpSteppingManager->GetfN2ndariesAlongStepDoIt();
+    G4int nSecPost   = fpSteppingManager->GetfN2ndariesPostStepDoIt();
+    G4int nSecTotal  = nSecAtRest+nSecAlong+nSecPost;
+    G4TrackVector* secVec = fpSteppingManager->GetfSecondary();
+
+    G4int stepNumBranchProtons = 0, stepNumBranchNeutrons = 0;
+    G4String branchParticle;
+
+    // If secondaries-producing scatter
+    if ( nSecTotal > 0 ) {
+      for (size_t lp1=(*secVec).size()-nSecTotal; lp1<(*secVec).size(); lp1++) {
+
+        // Tally protons and neutrons
+        branchParticle = (*secVec)[lp1]->GetDefinition()->GetParticleName();
+        if ( branchParticle == "proton" ) { stepNumBranchProtons += 1; }
+        if ( branchParticle == "neutron" ) { stepNumBranchNeutrons += 1; }
+      }
+
+      simulationAnalysis->appendRunBranchingPN(stepNumBranchProtons, stepNumBranchNeutrons);
+    }
+  }
+
+  //// Energy deposition cascade analysis data
   // Declare vars
   G4int histoID;
 
@@ -91,6 +129,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     analysisManager->AddNtupleRow(0);
   }}}
 
+  //// Particle energy spectra analysis data
   // If initial step of non-primary track
   if ( step->GetTrack()->GetCurrentStepNumber() == 1 && step->GetTrack()->GetParentID() != 0 ) {
 
@@ -114,8 +153,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
 
-    // Acquire analysis instance
-    Analysis* simulationAnalysis = Analysis::GetAnalysis();
+    // Acquire Kapton thickness
     G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
 
     // Acquire step r-position 
