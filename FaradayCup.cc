@@ -151,9 +151,6 @@ int main(int argc,char** argv) {
           syscmd = "cp plotDepHistoCu.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
         }
-
-        // Acquire energy-functional gain data
-        simulationAnalysis->ntupleizeGainFile();
                
       // Kapton (layer 1) thickness iteration for secondary models
       } else { for ( G4int KA_i = 0; KA_i < nThicknesses; KA_i++ ) {
@@ -193,9 +190,6 @@ int main(int argc,char** argv) {
           syscmd = "cp plotDepHistoCuKA.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
         }
-
-        // Acquire energy-functional gain data
-        simulationAnalysis->ntupleizeGainFile();
       }}
     }
 
