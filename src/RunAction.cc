@@ -37,15 +37,6 @@ RunAction::RunAction() : G4UserRunAction() {
   analysisManager->CreateH2("nDepHistoKA", "nDepHistoKA", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("gDepHistoKA", "gDepHistoKA", 100, 0., 1., 100, 0., 1.);
 
-  // Creating cascade cascade info ntuple
-  analysisManager->CreateNtuple("cascadeData", "Cascade Data");
-  analysisManager->CreateNtupleIColumn(0, "particleType");
-  analysisManager->CreateNtupleDColumn(0, "r");
-  analysisManager->CreateNtupleDColumn(0, "z");
-  analysisManager->CreateNtupleDColumn(0, "eDep_r");
-  analysisManager->CreateNtupleDColumn(0, "eDep_z");
-  analysisManager->FinishNtuple(0);
-
   // Create particle energy Spectra histograms
   analysisManager->CreateH1("eSpectra", "eSpectra", 100, 0., 1*MeV);
   analysisManager->CreateH1("pSpectra", "pSpectra", 100, 0., 0.1*MeV);
@@ -80,7 +71,7 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   analysisManager->OpenFile();
 
   // Primary energy
-  G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl;
+  if ( isMaster ) { G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl; }
 }
 
 void RunAction::EndOfRunAction(const G4Run* /*run*/) {
@@ -91,16 +82,13 @@ void RunAction::EndOfRunAction(const G4Run* /*run*/) {
   analysisManager->CloseFile();
 
   // Acquire analysis object and energy
-  Analysis* simulationAnalysis = Analysis::GetAnalysis();
-  G4double runEnergy = simulationAnalysis->GetRunEnergy();
+  //Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  //G4double runEnergy = simulationAnalysis->GetRunEnergy();
 
   // Constant vars
-  G4String data_dir = simulationAnalysis->GetAnalysisDIR(),
-           syscmd;
+  //G4String data_dir = simulationAnalysis->GetAnalysisDIR(),
+  //         syscmd;
 
   // Acquire current gain
-  G4double runGain = simulationAnalysis->recallRunGain();
-
-  // Print run gain to output
-  G4cout << "Gain measurement for beam energy of " << runEnergy << " MeV: " << runGain << G4endl;
+  //G4double runGain = simulationAnalysis->recallRunGain();
 }

@@ -84,7 +84,8 @@ class Analysis {
       { return runBranchingPN[npro][nneu]; }
 
     // Analysis methods
-    virtual void analyzeGain();
+    virtual void appendGainFile();
+    virtual void ntupleizeGainFile();
     virtual void analyzeCascade();
     virtual void analyzeBranchingRatiosPN();
 
