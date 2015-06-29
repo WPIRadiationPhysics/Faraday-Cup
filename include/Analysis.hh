@@ -37,9 +37,11 @@ class Analysis {
 
     // Nullify experiment parameters
     void nullExperiments() {
-      runGain = 0;
+
       analysisDIR = "data";
       runKA_thickness = 0;
+
+      runGain = 0;
       for ( G4int npro = 0; npro < 6; npro++ ) {
       for ( G4int nneu = 0; nneu < 6; nneu++ ) {
         runBranchingPN[npro][nneu] = 0; }}

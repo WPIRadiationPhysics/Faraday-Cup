@@ -20,10 +20,17 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-RunAction::RunAction() : G4UserRunAction() {
+RunAction::RunAction() : G4UserRunAction() {}
+
+RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
+
+void RunAction::BeginOfRunAction(const G4Run* run) {
 
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  analysisManager->SetVerboseLevel(10);
+
+  if ( isMaster ) {
 
   // Create percentile particle gain histograms
   analysisManager->CreateH2("eDepHistoCu", "eDepHistoCu", 100, 0., 1., 100, 0., 1.);
@@ -39,22 +46,18 @@ RunAction::RunAction() : G4UserRunAction() {
 
   // Create particle energy Spectra histograms
   analysisManager->CreateH1("eSpectra", "eSpectra", 100, 0., 1*MeV);
-  analysisManager->CreateH1("pSpectra", "pSpectra", 100, 0., 0.1*MeV);
-  analysisManager->CreateH1("oSpectra", "oSpectra", 100, 0., 10*MeV);
-  analysisManager->CreateH1("nSpectra", "nSpectra", 100, 0., 10*MeV);
+  analysisManager->CreateH1("pSpectra", "pSpectra", 100, 0., 100*MeV);
+  analysisManager->CreateH1("oSpectra", "oSpectra", 100, 0., 100*MeV);
+  analysisManager->CreateH1("nSpectra", "nSpectra", 100, 0., 100*MeV);
   analysisManager->CreateH1("gSpectra", "gSpectra", 100, 0., 10*MeV);
-}
-
-RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
-
-void RunAction::BeginOfRunAction(const G4Run* run) {
+  }
 
   // Acquire runID, and declare vars
   G4int runID = run->GetRunID();
   G4String trackDataFileName; std::ostringstream trackDataFileNameStream;
 
   // Get Analysis manager and instance
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  //G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
   simulationAnalysis->SetRunID(runID);
@@ -74,21 +77,10 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   if ( isMaster ) { G4cout << "Running proton beam at " << runEnergy << " MeV..." << G4endl; }
 }
 
-void RunAction::EndOfRunAction(const G4Run* /*run*/) {
+void RunAction::EndOfRunAction(const G4Run* /*run*/) { if ( isMaster ) {
 
   // Acquire Analysis Manager, write and close
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   analysisManager->Write();
   analysisManager->CloseFile();
-
-  // Acquire analysis object and energy
-  //Analysis* simulationAnalysis = Analysis::GetAnalysis();
-  //G4double runEnergy = simulationAnalysis->GetRunEnergy();
-
-  // Constant vars
-  //G4String data_dir = simulationAnalysis->GetAnalysisDIR(),
-  //         syscmd;
-
-  // Acquire current gain
-  //G4double runGain = simulationAnalysis->recallRunGain();
-}
+}}

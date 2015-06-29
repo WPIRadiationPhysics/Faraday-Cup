@@ -65,6 +65,9 @@ void Analysis::ntupleizeGainFile() {
   // Write and close ROOT file
   analysisManager->Write();
   analysisManager->CloseFile();
+
+  // Destroy analysis manager
+  delete G4AnalysisManager::Instance();
 }
 
 void Analysis::analyzeBranchingRatiosPN() {
