@@ -25,25 +25,25 @@
 namespace {
   void PrintUsage() {
     G4cerr << " Usage: " << G4endl;
-    G4cerr << " FaradayCup [-m macroFile ] [-u UIsession] [-t nThreads]" << G4endl;
+    G4cerr << " FaradayCup [-n nEvents ] [-u UIsession] [-t nThreads]" << G4endl;
     G4cerr << "   Note: -t option is available only for multi-threaded mode."
            << G4endl;
   }
 }
 
 int main(int argc,char** argv) {
-  // Evaluate arguments
-  if ( argc > 9 ) {
-    PrintUsage();
-    return 1;
-  }  
-  G4String macroFile;
+
+  // Declare vars
+  G4int nEvents = 0;
   G4String session;
 #ifdef G4MULTITHREADED
   G4int nThreads = 0;
 #endif
+
+  // Evaluate arguments, don't allow breaking
+  if ( argc > 9 ) { PrintUsage(); return 1; }  
   for ( G4int i=1; i<argc; i=i+2 ) {
-    if      ( G4String(argv[i]) == "-m" ) macroFile = argv[i+1];
+    if      ( G4String(argv[i]) == "-n" ) nEvents = std::atoi(argv[i+1]);
     else if ( G4String(argv[i]) == "-u" ) session = argv[i+1];
 #ifdef G4MULTITHREADED
     else if ( G4String(argv[i]) == "-t" ) {
@@ -69,15 +69,12 @@ int main(int argc,char** argv) {
   G4RunManager * runManager = new G4RunManager;
 #endif
 
-  // Set mandatory initialization classes
+  // Initialize mandatory classes
   DetectorConstruction* detConstruction = new DetectorConstruction();
   runManager->SetUserInitialization(detConstruction);
-
   G4VModularPhysicsList* physicsList = new FTFP_BERT;
   runManager->SetUserInitialization(physicsList);
-  
-  ActionInitialization* actionInitialization
-     = new ActionInitialization(detConstruction);
+  ActionInitialization* actionInitialization = new ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
   runManager->Initialize();
 
@@ -95,8 +92,8 @@ int main(int argc,char** argv) {
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
-  // batch mode  
-  //if ( macroFile.size() ) {
+  // Begin simulation
+  if ( nEvents > 0 ) {
 
     // 5 micrometer particle track cuts
     G4String cutCommand = "/run/setCut 0.005 mm";
@@ -140,13 +137,16 @@ int main(int argc,char** argv) {
           // Run experimental beam energies
           syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
           syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-          UImanager->ApplyCommand("/run/beamOn 100");
+          syscmdStream.str(""); syscmdStream << "/run/beamOn " << nEvents;
+          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
 
-          // Cascade Analysis
-          simulationAnalysis->analyzeCascadeTracks();
+          // Perform Analyses
+          simulationAnalysis->appendGainFile();
+          simulationAnalysis->analyzeCascade();
+          simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
-          syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
+          syscmd = "cp plotGain.C " + data_dir; system(syscmd);
           syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCu.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
@@ -176,22 +176,26 @@ int main(int argc,char** argv) {
           // Run experimental beam energies
           syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
           syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-          UImanager->ApplyCommand("/run/beamOn 100");
+          syscmdStream.str(""); syscmdStream << "/run/beamOn " << nEvents;
+          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
 
-          // Cascade Analysis
-          simulationAnalysis->analyzeCascadeTracks();
+          // Perform Analyses
+          simulationAnalysis->appendGainFile();
+          simulationAnalysis->analyzeCascade();
+          simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);
           syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
           syscmd = "cp plotDepHistoCuKA.C " + data_dir; system(syscmd);
           syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
-      }}}
+        }
+      }}
     }
 
-  /*
   } else {
 
+    /*
     // interactive mode : define UI session
     G4String cutCommand = "/run/setCut 0.01 mm";
     UImanager->ApplyCommand(cutCommand);
@@ -223,7 +227,9 @@ int main(int argc,char** argv) {
       G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
       system(filmcmd);
     }
-    
+    */
+
+    // Initialize visualizer and gui macros
 #ifdef G4UI_USE
     G4UIExecutive* ui = new G4UIExecutive(argc, argv, session);
 #ifdef G4VIS_USE
@@ -236,8 +242,8 @@ int main(int argc,char** argv) {
     delete ui;
 #endif
   }
-*/
 
+  // Dump manager objects from memory
 #ifdef G4VIS_USE
   delete visManager;
 #endif
