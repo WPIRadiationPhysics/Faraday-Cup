@@ -15,22 +15,23 @@
 Analysis::Analysis() {}
 Analysis::~Analysis() {}
 
-void Analysis::measureGainPreload() {
+void Analysis::analyzeGain() {
 
-  // Acquire analysis manager
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  // Acquire gain filename
+  std::ostringstream gainFileNameStream;
+  G4String gainFileName;
+  gainFileNameStream << analysisDIR << "modelGain.dat";
+  gainFileName = gainFileNameStream.str();
 
-  // Creating gain ntuple
-  analysisManager->CreateNtuple("gainDat", "Gain Data");
-  analysisManager->CreateNtupleDColumn("beamEnergy");
-  analysisManager->CreateNtupleDColumn("beamGain");
-  analysisManager->FinishNtuple();
+  // Open gain output file
+  std::ofstream gainFileStream;
+  gainFileStream.open (gainFileName, std::ios::app);
+  
+  // Print gain output to csv
+  gainFileStream << runEnergy << "," << runGain << G4endl;
 }
 
 void Analysis::analyzeBranchingRatiosPN() {
-
-  // Acquire analysis instance
-  Analysis* simulationAnalysis = Analysis::GetAnalysis();
 
   // Declare analysis vars
   G4double runBranchingRatios[6][6] = {{0}};
@@ -39,7 +40,7 @@ void Analysis::analyzeBranchingRatiosPN() {
   // Obtain branching ratio values and append normalization factor
   for ( G4int npro = 0; npro < 6; npro++ ){
     for ( G4int nneu = 0; nneu < 6; nneu++ ){
-      runBranchingRatios[npro][nneu] = simulationAnalysis->recallRunBranchingPN(npro, nneu);
+      runBranchingRatios[npro][nneu] = recallRunBranchingPN(npro, nneu);
       runBranchNormal += runBranchingRatios[npro][nneu];
     }
   }
@@ -51,7 +52,7 @@ void Analysis::analyzeBranchingRatiosPN() {
   // Acquire branching ratio output filename
   std::ostringstream runBranchingFileNameStream;
   G4String runBranchingFileName;
-  runBranchingFileNameStream << analysisDIR << "branchRatios/ratiosPN-" << RunID << ".csv";
+  runBranchingFileNameStream << analysisDIR << "branchRatios/ratiosPN-" << RunID%nEnergies << ".csv";
   runBranchingFileName = runBranchingFileNameStream.str();
 
   // Open branching ratio output file
@@ -69,15 +70,17 @@ void Analysis::analyzeBranchingRatiosPN() {
   }
 }
 
-void Analysis::analyzeCascadeTracks() {
+void Analysis::analyzeCascade() {
 
   // Create H3 quiver histogram structure
-  struct quiverHisto {
+  //struct quiverHisto {
+  //
+  //// E_n n-direction deposition histos in 3D (r,z) space
+  //  G4double E_r[100][100] = {{0}},
+  //           E_z[100][100] = {{0}};
+  //};
 
-    // E_n n-direction deposition histos in 3D (r,z) space
-    G4double E_r[100][100] = {{0}},
-             E_z[100][100] = {{0}};
-  };
+  /*
 
   // Set ROOT vars
   std::ostringstream ROOTfileNameStream, NtupleNameStream, cascadeFileNameStream, syscmdStream;
@@ -91,11 +94,6 @@ void Analysis::analyzeCascadeTracks() {
   // Create cascade output directory
   G4String syscmd = "mkdir -p " + analysisDIR + "cascadeHistos";
   system(syscmd);
-
-  // Combine and subsequentially remove worker trackData threads
-  //syscmdStream.str(""); syscmdStream << "hadd -f " << analysisDIR << "cascadeHistos/cascadeData-" << RunID%nEnergies << ".root "
-  //                                                    << analysisDIR << "trackData-" << RunID%nEnergies << "_t*";
-  //syscmd = syscmdStream.str(); system(syscmd);
 
   // Acquire world logical volume dimensions
   G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
@@ -154,17 +152,25 @@ void Analysis::analyzeCascadeTracks() {
   syscmdStream.str(""); syscmdStream << "rm " << analysisDIR << "trackData-" << RunID%nEnergies << "_t*";
   syscmd = syscmdStream.str(); system(syscmd);
 
+  */
+
+  // Create cascade output directory
+  G4String syscmd = "mkdir -p " + analysisDIR + "cascadeHistos";
+  system(syscmd);
+
   // Output cascade data
+  std::ostringstream cascadeFileNameStream;
+  G4String cascadeFileName;
   for ( G4int particle_i = 0; particle_i < 5; particle_i++ ) {
 
     // Define data filename
     cascadeFileNameStream.str("");
     switch ( particle_i ) {
-      case 0: cascadeFileNameStream << analysisDIR << "cascadeHistos/eCascade_" << runEnergy << "MeV.dat"; break;
-      case 1: cascadeFileNameStream << analysisDIR << "cascadeHistos/pCascade_" << runEnergy << "MeV.dat"; break;
-      case 2: cascadeFileNameStream << analysisDIR << "cascadeHistos/oCascade_" << runEnergy << "MeV.dat"; break;
-      case 3: cascadeFileNameStream << analysisDIR << "cascadeHistos/nCascade_" << runEnergy << "MeV.dat"; break;
-      case 4: cascadeFileNameStream << analysisDIR << "cascadeHistos/gCascade_" << runEnergy << "MeV.dat"; break;
+      case 0: cascadeFileNameStream << analysisDIR << "cascadeHistos/eCascade-" << RunID%nEnergies << ".dat"; break;
+      case 1: cascadeFileNameStream << analysisDIR << "cascadeHistos/pCascade-" << RunID%nEnergies << ".dat"; break;
+      case 2: cascadeFileNameStream << analysisDIR << "cascadeHistos/oCascade-" << RunID%nEnergies << ".dat"; break;
+      case 3: cascadeFileNameStream << analysisDIR << "cascadeHistos/nCascade-" << RunID%nEnergies << ".dat"; break;
+      case 4: cascadeFileNameStream << analysisDIR << "cascadeHistos/gCascade-" << RunID%nEnergies << ".dat"; break;
     }
     cascadeFileName = cascadeFileNameStream.str();
 
@@ -177,14 +183,21 @@ void Analysis::analyzeCascadeTracks() {
       for ( G4int bin_iz = 0; bin_iz < 100; bin_iz++ ) {
 
         // Aquire bin's vector, append file with non-zeros
-        G4double binEr = particleQuiver[particle_i].E_r[bin_ir][bin_iz],
-                 binEz = particleQuiver[particle_i].E_z[bin_ir][bin_iz];
+        //G4double binEr = particleQuiver[particle_i].E_r[bin_ir][bin_iz],
+        //         binEz = particleQuiver[particle_i].E_z[bin_ir][bin_iz];
 
-        if ( ! ( binEr == 0 && binEz == 0 ) ) {
-
-          // Append file and close
-          cascadeFile << bin_ir << " " << bin_iz << " " << binEr << " " << binEz << "\n";
+        // Obtain enery deposition vector components
+        G4double binEr, binEz;
+        switch ( particle_i ) {
+          case 0: binEr = recallECascade(bin_ir, bin_iz, 1); binEz = recallECascade(bin_ir, bin_iz, 2); break;
+          case 1: binEr = recallPCascade(bin_ir, bin_iz, 1); binEz = recallPCascade(bin_ir, bin_iz, 2); break;
+          case 2: binEr = recallOCascade(bin_ir, bin_iz, 1); binEz = recallOCascade(bin_ir, bin_iz, 2); break;
+          case 3: binEr = recallNCascade(bin_ir, bin_iz, 1); binEz = recallNCascade(bin_ir, bin_iz, 2); break;
+          case 5: binEr = recallGCascade(bin_ir, bin_iz, 1); binEz = recallGCascade(bin_ir, bin_iz, 2); break;
         }
+        // Append file with non-null cascade data
+        if ( ! ( binEr == 0 && binEz == 0 ) )
+          { cascadeFile << bin_ir << " " << bin_iz << " " << binEr << " " << binEz << G4endl; }
       }
     }
 

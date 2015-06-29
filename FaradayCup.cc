@@ -142,9 +142,10 @@ int main(int argc,char** argv) {
           syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
           UImanager->ApplyCommand("/run/beamOn 100");
 
-          // PerfomeCascade Analysis
+          // Perform Analyses
+          simulationAnalysis->analyzeGain();
+          simulationAnalysis->analyzeCascade();
           simulationAnalysis->analyzeBranchingRatiosPN();
-          simulationAnalysis->analyzeCascadeTracks();
 
           // Move plot scripts to data directory
           syscmd = "cp plotGainCu.C " + data_dir; system(syscmd);
@@ -180,8 +181,9 @@ int main(int argc,char** argv) {
           UImanager->ApplyCommand("/run/beamOn 100");
 
           // Perform Analyses
+          simulationAnalysis->analyzeGain();
+          simulationAnalysis->analyzeCascade();
           simulationAnalysis->analyzeBranchingRatiosPN();
-          simulationAnalysis->analyzeCascadeTracks();
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);

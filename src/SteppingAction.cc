@@ -106,6 +106,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // Fill histos for nonzero momenta; separated statements to disclude stationary uncharged secondary processes
   if ( stepParticleType != 99 ) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) { if ( volumeName != "World" ) {
 
+    // Acquire world logical volume dimensions
+    G4LogicalVolume* worldLV = G4LogicalVolumeStore::GetInstance()->GetVolume("World");
+    G4Tubs* worldTubs = 0;
+    worldTubs = dynamic_cast< G4Tubs*>(worldLV->GetSolid()); 
+    G4double worldZHalfLength = worldTubs->GetZHalfLength(),
+             worldOuterRadius = worldTubs->GetOuterRadius();
+
     // Convert to cylindrical polar coordinates
     G4double stepR = pow(pow(stepX,2) + pow(stepY,2), 0.5),
              stepPr = pow(pow(stepPx,2) + pow(stepPy,2), 0.5);
@@ -115,18 +122,34 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // thus, cos(theta_r-theta_pr) = cos(theta_r)*cos(theta_pr) + sin(theta_r)*sin(theta_pr); ignore denominator
     if ( stepX*stepPx + stepY*stepPy < 0 ) { stepPr = -stepPr; }
 
+    // Acquire position as bin in 100^2 grid
+    G4int rBin = floor((stepR/worldOuterRadius)*100),
+          zBin = floor(0.5*(1+(stepZ/worldZHalfLength))*100);
+    // Adjust slight functional anomaly
+    if ( rBin >= 100 ) { rBin = 99; }
+    if ( zBin >= 100 ) { zBin = 99; }
+
     // Get Energy deposition and break into vector components
     G4double eDep = step->GetTotalEnergyDeposit();
     G4double eDepR = eDep*stepPr/pow(pow(stepPr,2) + pow(stepPz,2), 0.5),
              eDepZ = eDep*stepPz/pow(pow(stepPr,2) + pow(stepPz,2), 0.5);
 
+    // Fill eDep analysis structures
+    switch ( stepParticleType) {
+      case 0: simulationAnalysis->appendECascade(rBin, zBin, eDepR, eDepZ); break;
+      case 1: simulationAnalysis->appendPCascade(rBin, zBin, eDepR, eDepZ); break;
+      case 2: simulationAnalysis->appendOCascade(rBin, zBin, eDepR, eDepZ); break;
+      case 3: simulationAnalysis->appendNCascade(rBin, zBin, eDepR, eDepZ); break;
+      case 4: simulationAnalysis->appendGCascade(rBin, zBin, eDepR, eDepZ); break;
+    }
+
     // Fill ntuple row
-    analysisManager->FillNtupleIColumn(0, 0, stepParticleType);
-    analysisManager->FillNtupleDColumn(0, 1, stepR);
-    analysisManager->FillNtupleDColumn(0, 2, stepZ);
-    analysisManager->FillNtupleDColumn(0, 3, eDepR/beamCharge);
-    analysisManager->FillNtupleDColumn(0, 4, eDepZ/beamCharge);
-    analysisManager->AddNtupleRow(0);
+    //analysisManager->FillNtupleIColumn(0, 0, stepParticleType);
+    //analysisManager->FillNtupleDColumn(0, 1, stepR);
+    //analysisManager->FillNtupleDColumn(0, 2, stepZ);
+    //analysisManager->FillNtupleDColumn(0, 3, eDepR/beamCharge);
+    //analysisManager->FillNtupleDColumn(0, 4, eDepZ/beamCharge);
+    //analysisManager->AddNtupleRow(0);
   }}}
 
   //// Particle energy spectra analysis data
