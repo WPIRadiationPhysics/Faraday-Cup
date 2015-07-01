@@ -38,12 +38,38 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   //// their own function to be called alongside specific analyses
   //// (note: currently recycling some vars between latter functions)
 
+  // Acquire world logical volume dimensions
+  G4LogicalVolume* CuLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
+  G4Tubs* CuTubs = 0;
+  CuTubs = dynamic_cast< G4Tubs*>(CuLV->GetSolid()); 
+  G4double Cu_cylZHalfLength = CuTubs->GetZHalfLength();
+
   // Acquire analysis instance
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
 
+  // Get name of volume at step location
+  G4String volumeName = step->GetTrack()->GetVolume()->GetName();
+
+  // Acquire Kapton thickness, then in mm
+  G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
+  G4double t_KA = KA_thickness/1000;
+
+  // Get step position
+  G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
+  G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
+
   //// Branching ratios analysis data
-  // If primary track step
+  // Gottschalk's active sheet range (R = 0.484 g/cm2 = 8.96*t_Cu + 1.42*t_KA) with [t]=cm
+  G4double t_Cu = 10*(0.484 - (1.42*t_KA/10))/8.96; // in mm
+
+  // If primary track step within Gottschalk range
   if ( step->GetTrack()->GetParentID() == 0 ) {
+  if ( stepZ < (-Cu_cylZHalfLength + t_Cu) ) {
+
+    // Acquire multithreaded worker id
+    G4int workerID = G4Threading::G4GetThreadId();
+
+    G4int stepID = step->GetTrack()->GetCurrentStepNumber();
 
     // Obtain total number of and track pointer to secondary particles
     G4int nSecAtRest = fpSteppingManager->GetfN2ndariesAtRestDoIt();
@@ -65,9 +91,9 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
         if ( branchParticle == "neutron" ) { stepNumBranchNeutrons += 1; }
       }
 
-      simulationAnalysis->appendRunBranchingPN(stepNumBranchProtons, stepNumBranchNeutrons);
+      simulationAnalysis->appendEventBranchingPN(stepNumBranchProtons, stepNumBranchNeutrons, workerID);
     }
-  }
+  }}
 
   //// Energy deposition cascade analysis data
   // Declare vars
@@ -88,13 +114,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   if ( stepParticle == "gamma" ) { stepParticleType = 4; }
   if ( stepParticle == 99 && stepCharge != 0 ) { stepParticleType = 2; }
  
-  // Get step position
-  G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
-  G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
-
-  // Get name of volume at step location
-  G4String volumeName = step->GetTrack()->GetVolume()->GetName();
-
   // Get step momenta
   G4ThreeVector stepPxPyPz = step->GetTrack()->GetMomentum();
   G4double stepPx = stepPxPyPz[0], stepPy = stepPxPyPz[1], stepPz = stepPxPyPz[2];
@@ -175,9 +194,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
   // If end of track
   if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-
-    // Acquire Kapton thickness
-    G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
 
     // Acquire step r-position 
     //G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
