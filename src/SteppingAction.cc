@@ -69,8 +69,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // Acquire multithreaded worker id
     G4int workerID = G4Threading::G4GetThreadId();
 
-    G4int stepID = step->GetTrack()->GetCurrentStepNumber();
-
     // Obtain total number of and track pointer to secondary particles
     G4int nSecAtRest = fpSteppingManager->GetfN2ndariesAtRestDoIt();
     G4int nSecAlong  = fpSteppingManager->GetfN2ndariesAlongStepDoIt();
@@ -273,7 +271,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
     // If charge particle or neutron/gamma track is relevant to analysis
     if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
-    
+
       // Copper/Kapton 2D Deposition Histogram
              if ( stepParticle == "e-" && volumeName == "Cu_cyl" ) {
         histoID = analysisManager->GetH2Id("eDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth);
