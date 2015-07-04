@@ -99,14 +99,17 @@ void Analysis::analyzeBranchingRatiosPN() {
   runBranchingFileStream.open (runBranchingFileName);
   
   // Print normalized (p,NpMn) output to csv
-  for ( G4int npro = 0; npro < 7; npro++ ){
-    for ( G4int nneu = 0; nneu < 7; nneu++ ){
-      runBranchingRatios[npro][nneu] = runBranchingRatios[npro][nneu]/runBranchNormal;
-      runBranchingFileStream << runBranchingRatios[npro][nneu];
-      if ( nneu != 6 ) { runBranchingFileStream << ","; }
+  if ( runBranchNormal != 0 ) {
+    for ( G4int npro = 0; npro < 7; npro++ ) {
+      for ( G4int nneu = 0; nneu < 7; nneu++ ) {
+        runBranchingRatios[npro][nneu] = runBranchingRatios[npro][nneu]/runBranchNormal;
+        runBranchingFileStream << runBranchingRatios[npro][nneu];
+        if ( nneu != 6 ) { runBranchingFileStream << ","; }
+      }
+      runBranchingFileStream << G4endl;  
     }
-    runBranchingFileStream << G4endl;
-  }
+  // Otherwise, print pity message
+  } else { runBranchingFileStream << "No tracked production events" << G4endl; }
 }
 
 void Analysis::analyzeCascade() {

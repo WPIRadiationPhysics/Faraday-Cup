@@ -43,6 +43,6 @@ void EventAction::EndOfEventAction(const G4Event* /*event*/) {
   G4int npros = simulationAnalysis->recallEventBranchingPN(1, workerID),
         nneus = simulationAnalysis->recallEventBranchingPN(2, workerID);
 
-  // Append event protons/neutrons to run proton/neutron statistics
-  simulationAnalysis->appendRunBranchingPN(npros, nneus);
+  // Append event protons/neutrons to run proton/neutron statistics (ignore null for emphasized statistics)
+  if ( ! ( npros == 0 && nneus == 0 )) { simulationAnalysis->appendRunBranchingPN(npros, nneus); }
 }
