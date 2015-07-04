@@ -16,12 +16,15 @@ class Analysis {
     static Analysis* GetAnalysis()
     { static Analysis the_analysis; return &the_analysis; }
 
-    // Get/Set global vars (modelID, runEnergy, RunID, nThreads, nEnergies, data_dir)
+    // Get/Set global vars (modelID, runEnergy, runBeamFWHM, RunID, nThreads, nEnergies, data_dir)
     void SetRunID(G4int runid) { RunID = runid; }
     G4int GetRunID() { return RunID; }
     //
     void SetRunEnergy(G4double runenergy) { runEnergy = runenergy; }
     G4double GetRunEnergy() { return runEnergy; }
+    //
+    void SetRunBeamFWHM(G4double runfwhm) { runBeamFWHM = runfwhm; }
+    G4double GetRunBeamFWHM() { return runBeamFWHM; }
     //
     void SetRunKAThickness(G4double runka_thickness) { runKA_thickness = runka_thickness; }
     G4int GetRunKAThickness() { return runKA_thickness; }
@@ -104,7 +107,7 @@ class Analysis {
     G4String analysisDIR;
 
     // vars
-    G4double runEnergy, runGain, runKA_thickness;
+    G4double runEnergy, runGain, runKA_thickness, runBeamFWHM;
     G4int nThreads, nEnergies, RunID;
 
     // (p,NpMn) Branching ratios matrix vars
