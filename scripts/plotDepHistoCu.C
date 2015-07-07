@@ -56,4 +56,60 @@
       histoCanvas->Print((const char*)pngName);
     }
   }
+
+  // Create charge/energy deposition figures
+  // Create volume directories
+  sprintf(syscmd, "mkdir -p depHistos/gainCu/");
+  system((const char*)syscmd);
+  sprintf(syscmd, "mkdir -p depHistos/energyCu/");
+  system((const char*)syscmd);
+
+  for ( int energy_i = 0; energy_i < 7; energy_i++ ) {
+
+    // Set data file
+    sprintf(depHistoFileName, "trackData-%d.root", energy_i);
+    TFile f((const char*)depHistoFileName);
+
+    // Define Tree names
+    sprintf(depHistoName, "gainDepHistoCu");
+
+    // Acquire Deposition Histogram Trees
+    h2 = (TH2F*) f->Get((const char*)depHistoName);
+
+    // Format and output gain distribution
+    sprintf(figTitle, "Cu gain distribution at %d MeV", runEnergy[energy_i]);
+    h2->SetTitle((const char*)figTitle);
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data
+    histoCanvas->Modified();
+    histoCanvas->Update();
+
+    // Define output filename and save as png
+    sprintf(pngName, "depHistos/gainCu/%dMeV.png", runEnergy[energy_i]);
+    histoCanvas->Print((const char*)pngName);
+
+    // Define Tree names
+    sprintf(depHistoName, "energyDepHistoCu");
+
+    // Acquire Deposition Histogram Trees
+    h2 = (TH2F*) f->Get((const char*)depHistoName);
+
+    // Format and output energy distribution
+    sprintf(figTitle, "Cu energy distribution at %d MeV",  runEnergy[energy_i]);
+    h2->SetTitle((const char*)figTitle);
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data
+    histoCanvas->Modified();
+    histoCanvas->Update();
+
+    // Define output filename and save as png
+    sprintf(pngName, "depHistos/energyCu/%dMeV.png", runEnergy[energy_i]);
+    histoCanvas->Print((const char*)pngName);
+  }}
 }

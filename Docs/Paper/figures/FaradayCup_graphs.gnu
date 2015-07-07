@@ -181,3 +181,37 @@ set ylabel "Gain (I/B)"
 plot "DATA.dat" u 1:2 t "HIT S59" w p lt 4 lc rgb "red", \
      "DATA.dat" u 1:3 t "HIT S100" w p lt 6 lc rgb "red", \
      "DATA.dat" u 1:4 t "HIT S200" w p lt 8 lc rgb "red"
+
+
+set output "fig_pcd_results.png"
+
+set key samplen 2 spacing 0.9 font ",8" below
+set title "Experimental vs. Simulated Beam Stop % charge defect"
+
+set xrange [70:222]
+set yrange [-7:2]
+set xlabel "Energy (MeV)"
+set ylabel "% charge defect"
+
+plot "DATA_pcd.dat" u 1:2 t "HIT S59" w p lt 4 lc rgb "red", \
+     "DATA_pcd.dat" u 1:3 t "HIT S100" w p lt 6 lc rgb "red", \
+     "DATA_pcd.dat" u 1:4 t "HIT S200" w p lt 8 lc rgb "red", \
+     "DATA_pcd.dat" u 1:13 t "G4_S59 + Ag" w lp lt 4 lc rgb "gray", \
+     "DATA_pcd.dat" u 1:14 t "G4_S100 + Ag" w lp lt 6 lc rgb "gray", \
+     "DATA_pcd.dat" u 1:15 t "G4_S200 + Ag" w lp lt 8 lc rgb "gray", \
+     "DATA_pcd.dat" u 1:5 t "G4_Cu" w lp lt 1 lc rgb "brown"
+
+
+set output "fig_mcnp_pcd_results.png"
+
+set key samplen 2 spacing 0.9 font ",8" below
+set title "MCNP6 charge defect measurements"
+
+set xrange [2:10]
+set yrange [-7:1]
+set xlabel "Diameter [cm]"
+set ylabel "% charge defect"
+
+plot "DATA_mcnp_pcd.dat" u 1:2 t "MCNP" w p lt 4 lc rgb "black", \
+     "DATA_mcnp_pcd.dat" u 1:3 t "MCNP no e-" w p lt 6 lc rgb "black"
+

@@ -198,8 +198,8 @@
 }
 
 % Default paperwidth and paperheight = a0paper
-\DeclareOptionX{paperwidth}[841mm]{\setlength{\baposter@finalpaperwidth}{#1}}
-\DeclareOptionX{paperheight}[1189mm]{\setlength{\baposter@finalpaperheight}{#1}}
+\DeclareOptionX{paperwidth}[42in]{\setlength{\baposter@finalpaperwidth}{#1}}
+\DeclareOptionX{paperheight}[36in]{\setlength{\baposter@finalpaperheight}{#1}}
 \DeclareOptionX{archA}         {                           \baposter@setfinalpapersize{9in}{12in}}%
 \DeclareOptionX{archB}         {                           \baposter@setfinalpapersize{12in}{18in}}%
 \DeclareOptionX{archC}         {                           \baposter@setfinalpapersize{18in}{24in}}%

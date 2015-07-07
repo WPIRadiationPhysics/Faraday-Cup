@@ -101,8 +101,9 @@ int main(int argc,char** argv) {
     UImanager->ApplyCommand("/gun/particle proton");
 	
     // Constant vars, declarations
-    G4double KA_thickness[3] = {59, 100, 200};
-    G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00};
+    G4double KA_thickness[3] = {59, 100, 200}; // microns
+    G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
+    G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
     G4int nThicknesses = (int)sizeof(KA_thickness)/sizeof(G4double);
     G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
     std::ostringstream data_dirStream, syscmdStream, filmDirStream;
@@ -131,8 +132,9 @@ int main(int argc,char** argv) {
           data_dir = "data/model0/";
           simulationAnalysis->SetAnalysisDIR(data_dir);
 
-          // Set run energy for analysis
+          // Set run energy and beam width
           simulationAnalysis->SetRunEnergy(energies[energy_i]);
+          simulationAnalysis->SetRunBeamFWHM(beam_fwhm[energy_i]);
 
           // Run experimental beam energies
           syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
@@ -170,8 +172,9 @@ int main(int argc,char** argv) {
           data_dirStream.str(""); data_dirStream << "data/model" << model_i << "/S" << KA_thickness[KA_i] << "/";
           data_dir = data_dirStream.str(); simulationAnalysis->SetAnalysisDIR(data_dir);
 
-          // Set run energy for analysis
+          // Set run energy and beam width
           simulationAnalysis->SetRunEnergy(energies[energy_i]);
+          simulationAnalysis->SetRunBeamFWHM(beam_fwhm[energy_i]);
 
           // Run experimental beam energies
           syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";

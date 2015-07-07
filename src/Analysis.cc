@@ -73,12 +73,12 @@ void Analysis::ntupleizeGainFile() {
 void Analysis::analyzeBranchingRatiosPN() {
 
   // Declare analysis vars
-  G4double runBranchingRatios[6][6] = {{0}};
+  G4double runBranchingRatios[7][7] = {{0}};
   G4int runBranchNormal = 0;
 
   // Obtain branching ratio values and append normalization factor
-  for ( G4int npro = 0; npro < 6; npro++ ){
-    for ( G4int nneu = 0; nneu < 6; nneu++ ){
+  for ( G4int npro = 0; npro < 7; npro++ ){
+    for ( G4int nneu = 0; nneu < 7; nneu++ ){
       runBranchingRatios[npro][nneu] = recallRunBranchingPN(npro, nneu);
       runBranchNormal += runBranchingRatios[npro][nneu];
     }
@@ -99,14 +99,17 @@ void Analysis::analyzeBranchingRatiosPN() {
   runBranchingFileStream.open (runBranchingFileName);
   
   // Print normalized (p,NpMn) output to csv
-  for ( G4int npro = 0; npro < 6; npro++ ){
-    for ( G4int nneu = 0; nneu < 6; nneu++ ){
-      runBranchingRatios[npro][nneu] = runBranchingRatios[npro][nneu]/runBranchNormal;
-      runBranchingFileStream << runBranchingRatios[npro][nneu];
-      if ( nneu != 5 ) { runBranchingFileStream << ","; }
+  if ( runBranchNormal != 0 ) {
+    for ( G4int npro = 0; npro < 7; npro++ ) {
+      for ( G4int nneu = 0; nneu < 7; nneu++ ) {
+        runBranchingRatios[npro][nneu] = runBranchingRatios[npro][nneu]/runBranchNormal;
+        runBranchingFileStream << runBranchingRatios[npro][nneu];
+        if ( nneu != 6 ) { runBranchingFileStream << ","; }
+      }
+      runBranchingFileStream << G4endl;  
     }
-    runBranchingFileStream << G4endl;
-  }
+  // Otherwise, print pity message
+  } else { runBranchingFileStream << "No tracked production events" << G4endl; }
 }
 
 void Analysis::analyzeCascade() {
