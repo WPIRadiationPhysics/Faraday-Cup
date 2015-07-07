@@ -2,7 +2,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
+\documentclass[landscape,archE1,fontscale=0.285]{baposter} % Adjust the font scale/size here
 
 \usepackage{graphicx} % Required for including images
 \graphicspath{{figures/}} % Directory in which figures are stored
@@ -46,7 +46,7 @@ headerFontColor=white, % Text color for the header text in the content boxes
 boxColorOne=white, % Background color of the content boxes
 textborder=roundedleft, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
 eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
-headerheight=0.15\textheight, % Height of the header
+headerheight=0.175\textheight, % Height of the header
 headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
 headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
 %textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
@@ -65,75 +65,50 @@ linewidth=2pt % Width of the border lines around content boxes
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\headerbox{Introduction}{name=introduction,column=0,row=0}{
+\headerbox{Introduction}{name=introduction,column=0,row=0,above=bottom}{
 
-Bragg peak behavior of proton dosimetry, popular therapeutic technique, pencil beam scanning
-
-
-
-(LATER: NIST proton range in Copper [Bragg Peak])
-
-}
-
-%----------------------------------------------------------------------------------------
-%	REFERENCES
-%----------------------------------------------------------------------------------------
-
-\headerbox{References}{name=references,column=0,above=bottom}{
-
-\renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
-\nocite{*} % Insert publications even if they are not cited in the poster
-\small{ % Reduce the font size in this block
-\bibliographystyle{unsrt}
-\bibliography{refs} % Use refs.bib as the bibliography file
-}}
-
-%----------------------------------------------------------------------------------------
-%	EXPERIMENTAL DESIGN
-%----------------------------------------------------------------------------------------
-
-\headerbox{Experimental Design}{name=experimentaldesign,column=0,row=1,below=introduction,above=references}{ % This block's bottom aligns with the bottom of the conclusion block
-
-}
-
-%----------------------------------------------------------------------------------------
-%	CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-\headerbox{$^\dag$Contact Information}{name=contact,column=1,above=bottom}{ % This block is as tall as the references block
-
-\begin{description}\compresslist
-\item[Web] www.wpi.edu/$\sim$shaun
-\item[Email] shaun@wpi.edu
-\item[Phone] 
-\end{description}
+\begin{itemize}[leftmargin=*]\compresslist
+\item {\fontsize{15}{18}\selectfont Protons offer increasingly popular radiation therapy alternative via localized dose distribution}
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.75\linewidth]{figures/BraggPeak.png}
+\captionof{figure}{Bragg Peak behavior of proton beam dosimetry.  Wikimedia File:BraggPeak.png.}
+\end{center}
+\begin{itemize}[leftmargin=*]\compresslist
+\item {\fontsize{15}{18}\selectfont Calibration methods lack precision, esp. for pencil-beam scanning}
+\item {\fontsize{15}{18}\selectfont Seek feasible (vacuumless, chamberless) solution for mid-range energies}
+\item {\fontsize{15}{18}\selectfont Modeled after PMFC\cite{Gottschalk:1993,Gottschalk:2009}}
+\end{itemize}
+\begin{center}
+\includegraphics[width=0.75\linewidth]{figures/HIT_setup.png}
+\captionof{figure}{Experimental beamline at Heidelberg Institute of Technology}
+\end{center}
 }
 
 %----------------------------------------------------------------------------------------
 %	MONTE CARLO SIMULATION
 %----------------------------------------------------------------------------------------
 
-\headerbox{Monte Carlo Simulation}{name=montecarlosimulation,column=1,row=0,aligned=introduction,above=contact}{
+\headerbox{Monte Carlo Simulation}{name=montecarlosimulation,column=1,row=0,aligned=introduction,above=bottom}{
 
-\textbf{Geant4 10.1-patch01}
-\begin{itemize}
-\item \emph{Run} beam energy for $N$ \emph{Events}
-\item For each particle \emph{Track} i per Event j, tally net signal gain
+{\fontsize{15}{18}\selectfont \textbf{Geant4 10.1-patch01}}
+\begin{itemize}[leftmargin=*]\compresslist
+\item {\fontsize{15}{18}\selectfont For each particle \emph{Track} i per Event j of N, tally net gain}
   $$ g_{ij} = \left\{\begin{array}{ll}
-                  q_ie^{-1}, & \text{if } q_i \rightarrow Cu \\
-                  q_id_{\%}e^{-1}, & \text{if } q_i \rightarrow KA(d_{\%}) \\
-                  -q_ie^{-1}, & \text{if } Cu \rightarrow q_i \\
-                  -q_id_{\%}e^{-1}, & \text{if } KA(d_{\%}) \rightarrow q_i
+                  +q_i(Ne)^{-1}, & \text{if } q_i \rightarrow Cu \\
+                  -q_i(Ne)^{-1}, & \text{if } q_i \leftarrow Cu \\
+                  +q_id_\%(Ne)^{-1}, & \text{if } q_i \rightarrow KA(d_\%) \\
+                  -q_id_\%(Ne)^{-1}, & \text{if } q_i \leftarrow KA(d_\%) \\
                   \end{array}\right.
   $$
-\item Charge defect $ = 1 - N^{-1} \sum_j^N \sum_i g_{ij} $
+\item {\fontsize{15}{18}\selectfont Charge defect} $\ = \sum_j^N \sum_i g_{ij} - 1$
 \end{itemize}
 
-\textbf{Geometry Construction}
+{\fontsize{15}{18}\selectfont \textbf{Geometry Construction}}
 
 \begin{table}[H]
   \centering
-  \caption{Geant4 simulation cylindrical construction; all model combinations iterated in both air and vaccuum}
+  \caption{Cylindrical definitions in Geant4's\\DetectorConstruction.cc in both air/vaccuum}
   \begin{tabular}{ccc}
     \toprule
     Volume  & Radius (mm) & Height (mm) \\
@@ -151,79 +126,76 @@ Bragg peak behavior of proton dosimetry, popular therapeutic technique, pencil b
   \end{tabular}
 \end{table}
 
-\textbf{Parameters}
-\begin{itemize}
-\item FTFP-BERT2.0 Physics List
-\item N = 1e9 protons
-\item Energy range: 70 - 250 MeV
-\item Step cutoff: 5 $\mu$m ($\sim$150 keV in Cu)
+{\fontsize{15}{18}\selectfont \textbf{Parameters}}
+\begin{itemize}[leftmargin=*]\compresslist
+\item {\fontsize{15}{18}\selectfont FTFP-BERT2.0 Physics List}
+\item {\fontsize{15}{18}\selectfont Energy range: 70 - 250 MeV}
+\item {\fontsize{15}{19}\selectfont Gaussian beam with HIT FWHM measurements}
+\item {\fontsize{15}{18}\selectfont Particle production\\cutoff: 5 $\mu$m}
 \end{itemize}
-
 }
 
 %----------------------------------------------------------------------------------------
 %       SIMULATION RESULTS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Simulation Results}{name=simulationresults,column=2,span=2,row=0}{
-
-\begin{multicols}{2}
-\vspace{1em}
-\begin{center}
-\includegraphics[width=0.8\linewidth]{placeholder}
-\captionof{figure}{Figure caption}
-\end{center}
-
-Donec et dui non massa tristique adipiscing.
-\end{multicols}
-
-%------------------------------------------------
-
-\begin{multicols}{2}
-Quisque vestibulum eros eu.
+\headerbox{Simulation Results}{name=simulationresults,column=2,row=0,aligned=introduction,above=bottom}{
 
 \begin{center}
-\includegraphics[width=0.8\linewidth]{placeholder}
-\captionof{figure}{Figure caption}
+\includegraphics[width=0.77\linewidth]{figures/G4_gain.png}
+\captionof{figure}{G4 gain output.  Kapton thickness proportionately negatively contributes; Ag ground layer suppresses Kapton behavior}
 \end{center}
 
-\end{multicols}
+\begin{center}
+\includegraphics[width=0.77\linewidth]{figures/G4_gainCu_160MeV.png}
+\captionof{figure}{G4 gain distribution map.  Electrons / ions straggle behind beam; inteface condition dependent upon energy (not shown).}
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.77\linewidth]{figures/G4_HIT_error.png}
+\captionof{figure}{Percent error contours between simulation and experiment gain measurement}
+\end{center}
 }
 
 %----------------------------------------------------------------------------------------
 %	Conclusions
 %----------------------------------------------------------------------------------------
 
-\headerbox{Conclusions}{name=conclusions,column=2,span=2,above=bottom,aligned=references}{ % This block is as tall as the references block
+\headerbox{Discussion}{name=conclusions,column=3,row=0,aligned=introduction}{
 
-\begin{multicols}{2}
-Donec tincidunt, nunc in feugiat varius, lectus lectus auctor lorem, egestas molestie risus erat ut nibh.
-
-Quisque id dui sed ante sollicitudin sagittis.
-\end{multicols}
-}
-
-%----------------------------------------------------------------------------------------
-%	EXPERIMENTAL RESULTS
-%----------------------------------------------------------------------------------------
-
-\headerbox{Experimental Results}{name=experimentalresults,column=2,span=2,below=simulationresults,above=conclusions}{
-
-\begin{multicols}{2}
-
-\begin{itemize}\compresslist
-\item Nunc at convallis urna. isus ante. Pellentesque condimentum dui. Etiam sagittis purus non tellus tempor volutpat. Donec et dui non massa tristique adipiscing.
+\begin{itemize}[leftmargin=*]
+\item {\fontsize{15}{18}\selectfont Optimal cup height, radius determined by coarse-grain MCNP6 model}
+\item {\fontsize{15}{18}\selectfont Deposition close to Cu\\interface (low E) results in greater backscatter}
+\item {\fontsize{15}{18}\selectfont -Ag/KA models acquire $\sim$0\% charge defect at\\finite Kapton thickness for various energies}
+\item {\fontsize{15}{18}\selectfont \lq\lq Tertiary" electrons from (p,NpMn) reactions contribute non-linearly}
 \end{itemize}
-
-\begin{center}
-\includegraphics[width=0.8\linewidth]{placeholder}
-\captionof{figure}{Figure caption}
-\end{center}
-
-\vspace{10em}
-
-\end{multicols}
 }
+
+%----------------------------------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------------------------------
+
+\headerbox{$^\dag$Contact Information}{name=contact,column=3,above=bottom}{
+
+\begin{description}\compresslist
+\item[Web] www.wpi.edu/$\sim$shaun
+\item[Email] shaun@wpi.edu
+\item[Phone] 
+\end{description}
+}
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+
+\headerbox{References}{name=references,column=3,above=contact,below=conclusions}{
+
+\renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
+\nocite{*} % Insert publications even if they are not cited in the poster
+\small{ % Reduce the font size in this block
+\bibliographystyle{unsrt}
+\bibliography{refs} % Use refs.bib as the bibliography file
+}}
 
 \end{poster}
 
