@@ -44,7 +44,7 @@
         // Acquire Deposition Histogram Trees
         h2 = (TH2F*) f->Get((const char*)depHistoName);
 
-        // Format and output figure A
+        // Format and output distribution
         sprintf(figTitle, "%c %s distribution at %d MeV", particleName[particle_i], volumeName[volume_i], runEnergy[energy_i]);
         h2->SetTitle((const char*)figTitle);
         h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
@@ -61,4 +61,62 @@
       }
     }
   }
+
+  // Create charge/energy deposition figures
+  for ( int volume_i = 0; volume_i < 2; volume_i++ ) {
+
+  // Create volume directories
+  sprintf(syscmd, "mkdir -p depHistos/gain%s/", volumeName[volume_i]);
+  system((const char*)syscmd);
+  sprintf(syscmd, "mkdir -p depHistos/energy%s/", volumeName[volume_i]);
+  system((const char*)syscmd);
+
+  for ( int energy_i = 0; energy_i < 7; energy_i++ ) {
+
+    // Set data file
+    sprintf(depHistoFileName, "trackData-%d.root", energy_i);
+    TFile f((const char*)depHistoFileName);
+
+    // Define Tree names
+    sprintf(depHistoName, "gainDepHisto%s", volumeName[volume_i]);
+
+    // Acquire Deposition Histogram Trees
+    h2 = (TH2F*) f->Get((const char*)depHistoName);
+
+    // Format and output gain distribution
+    sprintf(figTitle, "%s gain distribution at %d MeV", volumeName[volume_i], runEnergy[energy_i]);
+    h2->SetTitle((const char*)figTitle);
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data
+    histoCanvas->Modified();
+    histoCanvas->Update();
+
+    // Define output filename and save as png
+    sprintf(pngName, "depHistos/gain%s/%dMeV.png", volumeName[volume_i], runEnergy[energy_i]);
+    histoCanvas->Print((const char*)pngName);
+
+    // Define Tree names
+    sprintf(depHistoName, "energyDepHisto%s", volumeName[volume_i]);
+
+    // Acquire Deposition Histogram Trees
+    h2 = (TH2F*) f->Get((const char*)depHistoName);
+
+    // Format and output energy distribution
+    sprintf(figTitle, "%s energy distribution at %d MeV", volumeName[volume_i], runEnergy[energy_i]);
+    h2->SetTitle((const char*)figTitle);
+    h2->GetXaxis()->SetTitle("depth_percentile (z-axis)");
+    h2->GetYaxis()->SetTitle("depth_percentile (r-axis)");
+    h2->Draw("COLZ");
+
+    // Update canvas data
+    histoCanvas->Modified();
+    histoCanvas->Update();
+
+    // Define output filename and save as png
+    sprintf(pngName, "depHistos/energy%s/%dMeV.png", volumeName[volume_i], runEnergy[energy_i]);
+    histoCanvas->Print((const char*)pngName);
+  }}
 }
