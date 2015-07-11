@@ -49,6 +49,7 @@ set(FaradayCup_SCRIPTS
   icons.mac
   gui.mac
   run.png
+  run_vis.mac
   init.mac
   init_vis.mac
   vis.mac

@@ -54,6 +54,13 @@ RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
 
+#ifdef G4VIS_USE
+#else
+  // Acquire and create model's analysis directory
+  G4String data_dir = simulationAnalysis->GetAnalysisDIR();
+  G4String syscmd = "mkdir -p " + data_dir; system(syscmd);
+#endif
+
   // Acquire runID, and declare vars
   G4int runID = run->GetRunID();
   G4String trackDataFileName; std::ostringstream trackDataFileNameStream;
@@ -64,13 +71,13 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
   simulationAnalysis->SetRunID(runID);
 
-  // Acquire and create model's analysis directory
-  G4String data_dir = simulationAnalysis->GetAnalysisDIR();
-  G4String syscmd = "mkdir -p " + data_dir; system(syscmd);
-  
   // Open simulation data file for writing
   G4int nEnergies = simulationAnalysis->GetNEnergies();
+#ifdef G4VIS_USE
+  trackDataFileNameStream << "trackData";
+#else
   trackDataFileNameStream << data_dir << "trackData-" << runID%nEnergies;
+#endif
   trackDataFileName = trackDataFileNameStream.str();
   analysisManager->SetFileName(trackDataFileName);
   analysisManager->OpenFile();
