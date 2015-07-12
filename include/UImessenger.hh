@@ -6,8 +6,8 @@
 
 class DetectorConstruction;
 class G4UIdirectory;
-class G4UIcmdWithAString;
-class G4UIcmdWithADoubleAndUnit;
+class G4UIcmdWithAnInteger;
+class G4UIcmdWithADouble;
 
 class UImessenger: public G4UImessenger {
 
@@ -23,7 +23,8 @@ class UImessenger: public G4UImessenger {
 
     // Create cmd and cmdDir objects
     G4UIdirectory*           fPFCDirectory;
-    G4UIcmdWithAString*      fStringCmd;
+    G4UIcmdWithAnInteger*      fModelCmd;
+    G4UIcmdWithADouble*      fKaptonCmd;
 };
 
 #endif

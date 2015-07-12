@@ -20,12 +20,17 @@
 /gui/addButton gun "neutron" "/gun/particle neutron"
 /gui/addButton gun "e-"      "/gun/particle e-"
 #
-# Vis menu :
-/gui/addMenu vis Vis
-/gui/addButton vis DAWNFILE  "/control/execute visTutor/exN03Vis0.mac"
-/gui/addButton vis OpenInventor "/control/execute visTutor/exN03Vis5.mac"
-/gui/addButton vis TimeSlicing "/control/execute visTutor/exN03Vis12.mac"
-/gui/addButton vis EmShower "/control/execute visTutor/exN03Vis13.mac"
+# Model menu :
+/gui/addMenu model Model
+/gui/addButton model "Cu"  "/PFC/setModel 0"
+/gui/addButton model "Cu_KA" "/PFC/setModel 1" 
+/gui/addButton model "Cu_KA_AgKA" "/PFC/setModel 2"
+#
+# Kapton Thickness menu :
+/gui/addMenu kapthick Insulator
+/gui/addButton kapthick "S59" "/PFC/setKapton 59"
+/gui/addButton kapthick "S100" "/PFC/setKapton 100"
+/gui/addButton kapthick "S200" "/PFC/setKapton 200"
 #
 # Viewer menu :
 /gui/addMenu viewer Viewer
