@@ -1,4 +1,5 @@
 #include "DetectorConstruction.hh"
+#include "UImessenger.hh"
 
 #include "G4Material.hh"
 #include "G4NistManager.hh"
@@ -25,6 +26,9 @@ DetectorConstruction::DetectorConstruction()
  : G4VUserDetectorConstruction(),
    fDetector(0),
    fCheckOverlaps(true) {
+
+     // Instantiate UI messenger
+     fUImessenger = new UImessenger(this);
 	   
      // initialize Kapton thickness
      fKaptonThicknessMM = 0;
