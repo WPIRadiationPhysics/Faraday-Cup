@@ -22,15 +22,15 @@
 #
 # Model menu :
 /gui/addMenu model Model
-/gui/addButton model "Cu"  "/PFC/setModel 0"
-/gui/addButton model "Cu_KA" "/PFC/setModel 1" 
-/gui/addButton model "Cu_KA_AgKA" "/PFC/setModel 2"
+/gui/addButton model "Cu"  "/PFC/setModelNum 0"
+/gui/addButton model "Cu_KA" "/PFC/setModelNum 1" 
+/gui/addButton model "Cu_KA_AgKA" "/PFC/setModelNum 2"
 #
 # Kapton Thickness menu :
 /gui/addMenu kapthick Insulator
-/gui/addButton kapthick "S59" "/PFC/setKapton 59"
-/gui/addButton kapthick "S100" "/PFC/setKapton 100"
-/gui/addButton kapthick "S200" "/PFC/setKapton 200"
+/gui/addButton kapthick "S59" "/PFC/setKaptonThickness 59"
+/gui/addButton kapthick "S100" "/PFC/setKaptonThickness 100"
+/gui/addButton kapthick "S200" "/PFC/setKaptonThickness 200"
 #
 # Viewer menu :
 /gui/addMenu viewer Viewer
