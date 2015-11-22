@@ -92,13 +92,14 @@ int main(int argc,char** argv) {
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
+  // Proton beam
+  UImanager->ApplyCommand("/gun/particle proton");
+
   // Begin simulation
   if ( nEvents > 0 ) {
 
     // 5 micrometer particle track cuts
-    G4String cutCommand = "/run/setCut 0.005 mm";
-    UImanager->ApplyCommand(cutCommand);
-    UImanager->ApplyCommand("/gun/particle proton");
+    UImanager->ApplyCommand("/run/setCut 0.005 mm");   
 	
     // Constant vars, declarations
     G4double KA_thickness[3] = {59, 100, 200}; // microns
@@ -198,39 +199,18 @@ int main(int argc,char** argv) {
 
   } else {
 
-    /*
-    // interactive mode : define UI session
-    G4String cutCommand = "/run/setCut 0.01 mm";
-    UImanager->ApplyCommand(cutCommand);
+    // mm track cuts
+    UImanager->ApplyCommand("/run/setCut 1 mm");
 
-    // Constant vars
-    G4int KA_thickness[3] = {59, 100, 200};
-    G4String data_dir = "data/";
+    // Assign thickness (S59)
+    detConstruction->IterateKaptonThickness(59);
 
-    for ( G4int thickness_i=0; thickness_i<3; thickness_i++ ) {
+    // Assign geometric configuration (+Ag)
+    detConstruction->ModelConfiguration(2);
 
-      // Create data directory and leave thickness flag for SteppingAction
-      std::ostringstream raw_dirCommand;
-      raw_dirCommand << "mkdir -p " << data_dir << "; echo " << thickness_i << " > " << data_dir << ".flag";
-      G4String dirCommand = raw_dirCommand.str();
-      system(dirCommand);
-	  
-      // Run experimental beam energies
-      G4String command = "/control/execute ";
-      UImanager->ApplyCommand(command+macroFile);
-
-      // Remove run logs (to be placed in RunAction when confirmed single
-      // worker thread to be in control of file I/O)
-      G4String runRm = "rm " + data_dir + "run*";
-      system(runRm);
-	  
-      // Save completed dataset as film iteration
-      std::ostringstream raw_film_file; raw_film_file << "S" << KA_thickness[thickness_i] << "_gain.txt";
-      G4String film_file = raw_film_file.str();
-      G4String filmcmd = "mv " + data_dir + "gain.txt " + data_dir + film_file;
-      system(filmcmd);
-    }
-    */
+    // Set run energy and beam width
+    simulationAnalysis->SetRunEnergy(160.09);
+    simulationAnalysis->SetRunBeamFWHM(10.6);
 
     // Initialize visualizer and gui macros
 #ifdef G4UI_USE

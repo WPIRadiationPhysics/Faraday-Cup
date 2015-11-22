@@ -13,21 +13,24 @@
 #
 # Gun menu :
 /gui/addMenu gun Gun
-/gui/addButton gun "50 MeV"  "/gun/energy 50 MeV"
-/gui/addButton gun "1 GeV"   "/gun/energy 1 GeV"
-/gui/addButton gun "10 GeV"  "/gun/energy 10 GeV"
-/gui/addButton gun "e-"      "/gun/particle e-"
-/gui/addButton gun "pi0"     "/gun/particle pi0"
-/gui/addButton gun "pi+"     "/gun/particle pi+"
-/gui/addButton gun "neutron" "/gun/particle neutron"
+/gui/addButton gun "70 MeV"  "/gun/energy 70 MeV"
+/gui/addButton gun "100 MeV"  "/gun/energy 100 MeV"
+/gui/addButton gun "160 MeV"  "/gun/energy 160 MeV"
 /gui/addButton gun "proton"  "/gun/particle proton"
+/gui/addButton gun "neutron" "/gun/particle neutron"
+/gui/addButton gun "e-"      "/gun/particle e-"
 #
-# Vis menu :
-/gui/addMenu vis Vis
-/gui/addButton vis DAWNFILE  "/control/execute visTutor/exN03Vis0.mac"
-/gui/addButton vis OpenInventor "/control/execute visTutor/exN03Vis5.mac"
-/gui/addButton vis TimeSlicing "/control/execute visTutor/exN03Vis12.mac"
-/gui/addButton vis EmShower "/control/execute visTutor/exN03Vis13.mac"
+# Model menu :
+/gui/addMenu model Model
+/gui/addButton model "Cu"  "/PFC/setModelNum 0"
+/gui/addButton model "Cu_KA" "/PFC/setModelNum 1" 
+/gui/addButton model "Cu_KA_AgKA" "/PFC/setModelNum 2"
+#
+# Kapton Thickness menu :
+/gui/addMenu kapthick Insulator
+/gui/addButton kapthick "S59" "/PFC/setKaptonThickness 59"
+/gui/addButton kapthick "S100" "/PFC/setKaptonThickness 100"
+/gui/addButton kapthick "S200" "/PFC/setKaptonThickness 200"
 #
 # Viewer menu :
 /gui/addMenu viewer Viewer
@@ -42,4 +45,4 @@
 /run/printProgress 100
 #
 # User defined icon :
-/gui/addIcon "Run beam on" user_icon "/control/execute run100.mac" run.png 
+/gui/addIcon "Run beam on" user_icon "/run/beamOn 1" run.png 

@@ -1,5 +1,6 @@
 #/bin/bash
 # Macro to print all analytical figures
+# Needs to be updated
 
 if [ ! `ls | grep build` ]; then
   echo "You must build and run the project before you can perform the analyses!"
