@@ -28,7 +28,7 @@ void Analysis::appendGainFile() {
   gainFileStream.open (gainFileName, std::ios::app);
   
   // Print gain output to csv
-  gainFileStream << runEnergy << "," << runGain << G4endl;
+  gainFileStream << runEnergy << ", " << runGain << G4endl;
 }
 
 void Analysis::ntupleizeGainFile() {

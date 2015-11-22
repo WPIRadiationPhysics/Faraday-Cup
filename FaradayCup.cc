@@ -9,7 +9,7 @@
 
 #include "G4UImanager.hh"
 #include "G4UIcommand.hh"
-#include "FTFP_BERT.hh"
+#include "FTFP_BERT_HP.hh"
 #include "Randomize.hh"
 
 #ifdef G4VIS_USE
@@ -31,7 +31,7 @@ namespace {
   }
 }
 
-int main(int argc,char** argv) {
+int main(int argc, char** argv) {
 
   // Declare vars
   G4int nEvents = 0;
@@ -69,11 +69,15 @@ int main(int argc,char** argv) {
   G4RunManager * runManager = new G4RunManager;
 #endif
 
-  // Initialize mandatory classes
+  // Initialize Geometry
   DetectorConstruction* detConstruction = new DetectorConstruction();
   runManager->SetUserInitialization(detConstruction);
-  G4VModularPhysicsList* physicsList = new FTFP_BERT;
+
+  // Initialize Physics List
+  G4VModularPhysicsList* physicsList = new FTFP_BERT_HP;
   runManager->SetUserInitialization(physicsList);
+
+  // Initialize Action
   ActionInitialization* actionInitialization = new ActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
   runManager->Initialize();
@@ -102,7 +106,7 @@ int main(int argc,char** argv) {
     UImanager->ApplyCommand("/run/setCut 0.005 mm");   
 	
     // Constant vars, declarations
-    G4double KA_thickness[3] = {59, 100, 200}; // microns
+    G4double KA_thickness[3] = {50, 100, 200}; // microns
     G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
     G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
     G4int nThicknesses = (int)sizeof(KA_thickness)/sizeof(G4double);
@@ -117,10 +121,14 @@ int main(int argc,char** argv) {
     simulationAnalysis->SetNEnergies(nEnergies);
 
     // Model loop
-    for ( G4int model_i = 0; model_i < 3; model_i++ ) {
+    for ( G4int model_i = 2; model_i < 3; model_i++ ) {
 
       // Assign geometric configuration
       detConstruction->ModelConfiguration(model_i);
+
+      // Create Model data directory
+      data_dirStream.str(""); data_dirStream << "mkdir -p data/model" << model_i;
+      data_dir = data_dirStream.str(); system(data_dir);
 
       // Unsheathed Cu primary model
       if ( model_i == 0 ) {
@@ -130,8 +138,7 @@ int main(int argc,char** argv) {
           simulationAnalysis->nullExperiments();
 
           // Set data directory
-          data_dir = "data/model0/";
-          simulationAnalysis->SetAnalysisDIR(data_dir);
+          simulationAnalysis->SetAnalysisDIR("data/model0/");
 
           // Set run energy and beam width
           simulationAnalysis->SetRunEnergy(energies[energy_i]);
@@ -145,8 +152,8 @@ int main(int argc,char** argv) {
 
           // Perform Analyses
           simulationAnalysis->appendGainFile();
-          simulationAnalysis->analyzeCascade();
-          simulationAnalysis->analyzeBranchingRatiosPN();
+          //simulationAnalysis->analyzeCascade();
+          //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);
@@ -169,9 +176,10 @@ int main(int argc,char** argv) {
           // Reference KA thickness for calculations
           simulationAnalysis->SetRunKAThickness(KA_thickness[KA_i]);
 
-          // Set data directory
+          // Set subdata directory
           data_dirStream.str(""); data_dirStream << "data/model" << model_i << "/S" << KA_thickness[KA_i] << "/";
-          data_dir = data_dirStream.str(); simulationAnalysis->SetAnalysisDIR(data_dir);
+          data_dir = data_dirStream.str(); syscmd = "mkdir -p " + data_dir; system(syscmd);
+          simulationAnalysis->SetAnalysisDIR(data_dir);
 
           // Set run energy and beam width
           simulationAnalysis->SetRunEnergy(energies[energy_i]);
@@ -185,8 +193,8 @@ int main(int argc,char** argv) {
 
           // Perform Analyses
           simulationAnalysis->appendGainFile();
-          simulationAnalysis->analyzeCascade();
-          simulationAnalysis->analyzeBranchingRatiosPN();
+          //simulationAnalysis->analyzeCascade();
+          //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
           syscmd = "cp plotGain.C " + data_dir; system(syscmd);

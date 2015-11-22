@@ -46,6 +46,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
   // Acquire analysis instance
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  G4int histoID;
+
+  // Acquire beam charge
+  G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
 
   // Get name of volume at step location
   G4String volumeName = step->GetTrack()->GetVolume()->GetName();
@@ -54,10 +59,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
   G4double t_KA = KA_thickness/1000;
 
-  // Get step position
+  // Get particle name, position, charge
+  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
   G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
+  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
+/*
   //// Branching ratios analysis data
   // Gottschalk's active sheet range (R = 0.484 g/cm2 = 8.96*t_Cu + 1.42*t_KA) with [t]=cm
   G4double t_Cu = 10*(0.484 - (1.42*t_KA/10))/8.96; // in mm
@@ -92,22 +100,18 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       simulationAnalysis->appendEventBranchingPN(stepNumBranchProtons, stepNumBranchNeutrons, workerID);
     }
   }}
+*/
 
+/*
   //// Energy deposition histo and cascade analysis data
-  // Declare vars
-  G4int histoID;
 
   // Get seed num (look into this, gives error)
   //G4cout << G4RunManager::GetRunManager()->GetCurrentEvent()->GetRandomNumberStatus() << G4endl;
 
-  // Get particle charge
-  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
-
   // Get Energy deposition
   G4double eDep = step->GetTotalEnergyDeposit();
 
-  // Get particle name and type
-  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
+  // Get particle type
   G4int stepParticleType = 99;
   if ( stepParticle == "e-" ) { stepParticleType = 0; }
   if ( stepParticle == "proton" ) { stepParticleType = 1; }
@@ -119,10 +123,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4ThreeVector stepPxPyPz = step->GetTrack()->GetMomentum();
   G4double stepPx = stepPxPyPz[0], stepPy = stepPxPyPz[1], stepPz = stepPxPyPz[2];
 
-  // Acquire beamCharge, energy and analysis manager
-  G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
+  // Acquire beam energy
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Fill histos for nonzero momenta; separated statements to disclude stationary uncharged secondary processes
   if ( stepParticleType != 99 ) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) { if ( volumeName != "World" ) {
@@ -171,12 +173,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     //analysisManager->FillNtupleDColumn(0, 4, eDepZ/beamCharge);
     //analysisManager->AddNtupleRow(0);
   }}}
+*/
 
   //// Particle energy spectra analysis data
   // If initial step of non-primary track
   if ( step->GetTrack()->GetCurrentStepNumber() == 1 && step->GetTrack()->GetParentID() != 0 ) {
 
-    // Obtain and fill respective spectra histogram with kinetic energy
+  // Obtain and fill respective spectra histogram with kinetic energy
     G4double stepKE = step->GetTrack()->GetKineticEnergy();
     if ( stepKE != 0 ) {
       if ( stepParticle == "e-" )
@@ -225,9 +228,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     stepZCuDepth = (stepZ + half_Cu)/h_Cu;
     netSignal += stepCharge;
 
+/*
     // Fill energy gain deposition Histo
     histoID = analysisManager->GetH2Id("energyDepHistoCu");
     analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, eDep/(beamCharge*runEnergy));
+*/
    }
         
   // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
@@ -243,9 +248,11 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
     netSignal += stepCharge*trackDepth;
 
+/*
     // Fill energy gain deposition Histo
     histoID = analysisManager->GetH2Id("energyDepHistoKA");
     analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, eDep/(beamCharge*runEnergy));
+*/
   }
 
   // If end of track
@@ -278,6 +285,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // Append analysis gain
     simulationAnalysis->appendRunGain(netSignal/beamCharge);
 
+/*
     // If charge particle or neutron/gamma track is relevant to analysis
     if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
 
@@ -318,5 +326,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("oDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
     }
+*/
   }
 }

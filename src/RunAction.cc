@@ -25,6 +25,7 @@ RunAction::RunAction() : G4UserRunAction() {
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
+/*
   // Create percentile particle deposition histograms
   analysisManager->CreateH2("eDepHistoCu", "eDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pDepHistoCu", "pDepHistoCu", 100, 0., 1., 100, 0., 1.);
@@ -41,6 +42,7 @@ RunAction::RunAction() : G4UserRunAction() {
   analysisManager->CreateH2("gainDepHistoKA", "gainDepHistoKA", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("energyDepHistoCu", "energyDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("energyDepHistoKA", "energyDepHistoKA", 100, 0., 1., 100, 0., 1.);
+*/
 
   // Create particle energy Spectra histograms
   analysisManager->CreateH1("eSpectra", "eSpectra", 100, 0., 1*MeV);
@@ -54,13 +56,6 @@ RunAction::~RunAction() { delete G4AnalysisManager::Instance(); }
 
 void RunAction::BeginOfRunAction(const G4Run* run) {
 
-#ifdef G4VIS_USE
-#else
-  // Acquire and create model's analysis directory
-  G4String data_dir = simulationAnalysis->GetAnalysisDIR();
-  G4String syscmd = "mkdir -p " + data_dir; system(syscmd);
-#endif
-
   // Acquire runID, and declare vars
   G4int runID = run->GetRunID();
   G4String trackDataFileName; std::ostringstream trackDataFileNameStream;
@@ -69,13 +64,14 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
+  G4int nEnergies = simulationAnalysis->GetNEnergies();
   simulationAnalysis->SetRunID(runID);
 
-  // Open simulation data file for writing
-  G4int nEnergies = simulationAnalysis->GetNEnergies();
+  // Acquire and create model's analysis directory
 #ifdef G4VIS_USE
   trackDataFileNameStream << "trackData";
 #else
+  G4String data_dir = simulationAnalysis->GetAnalysisDIR();
   trackDataFileNameStream << data_dir << "trackData-" << runID%nEnergies;
 #endif
   trackDataFileName = trackDataFileNameStream.str();
