@@ -3,7 +3,7 @@
 
 # Number of cores/events (latter as power of 10)
 nThreads=4
-nEvents=1000
+nEvents=100000
 
 # Test for Geant4 libraries
 if [ "$G4COMP" == "" ]; then

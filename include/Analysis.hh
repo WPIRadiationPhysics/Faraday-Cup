@@ -43,8 +43,13 @@ class Analysis {
 
       analysisDIR = "data";
       runKA_thickness = 0;
-
       runGain = 0;
+
+      for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
+      for ( G4int ngainr = 0; ngainr < 100; ngainr++ ) {
+        gainprofilecu[ngainz][ngainr] = 0;
+      }}
+
       for ( G4int npro = 0; npro < 7; npro++ ) {
       for ( G4int nneu = 0; nneu < 7; nneu++ ) {
         runBranchingPN[npro][nneu] = 0; }}
@@ -58,9 +63,12 @@ class Analysis {
       }}
     }
 
-    // Append/Recall energy and gain measurement
+    // Append/Recall gain measurement
     void appendRunGain(G4double trackSignal) { runGain += trackSignal; }
     G4double recallRunGain() { return runGain; }
+
+    // Append Cu gain profile values
+    void appendGainProfile(G4double gainz, G4double gainr, G4double signal) { gainprofilecu[(G4int)floor(gainz)][(G4int)floor(gainr)] += signal; }
 
     // Append/Recall Energy Deposition data
     void appendECascade(G4int binr, G4int binz, G4double e_r, G4double e_z) { eE_r[binr][binz] += e_r, eE_z[binr][binz] += e_z; }
@@ -97,6 +105,7 @@ class Analysis {
 
     // Analysis methods
     virtual void appendGainFile();
+    virtual void writeProfileFile(G4int energyi);
     virtual void ntupleizeGainFile();
     virtual void analyzeCascade();
     virtual void analyzeBranchingRatiosPN();
@@ -114,7 +123,10 @@ class Analysis {
     G4int eventProtons[4], eventNeutrons[4]; // 4 core threading vars
     G4int runBranchingPN[7][7]; // 0, 1, 2, 3, 4, 5, >5 foreach
 
-    // Energy Deposition directional data
+    // Cu gain profile
+    G4double gainprofilecu[100][100]; // 100x100 bins z vs r
+
+    // Energy deposition directional data
     G4double eE_r[100][100], eE_z[100][100],
              pE_r[100][100], pE_z[100][100],
              oE_r[100][100], oE_z[100][100],

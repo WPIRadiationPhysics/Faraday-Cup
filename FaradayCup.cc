@@ -168,7 +168,7 @@ int main(int argc, char** argv) {
         // Assign thickness
         detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
 
-        for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+        for ( G4int energy_i = 0; energy_i < 1; energy_i++ ) { // (nEnergies)
 
           // Nullify experiments
           simulationAnalysis->nullExperiments();
@@ -193,6 +193,7 @@ int main(int argc, char** argv) {
 
           // Perform Analyses
           simulationAnalysis->appendGainFile();
+          simulationAnalysis->writeProfileFile(energy_i);
           //simulationAnalysis->analyzeCascade();
           //simulationAnalysis->analyzeBranchingRatiosPN();
 

@@ -293,13 +293,15 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       G4double W_binCu = M_PI*(pow(floor(stepRCuDepth*100)+1, 2) - pow(floor(stepRCuDepth*100), 2));
       G4double W_binKA = M_PI*(pow(floor(stepRKADepth*100)+1, 2) - pow(floor(stepRKADepth*100), 2));
 
-      // Fill gain deposition Histo
+      // Fill gain profile 2D Histogram and var
       if ( stepCharge != 0 && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu); }
+          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu);
+          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), (stepCharge/beamCharge)/W_binCu); }
       if ( stepCharge != 0 && volumeNameVertex == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -(stepCharge/beamCharge)/W_binCu); }
+          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -(stepCharge/beamCharge)/W_binCu);
+          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), -(stepCharge/beamCharge)/W_binCu); }
       if ( stepCharge != 0 && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("gainDepHistoKA");
           analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, (stepCharge/beamCharge)/W_binKA); }

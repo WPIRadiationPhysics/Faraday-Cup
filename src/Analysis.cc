@@ -17,10 +17,13 @@ Analysis::~Analysis() {}
 
 void Analysis::appendGainFile() {
 
+  // Create csv directory if necessary
+  G4String csvDIRcmd = "mkdir -p " + analysisDIR + "csv"; system(csvDIRcmd);
+
   // Acquire gain filename
   std::ostringstream gainFileNameStream;
   G4String gainFileName;
-  gainFileNameStream << analysisDIR << "modelGain.csv";
+  gainFileNameStream << analysisDIR << "csv/modelGain.csv";
   gainFileName = gainFileNameStream.str();
 
   // Open gain output file
@@ -29,6 +32,33 @@ void Analysis::appendGainFile() {
   
   // Print gain output to csv
   gainFileStream << runEnergy << ", " << runGain << G4endl;
+}
+
+void Analysis::writeProfileFile(G4int energy_i) {
+
+  // Create csv directory if necessary
+  G4String csvDIRcmd = "mkdir -p " + analysisDIR + "csv"; system(csvDIRcmd);
+
+  // Acquire gain profile filename
+  std::ostringstream gainProfileFileNameStream;
+  G4String gainProfileFileName;
+  gainProfileFileNameStream << analysisDIR << "csv/gainProfile-" << energy_i << ".csv";
+  gainProfileFileName = gainProfileFileNameStream.str();
+
+  // Open gain profile output file
+  std::ofstream gainProfileFileStream;
+  gainProfileFileStream.open (gainProfileFileName, std::ios::app);
+  
+  // Print gain profile values to csv
+  for ( G4int ngainr = 0; ngainr < 100; ngainr++ ) {
+    for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
+      gainProfileFileStream << gainprofilecu[ngainz][99-ngainr] << ", "; // (99-ngainr) for vertical graphical mapping
+    }
+    gainProfileFileStream << G4endl;
+  }
+
+  // Copy Ocatave profile plotting script
+  G4String scriptCPYcmd = "cp plotGainProfileHisto.m " + analysisDIR; system(scriptCPYcmd);
 }
 
 void Analysis::ntupleizeGainFile() {

@@ -68,15 +68,16 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4int nEnergies = simulationAnalysis->GetNEnergies();
   simulationAnalysis->SetRunID(runID);
 
-  // Acquire analysis directory
+  // Acquire ROOT analysis directory, create if necessary
   trackDataFileNameStream.str("");
   G4String data_dir = simulationAnalysis->GetAnalysisDIR();
-  trackDataFileNameStream << data_dir << "trackData";
-
-  // If batch-mode
-  if ( data_dir != "" ) { trackDataFileNameStream << "-" << runID%nEnergies; }
+  G4String rootDIRcmd = "mkdir -p " + data_dir + "ROOT";
+  system(rootDIRcmd);
 
   // Create analysis file
+  trackDataFileNameStream << data_dir << "ROOT/trackData";
+    // Run ID specific name in batch-mode
+    if ( data_dir != "" ) { trackDataFileNameStream << "-" << runID%nEnergies; }
   trackDataFileName = trackDataFileNameStream.str();
   analysisManager->SetFileName(trackDataFileName);
   analysisManager->OpenFile();
