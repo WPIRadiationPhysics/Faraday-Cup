@@ -121,7 +121,7 @@ int main(int argc, char** argv) {
     simulationAnalysis->SetNEnergies(nEnergies);
 
     // Model loop
-    for ( G4int model_i = 2; model_i < 3; model_i++ ) {
+    for ( G4int model_i = 2; model_i < 3; model_i++ ) { // Single-model
 
       // Assign geometric configuration
       detConstruction->ModelConfiguration(model_i);

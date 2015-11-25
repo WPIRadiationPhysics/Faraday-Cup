@@ -65,7 +65,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
-/*
+/* 2015-11-15 Suppress analyses and extra models
   //// Branching ratios analysis data
   // Gottschalk's active sheet range (R = 0.484 g/cm2 = 8.96*t_Cu + 1.42*t_KA) with [t]=cm
   G4double t_Cu = 10*(0.484 - (1.42*t_KA/10))/8.96; // in mm
@@ -102,7 +102,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   }}
 */
 
-/*
+/* 2015-11-15 Suppress analyses and extra models
   //// Energy deposition histo and cascade analysis data
 
   // Get seed num (look into this, gives error)
@@ -228,7 +228,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     stepZCuDepth = (stepZ + half_Cu)/h_Cu;
     netSignal += stepCharge;
 
-/*
+/* 2015-11-15 Suppress analyses and extra models
     // Fill energy gain deposition Histo
     histoID = analysisManager->GetH2Id("energyDepHistoCu");
     analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, eDep/(beamCharge*runEnergy));
@@ -248,7 +248,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
     netSignal += stepCharge*trackDepth;
 
-/*
+/* 2015-11-15 Suppress analyses and extra models
     // Fill energy gain deposition Histo
     histoID = analysisManager->GetH2Id("energyDepHistoKA");
     analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, eDep/(beamCharge*runEnergy));
@@ -285,47 +285,52 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // Append analysis gain
     simulationAnalysis->appendRunGain(netSignal/beamCharge);
 
-/*
     // If charge particle or neutron/gamma track is relevant to analysis
-    if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
+    //if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
+    if ( stepCharge != 0 ) {
+
+      // Azimuthal symmetry bin weighting factor // pi*(r_f^2 - r_i)^2
+      G4double W_binCu = M_PI*(pow(floor(stepRCuDepth*100)+1, 2) - pow(floor(stepRCuDepth*100), 2));
+      G4double W_binKA = M_PI*(pow(floor(stepRKADepth*100)+1, 2) - pow(floor(stepRKADepth*100), 2));
 
       // Fill gain deposition Histo
       if ( stepCharge != 0 && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, stepCharge/beamCharge); }
+          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu); }
       if ( stepCharge != 0 && volumeNameVertex == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -1*stepCharge/beamCharge); }
+          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -(stepCharge/beamCharge)/W_binCu); }
       if ( stepCharge != 0 && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("gainDepHistoKA");
-          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, stepCharge/beamCharge); }
+          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, (stepCharge/beamCharge)/W_binKA); }
       if ( stepCharge != 0 && volumeNameVertex == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("gainDepHistoKA");
-          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, -1*stepCharge/beamCharge); }
+          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, -(stepCharge/beamCharge)/W_binKA); }
 
-
+/* 2015-11-15 Suppress analyses and extra models
       // Copper/Kapton 2D Deposition Histogram
       if ( stepParticle == "e-" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("eDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "e-" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("eDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "proton" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("pDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "proton" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("pDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "neutron" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("nDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "neutron" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("nDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "gamma" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "gamma" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("gDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("oDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
+
+      else if ( stepParticle == "e-" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("eDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "proton" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("pDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "neutron" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("nDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "gamma" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("gDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("oDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
-    }
 */
+    }
   }
 }

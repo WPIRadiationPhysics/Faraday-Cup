@@ -25,7 +25,13 @@ RunAction::RunAction() : G4UserRunAction() {
   // Acquire analysis manager
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
-/*
+  // Create percentile net gain and energy histograms
+  analysisManager->CreateH2("gainDepHistoCu", "gainDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gainDepHistoKA", "gainDepHistoKA", 100, 0., 1., 100, 0., 1.);
+/* 2015-11-15 Suppress analyses and extra models
+  analysisManager->CreateH2("energyDepHistoCu", "energyDepHistoCu", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("energyDepHistoKA", "energyDepHistoKA", 100, 0., 1., 100, 0., 1.);
+
   // Create percentile particle deposition histograms
   analysisManager->CreateH2("eDepHistoCu", "eDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("pDepHistoCu", "pDepHistoCu", 100, 0., 1., 100, 0., 1.);
@@ -37,11 +43,6 @@ RunAction::RunAction() : G4UserRunAction() {
   analysisManager->CreateH2("oDepHistoKA", "oDepHistoKA", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("nDepHistoKA", "nDepHistoKA", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("gDepHistoKA", "gDepHistoKA", 100, 0., 1., 100, 0., 1.);
-  // Create percentile particle total gain and energy histograms
-  analysisManager->CreateH2("gainDepHistoCu", "gainDepHistoCu", 100, 0., 1., 100, 0., 1.);
-  analysisManager->CreateH2("gainDepHistoKA", "gainDepHistoKA", 100, 0., 1., 100, 0., 1.);
-  analysisManager->CreateH2("energyDepHistoCu", "energyDepHistoCu", 100, 0., 1., 100, 0., 1.);
-  analysisManager->CreateH2("energyDepHistoKA", "energyDepHistoKA", 100, 0., 1., 100, 0., 1.);
 */
 
   // Create particle energy Spectra histograms
@@ -67,13 +68,15 @@ void RunAction::BeginOfRunAction(const G4Run* run) {
   G4int nEnergies = simulationAnalysis->GetNEnergies();
   simulationAnalysis->SetRunID(runID);
 
-  // Acquire and create model's analysis directory
-#ifdef G4VIS_USE
-  trackDataFileNameStream << "trackData";
-#else
+  // Acquire analysis directory
+  trackDataFileNameStream.str("");
   G4String data_dir = simulationAnalysis->GetAnalysisDIR();
-  trackDataFileNameStream << data_dir << "trackData-" << runID%nEnergies;
-#endif
+  trackDataFileNameStream << data_dir << "trackData";
+
+  // If batch-mode
+  if ( data_dir != "" ) { trackDataFileNameStream << "-" << runID%nEnergies; }
+
+  // Create analysis file
   trackDataFileName = trackDataFileNameStream.str();
   analysisManager->SetFileName(trackDataFileName);
   analysisManager->OpenFile();
