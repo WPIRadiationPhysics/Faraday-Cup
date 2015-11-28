@@ -282,11 +282,15 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       if ( stepCharge != 0 && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
           analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), (stepCharge/beamCharge)/W_binCu); }
+          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), (stepCharge/beamCharge)/W_binCu);
+          simulationAnalysis->appendGainSquareProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), pow((stepCharge/beamCharge)/W_binCu, 2));
+          simulationAnalysis->appendGainEntriesProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100)); }
       if ( stepCharge != 0 && volumeNameVertex == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
           analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -(stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), -(stepCharge/beamCharge)/W_binCu); }
+          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), -(stepCharge/beamCharge)/W_binCu);
+          simulationAnalysis->appendGainSquareProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), pow((stepCharge/beamCharge)/W_binCu, 2));
+          simulationAnalysis->appendGainEntriesProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100)); }
       if ( stepCharge != 0 && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("gainDepHistoKA");
           analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, (stepCharge/beamCharge)/W_binKA); }

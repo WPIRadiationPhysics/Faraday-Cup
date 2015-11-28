@@ -53,10 +53,12 @@ class Analysis {
       // Experiments
       measuregain = false;
 
-      // Profile histogram
+      // Profile gain, gain-square and gain entries histograms
       for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-      for ( G4int ngainr = 0; ngainr < 100; ngainr++ ) {
+      for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
         gainprofilecu[ngainz][ngainr] = 0;
+        gainsquareprofilecu[ngainz][ngainr] = 0;
+        gainentriesprofilecu[ngainz][ngainr] = 0;
       }}
 
       // Branching ratios
@@ -79,8 +81,10 @@ class Analysis {
     void appendRunGain(G4double trackSignal) { runGain += trackSignal; }
     G4double recallRunGain() { return runGain; }
 
-    // Append Cu gain profile values
+    // Append Cu gain, gain-square and gain error profile values
     void appendGainProfile(G4double gainz, G4double gainr, G4double signal) { gainprofilecu[(G4int)floor(gainz)][(G4int)floor(gainr)] += signal; }
+    void appendGainSquareProfile(G4double gainz, G4double gainr, G4double signal) { gainsquareprofilecu[(G4int)floor(gainz)][(G4int)floor(gainr)] += signal; }
+    void appendGainEntriesProfile(G4double gainz, G4double gainr) { gainentriesprofilecu[(G4int)floor(gainz)][(G4int)floor(gainr)]++; }
 
     // Append/Recall Energy Deposition data
     void appendECascade(G4int binr, G4int binz, G4double e_r, G4double e_z) { eE_r[binr][binz] += e_r, eE_z[binr][binz] += e_z; }
@@ -136,8 +140,10 @@ class Analysis {
     G4int eventProtons[4], eventNeutrons[4]; // 4 core threading vars
     G4int runBranchingPN[7][7]; // 0, 1, 2, 3, 4, 5, >5 foreach
 
-    // Cu gain profile
-    G4double gainprofilecu[100][100]; // 100x100 bins z vs r
+    // Cu gain and gain error profile
+    G4double gainprofilecu[100][30], // 100x30 bins z vs r
+             gainsquareprofilecu[100][30],
+             gainentriesprofilecu[100][30];
 
     // Energy deposition directional data
     G4double eE_r[100][100], eE_z[100][100],

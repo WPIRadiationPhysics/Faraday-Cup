@@ -60,15 +60,41 @@ void Analysis::writeProfileFile(G4int energy_i) {
   gainProfileFileStream.open (gainProfileFileName, std::ios::app);
   
   // Print gain profile values to csv
-  for ( G4int ngainr = 0; ngainr < 100; ngainr++ ) {
+  for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
     for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-      gainProfileFileStream << gainprofilecu[ngainz][99-ngainr] << ", "; // (99-ngainr) for vertical graphical mapping
+      gainProfileFileStream << gainprofilecu[ngainz][29-ngainr] << ", "; // (29-ngainr) for vertical graphical mapping
     }
     gainProfileFileStream << G4endl;
   }
 
   // Copy Ocatave profile plotting script
-  G4String scriptCPYcmd = "cp plotGainProfileHisto.m " + analysisDIR; system(scriptCPYcmd);
+  G4String scriptCPYcmd = "cp plotGainErrorProfileHisto.m " + analysisDIR; system(scriptCPYcmd);
+
+  // Acquire gain error profile filename
+  std::ostringstream gainErrorProfileFileNameStream;
+  G4String gainErrorProfileFileName;
+  gainErrorProfileFileNameStream << analysisDIR << "csv/gainErrorProfile-" << energy_i << ".csv";
+  gainErrorProfileFileName = gainErrorProfileFileNameStream.str();
+
+  // Open gain error profile output file
+  std::ofstream gainErrorProfileFileStream;
+  gainErrorProfileFileStream.open (gainErrorProfileFileName, std::ios::app);
+  
+  // Calculate gain error from gain and gain-square averages
+  G4double gainError, gainMeanSquare, gainVariance;
+  for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
+    for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
+
+      // Obtain statistics
+      gainMeanSquare = pow(gainprofilecu[ngainz][ngainr], 2.0);
+      gainVariance = std::abs(gainsquareprofilecu[ngainz][ngainr] - gainMeanSquare)/gainentriesprofilecu[ngainz][ngainr];
+      gainError = pow(gainVariance, 0.5);
+
+      // Print values to csv
+      gainErrorProfileFileStream << gainError << ", ";
+    }
+    gainErrorProfileFileStream << G4endl;
+  }
 }
 
 void Analysis::ntupleizeGainFile() {

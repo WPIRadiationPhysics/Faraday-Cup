@@ -26,8 +26,8 @@ RunAction::RunAction() : G4UserRunAction() {
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Create percentile net gain and energy histograms
-  analysisManager->CreateH2("gainDepHistoCu", "gainDepHistoCu", 100, 0., 1., 100, 0., 1.);
-  analysisManager->CreateH2("gainDepHistoKA", "gainDepHistoKA", 100, 0., 1., 100, 0., 1.);
+  analysisManager->CreateH2("gainDepHistoCu", "gainDepHistoCu", 100, 0., 1., 30, 0., 1.);
+  analysisManager->CreateH2("gainDepHistoKA", "gainDepHistoKA", 100, 0., 1., 31, 0., 1.);
 /* 2015-11-15 Suppress analyses and extra models
   analysisManager->CreateH2("energyDepHistoCu", "energyDepHistoCu", 100, 0., 1., 100, 0., 1.);
   analysisManager->CreateH2("energyDepHistoKA", "energyDepHistoKA", 100, 0., 1., 100, 0., 1.);
