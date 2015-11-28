@@ -15,6 +15,16 @@
 Analysis::Analysis() {}
 Analysis::~Analysis() {}
 
+void Analysis::analyze(G4int energy_i) {
+
+  // Gain measurement output functions
+  if ( measuregain ) {
+
+    appendGainFile();
+    writeProfileFile(energy_i);
+  }
+}
+
 void Analysis::appendGainFile() {
 
   // Create csv directory if necessary

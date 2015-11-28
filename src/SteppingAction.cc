@@ -208,56 +208,42 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // All share common center, half in -z hemispace
   G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
 
-  // Track net signal calculation
+  // Measure Gain
   //
   // Wait for final state and compare original and
   // final positions of charge q
-  G4double netSignal = 0;
+  if ( simulationAnalysis->isMeasureGain() && step->GetTrack()->GetTrackStatus() != fAlive ) {
 
-  // Declare vars
-  G4double trackDepth = 0, trackDepthVertex = 0,
-           stepRCuDepth = 0, stepZCuDepth = 0,
-           stepRKADepth = 0, stepZKADepth = 0,
-           stepRKADepthVertex = 0, stepZKADepthVertex = 0;
+    G4double netSignal = 0;
 
-  // DESTINATION
-  // particle enters copper, +q_i
-  if ( volumeName == "Cu_cyl" ) {
+    // Declare vars
+    G4double trackDepth = 0, trackDepthVertex = 0,
+             stepRCuDepth = 0, stepZCuDepth = 0,
+             stepRKADepth = 0, stepZKADepth = 0,
+             stepRKADepthVertex = 0, stepZKADepthVertex = 0;
 
-    stepRCuDepth = stepR/r_Cu;
-    stepZCuDepth = (stepZ + half_Cu)/h_Cu;
-    netSignal += stepCharge;
-
-/* 2015-11-15 Suppress analyses and extra models
-    // Fill energy gain deposition Histo
-    histoID = analysisManager->GetH2Id("energyDepHistoCu");
-    analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, eDep/(beamCharge*runEnergy));
-*/
-   }
-        
-  // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
-  if ( volumeName == "Kapton_cyl1" ) {
-	
-    // Radial edge of Kapton
-    if ( stepR >= r_Cu ) { stepRKADepth = (stepR - r_Cu)/(r_KA - r_Cu); }
-    // Z edges of Kapton (cylinders are upside-down)
-    if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
-    if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
-    stepRKADepth = stepR/r_KA;
-
-    trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
-    netSignal += stepCharge*trackDepth;
-
-/* 2015-11-15 Suppress analyses and extra models
-    // Fill energy gain deposition Histo
-    histoID = analysisManager->GetH2Id("energyDepHistoKA");
-    analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, eDep/(beamCharge*runEnergy));
-*/
-  }
-
-  // If end of track
-  if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-  
+    // DESTINATION
+    // particle enters copper, +q_i
+    if ( volumeName == "Cu_cyl" ) {
+    //
+      stepRCuDepth = stepR/r_Cu;
+      stepZCuDepth = (stepZ + half_Cu)/h_Cu;
+      netSignal += stepCharge;
+    }
+    //
+    // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
+    if ( volumeName == "Kapton_cyl1" ) {
+      //	
+      // Radial edge of Kapton
+      if ( stepR >= r_Cu ) { stepRKADepth = (stepR - r_Cu)/(r_KA - r_Cu); }
+      // Z edges of Kapton (cylinders are upside-down)
+      if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
+      if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
+      stepRKADepth = stepR/r_KA;
+      trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
+       netSignal += stepCharge*trackDepth;
+    }
+ 
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
@@ -267,17 +253,16 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     // ORIGIN
     // particle exits copper, -q_i
     if ( volumeNameVertex == "Cu_cyl" ) { netSignal -= stepCharge; }
-  
+    //
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
-		
+      //
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { stepRKADepthVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
       // Z edges of Kapton (incoming from -z -> 0)
       if ( stepZVertex <= -half_Cu ) { stepZKADepthVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZVertex >= half_Cu ) { stepZKADepthVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
       stepRKADepthVertex = stepRVertex/r_KA;
-
       trackDepthVertex = 1 - ((stepRKADepthVertex>stepZKADepthVertex)?stepRKADepthVertex:stepZKADepthVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
     }

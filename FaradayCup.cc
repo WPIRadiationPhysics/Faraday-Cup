@@ -134,8 +134,9 @@ int main(int argc, char** argv) {
       if ( model_i == 0 ) {
         for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
 
-          // Nullify experiments
+          // Reset experiments
           simulationAnalysis->nullExperiments();
+          simulationAnalysis->measureGain();
 
           // Set data directory
           simulationAnalysis->SetAnalysisDIR("data/model0/");
@@ -151,7 +152,7 @@ int main(int argc, char** argv) {
           syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
 
           // Perform Analyses
-          simulationAnalysis->appendGainFile();
+          simulationAnalysis->analyze(energy_i);
           //simulationAnalysis->analyzeCascade();
           //simulationAnalysis->analyzeBranchingRatiosPN();
 
@@ -170,8 +171,9 @@ int main(int argc, char** argv) {
 
         for ( G4int energy_i = 0; energy_i < 1; energy_i++ ) { // (nEnergies)
 
-          // Nullify experiments
+          // Reset experiments
           simulationAnalysis->nullExperiments();
+          simulationAnalysis->measureGain();
 
           // Reference KA thickness for calculations
           simulationAnalysis->SetRunKAThickness(KA_thickness[KA_i]);
@@ -192,8 +194,7 @@ int main(int argc, char** argv) {
           syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
 
           // Perform Analyses
-          simulationAnalysis->appendGainFile();
-          simulationAnalysis->writeProfileFile(energy_i);
+          simulationAnalysis->analyze(energy_i);
           //simulationAnalysis->analyzeCascade();
           //simulationAnalysis->analyzeBranchingRatiosPN();
 

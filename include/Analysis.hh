@@ -38,21 +38,33 @@ class Analysis {
     G4String GetAnalysisDIR() { return analysisDIR; }
     void SetAnalysisDIR(G4String analysisdir) { analysisDIR = analysisdir; }
 
+    // Experiment boolean
+    void measureGain() { measuregain = true; }
+    G4bool isMeasureGain() { return measuregain; }
+
     // Nullify experiment parameters
     void nullExperiments() {
 
+      // Run properties
       analysisDIR = "data";
       runKA_thickness = 0;
       runGain = 0;
 
+      // Experiments
+      measuregain = false;
+
+      // Profile histogram
       for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
       for ( G4int ngainr = 0; ngainr < 100; ngainr++ ) {
         gainprofilecu[ngainz][ngainr] = 0;
       }}
 
+      // Branching ratios
       for ( G4int npro = 0; npro < 7; npro++ ) {
       for ( G4int nneu = 0; nneu < 7; nneu++ ) {
         runBranchingPN[npro][nneu] = 0; }}
+
+      // Cascade histogram
       for ( G4int binr = 0; binr < 100; binr++ ) {
       for ( G4int binz = 0; binz < 100; binz++ ) {
         eE_r[binr][binz] = 0, eE_z[binr][binz] = 0,
@@ -107,6 +119,7 @@ class Analysis {
     virtual void appendGainFile();
     virtual void writeProfileFile(G4int energyi);
     virtual void ntupleizeGainFile();
+    virtual void analyze(G4int energyi);
     virtual void analyzeCascade();
     virtual void analyzeBranchingRatiosPN();
 
@@ -132,6 +145,9 @@ class Analysis {
              oE_r[100][100], oE_z[100][100],
              nE_r[100][100], nE_z[100][100],
              gE_r[100][100], gE_z[100][100];
+
+    // Experiment statuses
+    G4bool measuregain;
 };
 
 #endif
