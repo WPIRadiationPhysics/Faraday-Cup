@@ -276,7 +276,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
       // Azimuthal symmetry bin weighting factor // pi*(r_f^2 - r_i)^2
       G4double W_binCu = M_PI*(pow(floor(stepRCuDepth*30)+1, 2) - pow(floor(stepRCuDepth*30), 2));
-      G4double W_binKA = M_PI*(pow(floor(stepRKADepth*100)+1, 2) - pow(floor(stepRKADepth*100), 2));
+      G4double W_binKA = M_PI*(pow(floor(stepRKADepth*31)+1, 2) - pow(floor(stepRKADepth*31), 2));
 
       // Fill gain profile 2D Histogram and var
       if ( stepCharge != 0 && volumeName == "Cu_cyl" )

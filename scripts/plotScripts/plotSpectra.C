@@ -16,8 +16,7 @@
        figTitle[50], pngName[30], syscmd[50];
 
   // Create histogram directory
-  sprintf(syscmd, "mkdir -p spectraHistos");
-  system((const char*)syscmd);
+  system("mkdir -p ROOT/figs");
 
   /// histogram constructions ///
 
@@ -25,13 +24,13 @@
   for ( int particle_i = 0; particle_i < 5; particle_i++ ) {
 
     // Create particle directory
-    sprintf(syscmd, "mkdir -p spectraHistos/%cCu/", particleName[particle_i]);
+    sprintf(syscmd, "mkdir -p ROOT/figs/%cCu/", particleName[particle_i]);
     system((const char*)syscmd);
  
     for ( int energy_i = 0; energy_i < 7; energy_i++ ) {
 
       // Set data file
-      sprintf(spectraHistoFileName, "trackData-%d.root", energy_i);
+      sprintf(spectraHistoFileName, "ROOT/trackData-%d.root", energy_i);
       TFile f((const char*)spectraHistoFileName);
 
       // Define Tree names
@@ -52,7 +51,7 @@
       histoCanvas->Update();
 
       // Define output filename and save as png
-      sprintf(pngName, "spectraHistos/%cCu/%dMeV.png", particleName[particle_i], runEnergy[energy_i]);
+      sprintf(pngName, "ROOT/figs/%cCu/spectra-%d.png", particleName[particle_i], energy_i);
       histoCanvas->Print((const char*)pngName);
     }
   }

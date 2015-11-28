@@ -7,7 +7,7 @@ Cu_height = 100; Cu_radius = 30;
 energies = [70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250];
 
 % Create output directory if necessary
-system('mkdir -p histos');
+system('mkdir -p csv/figs');
 
 for runID=0:0
 
@@ -31,7 +31,7 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('histos/gainErrorProfile-', int2str(runID), '.png');
+    fileName = strcat('csv/figs/gainErrorProfile-', int2str(runID), '.png');
     saveas(gcf, fileName)
     
   end

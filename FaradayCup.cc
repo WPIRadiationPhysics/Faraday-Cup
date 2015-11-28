@@ -158,10 +158,7 @@ int main(int argc, char** argv) {
           //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
-          syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
-          syscmd = "cp plotDepHistoCu.C " + data_dir; system(syscmd);
-          syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
+          syscmd = "cp -r plotData.sh plotScripts " + data_dir; system(syscmd);
         }
                
       // Kapton (layer 1) thickness iteration for secondary models
@@ -200,10 +197,7 @@ int main(int argc, char** argv) {
           //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
-          syscmd = "cp plotGain.C " + data_dir; system(syscmd);
-          syscmd = "cp plotSpectra.C " + data_dir; system(syscmd);
-          syscmd = "cp plotDepHistoCuKA.C " + data_dir; system(syscmd);
-          syscmd = "cp plotCascadeHisto.m " + data_dir; system(syscmd);
+          syscmd = "cp -r plotData.sh plotScripts " + data_dir; system(syscmd);
         }
       }}
     }

@@ -107,10 +107,6 @@ void Analysis::writeProfileFile(G4int energy_i) {
     }
     gainErrorProfileFileStream << G4endl;
   }
-
-  // Copy Ocatave profile plotting scripts
-  G4String scriptCPYcmd = "cp plotGainProfileHisto.m " + analysisDIR; system(scriptCPYcmd);
-  scriptCPYcmd = "cp plotGainErrorProfileHisto.m " + analysisDIR; system(scriptCPYcmd);
 }
 
 void Analysis::ntupleizeGainFile() {

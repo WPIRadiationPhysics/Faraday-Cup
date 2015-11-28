@@ -53,13 +53,7 @@ set(FaradayCup_SCRIPTS
   init.mac
   init_vis.mac
   vis.mac
-  plotGain.C
-  plotSpectra.C
-  plotDepHistoCu.C
-  plotDepHistoCuKA.C
-  plotCascadeHisto.m
-  plotGainProfileHisto.m
-  plotGainErrorProfileHisto.m
+  plotData.sh
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})
@@ -69,6 +63,7 @@ foreach(_script ${FaradayCup_SCRIPTS})
     COPYONLY
     )
 endforeach()
+file(COPY ${PROJECT_SOURCE_DIR}/scripts/plotScripts DESTINATION ${PROJECT_BINARY_DIR})
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
