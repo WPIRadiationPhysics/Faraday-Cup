@@ -59,6 +59,7 @@ set(FaradayCup_SCRIPTS
   plotDepHistoCuKA.C
   plotCascadeHisto.m
   plotGainProfileHisto.m
+  plotGainErrorProfileHisto.m
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})

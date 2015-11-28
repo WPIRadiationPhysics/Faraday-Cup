@@ -106,6 +106,7 @@ int main(int argc, char** argv) {
     UImanager->ApplyCommand("/run/setCut 0.005 mm");   
 	
     // Constant vars, declarations
+    G4String models[3] = {"Cu", "CuKA", "CuKA+AgKA"};
     G4double KA_thickness[3] = {50, 100, 200}; // microns
     G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
     G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
@@ -127,7 +128,7 @@ int main(int argc, char** argv) {
       detConstruction->ModelConfiguration(model_i);
 
       // Create Model data directory
-      data_dirStream.str(""); data_dirStream << "mkdir -p data/model" << model_i;
+      data_dirStream.str(""); data_dirStream << "mkdir -p data/" << models[model_i];
       data_dir = data_dirStream.str(); system(data_dir);
 
       // Unsheathed Cu primary model
@@ -139,7 +140,7 @@ int main(int argc, char** argv) {
           simulationAnalysis->measureGain();
 
           // Set data directory
-          simulationAnalysis->SetAnalysisDIR("data/model0/");
+          simulationAnalysis->SetAnalysisDIR("data/Cu/");
 
           // Set run energy and beam width
           simulationAnalysis->SetRunEnergy(energies[energy_i]);
@@ -179,7 +180,7 @@ int main(int argc, char** argv) {
           simulationAnalysis->SetRunKAThickness(KA_thickness[KA_i]);
 
           // Set subdata directory
-          data_dirStream.str(""); data_dirStream << "data/model" << model_i << "/S" << KA_thickness[KA_i] << "/";
+          data_dirStream.str(""); data_dirStream << "data/" << models[model_i] << "/S" << KA_thickness[KA_i] << "/";
           data_dir = data_dirStream.str(); syscmd = "mkdir -p " + data_dir; system(syscmd);
           simulationAnalysis->SetAnalysisDIR(data_dir);
 

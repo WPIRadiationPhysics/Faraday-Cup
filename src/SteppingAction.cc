@@ -275,16 +275,16 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     if ( stepCharge != 0 ) {
 
       // Azimuthal symmetry bin weighting factor // pi*(r_f^2 - r_i)^2
-      G4double W_binCu = M_PI*(pow(floor(stepRCuDepth*100)+1, 2) - pow(floor(stepRCuDepth*100), 2));
+      G4double W_binCu = M_PI*(pow(floor(stepRCuDepth*30)+1, 2) - pow(floor(stepRCuDepth*30), 2));
       G4double W_binKA = M_PI*(pow(floor(stepRKADepth*100)+1, 2) - pow(floor(stepRKADepth*100), 2));
 
       // Fill gain profile 2D Histogram and var
       if ( stepCharge != 0 && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
           analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), (stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainSquareProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100), pow((stepCharge/beamCharge)/W_binCu, 2));
-          simulationAnalysis->appendGainEntriesProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*100)); }
+          simulationAnalysis->appendGainProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (stepCharge/beamCharge)/W_binCu);
+          simulationAnalysis->appendGainSquareProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+          simulationAnalysis->appendGainEntriesProfile(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }
       if ( stepCharge != 0 && volumeNameVertex == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gainDepHistoCu");
           analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -(stepCharge/beamCharge)/W_binCu);

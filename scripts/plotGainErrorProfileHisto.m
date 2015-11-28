@@ -1,6 +1,6 @@
-% Gain profile 2D histogram plot
+% Gain Error profile 2D histogram plot
 %
-% Displays Gain(z, r) histogram for multilayer analysis
+% Displays Error_Gain(z, r) histogram for multilayer analysis
 
 % Copper dimensions (mm)
 Cu_height = 100; Cu_radius = 30;
@@ -12,7 +12,7 @@ system('mkdir -p histos');
 for runID=0:0
 
   % Define profile file
-  gainProfileDataFile = strcat('csv/gainProfile-', int2str(runID), '.csv');
+  gainProfileDataFile = strcat('csv/gainErrorProfile-', int2str(runID), '.csv');
 
   % Load data matrix from file
   try % ignores empty files
@@ -23,7 +23,7 @@ for runID=0:0
     colorbar;
 
     % Format figure
-    titleString = strcat('Cu log10(Gain) Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    titleString = strcat('Cu Gain log10(Standard Error) Profile at:   ', num2str(energies(runID+1)), ' MeV');
     title(titleString);
     set(gca, 'XTickLabel', [0 20 40 60 80 100]);
     set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
@@ -31,7 +31,7 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('histos/gainProfile-', int2str(runID), '.png');
+    fileName = strcat('histos/gainErrorProfile-', int2str(runID), '.png');
     saveas(gcf, fileName)
     
   end
