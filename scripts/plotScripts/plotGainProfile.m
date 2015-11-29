@@ -23,7 +23,7 @@ for runID=0:0
     colorbar;
 
     % Format figure
-    titleString = strcat('Cu log10(Gain) Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    titleString = strcat('Cu Gain Profile at:   ', num2str(energies(runID+1)), ' MeV');
     title(titleString);
     set(gca, 'XTickLabel', [0 20 40 60 80 100]);
     set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
@@ -33,6 +33,29 @@ for runID=0:0
     % Save in respective folder
     fileName = strcat('csv/figs/gainProfile-', int2str(runID), '.png');
     saveas(gcf, fileName)
-    
+  end
+
+  % Define log(gain) profile file
+  logGainProfileDataFile = strcat('csv/logGainProfile-', int2str(runID), '.csv');
+
+  % Load data matrix from file
+  try % ignores empty files
+    logGainProfileData = load(logGainProfileDataFile);
+
+    % Plot matrix as 2D histogram
+    imagesc(logGainProfileData);
+    colorbar;
+
+    % Format figure
+    titleString = strcat('Cu log10(Gain) Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    title(titleString);
+    set(gca, 'XTickLabel', [0 20 40 60 80 100]);
+    set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
+    xlabel('Z [mm]');
+    ylabel('R [mm]');
+
+    % Save in respective folder
+    fileName = strcat('csv/figs/logGainProfile-', int2str(runID), '.png');
+    saveas(gcf, fileName)
   end
 end
