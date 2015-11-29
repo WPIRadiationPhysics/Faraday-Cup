@@ -1,6 +1,6 @@
-% Gain profile 2D histogram plot
+% Loss profile 2D histogram plot
 %
-% Displays Gain(z, r) histogram for multilayer analysis
+% Displays Loss(z, r) histogram for multilayer analysis
 
 % Copper dimensions (mm)
 Cu_height = 100; Cu_radius = 30;
@@ -12,18 +12,18 @@ system('mkdir -p csv/figs');
 for runID=0:0
 
   % Define profile file
-  gainProfileDataFile = strcat('csv/gainProfileCu-', int2str(runID), '.csv');
+  lossProfileDataFile = strcat('csv/lossProfileCu-', int2str(runID), '.csv');
 
   % Load data matrix from file
   try % ignores empty files
-    gainProfileData = load(gainProfileDataFile);
+    lossProfileData = load(lossProfileDataFile);
 
     % Plot matrix as 2D histogram
-    imagesc(gainProfileData);
+    imagesc(lossProfileData);
     colorbar;
 
     % Format figure
-    titleString = strcat('Cu Gain Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    titleString = strcat('Cu Loss Profile at:   ', num2str(energies(runID+1)), ' MeV');
     title(titleString);
     set(gca, 'XTickLabel', [0 20 40 60 80 100]);
     set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
@@ -31,23 +31,23 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('csv/figs/gainProfileCu-', int2str(runID), '.png');
+    fileName = strcat('csv/figs/lossProfileCu-', int2str(runID), '.png');
     saveas(gcf, fileName)
   end
 
-  % Define log(gain) profile file
-  logGainProfileDataFile = strcat('csv/logGainProfileCu-', int2str(runID), '.csv');
+  % Define log(loss) profile file
+  logLossProfileDataFile = strcat('csv/logLossProfileCu-', int2str(runID), '.csv');
 
   % Load data matrix from file
   try % ignores empty files
-    logGainProfileData = load(logGainProfileDataFile);
+    logLossProfileData = load(logLossProfileDataFile);
 
     % Plot matrix as 2D histogram
-    imagesc(logGainProfileData);
+    imagesc(logLossProfileData);
     colorbar;
 
     % Format figure
-    titleString = strcat('Cu log10(Gain) Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    titleString = strcat('Cu log10(Loss) Profile at:   ', num2str(energies(runID+1)), ' MeV');
     title(titleString);
     set(gca, 'XTickLabel', [0 20 40 60 80 100]);
     set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
@@ -55,7 +55,7 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('csv/figs/logGainProfileCu-', int2str(runID), '.png');
+    fileName = strcat('csv/figs/logLossProfileCu-', int2str(runID), '.png');
     saveas(gcf, fileName)
   end
 end

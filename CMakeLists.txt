@@ -53,7 +53,7 @@ set(FaradayCup_SCRIPTS
   init.mac
   init_vis.mac
   vis.mac
-  plotData.sh
+  analyze.sh
   )
 
 foreach(_script ${FaradayCup_SCRIPTS})

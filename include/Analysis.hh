@@ -53,18 +53,21 @@ class Analysis {
       // Experiments
       measuregain = false;
 
-      // Profile gain, gain-square and gain entries histograms
-      for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-      for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
-        gainprofilecu[ngainz][ngainr] = 0;
-        gainsquareprofilecu[ngainz][ngainr] = 0;
-        gainentriesprofilecu[ngainz][ngainr] = 0;
+      // Profile gain/loss, gain/loss-square and gain/loss entries histograms
+      for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+        gainprofilecu[nprofilez][nprofiler] = 0;
+        gainsquareprofilecu[nprofilez][nprofiler] = 0;
+        gainentriesprofilecu[nprofilez][nprofiler] = 0;
+        lossprofilecu[nprofilez][nprofiler] = 0;
+        losssquareprofilecu[nprofilez][nprofiler] = 0;
+        lossentriesprofilecu[nprofilez][nprofiler] = 0;
       }}
-      for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-      for ( G4int ngainr = 0; ngainr < 31; ngainr++ ) {
-        gainprofileka[ngainz][ngainr] = 0;
-        gainsquareprofileka[ngainz][ngainr] = 0;
-        gainentriesprofileka[ngainz][ngainr] = 0;
+      for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      for ( G4int nprofiler = 0; nprofiler < 31; nprofiler++ ) {
+        gainprofileka[nprofilez][nprofiler] = 0;
+        gainsquareprofileka[nprofilez][nprofiler] = 0;
+        gainentriesprofileka[nprofilez][nprofiler] = 0;
       }}
 
       // Branching ratios
@@ -87,10 +90,14 @@ class Analysis {
     void appendRunGain(G4double trackSignal) { runGain += trackSignal; }
     G4double recallRunGain() { return runGain; }
 
-    // Append Cu, Kapton gain, gain-square and gain error profile values
+    // Append Cu, Kapton gain/loss, gain/loss-square and gain/loss error profile values
     void appendGainProfileCu(G4double gainz, G4double gainr, G4double signal) { gainprofilecu[(G4int)gainz][(G4int)gainr] += signal; }
     void appendGainSquareProfileCu(G4double gainz, G4double gainr, G4double signal) { gainsquareprofilecu[(G4int)gainz][(G4int)gainr] += signal; }
     void appendGainEntriesProfileCu(G4double gainz, G4double gainr) { gainentriesprofilecu[(G4int)floor(gainz)][(G4int)gainr]++; }
+    void appendLossProfileCu(G4double gainz, G4double gainr, G4double signal) { lossprofilecu[(G4int)gainz][(G4int)gainr] += signal; }
+    void appendLossSquareProfileCu(G4double gainz, G4double gainr, G4double signal) { losssquareprofilecu[(G4int)gainz][(G4int)gainr] += signal; }
+    void appendLossEntriesProfileCu(G4double gainz, G4double gainr) { lossentriesprofilecu[(G4int)floor(gainz)][(G4int)gainr]++; }
+    //
     void appendGainProfileKA(G4double gainz, G4double gainr, G4double signal) { gainprofileka[(G4int)gainz][(G4int)gainr] += signal; }
     void appendGainSquareProfileKA(G4double gainz, G4double gainr, G4double signal) { gainsquareprofileka[(G4int)gainz][(G4int)gainr] += signal; }
     void appendGainEntriesProfileKA(G4double gainz, G4double gainr) { gainentriesprofileka[(G4int)floor(gainz)][(G4int)gainr]++; }
@@ -150,10 +157,13 @@ class Analysis {
     G4int eventProtons[4], eventNeutrons[4]; // 4 core threading vars
     G4int runBranchingPN[7][7]; // 0, 1, 2, 3, 4, 5, >5 foreach
 
-    // Cu gain and gain error profile
+    // Cu gain/loss and gain/loss error profile
     G4double gainprofilecu[100][30], // 100x30 bins z vs r
              gainsquareprofilecu[100][30],
-             gainentriesprofilecu[100][30];
+             gainentriesprofilecu[100][30],
+             lossprofilecu[100][30],
+             losssquareprofilecu[100][30],
+             lossentriesprofilecu[100][30];
 
     // Kapton insulator gain and gain error profile
     G4double gainprofileka[100][31], // 100x31 bins z vs r

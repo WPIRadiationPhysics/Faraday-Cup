@@ -61,11 +61,29 @@ void Analysis::writeProfileFileCu(G4int energy_i) {
   gainProfileFileStream.open (gainProfileFileName, std::ios::app);
   
   // Print gain profile values to csv
-  for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
-    for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-      gainProfileFileStream << gainprofilecu[ngainz][29-ngainr] << ", "; // (29-ngainr) for vertical graphical mapping
+  for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+    for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      gainProfileFileStream << gainprofilecu[nprofilez][29-nprofiler] << ", "; // (29-nprofiler) for vertical graphical mapping
     }
     gainProfileFileStream << G4endl;
+  }
+
+  // Acquire loss profile filename
+  std::ostringstream lossProfileFileNameStream;
+  G4String lossProfileFileName;
+  lossProfileFileNameStream << analysisDIR << "csv/lossProfileCu-" << energy_i << ".csv";
+  lossProfileFileName = lossProfileFileNameStream.str();
+
+  // Open loss profile output file
+  std::ofstream lossProfileFileStream;
+  lossProfileFileStream.open (lossProfileFileName, std::ios::app);
+  
+  // Print loss profile values to csv
+  for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+    for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      lossProfileFileStream << lossprofilecu[nprofilez][29-nprofiler] << ", "; // (29-nprofiler) for vertical graphical mapping
+    }
+    lossProfileFileStream << G4endl;
   }
 
   // Acquire log(gain) profile filename
@@ -79,16 +97,29 @@ void Analysis::writeProfileFileCu(G4int energy_i) {
   logGainProfileFileStream.open (logGainProfileFileName, std::ios::app);
   
   // Print log(gain) profile values to csv
-  for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
-    for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
-
-      // LOGify value
-      G4double gainProfile = 0;
-      if ( gainprofilecu[ngainz][29-ngainr] > 0 ) { gainProfile = log10(gainprofilecu[ngainz][29-ngainr]); }
-      if ( gainprofilecu[ngainz][29-ngainr] < 0 ) { gainProfile = -log10(-gainprofilecu[ngainz][29-ngainr]); }
-      logGainProfileFileStream << gainProfile << ", "; // (29-ngainr) for vertical graphical mapping
+  for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+    for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      logGainProfileFileStream << log10(gainprofilecu[nprofilez][29-nprofiler]) << ", "; // (29-nprofiler) for vertical graphical mapping
     }
     logGainProfileFileStream << G4endl;
+  }
+
+  // Acquire log(loss) profile filename
+  std::ostringstream logLossProfileFileNameStream;
+  G4String logLossProfileFileName;
+  logLossProfileFileNameStream << analysisDIR << "csv/logLossProfileCu-" << energy_i << ".csv";
+  logLossProfileFileName = logLossProfileFileNameStream.str();
+
+  // Open log(loss) profile output file
+  std::ofstream logLossProfileFileStream;
+  logLossProfileFileStream.open (logLossProfileFileName, std::ios::app);
+  
+  // Print log(loss) profile values to csv
+  for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+    for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
+      logLossProfileFileStream << log10(lossprofilecu[nprofilez][29-nprofiler]) << ", "; // (29-nprofiler) for vertical graphical mapping
+    }
+    logLossProfileFileStream << G4endl;
   }
 
   // Acquire gain error profile filename
@@ -103,23 +134,23 @@ void Analysis::writeProfileFileCu(G4int energy_i) {
   
   // Calculate gain error from gain and gain-square averages
   G4double gainMeanSquare, gainStandardDeviation;
-  for ( G4int ngainr = 0; ngainr < 30; ngainr++ ) {
-    for ( G4int ngainz = 0; ngainz < 100; ngainz++ ) {
+  for ( G4int nprofiler = 0; nprofiler < 30; nprofiler++ ) {
+    for ( G4int nprofilez = 0; nprofilez < 100; nprofilez++ ) {
 
-      // Obtain statistics
-      gainMeanSquare = pow(gainprofilecu[ngainz][29-ngainr], 2.0); // (29-ngainr) for vertical graphical mapping
+      // Obtain statistics, ignore nulls
+      gainMeanSquare = pow(gainprofilecu[nprofilez][29-nprofiler], 2.0); // (29-nprofiler) for vertical graphical mapping
       G4double gainVariance = 0;
-      if ( gainentriesprofilecu[ngainz][29-ngainr] != 0 )
-        { gainVariance = std::abs(gainsquareprofilecu[ngainz][29-ngainr] - gainMeanSquare)/gainentriesprofilecu[ngainz][29-ngainr]; }
+      if ( gainentriesprofilecu[nprofilez][29-nprofiler] != 0 )
+        { gainVariance = std::abs(gainsquareprofilecu[nprofilez][29-nprofiler] - gainMeanSquare)/gainentriesprofilecu[nprofilez][29-nprofiler]; }
       gainStandardDeviation = pow(gainVariance, 0.5);
 
       // Standard Error Definition
       G4double gainError = 0;
-      if ( gainentriesprofilecu[ngainz][29-ngainr] != 0 )
-        { gainError = gainStandardDeviation/(std::abs(gainprofilecu[ngainz][29-ngainr])/gainentriesprofilecu[ngainz][29-ngainr]); }
+      if ( gainentriesprofilecu[nprofilez][29-nprofiler] != 0 )
+        { gainError = gainStandardDeviation/(std::abs(gainprofilecu[nprofilez][29-nprofiler])/gainentriesprofilecu[nprofilez][29-nprofiler]); }
 
       // LOGify value
-      if ( gainError != 0 ) { gainError = log(gainError); }
+      //if ( gainError != 0 ) { gainError = log(gainError); }
 
       // Print values to csv
       gainErrorProfileFileStream << gainError << ", ";

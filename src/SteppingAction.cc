@@ -284,27 +284,48 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       // Azimuthal symmetry bin weighting factor // pi*(r_f^2 - r_i^2)
       G4double W_binCu, W_binKA, W_binCuVertex, W_binKAVertex;
       if ( volumeName == "Cu_cyl" ) {
+          //
           histoID = analysisManager->GetH2Id("gainDepHistoCu");
           W_binCu = M_PI*(pow(floor(stepRCuDepth*30)+1, 2) - pow(floor(stepRCuDepth*30), 2));
           analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (stepCharge/beamCharge)/W_binCu);
-          simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
-          simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }
+          //
+          if ( stepCharge > 0 ) { // Gain
+            simulationAnalysis->appendGainProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (stepCharge/beamCharge)/W_binCu);
+            simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }
+          else { // Loss
+            simulationAnalysis->appendLossProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (-stepCharge/beamCharge)/W_binCu);
+            simulationAnalysis->appendLossSquareProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendLossEntriesProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }}
+          //
       if ( volumeNameVertex == "Cu_cyl" ) {
+          //
           histoID = analysisManager->GetH2Id("gainDepHistoCu");
           W_binCuVertex = M_PI*(pow(floor(stepRCuDepthVertex*30)+1, 2) - pow(floor(stepRCuDepthVertex*30), 2));
           analysisManager->FillH2(histoID, stepZCuDepthVertex, stepRCuDepthVertex, -(stepCharge/beamCharge)/W_binCuVertex);
-          simulationAnalysis->appendGainProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), -(stepCharge/beamCharge)/W_binCuVertex);
-          simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), pow((stepCharge/beamCharge)/W_binCuVertex, 2));
-          simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30)); }
+          //
+          if ( stepCharge > 0 ) { // Loss
+            simulationAnalysis->appendLossProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), (stepCharge/beamCharge)/W_binCuVertex);
+            simulationAnalysis->appendLossSquareProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendLossEntriesProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30)); }
+          else { // Gain
+            simulationAnalysis->appendGainProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), (-stepCharge/beamCharge)/W_binCuVertex);
+            simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30)); }}
+          //
       if ( volumeName == "Kapton_cyl1" ) {
+          //
           histoID = analysisManager->GetH2Id("gainDepHistoKA");
           W_binKA = M_PI*(pow(floor(stepRKADepth*31)+1, 2) - pow(floor(stepRKADepth*31), 2));
+          //
           G4cout << stepParticle << " into Kapton at (zdepth, rdepth)=(" << stepZKADepth << ", " << stepRKADepth << ")" << G4endl;
           analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, (stepCharge/beamCharge)/W_binKA); }
+          //
       if ( volumeNameVertex == "Kapton_cyl1" ) {
+          //
           W_binKAVertex = M_PI*(pow(floor(stepRKADepthVertex*31)+1, 2) - pow(floor(stepRKADepthVertex*31), 2));
           histoID = analysisManager->GetH2Id("gainDepHistoKA");
+          //
           G4cout << stepParticle << " from Kapton at (zdepth, rdepth)=(" << stepZKADepthVertex << ", " << stepRKADepthVertex << ")" << G4endl;
           analysisManager->FillH2(histoID, stepZKADepthVertex, stepRKADepthVertex, -(stepCharge/beamCharge)/W_binKAVertex); }
 

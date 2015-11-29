@@ -12,7 +12,7 @@ system('mkdir -p csv/figs');
 for runID=0:0
 
   % Define profile file
-  gainProfileDataFile = strcat('csv/gainErrorProfile-', int2str(runID), '.csv');
+  gainProfileDataFile = strcat('csv/gainErrorProfileCu-', int2str(runID), '.csv');
 
   % Load data matrix from file
   try % ignores empty files
@@ -31,7 +31,7 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('csv/figs/gainErrorProfile-', int2str(runID), '.png');
+    fileName = strcat('csv/figs/gainErrorProfileCu-', int2str(runID), '.png');
     saveas(gcf, fileName)
     
   end

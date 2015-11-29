@@ -6,6 +6,7 @@ scriptDIR="plotScripts"
 
 if [ $PLOT_CSV ]; then
   octave $scriptDIR/plotGainProfile.m
+  octave $scriptDIR/plotLossProfile.m
   octave $scriptDIR/plotGainErrorProfile.m
   #octave $scriptDIR/plotCascade.m
 fi

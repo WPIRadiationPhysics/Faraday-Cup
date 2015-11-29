@@ -158,7 +158,7 @@ int main(int argc, char** argv) {
           //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
-          syscmd = "cp -r plotData.sh plotScripts " + data_dir; system(syscmd);
+          syscmd = "cp -r analyze.sh plotScripts " + data_dir; system(syscmd);
         }
                
       // Kapton (layer 1) thickness iteration for secondary models
@@ -197,7 +197,7 @@ int main(int argc, char** argv) {
           //simulationAnalysis->analyzeBranchingRatiosPN();
 
           // Move plot scripts to data directory
-          syscmd = "cp -r plotData.sh plotScripts " + data_dir; system(syscmd);
+          syscmd = "cp -r analyze.sh plotScripts " + data_dir; system(syscmd);
         }
       }}
     }
