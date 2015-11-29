@@ -1,6 +1,6 @@
-% Gain Error profile 2D histogram plot
+% Loss Error profile 2D histogram plot
 %
-% Displays Error_Gain(z, r) histogram for multilayer analysis
+% Displays Error_Loss(z, r) histogram for multilayer analysis
 
 % Copper dimensions (mm)
 Cu_height = 100; Cu_radius = 30;
@@ -12,18 +12,18 @@ system('mkdir -p csv/figs');
 for runID=0:0
 
   % Define profile file
-  gainProfileDataFile = strcat('csv/gainErrorProfileCu-', int2str(runID), '.csv');
+  lossProfileDataFile = strcat('csv/lossErrorProfileCu-', int2str(runID), '.csv');
 
   % Load data matrix from file
   try % ignores empty files
-    gainProfileData = load(gainProfileDataFile);
+    lossProfileData = load(lossProfileDataFile);
 
     % Plot matrix as 2D histogram
-    imagesc(gainProfileData);
+    imagesc(lossProfileData);
     colorbar;
 
     % Format figure
-    titleString = strcat('Cu log10(Gain Relative Error) Profile at:   ', num2str(energies(runID+1)), ' MeV');
+    titleString = strcat('Cu log10(Loss Relative Error) Profile at:   ', num2str(energies(runID+1)), ' MeV');
     title(titleString);
     set(gca, 'XTickLabel', [0 20 40 60 80 100]);
     set(gca, 'YTickLabel', [30 25 20 15 10 5 0]);
@@ -31,7 +31,7 @@ for runID=0:0
     ylabel('R [mm]');
 
     % Save in respective folder
-    fileName = strcat('csv/figs/gainErrorProfileCu-', int2str(runID), '.png');
+    fileName = strcat('csv/figs/lossErrorProfileCu-', int2str(runID), '.png');
     saveas(gcf, fileName)
     
   end

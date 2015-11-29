@@ -137,8 +137,9 @@ class Analysis {
 
     // Analysis methods
     virtual void appendGainFile();
-    virtual void writeProfileFileCu(G4int energyi);
-    virtual void writeProfileFileKA(G4int energyi);
+    virtual void writeGainProfileCu(G4int energyi);
+    virtual void writeLossProfileCu(G4int energyi);
+    virtual void writeGainProfileKA(G4int energyi);
     virtual void ntupleizeGainFile();
     virtual void analyze(G4int energyi);
     virtual void analyzeCascade();
