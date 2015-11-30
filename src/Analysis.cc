@@ -17,8 +17,9 @@ Analysis::~Analysis() {}
 
 void Analysis::analyze(G4int energy_i) {
 
-  // Create csv directory if necessary
-  G4String csvDIRcmd = "mkdir -p " + analysisDIR + "csv"; system(csvDIRcmd);
+  // Move plot scripts to data directory, create csv directory if necessary
+  G4String syscmd = "cp -r analyze.sh plotScripts " + analysisDIR; system(syscmd);
+           syscmd = "mkdir -p " + analysisDIR + "csv"; system(syscmd);
 
   // Gain measurement output functions
   if ( measuregain ) {

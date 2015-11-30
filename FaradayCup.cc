@@ -31,6 +31,48 @@ namespace {
   }
 }
 
+void beamSimulation(G4int nEvents) {
+
+  // Beam parameters and vars
+  G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
+  G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
+  //G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
+  G4int nEnergies = 1;
+  std::ostringstream syscmdStream;
+  G4String syscmd;
+
+  // Simulation analysis object
+  Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  simulationAnalysis->SetNEnergies(nEnergies);
+
+  // Interface manager object
+  G4UImanager* UImanager = G4UImanager::GetUIpointer();
+
+  for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
+
+    // Reset and redefine experiment
+    simulationAnalysis->resetExperiment();
+    simulationAnalysis->measureGain();
+    //simulationAnalysis->measureCascade();
+    //simulationAnalysis->measureBranchingRatiosPN();
+
+    // Set run energy and beam width
+    simulationAnalysis->SetRunEnergy(energies[energy_i]);
+    simulationAnalysis->SetRunBeamFWHM(beam_fwhm[energy_i]);
+
+    // Run experimental beam energies
+    syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
+    syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
+    syscmdStream.str(""); syscmdStream << "/run/beamOn " << nEvents;
+    syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
+
+    // Perform Analyses
+    simulationAnalysis->analyze(energy_i);
+  }
+
+  return;
+}
+
 int main(int argc, char** argv) {
 
   // Declare vars
@@ -84,6 +126,7 @@ int main(int argc, char** argv) {
 
   // Simulation analysis object
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  simulationAnalysis->SetNThreads(nThreads);
 
 #ifdef G4VIS_USE
   // Initialize visualization
@@ -99,30 +142,24 @@ int main(int argc, char** argv) {
   // Proton beam
   UImanager->ApplyCommand("/gun/particle proton");
 
+  // Constant vars, declarations
+  G4String models[3] = {"Cu", "CuKA", "CuKA+AgKA"};
+  G4double KA_thickness[3] = {50, 100, 200}; // microns
+  G4int nThicknesses = (int)sizeof(KA_thickness)/sizeof(G4double);
+  std::ostringstream data_dirStream, syscmdStream, filmDirStream;
+  G4String data_dir, dirCommand, syscmd, filmDir;
+
   // Begin simulation
   if ( nEvents > 0 ) {
 
     // 5 micrometer particle track cuts
-    UImanager->ApplyCommand("/run/setCut 0.005 mm");   
-	
-    // Constant vars, declarations
-    G4String models[3] = {"Cu", "CuKA", "CuKA+AgKA"};
-    G4double KA_thickness[3] = {50, 100, 200}; // microns
-    G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
-    G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
-    G4int nThicknesses = (int)sizeof(KA_thickness)/sizeof(G4double);
-    G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
-    std::ostringstream data_dirStream, syscmdStream, filmDirStream;
-    G4String data_dir, dirCommand, syscmd, filmDir;
+    UImanager->ApplyCommand("/run/setCut 0.005 mm");
 
     // Initialize main data directory
     system("mkdir -p data");
 
-    simulationAnalysis->SetNThreads(nThreads);
-    simulationAnalysis->SetNEnergies(nEnergies);
-
     // Model loop
-    for ( G4int model_i = 2; model_i < 3; model_i++ ) { // Single-model
+    for ( G4int model_i = 2; model_i < 3; model_i++ ) { // Prototype (model_i == 2)
 
       // Assign geometric configuration
       detConstruction->ModelConfiguration(model_i);
@@ -131,91 +168,49 @@ int main(int argc, char** argv) {
       data_dirStream.str(""); data_dirStream << "mkdir -p data/" << models[model_i];
       data_dir = data_dirStream.str(); system(data_dir);
 
-      // Unsheathed Cu primary model
+      // Cu model
       if ( model_i == 0 ) {
-        for ( G4int energy_i = 0; energy_i < nEnergies; energy_i++ ) {
 
-          // Reset experiments
-          simulationAnalysis->nullExperiments();
-          simulationAnalysis->measureGain();
+        // Set data directory
+        simulationAnalysis->SetAnalysisDIR("data/Cu/");
 
-          // Set data directory
-          simulationAnalysis->SetAnalysisDIR("data/Cu/");
+        // Run beam (settings below)
+        beamSimulation(nEvents);
+      }
 
-          // Set run energy and beam width
-          simulationAnalysis->SetRunEnergy(energies[energy_i]);
-          simulationAnalysis->SetRunBeamFWHM(beam_fwhm[energy_i]);
-
-          // Run experimental beam energies
-          syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
-          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-          syscmdStream.str(""); syscmdStream << "/run/beamOn " << nEvents;
-          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-
-          // Perform Analyses
-          simulationAnalysis->analyze(energy_i);
-          //simulationAnalysis->analyzeCascade();
-          //simulationAnalysis->analyzeBranchingRatiosPN();
-
-          // Move plot scripts to data directory
-          syscmd = "cp -r analyze.sh plotScripts " + data_dir; system(syscmd);
-        }
-               
       // Kapton (layer 1) thickness iteration for secondary models
-      } else { for ( G4int KA_i = 0; KA_i < nThicknesses; KA_i++ ) {
+      if ( model_i == 1 || model_i == 2 ) {
 
-        // Assign thickness
+        for ( G4int KA_i = 0; KA_i < nThicknesses; KA_i++ ) {
+
+        // Assign model insulator thickness
         detConstruction->IterateKaptonThickness(KA_thickness[KA_i]);
+        simulationAnalysis->SetRunKAThickness(KA_thickness[KA_i]);
 
-        for ( G4int energy_i = 0; energy_i < 1; energy_i++ ) { // (nEnergies)
+        // Set subdata directory
+        data_dirStream.str(""); data_dirStream << "data/" << models[model_i] << "/S" << KA_thickness[KA_i] << "/";
+        data_dir = data_dirStream.str(); syscmd = "mkdir -p " + data_dir; system(syscmd);
+        simulationAnalysis->SetAnalysisDIR(data_dir);
 
-          // Reset experiments
-          simulationAnalysis->nullExperiments();
-          simulationAnalysis->measureGain();
-
-          // Reference KA thickness for calculations
-          simulationAnalysis->SetRunKAThickness(KA_thickness[KA_i]);
-
-          // Set subdata directory
-          data_dirStream.str(""); data_dirStream << "data/" << models[model_i] << "/S" << KA_thickness[KA_i] << "/";
-          data_dir = data_dirStream.str(); syscmd = "mkdir -p " + data_dir; system(syscmd);
-          simulationAnalysis->SetAnalysisDIR(data_dir);
-
-          // Set run energy and beam width
-          simulationAnalysis->SetRunEnergy(energies[energy_i]);
-          simulationAnalysis->SetRunBeamFWHM(beam_fwhm[energy_i]);
-
-          // Run experimental beam energies
-          syscmdStream.str(""); syscmdStream << "/gun/energy " << energies[energy_i] << " MeV";
-          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-          syscmdStream.str(""); syscmdStream << "/run/beamOn " << nEvents;
-          syscmd = syscmdStream.str(); UImanager->ApplyCommand(syscmd);
-
-          // Perform Analyses
-          simulationAnalysis->analyze(energy_i);
-          //simulationAnalysis->analyzeCascade();
-          //simulationAnalysis->analyzeBranchingRatiosPN();
-
-          // Move plot scripts to data directory
-          syscmd = "cp -r analyze.sh plotScripts " + data_dir; system(syscmd);
-        }
+        // Run beam (settings below)
+        beamSimulation(nEvents);
       }}
     }
 
-  } else {
+  } else { // QT Visualizer
 
     // mm track cuts
     UImanager->ApplyCommand("/run/setCut 1 mm");
 
-    // Assign thickness (S59)
-    detConstruction->IterateKaptonThickness(59);
-
-    // Assign geometric configuration (+Ag)
+    // Prototype (model_i == 2)
     detConstruction->ModelConfiguration(2);
 
-    // Set run energy and beam width
-    simulationAnalysis->SetRunEnergy(160.09);
-    simulationAnalysis->SetRunBeamFWHM(10.6);
+    // Default thickness (S50)
+    detConstruction->IterateKaptonThickness(KA_thickness[0]);
+
+    // Default run energy and beam width
+    simulationAnalysis->SetRunEnergy(70.03);
+    simulationAnalysis->SetRunBeamFWHM(22.8);
 
     // Initialize visualizer and gui macros
 #ifdef G4UI_USE
