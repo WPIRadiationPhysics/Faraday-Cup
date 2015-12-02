@@ -17,8 +17,11 @@
   TH2F frame("frame", "Net Gain", 0, 60, 260, 0, 0.95, 1.05);
   frame.Draw();
 
+  // Create output directory if necessary
+  system("mkdir -p ROOT/figs");
+
   // Gain data
-  TFile f1("modelGain.root"); 
+  TFile f1("ROOT/modelGain.root"); 
   n1 = (TNtuple*)f1->Get("gainData");
   n1->SetMarkerStyle(24); // circle
   n1->Draw("Gain:Energy", "", "same");
@@ -32,5 +35,5 @@
   gainCanvas->Update();
 
   // Update canvas data and save as png to file
-  gainCanvas->Print("Gain.png");
+  gainCanvas->Print("ROOT/figs/modelGain.png");
 }

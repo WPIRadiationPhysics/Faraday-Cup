@@ -38,28 +38,37 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   //// their own function to be called alongside specific analyses
   //// (note: currently recycling some vars between latter functions)
 
-  // Acquire world logical volume dimensions
-  G4LogicalVolume* CuLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
-  G4Tubs* CuTubs = 0;
-  CuTubs = dynamic_cast< G4Tubs*>(CuLV->GetSolid()); 
-  G4double Cu_cylZHalfLength = CuTubs->GetZHalfLength();
-
   // Acquire analysis instance
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
+  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
+  G4int histoID;
+
+  // Acquire beam charge
+  G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
 
   // Get name of volume at step location
   G4String volumeName = step->GetTrack()->GetVolume()->GetName();
 
   // Acquire Kapton thickness, then in mm
   G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
-  G4double t_KA = KA_thickness/1000;
 
-  // Get step position
+  // Get particle name, position, charge
+  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
-  G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
+  G4double stepZ = stepXYZ[2];
+  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
+/* 2015-11-15 Suppress analyses and extra models
   //// Branching ratios analysis data
+
+  // Acquire world logical volume dimensions
+  G4LogicalVolume* CuLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
+  G4Tubs* CuTubs = 0;
+  CuTubs = dynamic_cast< G4Tubs*>(CuLV->GetSolid()); 
+  G4double Cu_cylZHalfLength = CuTubs->GetZHalfLength();
+
   // Gottschalk's active sheet range (R = 0.484 g/cm2 = 8.96*t_Cu + 1.42*t_KA) with [t]=cm
+  G4double t_KA = KA_thickness/1000;
   G4double t_Cu = 10*(0.484 - (1.42*t_KA/10))/8.96; // in mm
 
   // If primary track step within Gottschalk range
@@ -92,22 +101,18 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
       simulationAnalysis->appendEventBranchingPN(stepNumBranchProtons, stepNumBranchNeutrons, workerID);
     }
   }}
+*/
 
+/* 2015-11-15 Suppress analyses and extra models
   //// Energy deposition histo and cascade analysis data
-  // Declare vars
-  G4int histoID;
 
   // Get seed num (look into this, gives error)
   //G4cout << G4RunManager::GetRunManager()->GetCurrentEvent()->GetRandomNumberStatus() << G4endl;
 
-  // Get particle charge
-  G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
-
   // Get Energy deposition
   G4double eDep = step->GetTotalEnergyDeposit();
 
-  // Get particle name and type
-  G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
+  // Get particle type
   G4int stepParticleType = 99;
   if ( stepParticle == "e-" ) { stepParticleType = 0; }
   if ( stepParticle == "proton" ) { stepParticleType = 1; }
@@ -119,10 +124,8 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   G4ThreeVector stepPxPyPz = step->GetTrack()->GetMomentum();
   G4double stepPx = stepPxPyPz[0], stepPy = stepPxPyPz[1], stepPz = stepPxPyPz[2];
 
-  // Acquire beamCharge, energy and analysis manager
-  G4int beamCharge = G4RunManager::GetRunManager()->GetCurrentRun()->GetNumberOfEventToBeProcessed();
+  // Acquire beam energy
   G4double runEnergy = simulationAnalysis->GetRunEnergy();
-  G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
 
   // Fill histos for nonzero momenta; separated statements to disclude stationary uncharged secondary processes
   if ( stepParticleType != 99 ) { if ( ! ( stepPx == 0 && stepPy == 0 && stepPz == 0 )) { if ( volumeName != "World" ) {
@@ -135,6 +138,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
              worldOuterRadius = worldTubs->GetOuterRadius();
 
     // Convert to cylindrical polar coordinates
+    G4double stepX = stepXYZ[0], stepY = stepXYZ[1]
     G4double stepR = pow(pow(stepX,2) + pow(stepY,2), 0.5),
              stepPr = pow(pow(stepPx,2) + pow(stepPy,2), 0.5);
 
@@ -171,12 +175,13 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     //analysisManager->FillNtupleDColumn(0, 4, eDepZ/beamCharge);
     //analysisManager->AddNtupleRow(0);
   }}}
+*/
 
   //// Particle energy spectra analysis data
   // If initial step of non-primary track
   if ( step->GetTrack()->GetCurrentStepNumber() == 1 && step->GetTrack()->GetParentID() != 0 ) {
 
-    // Obtain and fill respective spectra histogram with kinetic energy
+  // Obtain and fill respective spectra histogram with kinetic energy
     G4double stepKE = step->GetTrack()->GetKineticEnergy();
     if ( stepKE != 0 ) {
       if ( stepParticle == "e-" )
@@ -205,52 +210,43 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   // All share common center, half in -z hemispace
   G4double half_Cu = h_Cu/2, half_KA = h_KA/2;
 
-  // Track net signal calculation
+  // Measure Gain
   //
   // Wait for final state and compare original and
   // final positions of charge q
-  G4double netSignal = 0;
+  if ( simulationAnalysis->isMeasureGain() && step->GetTrack()->GetTrackStatus() != fAlive ) {
 
-  // Declare vars
-  G4double trackDepth = 0, trackDepthVertex = 0,
-           stepRCuDepth = 0, stepZCuDepth = 0,
-           stepRKADepth = 0, stepZKADepth = 0,
-           stepRKADepthVertex = 0, stepZKADepthVertex = 0;
+    G4double netSignal = 0;
 
-  // DESTINATION
-  // particle enters copper, +q_i
-  if ( volumeName == "Cu_cyl" ) {
+    // Declare vars
+    G4double trackDepth = 0, trackDepthVertex = 0,
+             stepRCuDepth = 0, stepZCuDepth = 0,
+             stepRCuDepthVertex = 0, stepZCuDepthVertex = 0,
+             stepRKADepth = 0, stepZKADepth = 0,
+             stepRKADepthVertex = 0, stepZKADepthVertex = 0;
 
-    stepRCuDepth = stepR/r_Cu;
-    stepZCuDepth = (stepZ + half_Cu)/h_Cu;
-    netSignal += stepCharge;
-
-    // Fill energy gain deposition Histo
-    histoID = analysisManager->GetH2Id("energyDepHistoCu");
-    analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, eDep/(beamCharge*runEnergy));
-   }
-        
-  // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
-  if ( volumeName == "Kapton_cyl1" ) {
-	
-    // Radial edge of Kapton
-    if ( stepR >= r_Cu ) { stepRKADepth = (stepR - r_Cu)/(r_KA - r_Cu); }
-    // Z edges of Kapton (cylinders are upside-down)
-    if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
-    if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
-    stepRKADepth = stepR/r_KA;
-
-    trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
-    netSignal += stepCharge*trackDepth;
-
-    // Fill energy gain deposition Histo
-    histoID = analysisManager->GetH2Id("energyDepHistoKA");
-    analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, eDep/(beamCharge*runEnergy));
-  }
-
-  // If end of track
-  if ( step->GetTrack()->GetTrackStatus() != fAlive ) {
-  
+    // DESTINATION
+    // particle enters copper, +q_i
+    if ( volumeName == "Cu_cyl" ) {
+    //
+      stepRCuDepth = stepR/r_Cu;
+      stepZCuDepth = (stepZ + half_Cu)/h_Cu;
+      netSignal += stepCharge;
+    }
+    //
+    // particle enters Kapton, +q_i*max(del_r/(r_KA - r_Cu), del_z/(h_KA - h_Cu))
+    if ( volumeName == "Kapton_cyl1" ) {
+      //	
+      // Radial edge of Kapton
+      if ( stepR >= r_Cu ) { stepRKADepth = (stepR - r_Cu)/(r_KA - r_Cu); }
+      // Z edges of Kapton (cylinders are upside-down)
+      if ( stepZ <= -half_Cu ) { stepZKADepth = (stepZ - (-half_Cu))/((-half_KA) - (-half_Cu)); }
+      if ( stepZ >= half_Cu ) { stepZKADepth = (stepZ - half_Cu)/(half_KA - half_Cu); }
+      stepRKADepth = stepR/r_KA;
+      trackDepth = 1 - ((stepRKADepth>stepZKADepth)?stepRKADepth:stepZKADepth); // concise maximum function
+       netSignal += stepCharge*trackDepth;
+    }
+ 
     // Get name of volume at track origin (vertex) w/ position
     G4String volumeNameVertex = step->GetTrack()->GetLogicalVolumeAtVertex()->GetName();
     G4ThreeVector stepXYZVertex = step->GetTrack()->GetVertexPosition();
@@ -259,18 +255,22 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     
     // ORIGIN
     // particle exits copper, -q_i
-    if ( volumeNameVertex == "Cu_cyl" ) { netSignal -= stepCharge; }
-  
+    if ( volumeNameVertex == "Cu_cyl" ) {
+
+      stepRCuDepthVertex = stepRVertex/r_Cu;
+      stepZCuDepthVertex = (stepZVertex + half_Cu)/h_Cu;
+      netSignal -= stepCharge;
+    }
+    //
     // particle exits Kapton, -q_i*[1-max(del_r/(r_KA - r_Cu), del_z/(half_KA - half_Cu))]
     if ( volumeNameVertex == "Kapton_cyl1" ) {
-		
+      //
       // Radial edge of Kapton
       if ( stepRVertex >= r_Cu ) { stepRKADepthVertex = (stepRVertex - r_Cu)/(r_KA - r_Cu); }
       // Z edges of Kapton (incoming from -z -> 0)
       if ( stepZVertex <= -half_Cu ) { stepZKADepthVertex = (stepZVertex - (-half_Cu))/((-half_KA) - (-half_Cu)); }
       if ( stepZVertex >= half_Cu ) { stepZKADepthVertex = (stepZVertex - half_Cu)/(half_KA - half_Cu); }
       stepRKADepthVertex = stepRVertex/r_KA;
-
       trackDepthVertex = 1 - ((stepRKADepthVertex>stepZKADepthVertex)?stepRKADepthVertex:stepZKADepthVertex); // concise maximum function
       netSignal -= stepCharge*trackDepthVertex;
     }
@@ -279,44 +279,82 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
     simulationAnalysis->appendRunGain(netSignal/beamCharge);
 
     // If charge particle or neutron/gamma track is relevant to analysis
-    if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
+    //if ( ( stepCharge != 0 || ( stepParticle == "neutron"  || stepParticle == "gamma" ) ) ) {
+    if ( stepCharge != 0 ) {
 
-      // Fill gain deposition Histo
-      if ( stepCharge != 0 && volumeName == "Cu_cyl" )
-        { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, stepCharge/beamCharge); }
-      if ( stepCharge != 0 && volumeNameVertex == "Cu_cyl" )
-        { histoID = analysisManager->GetH2Id("gainDepHistoCu");
-          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, -1*stepCharge/beamCharge); }
-      if ( stepCharge != 0 && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("gainDepHistoKA");
-          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, stepCharge/beamCharge); }
-      if ( stepCharge != 0 && volumeNameVertex == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("gainDepHistoKA");
-          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, -1*stepCharge/beamCharge); }
+      // Fill gain profile 2D Histogram and var
+      // Azimuthal symmetry bin weighting factor // pi*(r_f^2 - r_i^2)
+      G4double W_binCu, W_binKA, W_binCuVertex, W_binKAVertex;
+      if ( volumeName == "Cu_cyl" ) {
+          //
+          histoID = analysisManager->GetH2Id("gainDepHistoCu");
+          W_binCu = M_PI*(pow(floor(stepRCuDepth*30)+1, 2) - pow(floor(stepRCuDepth*30), 2));
+          analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth, (stepCharge/beamCharge)/W_binCu);
+          //
+          if ( stepCharge > 0 ) { // Gain
+            simulationAnalysis->appendGainProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (stepCharge/beamCharge)/W_binCu);
+            simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }
+          else { // Loss
+            simulationAnalysis->appendLossProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), (-stepCharge/beamCharge)/W_binCu);
+            simulationAnalysis->appendLossSquareProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30), pow((stepCharge/beamCharge)/W_binCu, 2));
+            simulationAnalysis->appendLossEntriesProfileCu(floor(stepZCuDepth*100), floor(stepRCuDepth*30)); }}
+          //
+      if ( volumeNameVertex == "Cu_cyl" ) {
+          //
+          histoID = analysisManager->GetH2Id("gainDepHistoCu");
+          W_binCuVertex = M_PI*(pow(floor(stepRCuDepthVertex*30)+1, 2) - pow(floor(stepRCuDepthVertex*30), 2));
+          analysisManager->FillH2(histoID, stepZCuDepthVertex, stepRCuDepthVertex, -(stepCharge/beamCharge)/W_binCuVertex);
+          //
+          if ( stepCharge > 0 ) { // Loss
+            simulationAnalysis->appendLossProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), (stepCharge/beamCharge)/W_binCuVertex);
+            simulationAnalysis->appendLossSquareProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), pow((stepCharge/beamCharge)/W_binCuVertex, 2));
+            simulationAnalysis->appendLossEntriesProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30)); }
+          else { // Gain
+            simulationAnalysis->appendGainProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), (-stepCharge/beamCharge)/W_binCuVertex);
+            simulationAnalysis->appendGainSquareProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30), pow((stepCharge/beamCharge)/W_binCuVertex, 2));
+            simulationAnalysis->appendGainEntriesProfileCu(floor(stepZCuDepthVertex*100), floor(stepRCuDepthVertex*30)); }}
+          //
+      if ( volumeName == "Kapton_cyl1" ) {
+          //
+          histoID = analysisManager->GetH2Id("gainDepHistoKA");
+          W_binKA = M_PI*(pow(floor(stepRKADepth*31)+1, 2) - pow(floor(stepRKADepth*31), 2));
+          //
+          //G4cout << stepParticle << " into Kapton at (zdepth, rdepth)=(" << stepZKADepth << ", " << stepRKADepth << ")" << G4endl;
+          analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth, (stepCharge/beamCharge)/W_binKA); }
+          //
+      if ( volumeNameVertex == "Kapton_cyl1" ) {
+          //
+          W_binKAVertex = M_PI*(pow(floor(stepRKADepthVertex*31)+1, 2) - pow(floor(stepRKADepthVertex*31), 2));
+          histoID = analysisManager->GetH2Id("gainDepHistoKA");
+          //
+          //G4cout << stepParticle << " from Kapton at (zdepth, rdepth)=(" << stepZKADepthVertex << ", " << stepRKADepthVertex << ")" << G4endl;
+          analysisManager->FillH2(histoID, stepZKADepthVertex, stepRKADepthVertex, -(stepCharge/beamCharge)/W_binKAVertex); }
 
-
+/* 2015-11-15 Suppress analyses and extra models
       // Copper/Kapton 2D Deposition Histogram
       if ( stepParticle == "e-" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("eDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "e-" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("eDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "proton" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("pDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "proton" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("pDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "neutron" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("nDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "neutron" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("nDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepParticle == "gamma" && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("gDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
-      else if ( stepParticle == "gamma" && volumeName == "Kapton_cyl1" )
-        { histoID = analysisManager->GetH2Id("gDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) && volumeName == "Cu_cyl" )
         { histoID = analysisManager->GetH2Id("oDepHistoCu"); analysisManager->FillH2(histoID, stepZCuDepth, stepRCuDepth); }
+
+      else if ( stepParticle == "e-" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("eDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "proton" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("pDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "neutron" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("nDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+      else if ( stepParticle == "gamma" && volumeName == "Kapton_cyl1" )
+        { histoID = analysisManager->GetH2Id("gDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
       else if ( stepCharge != 0 && ( stepParticle != "e-" && stepParticle != "proton" ) && volumeName == "Kapton_cyl1" )
         { histoID = analysisManager->GetH2Id("oDepHistoKA"); analysisManager->FillH2(histoID, stepZKADepth, stepRKADepth); }
+*/
     }
   }
 }

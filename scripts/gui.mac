@@ -12,13 +12,20 @@
 /gui/addButton file Quit exit
 #
 # Gun menu :
-/gui/addMenu gun Gun
-/gui/addButton gun "70 MeV"  "/gun/energy 70 MeV"
-/gui/addButton gun "100 MeV"  "/gun/energy 100 MeV"
-/gui/addButton gun "160 MeV"  "/gun/energy 160 MeV"
-/gui/addButton gun "proton"  "/gun/particle proton"
-/gui/addButton gun "neutron" "/gun/particle neutron"
-/gui/addButton gun "e-"      "/gun/particle e-"
+/gui/addMenu beam Energy
+/gui/addButton beam "70 MeV"  "/gun/energy 70 MeV"
+/gui/addButton beam "100 MeV"  "/gun/energy 100 MeV"
+/gui/addButton beam "130 MeV"  "/gun/energy 130 MeV"
+/gui/addButton beam "160 MeV"  "/gun/energy 160 MeV"
+/gui/addButton beam "190 MeV"  "/gun/energy 190 MeV"
+/gui/addButton beam "220 MeV"  "/gun/energy 220 MeV"
+/gui/addButton beam "250 MeV"  "/gun/energy 250 MeV"
+#
+# Particle menu :
+/gui/addMenu particle Particle
+/gui/addButton particle "proton"  "/gun/particle proton"
+/gui/addButton particle "neutron" "/gun/particle neutron"
+/gui/addButton particle "e-"      "/gun/particle e-"
 #
 # Model menu :
 /gui/addMenu model Model
@@ -28,7 +35,7 @@
 #
 # Kapton Thickness menu :
 /gui/addMenu kapthick Insulator
-/gui/addButton kapthick "S59" "/PFC/setKaptonThickness 59"
+/gui/addButton kapthick "S59" "/PFC/setKaptonThickness 50"
 /gui/addButton kapthick "S100" "/PFC/setKaptonThickness 100"
 /gui/addButton kapthick "S200" "/PFC/setKaptonThickness 200"
 #
