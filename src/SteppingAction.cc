@@ -38,12 +38,6 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
   //// their own function to be called alongside specific analyses
   //// (note: currently recycling some vars between latter functions)
 
-  // Acquire world logical volume dimensions
-  G4LogicalVolume* CuLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
-  G4Tubs* CuTubs = 0;
-  CuTubs = dynamic_cast< G4Tubs*>(CuLV->GetSolid()); 
-  G4double Cu_cylZHalfLength = CuTubs->GetZHalfLength();
-
   // Acquire analysis instance
   Analysis* simulationAnalysis = Analysis::GetAnalysis();
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
@@ -57,17 +51,24 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
 
   // Acquire Kapton thickness, then in mm
   G4double KA_thickness = simulationAnalysis->GetRunKAThickness();
-  G4double t_KA = KA_thickness/1000;
 
   // Get particle name, position, charge
   G4String stepParticle = step->GetTrack()->GetDefinition()->GetParticleName();
   G4ThreeVector stepXYZ = step->GetPostStepPoint()->GetPosition();
-  G4double stepX = stepXYZ[0], stepY = stepXYZ[1], stepZ = stepXYZ[2];
+  G4double stepZ = stepXYZ[2];
   G4double stepCharge = step->GetTrack()->GetDefinition()->GetPDGCharge();
 
 /* 2015-11-15 Suppress analyses and extra models
   //// Branching ratios analysis data
+
+  // Acquire world logical volume dimensions
+  G4LogicalVolume* CuLV = G4LogicalVolumeStore::GetInstance()->GetVolume("Cu_cyl");
+  G4Tubs* CuTubs = 0;
+  CuTubs = dynamic_cast< G4Tubs*>(CuLV->GetSolid()); 
+  G4double Cu_cylZHalfLength = CuTubs->GetZHalfLength();
+
   // Gottschalk's active sheet range (R = 0.484 g/cm2 = 8.96*t_Cu + 1.42*t_KA) with [t]=cm
+  G4double t_KA = KA_thickness/1000;
   G4double t_Cu = 10*(0.484 - (1.42*t_KA/10))/8.96; // in mm
 
   // If primary track step within Gottschalk range
@@ -137,6 +138,7 @@ void SteppingAction::UserSteppingAction(const G4Step* step) {
              worldOuterRadius = worldTubs->GetOuterRadius();
 
     // Convert to cylindrical polar coordinates
+    G4double stepX = stepXYZ[0], stepY = stepXYZ[1]
     G4double stepR = pow(pow(stepX,2) + pow(stepY,2), 0.5),
              stepPr = pow(pow(stepPx,2) + pow(stepPy,2), 0.5);
 

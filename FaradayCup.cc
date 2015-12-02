@@ -36,8 +36,7 @@ void beamSimulation(G4int nEvents) {
   // Beam parameters and vars
   G4double energies[7] = {70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250.00}; // MeV
   G4double beam_fwhm[7] = {22.8, 15.7, 12.5, 10.6, 8.9, 8.1, 8.1}; // mm
-  //G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
-  G4int nEnergies = 1;
+  G4int nEnergies = (int)sizeof(energies)/sizeof(G4double);
   std::ostringstream syscmdStream;
   G4String syscmd;
 

@@ -28,8 +28,7 @@
     sprintf(syscmd, "mkdir -p ROOT/figs/%s/", volumeName[volume_i]);
     system((const char*)syscmd);
 
-    //for ( int energy_i = 0; energy_i < 7; energy_i++ ) {
-    for ( int energy_i = 0; energy_i < 1; energy_i++ ) {
+    for ( int energy_i = 0; energy_i < 7; energy_i++ ) {
 
       // Set data file
       sprintf(depHistoFileName, "ROOT/trackData-%d.root", energy_i);

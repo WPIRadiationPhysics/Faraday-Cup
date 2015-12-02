@@ -9,7 +9,7 @@ energies = [70.03, 100.46, 130.52, 160.09, 190.48, 221.06, 250];
 % Create output directory if necessary
 system('mkdir -p csv/figs');
 
-for runID=0:0
+for runID=0:6
 
   % Define profile file
   gainProfileDataFile = strcat('csv/gainErrorProfileCu-', int2str(runID), '.csv');
